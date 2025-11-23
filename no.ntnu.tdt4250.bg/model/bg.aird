@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
-  <viewpoint:DAnalysis uid="_J0uGEMiCEfCSmJykj95E4w" selectedViews="_MnzRsMiCEfCSmJykj95E4w" version="15.4.1.202403191723">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bg="http://www.example.org/bg" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
+  <viewpoint:DAnalysis uid="_J0uGEMiCEfCSmJykj95E4w" selectedViews="_MnzRsMiCEfCSmJykj95E4w _OiWcYMiOEfCqZucgZy4p2g" version="15.4.1.202403191723">
     <semanticResources>bg.ecore</semanticResources>
     <semanticResources>bg.genmodel</semanticResources>
+    <semanticResources>Game.xmi</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_MnzRsMiCEfCSmJykj95E4w">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_MqR98MiCEfCSmJykj95E4w" name="bg" repPath="#_MpZNIMiCEfCSmJykj95E4w" changeId="1763916963168">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="bg.ecore#/"/>
+      </ownedRepresentationDescriptors>
+    </ownedViews>
+    <ownedViews xmi:type="viewpoint:DView" uid="_OiWcYMiOEfCqZucgZy4p2g">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/no.ntnu.tdt4250.bg.design/description/bg.odesign#//@ownedViewpoints[name='Tile']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_uIotoMiOEfCqZucgZy4p2g" name="new State" repPath="#_uImRYMiOEfCqZucgZy4p2g" changeId="1763917575593">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/resource/no.ntnu.tdt4250.bg.design/description/bg.odesign#//@ownedViewpoints[name='Tile']/@ownedRepresentations[name='State']"/>
+        <target xmi:type="bg:Tile" href="Game.xmi#//@board/@tiles.0"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
   </viewpoint:DAnalysis>
@@ -936,5 +944,31 @@
     <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@additionalLayers[name='Package']"/>
     <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@additionalLayers[name='Validation']"/>
     <target xmi:type="ecore:EPackage" href="bg.ecore#/"/>
+  </diagram:DSemanticDiagram>
+  <diagram:DSemanticDiagram uid="_uImRYMiOEfCqZucgZy4p2g">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_uIzFsMiOEfCqZucgZy4p2g" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_uIzFsciOEfCqZucgZy4p2g" type="Sirius" element="_uImRYMiOEfCqZucgZy4p2g" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_uI-r4MiOEfCqZucgZy4p2g" type="2001" element="_uI3-MMiOEfCqZucgZy4p2g">
+          <children xmi:type="notation:Node" xmi:id="_uJCWQMiOEfCqZucgZy4p2g" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_uJCWQciOEfCqZucgZy4p2g" y="5"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_uI-r4ciOEfCqZucgZy4p2g" fontName="Segoe UI"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uI-r4siOEfCqZucgZy4p2g" width="20" height="20"/>
+        </children>
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_uIzFssiOEfCqZucgZy4p2g"/>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_uI6acMiOEfCqZucgZy4p2g" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_uI6acciOEfCqZucgZy4p2g"/>
+    </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_uI3-MMiOEfCqZucgZy4p2g">
+      <target xmi:type="bg:State" href="Game.xmi#//@board/@tiles.0/@initialState"/>
+      <semanticElements xmi:type="bg:State" href="Game.xmi#//@board/@tiles.0/@initialState"/>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/no.ntnu.tdt4250.bg.design/description/bg.odesign#//@ownedViewpoints[name='Tile']/@ownedRepresentations[name='State']/@defaultLayer/@nodeMappings[name='StateNode']"/>
+    </ownedDiagramElements>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/resource/no.ntnu.tdt4250.bg.design/description/bg.odesign#//@ownedViewpoints[name='Tile']/@ownedRepresentations[name='State']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_uIm4cMiOEfCqZucgZy4p2g"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/no.ntnu.tdt4250.bg.design/description/bg.odesign#//@ownedViewpoints[name='Tile']/@ownedRepresentations[name='State']/@defaultLayer"/>
+    <target xmi:type="bg:Tile" href="Game.xmi#//@board/@tiles.0"/>
   </diagram:DSemanticDiagram>
 </xmi:XMI>

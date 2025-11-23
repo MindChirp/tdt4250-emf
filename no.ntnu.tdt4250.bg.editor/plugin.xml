@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated bg -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="no.ntnu.tdt4250.bg.presentation.BgModelWizardID"
+            name="%_UI_BgModelWizard_label"
+            class="no.ntnu.tdt4250.bg.presentation.BgModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/BgModelFile.gif">
+         <description>%_UI_BgModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated bg -->
+      <editor
+            id="no.ntnu.tdt4250.bg.presentation.BgEditorID"
+            name="%_UI_BgEditor_label"
+            icon="icons/full/obj16/BgModelFile.gif"
+            extensions="bg"
+            class="no.ntnu.tdt4250.bg.presentation.BgEditor"
+            contributorClass="no.ntnu.tdt4250.bg.presentation.BgActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
