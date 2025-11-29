@@ -252,7 +252,7 @@ An abstract class with reusable logic units that form part of a pipeline's chain
 #### Filters
 
 - Reusable logic building blocks chained to form pipelines.
-- Examples:
+- Here are some example filters:
   - `TileEmptyFilter` - tile must be empty
   - `GravityFilter` - Connect 4 gravity rule
   - `ImmediateNeighbourFilter` - Othello edge rule
@@ -262,37 +262,59 @@ An abstract class with reusable logic units that form part of a pipeline's chain
   - `NextTurnEffect` - switch player turn
   - `CheckWinEffect` - detect winner
 
-- Filters are composable and reusable across games.
-
 #### Constraints
 
 - Implemented in the generated `Validator` using Java.
-- Example constraints:
 
   - **Game constraints**
-    - `playersMustHaveUniqueHexColors`
-    - `playersMustHaveUniqueNames`
-    - `gameMustHaveAtLeastOnePlayer`
+    - `playersMustHaveUniqueHexColors`  
+      Ensures that no two players share the same `hexColor`, guaranteeing a unique visual identity for each player.
+
+    - `playersMustHaveUniqueNames`  
+      Ensures that every player in a game has a distinct name to avoid ambiguity in UI and rule processing.
+
+    - `gameMustHaveAtLeastOnePlayer`  
+      Prevents creation of a game without players; every valid game must include at least one participant.
 
   - **Board constraints**
-    - `tilePositionsMustBeUnique`
-    - `boardDimensionsMustBePositive`
-    - `tilesInsideBoardBounds`
-    - `boardMustBelongToGame`
+    - `tilePositionsMustBeUnique`  
+      Ensures that no two tiles occupy the same `(row, col)` coordinate, enforcing a consistent grid.
+
+    - `boardDimensionsMustBePositive`  
+      Validates that both `width` and `height` are greater than zero, preventing invalid board sizes.
+
+    - `tilesInsideBoardBounds`  
+      Ensures tile coordinates do not exceed the board’s dimensions; all tiles must lie within the defined area.
+
+    - `boardMustBelongToGame`  
+      Ensures the board is associated with exactly one game, preventing detached or orphaned boards.
 
   - **Tile constraints**
-    - `tileMustHaveInitialState`
-    - `stateNamesUniqueWithinTile`
+    - `tileMustHaveInitialState`  
+      Validates that each tile defines one and only one `initialState`, ensuring a known starting point.
+
+    - `stateNamesUniqueWithinTile`  
+      Ensures all states inside a tile have unique names, avoiding ambiguity when transitions or rules refer to them.
 
   - **State machine constraints**
-    - `allStatesMustBeReachable`
-    - `stateMachineMustBeDeterministic`
-    - `transitionMustStayWithinTile`
-    - `stateHexColourMustBeValid`
+    - `allStatesMustBeReachable`  
+      Ensures every state can be reached from the `initialState`, preventing unused or isolated states.
+
+    - `stateMachineMustBeDeterministic`  
+      Ensures no state has conflicting or ambiguous outbound transitions that would make the machine nondeterministic.
+
+    - `transitionMustStayWithinTile`  
+      Validates that transition source and target states belong to the same tile, keeping state machines self-contained.
+
+    - `stateHexColourMustBeValid`  
+      Confirms the `hexColor` follows the `#RRGGBB` format, ensuring valid color definitions.
 
   - **Pipeline constraints**
-    - `legalPipelineMustBeValidChain`
-    - `effectPipelineMustBeValidChain`
+    - `legalPipelineMustBeValidChain`  
+      Ensures the legal moves pipeline forms a proper, cycle-free chain where each filter correctly links to the next.
+
+    - `effectPipelineMustBeValidChain`  
+      Same as above, but applied to the effect pipeline; ensures effects are applied in a consistent sequence.
 
 ---
 
