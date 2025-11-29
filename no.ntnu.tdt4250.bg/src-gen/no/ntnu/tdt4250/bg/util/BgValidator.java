@@ -2,6 +2,7 @@
  */
 package no.ntnu.tdt4250.bg.util;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
@@ -442,7 +443,7 @@ public class BgValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(legalMovesPipeline, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateLegalMovesPipeline_legalMovesPipelineFiltersMustFromValidChain(legalMovesPipeline,
+			result &= validateLegalMovesPipeline_legalMovesPipelineFiltersMustFormValidChain(legalMovesPipeline,
 					diagnostics, context);
 		return result;
 	}
@@ -453,13 +454,17 @@ public class BgValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLegalMovesPipeline_legalMovesPipelineFiltersMustFromValidChain(
+	public boolean validateLegalMovesPipeline_legalMovesPipelineFiltersMustFormValidChain(
 			LegalMovesPipeline legalMovesPipeline, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		
+		Filter startFilter = legalMovesPipeline.getFilter();
+		boolean isValidChain = isValidFilterChain(startFilter);
+		
+		if (!isValidChain) {
 			if (diagnostics != null) {
 				diagnostics.add(
 						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
@@ -587,7 +592,7 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (!(filter.eContainer().eContainer().eContainer() instanceof Game)) {
 			if (diagnostics != null) {
 				diagnostics.add(
 						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
@@ -759,7 +764,7 @@ public class BgValidator extends EObjectValidator {
 	 * Validates the allStatesMustBeReachable constraint of '<em>Tile</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateTile_allStatesMustBeReachable(Tile tile, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
@@ -789,7 +794,7 @@ public class BgValidator extends EObjectValidator {
 	    // Check if all states are visited
 	    boolean allReachable = visited.containsAll(tile.getStates());
 		
-		if (false) {
+		if (!allReachable) {
 			if (diagnostics != null) {
 				diagnostics.add(
 						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
@@ -805,7 +810,7 @@ public class BgValidator extends EObjectValidator {
 	 * Validates the tileTransitionsMustBeWellFormed constraint of '<em>Tile</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateTile_tileTransitionsMustBeWellFormed(Tile tile, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
@@ -813,7 +818,44 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		
+		boolean allWellFormed = true;
+
+	    Set<State> tileStates = new HashSet<>(tile.getStates());
+
+	    for (State state : tile.getStates()) {
+	        Transition t = state.getOutbound(); // single outbound transition
+	        if (t != null) {
+
+	            State source = t.getSource().getFirst();
+	            State target = t.getTarget();
+
+	            // Rule 4: Transition must be fully defined
+	            if (source == null || target == null) {
+	                allWellFormed = false;
+	                break;
+	            }
+
+	            // Rule 1 & 2: Source and target must belong to the same tile
+	            if (!tileStates.contains(source) || !tileStates.contains(target)) {
+	                allWellFormed = false;
+	                break;
+	            }
+
+	            // Optional extra: ensure the source is the current state
+	            if (source != state) {
+	                allWellFormed = false;
+	                break;
+	            }
+	        } else {
+	            // Rule 4: Transition missing entirely
+	            allWellFormed = false;
+	            break;
+	        }
+	    }
+		
+		
+		if (!allWellFormed) {
 			if (diagnostics != null) {
 				diagnostics.add(
 						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
@@ -829,7 +871,7 @@ public class BgValidator extends EObjectValidator {
 	 * Validates the tilesMustHaveAtLeastOneState constraint of '<em>Tile</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateTile_tilesMustHaveAtLeastOneState(Tile tile, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
@@ -837,7 +879,8 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		
+		if ((tile.getStates().isEmpty())) {
 			if (diagnostics != null) {
 				diagnostics.add(
 						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
@@ -907,7 +950,7 @@ public class BgValidator extends EObjectValidator {
 	 * Validates the stateHexColorMustBeValid constraint of '<em>State</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateState_stateHexColorMustBeValid(State state, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
@@ -915,7 +958,10 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		String playerHex = state.getHexColor();
+		boolean isValidHex = playerHex != null && playerHex.matches("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
+		
+		if (!isValidHex) {
 			if (diagnostics != null) {
 				diagnostics.add(
 						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
@@ -961,7 +1007,7 @@ public class BgValidator extends EObjectValidator {
 	 * Validates the transitionMustStayWithinTile constraint of '<em>Transition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateTransition_transitionMustStayWithinTile(Transition transition, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
@@ -969,7 +1015,33 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		
+		State source = transition.getSource().getFirst();
+	    State target = transition.getTarget();
+
+	    if (source == null || target == null) {
+	        if (diagnostics != null) {
+	            diagnostics.add(createDiagnostic(
+	                    Diagnostic.ERROR,
+	                    DIAGNOSTIC_SOURCE,
+	                    0,
+	                    "_UI_GenericConstraint_diagnostic",
+	                    new Object[] { "transitionMustStayWithinTile: source or target is null",
+	                                   getObjectLabel(transition, context) },
+	                    new Object[] { transition },
+	                    context));
+	        }
+	        return false;
+	    }
+
+	    // Traverse containment to find the Tile of each state
+	    Tile sourceTile = (Tile) source.eContainer();
+	    Tile targetTile = (Tile) target.eContainer();
+
+	    boolean staysWithinTile = sourceTile != null && sourceTile == targetTile;
+		
+		
+		if (!staysWithinTile) {
 			if (diagnostics != null) {
 				diagnostics.add(
 						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
@@ -985,7 +1057,7 @@ public class BgValidator extends EObjectValidator {
 	 * Validates the transitionMustBelongToTile constraint of '<em>Transition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateTransition_transitionMustBelongToTile(Transition transition, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
@@ -993,7 +1065,32 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		
+		State source = transition.getSource().getFirst();
+	    State target = transition.getTarget();
+
+	    if (source == null || target == null) {
+	        if (diagnostics != null) {
+	            diagnostics.add(createDiagnostic(
+	                    Diagnostic.ERROR,
+	                    DIAGNOSTIC_SOURCE,
+	                    0,
+	                    "_UI_GenericConstraint_diagnostic",
+	                    new Object[] { "transitionMustBelongToTile: source or target is null",
+	                                   getObjectLabel(transition, context) },
+	                    new Object[] { transition },
+	                    context));
+	        }
+	        return false;
+	    }
+
+	    // The tile containing the source (and target)
+	    Tile sourceTile = (Tile) source.eContainer();
+	    Tile targetTile = (Tile) target.eContainer();
+
+	    boolean belongsToTile = sourceTile != null && sourceTile == targetTile;
+		
+		if (!belongsToTile) {
 			if (diagnostics != null) {
 				diagnostics.add(
 						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
