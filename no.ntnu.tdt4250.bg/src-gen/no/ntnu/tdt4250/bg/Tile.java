@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getTile()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='tileMustHaveInitialState tileStateNamesMustBeUnique allStatesMustBeReachable tileTransitionsMustBeWellFormed tilesMustHaveAtLeastOneState'"
  * @generated
  */
 public interface Tile extends EObject {

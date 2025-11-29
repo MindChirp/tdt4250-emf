@@ -15,10 +15,11 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link no.ntnu.tdt4250.bg.Player#getName <em>Name</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Player#isIsActive <em>Is Active</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.Player#getHexColor <em>Hex Color</em>}</li>
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getPlayer()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='playerHexColorMustBeValid'"
  * @generated
  */
 public interface Player extends EObject {
@@ -54,5 +55,27 @@ public interface Player extends EObject {
 	 * @generated
 	 */
 	boolean isIsActive();
+
+	/**
+	 * Returns the value of the '<em><b>Hex Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Hex Color</em>' attribute.
+	 * @see #setHexColor(String)
+	 * @see no.ntnu.tdt4250.bg.BgPackage#getPlayer_HexColor()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getHexColor();
+
+	/**
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Player#getHexColor <em>Hex Color</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Hex Color</em>' attribute.
+	 * @see #getHexColor()
+	 * @generated
+	 */
+	void setHexColor(String value);
 
 } // Player

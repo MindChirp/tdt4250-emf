@@ -241,13 +241,22 @@ public interface BgPackage extends EPackage {
 	int PLAYER__IS_ACTIVE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Hex Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLAYER__HEX_COLOR = 2;
+
+	/**
 	 * The number of structural features of the '<em>Player</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLAYER_FEATURE_COUNT = 2;
+	int PLAYER_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Player</em>' class.
@@ -874,6 +883,17 @@ public interface BgPackage extends EPackage {
 	EAttribute getPlayer_IsActive();
 
 	/**
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Player#getHexColor <em>Hex Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Hex Color</em>'.
+	 * @see no.ntnu.tdt4250.bg.Player#getHexColor()
+	 * @see #getPlayer()
+	 * @generated
+	 */
+	EAttribute getPlayer_HexColor();
+
+	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.TurnPolicy <em>Turn Policy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1327,6 +1347,14 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PLAYER__IS_ACTIVE = eINSTANCE.getPlayer_IsActive();
+
+		/**
+		 * The meta object literal for the '<em><b>Hex Color</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLAYER__HEX_COLOR = eINSTANCE.getPlayer_HexColor();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.TurnPolicyImpl <em>Turn Policy</em>}' class.

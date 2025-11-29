@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getTransition()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='transitionMustStayWithinTile transitionMustBelongToTile'"
  * @generated
  */
 public interface Transition extends EObject {

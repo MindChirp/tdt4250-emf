@@ -18,12 +18,14 @@ import no.ntnu.tdt4250.bg.Transition;
 import no.ntnu.tdt4250.bg.TurnPolicy;
 import no.ntnu.tdt4250.bg.TurnType;
 
+import no.ntnu.tdt4250.bg.util.BgValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -178,6 +180,14 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 
 		// Initialize created meta-data
 		theBgPackage.initializePackageContents();
+
+		// Register package validator
+		EValidator.Registry.INSTANCE.put(theBgPackage, new EValidator.Descriptor() {
+			@Override
+			public EValidator getEValidator() {
+				return BgValidator.INSTANCE;
+			}
+		});
 
 		// Mark meta-data to indicate it can't be changed
 		theBgPackage.freeze();
@@ -345,6 +355,16 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	@Override
 	public EAttribute getPlayer_IsActive() {
 		return (EAttribute) playerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPlayer_HexColor() {
+		return (EAttribute) playerEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -675,6 +695,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		playerEClass = createEClass(PLAYER);
 		createEAttribute(playerEClass, PLAYER__NAME);
 		createEAttribute(playerEClass, PLAYER__IS_ACTIVE);
+		createEAttribute(playerEClass, PLAYER__HEX_COLOR);
 
 		turnPolicyEClass = createEClass(TURN_POLICY);
 		createEAttribute(turnPolicyEClass, TURN_POLICY__TYPE);
@@ -787,6 +808,8 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPlayer_IsActive(), ecorePackage.getEBoolean(), "isActive", null, 1, 1, Player.class,
 				IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPlayer_HexColor(), ecorePackage.getEString(), "hexColor", null, 1, 1, Player.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(turnPolicyEClass, TurnPolicy.class, "TurnPolicy", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -865,6 +888,36 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";
+		addAnnotation(gameEClass, source, new String[] { "constraints",
+				"playersMustHaveUniqueHexColors playersMustHaveUniqueNames gameMustHaveAtLeastOnePlayer" });
+		addAnnotation(boardEClass, source, new String[] { "constraints",
+				"boardDimensionsMustBePositive tilePositionsMustBeUnique boardMustBelongToGame" });
+		addAnnotation(playerEClass, source, new String[] { "constraints", "playerHexColorMustBeValid" });
+		addAnnotation(legalMovesPipelineEClass, source,
+				new String[] { "constraints", "legalMovesPipelineFiltersMustFromValidChain" });
+		addAnnotation(effectPipelineEClass, source,
+				new String[] { "constraints", "effectPipelineFiltersMustFormValidChain" });
+		addAnnotation(filterEClass, source, new String[] { "constraints", "filterMustBelongToGame" });
+		addAnnotation(tileEClass, source, new String[] { "constraints",
+				"tileMustHaveInitialState tileStateNamesMustBeUnique allStatesMustBeReachable tileTransitionsMustBeWellFormed tilesMustHaveAtLeastOneState" });
+		addAnnotation(stateEClass, source,
+				new String[] { "constraints", "stateMachineMustBeDeterministic stateHexColorMustBeValid" });
+		addAnnotation(transitionEClass, source,
+				new String[] { "constraints", "transitionMustStayWithinTile transitionMustBelongToTile" });
 	}
 
 } //BgPackageImpl

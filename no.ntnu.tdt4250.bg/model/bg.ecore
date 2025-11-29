@@ -2,6 +2,9 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="bg" nsURI="http://www.example.org/bg" nsPrefix="bg">
   <eClassifiers xsi:type="ecore:EClass" name="Game">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="playersMustHaveUniqueHexColors playersMustHaveUniqueNames gameMustHaveAtLeastOnePlayer"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="board" lowerBound="1" eType="#//Board"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -12,6 +15,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialPlayer" eType="#//Player"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Board">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="boardDimensionsMustBePositive tilePositionsMustBeUnique boardMustBelongToGame"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tiles" lowerBound="1" upperBound="-1"
         eType="#//Tile" containment="true"/>
@@ -25,10 +31,15 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Player">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="playerHexColorMustBeValid"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isActive" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
         volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hexColor" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TurnPolicy">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//TurnType"/>
@@ -38,18 +49,30 @@
     <eLiterals name="Simultaneous" value="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegalMovesPipeline">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="legalMovesPipelineFiltersMustFromValidChain"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="filter" eType="#//Filter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EffectPipeline">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="effectPipelineFiltersMustFormValidChain"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="filter" eType="#//Filter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Filter" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="filterMustBelongToGame"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nextFilter" eType="#//Filter"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SomeFilter1" eSuperTypes="#//Filter"/>
   <eClassifiers xsi:type="ecore:EClass" name="SomeFilter2" eSuperTypes="#//Filter"/>
   <eClassifiers xsi:type="ecore:EClass" name="Tile">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="tileMustHaveInitialState tileStateNamesMustBeUnique allStatesMustBeReachable tileTransitionsMustBeWellFormed tilesMustHaveAtLeastOneState"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="states" lowerBound="1"
         upperBound="-1" eType="#//State" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transitions" upperBound="-1"
@@ -64,6 +87,9 @@
         volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="State">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="stateMachineMustBeDeterministic stateHexColorMustBeValid"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outbound" eType="#//Transition"
         eOpposite="#//Transition/source"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inbound" eType="#//Transition"
@@ -73,6 +99,9 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral="#dddddd"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="transitionMustStayWithinTile transitionMustBelongToTile"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
         upperBound="-1" eType="#//State" eOpposite="#//State/outbound"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"

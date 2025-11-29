@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getBoard()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='boardDimensionsMustBePositive tilePositionsMustBeUnique boardMustBelongToGame'"
  * @generated
  */
 public interface Board extends EObject {

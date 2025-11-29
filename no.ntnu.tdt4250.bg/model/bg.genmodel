@@ -32,6 +32,7 @@
     <genClasses ecoreClass="bg.ecore#//Player">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Player/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Player/isActive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Player/hexColor"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//TurnPolicy">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//TurnPolicy/type"/>

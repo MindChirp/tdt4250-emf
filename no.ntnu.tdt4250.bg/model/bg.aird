@@ -6,7 +6,7 @@
     <semanticResources>Game.xmi</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_MnzRsMiCEfCSmJykj95E4w">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_MqR98MiCEfCSmJykj95E4w" name="bg" repPath="#_MpZNIMiCEfCSmJykj95E4w" changeId="1763916963168">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_MqR98MiCEfCSmJykj95E4w" name="bg" repPath="#_MpZNIMiCEfCSmJykj95E4w" changeId="1764341611211">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="bg.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -66,6 +66,10 @@
             <children xmi:type="notation:Node" xmi:id="_ahmHmMiMEfCSmJykj95E4w" type="3010" element="_ahjEMMiMEfCSmJykj95E4w">
               <styles xmi:type="notation:FontStyle" xmi:id="_ahmukMiMEfCSmJykj95E4w" fontColor="2697711" fontName="Segoe UI" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_ahmukciMEfCSmJykj95E4w"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_92bXsMxpEfCM84XmLQTk2g" type="3010" element="_92Q_oMxpEfCM84XmLQTk2g">
+              <styles xmi:type="notation:FontStyle" xmi:id="_92bXscxpEfCM84XmLQTk2g" fontColor="2697711" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_92bXssxpEfCM84XmLQTk2g"/>
             </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_QPBg8siLEfCSmJykj95E4w"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_QPBg88iLEfCSmJykj95E4w"/>
@@ -575,7 +579,7 @@
     <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_QO7aUMiLEfCSmJykj95E4w" name="Player" tooltipText="" incomingEdges="_fpDmJMiLEfCSmJykj95E4w _hWZ43MiLEfCSmJykj95E4w" width="12" height="10">
       <target xmi:type="ecore:EClass" href="bg.ecore#//Player"/>
       <semanticElements xmi:type="ecore:EClass" href="bg.ecore#//Player"/>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_cYfXtciMEfCSmJykj95E4w" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_AXxTFcxqEfCM84XmLQTk2g" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
@@ -591,6 +595,14 @@
         <target xmi:type="ecore:EAttribute" href="bg.ecore#//Player/isActive"/>
         <semanticElements xmi:type="ecore:EAttribute" href="bg.ecore#//Player/isActive"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_cuom08iMEfCSmJykj95E4w" labelColor="39,76,114" labelAlignment="LEFT" description="_cuom0ciMEfCSmJykj95E4w">
+          <labelFormat>bold</labelFormat>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_92Q_oMxpEfCM84XmLQTk2g" name="hexColor : EString" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="bg.ecore#//Player/hexColor"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="bg.ecore#//Player/hexColor"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_AXyhNsxqEfCM84XmLQTk2g" labelAlignment="LEFT" description="_lQAkQMiHEfCSmJykj95E4w">
           <labelFormat>bold</labelFormat>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
@@ -962,9 +974,9 @@
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_uI6acciOEfCqZucgZy4p2g"/>
     </ownedAnnotationEntries>
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_uI3-MMiOEfCqZucgZy4p2g">
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/no.ntnu.tdt4250.bg.design/description/bg.odesign#//@ownedViewpoints[name='Tile']/@ownedRepresentations[name='State']/@defaultLayer/@nodeMappings[name='StateNode']"/>
       <target xmi:type="bg:State" href="Game.xmi#//@board/@tiles.0/@initialState"/>
       <semanticElements xmi:type="bg:State" href="Game.xmi#//@board/@tiles.0/@initialState"/>
-      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/no.ntnu.tdt4250.bg.design/description/bg.odesign#//@ownedViewpoints[name='Tile']/@ownedRepresentations[name='State']/@defaultLayer/@nodeMappings[name='StateNode']"/>
     </ownedDiagramElements>
     <description xmi:type="description_1:DiagramDescription" href="platform:/resource/no.ntnu.tdt4250.bg.design/description/bg.odesign#//@ownedViewpoints[name='Tile']/@ownedRepresentations[name='State']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_uIm4cMiOEfCqZucgZy4p2g"/>

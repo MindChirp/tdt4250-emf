@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getGame()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='playersMustHaveUniqueHexColors playersMustHaveUniqueNames gameMustHaveAtLeastOnePlayer'"
  * @generated
  */
 public interface Game extends EObject {
