@@ -10,6 +10,7 @@ import no.ntnu.tdt4250.bg.*;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EPackage;
@@ -293,48 +294,60 @@ public class BgValidator extends EObjectValidator {
 	 * Validates the tilePositionsMustBeUnique constraint of '<em>Board</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public boolean validateBoard_tilePositionsMustBeUnique(Board board, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add(
-						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
-								new Object[] { "tilePositionsMustBeUnique", getObjectLabel(board, context) },
-								new Object[] { board }, context));
-			}
-			return false;
-		}
-		return true;
+	public boolean validateBoard_tilePositionsMustBeUnique(
+	        Board board, DiagnosticChain diagnostics, Map<Object, Object> context) {
+
+	    Set<String> positions = new HashSet<>();
+
+	    for (Tile t : board.getTiles()) {
+
+	        String id = t.getRow() + "," + t.getCol();
+
+	        if (!positions.add(id)) {
+	            if (diagnostics != null) {
+	                diagnostics.add(createDiagnostic(
+	                    Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0,
+	                    "Duplicate tile position: " + id,
+	                    new Object[] { "tilePositionsMustBeUnique", getObjectLabel(board, context) },
+	                    new Object[] { t }, context));
+	            }
+	            return false;
+	        }
+	    }
+	    return true;
 	}
 
 	/**
 	 * Validates the boardMustBelongToGame constraint of '<em>Board</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public boolean validateBoard_boardMustBelongToGame(Board board, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add(
-						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
-								new Object[] { "boardMustBelongToGame", getObjectLabel(board, context) },
-								new Object[] { board }, context));
-			}
-			return false;
-		}
-		return true;
+	public boolean validateBoard_boardMustBelongToGame(
+	        Board board,
+	        DiagnosticChain diagnostics,
+	        Map<Object, Object> context) {
+
+	    if (!(board.eContainer() instanceof Game)) {
+
+	        if (diagnostics != null) {
+	            diagnostics.add(
+	                createDiagnostic(
+	                    Diagnostic.ERROR,
+	                    DIAGNOSTIC_SOURCE,
+	                    0,
+	                    "Board must be contained in a Game",
+	                    new Object[] { "boardMustBelongToGame", getObjectLabel(board, context) },
+	                    new Object[] { board },
+	                    context));
+	        }
+
+	        return false;
+	    }
+
+	    return true;
 	}
 
 	/**
