@@ -2,7 +2,6 @@
  */
 package no.ntnu.tdt4250.bg.util;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
@@ -13,7 +12,6 @@ import no.ntnu.tdt4250.bg.*;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EPackage;
@@ -299,27 +297,26 @@ public class BgValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean validateBoard_tilePositionsMustBeUnique(
-	        Board board, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateBoard_tilePositionsMustBeUnique(Board board, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 
-	    Set<String> positions = new HashSet<>();
+		Set<String> positions = new HashSet<>();
 
-	    for (Tile t : board.getTiles()) {
+		for (Tile t : board.getTiles()) {
 
-	        String id = t.getRow() + "," + t.getCol();
+			String id = t.getRow() + "," + t.getCol();
 
-	        if (!positions.add(id)) {
-	            if (diagnostics != null) {
-	                diagnostics.add(createDiagnostic(
-	                    Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0,
-	                    "Duplicate tile position: " + id,
-	                    new Object[] { "tilePositionsMustBeUnique", getObjectLabel(board, context) },
-	                    new Object[] { t }, context));
-	            }
-	            return false;
-	        }
-	    }
-	    return true;
+			if (!positions.add(id)) {
+				if (diagnostics != null) {
+					diagnostics.add(
+							createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "Duplicate tile position: " + id,
+									new Object[] { "tilePositionsMustBeUnique", getObjectLabel(board, context) },
+									new Object[] { t }, context));
+				}
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -328,29 +325,22 @@ public class BgValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean validateBoard_boardMustBelongToGame(
-	        Board board,
-	        DiagnosticChain diagnostics,
-	        Map<Object, Object> context) {
+	public boolean validateBoard_boardMustBelongToGame(Board board, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 
-	    if (!(board.eContainer() instanceof Game)) {
+		if (!(board.eContainer() instanceof Game)) {
 
-	        if (diagnostics != null) {
-	            diagnostics.add(
-	                createDiagnostic(
-	                    Diagnostic.ERROR,
-	                    DIAGNOSTIC_SOURCE,
-	                    0,
-	                    "Board must be contained in a Game",
-	                    new Object[] { "boardMustBelongToGame", getObjectLabel(board, context) },
-	                    new Object[] { board },
-	                    context));
-	        }
+			if (diagnostics != null) {
+				diagnostics.add(
+						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "Board must be contained in a Game",
+								new Object[] { "boardMustBelongToGame", getObjectLabel(board, context) },
+								new Object[] { board }, context));
+			}
 
-	        return false;
-	    }
+			return false;
+		}
 
-	    return true;
+		return true;
 	}
 
 	/**
@@ -394,9 +384,8 @@ public class BgValidator extends EObjectValidator {
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
 		String playerHex = player.getHexColor();
-		boolean isValidHex = playerHex != null && playerHex.matches("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");)
-		
-		
+		boolean isValidHex = (playerHex != null) && (playerHex.matches("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"));
+
 		if (!isValidHex) {
 			if (diagnostics != null) {
 				diagnostics.add(
@@ -452,7 +441,7 @@ public class BgValidator extends EObjectValidator {
 	 * Validates the legalMovesPipelineFiltersMustFromValidChain constraint of '<em>Legal Moves Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateLegalMovesPipeline_legalMovesPipelineFiltersMustFormValidChain(
 			LegalMovesPipeline legalMovesPipeline, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -460,10 +449,10 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		
+
 		Filter startFilter = legalMovesPipeline.getFilter();
 		boolean isValidChain = isValidFilterChain(startFilter);
-		
+
 		if (!isValidChain) {
 			if (diagnostics != null) {
 				diagnostics.add(
@@ -508,29 +497,33 @@ public class BgValidator extends EObjectValidator {
 	}
 
 	/**
+	 * Helper function
+	 * @generated NOT
+	 */
+	private boolean isValidFilterChain(Filter start) {
+		Filter slow = start;
+		Filter fast = start;
+
+		while (fast != null && fast.getNextFilter() != null) {
+			slow = slow.getNextFilter();
+			fast = fast.getNextFilter().getNextFilter();
+
+			if (slow == fast) {
+				// A cycle exists
+				return false;
+			}
+		}
+
+		// No cycle found — chain is valid
+		return true;
+	}
+
+	/**
 	 * Validates the effectPipelineFiltersMustFormValidChain constraint of '<em>Effect Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	private boolean isValidFilterChain(Filter start) {
-	    Filter slow = start;
-	    Filter fast = start;
-
-	    while (fast != null && fast.getNextFilter() != null) {
-	        slow = slow.getNextFilter();                   
-	        fast = fast.getNextFilter().getNextFilter();   
-
-	        if (slow == fast) {
-	            // A cycle exists
-	            return false;
-	        }
-	    }
-
-	    // No cycle found — chain is valid
-	    return true;
-	}
-	
 	public boolean validateEffectPipeline_effectPipelineFiltersMustFormValidChain(EffectPipeline effectPipeline,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
@@ -539,7 +532,7 @@ public class BgValidator extends EObjectValidator {
 		// Ensure that you remove @generated or mark it @generated NOT
 		Filter startFilter = effectPipeline.getFilter();
 		boolean isValidChain = isValidFilterChain(startFilter);
-		
+
 		if (!isValidChain) {
 			if (diagnostics != null) {
 				diagnostics.add(createDiagnostic(
@@ -584,7 +577,7 @@ public class BgValidator extends EObjectValidator {
 	 * Validates the filterMustBelongToGame constraint of '<em>Filter</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFilter_filterMustBelongToGame(Filter filter, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
@@ -711,7 +704,7 @@ public class BgValidator extends EObjectValidator {
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
 		boolean hasInitialState = tile.getInitialState() != null;
-		
+
 		if (!hasInitialState) {
 			if (diagnostics != null) {
 				diagnostics.add(
@@ -736,18 +729,18 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		
-		Set<String> seenNames = new HashSet<>();
-	    boolean allUnique = true;
 
-	    for (State state : tile.getStates()) {
-	        String name = state.getName();
-	        if (name != null && !seenNames.add(name)) {
-	            allUnique = false;
-	            break;
-	        }
-	    }
-		
+		Set<String> seenNames = new HashSet<>();
+		boolean allUnique = true;
+
+		for (State state : tile.getStates()) {
+			String name = state.getName();
+			if (name != null && !seenNames.add(name)) {
+				allUnique = false;
+				break;
+			}
+		}
+
 		if (!allUnique) {
 			if (diagnostics != null) {
 				diagnostics.add(
@@ -772,28 +765,28 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		
+
 		State initial = tile.getInitialState();
 		Set<State> visited = new HashSet<>();
-	    Queue<State> queue = new LinkedList<>();
-	    queue.add(initial);
-	    visited.add(initial);
+		Queue<State> queue = new LinkedList<>();
+		queue.add(initial);
+		visited.add(initial);
 
-	    while (!queue.isEmpty()) {
-	    	State current = queue.poll();
-	    	Transition t = current.getOutbound(); // single outbound transition
-	        if (t != null) {
-	            State target = t.getTarget();
-	            if (target != null && !visited.contains(target)) {
-	                visited.add(target);
-	                queue.add(target);
-	            }
-	        }
-	    }
+		while (!queue.isEmpty()) {
+			State current = queue.poll();
+			Transition t = current.getOutbound(); // single outbound transition
+			if (t != null) {
+				State target = t.getTarget();
+				if (target != null && !visited.contains(target)) {
+					visited.add(target);
+					queue.add(target);
+				}
+			}
+		}
 
-	    // Check if all states are visited
-	    boolean allReachable = visited.containsAll(tile.getStates());
-		
+		// Check if all states are visited
+		boolean allReachable = visited.containsAll(tile.getStates());
+
 		if (!allReachable) {
 			if (diagnostics != null) {
 				diagnostics.add(
@@ -818,43 +811,42 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		
+
 		boolean allWellFormed = true;
 
-	    Set<State> tileStates = new HashSet<>(tile.getStates());
+		Set<State> tileStates = new HashSet<>(tile.getStates());
 
-	    for (State state : tile.getStates()) {
-	        Transition t = state.getOutbound(); // single outbound transition
-	        if (t != null) {
+		for (State state : tile.getStates()) {
+			Transition t = state.getOutbound(); // single outbound transition
+			if (t != null) {
 
-	            State source = t.getSource().getFirst();
-	            State target = t.getTarget();
+				State source = t.getSource().getFirst();
+				State target = t.getTarget();
 
-	            // Rule 4: Transition must be fully defined
-	            if (source == null || target == null) {
-	                allWellFormed = false;
-	                break;
-	            }
+				// Rule 4: Transition must be fully defined
+				if (source == null || target == null) {
+					allWellFormed = false;
+					break;
+				}
 
-	            // Rule 1 & 2: Source and target must belong to the same tile
-	            if (!tileStates.contains(source) || !tileStates.contains(target)) {
-	                allWellFormed = false;
-	                break;
-	            }
+				// Rule 1 & 2: Source and target must belong to the same tile
+				if (!tileStates.contains(source) || !tileStates.contains(target)) {
+					allWellFormed = false;
+					break;
+				}
 
-	            // Optional extra: ensure the source is the current state
-	            if (source != state) {
-	                allWellFormed = false;
-	                break;
-	            }
-	        } else {
-	            // Rule 4: Transition missing entirely
-	            allWellFormed = false;
-	            break;
-	        }
-	    }
-		
-		
+				// Optional extra: ensure the source is the current state
+				if (source != state) {
+					allWellFormed = false;
+					break;
+				}
+			} else {
+				// Rule 4: Transition missing entirely
+				allWellFormed = false;
+				break;
+			}
+		}
+
 		if (!allWellFormed) {
 			if (diagnostics != null) {
 				diagnostics.add(
@@ -879,7 +871,7 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		
+
 		if ((tile.getStates().isEmpty())) {
 			if (diagnostics != null) {
 				diagnostics.add(
@@ -960,7 +952,7 @@ public class BgValidator extends EObjectValidator {
 		// Ensure that you remove @generated or mark it @generated NOT
 		String playerHex = state.getHexColor();
 		boolean isValidHex = playerHex != null && playerHex.matches("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
-		
+
 		if (!isValidHex) {
 			if (diagnostics != null) {
 				diagnostics.add(
@@ -1015,32 +1007,27 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		
+
 		State source = transition.getSource().getFirst();
-	    State target = transition.getTarget();
+		State target = transition.getTarget();
 
-	    if (source == null || target == null) {
-	        if (diagnostics != null) {
-	            diagnostics.add(createDiagnostic(
-	                    Diagnostic.ERROR,
-	                    DIAGNOSTIC_SOURCE,
-	                    0,
-	                    "_UI_GenericConstraint_diagnostic",
-	                    new Object[] { "transitionMustStayWithinTile: source or target is null",
-	                                   getObjectLabel(transition, context) },
-	                    new Object[] { transition },
-	                    context));
-	        }
-	        return false;
-	    }
+		if (source == null || target == null) {
+			if (diagnostics != null) {
+				diagnostics.add(
+						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
+								new Object[] { "transitionMustStayWithinTile: source or target is null",
+										getObjectLabel(transition, context) },
+								new Object[] { transition }, context));
+			}
+			return false;
+		}
 
-	    // Traverse containment to find the Tile of each state
-	    Tile sourceTile = (Tile) source.eContainer();
-	    Tile targetTile = (Tile) target.eContainer();
+		// Traverse containment to find the Tile of each state
+		Tile sourceTile = (Tile) source.eContainer();
+		Tile targetTile = (Tile) target.eContainer();
 
-	    boolean staysWithinTile = sourceTile != null && sourceTile == targetTile;
-		
-		
+		boolean staysWithinTile = sourceTile != null && sourceTile == targetTile;
+
 		if (!staysWithinTile) {
 			if (diagnostics != null) {
 				diagnostics.add(
@@ -1065,31 +1052,27 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		
+
 		State source = transition.getSource().getFirst();
-	    State target = transition.getTarget();
+		State target = transition.getTarget();
 
-	    if (source == null || target == null) {
-	        if (diagnostics != null) {
-	            diagnostics.add(createDiagnostic(
-	                    Diagnostic.ERROR,
-	                    DIAGNOSTIC_SOURCE,
-	                    0,
-	                    "_UI_GenericConstraint_diagnostic",
-	                    new Object[] { "transitionMustBelongToTile: source or target is null",
-	                                   getObjectLabel(transition, context) },
-	                    new Object[] { transition },
-	                    context));
-	        }
-	        return false;
-	    }
+		if (source == null || target == null) {
+			if (diagnostics != null) {
+				diagnostics.add(
+						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
+								new Object[] { "transitionMustBelongToTile: source or target is null",
+										getObjectLabel(transition, context) },
+								new Object[] { transition }, context));
+			}
+			return false;
+		}
 
-	    // The tile containing the source (and target)
-	    Tile sourceTile = (Tile) source.eContainer();
-	    Tile targetTile = (Tile) target.eContainer();
+		// The tile containing the source (and target)
+		Tile sourceTile = (Tile) source.eContainer();
+		Tile targetTile = (Tile) target.eContainer();
 
-	    boolean belongsToTile = sourceTile != null && sourceTile == targetTile;
-		
+		boolean belongsToTile = sourceTile != null && sourceTile == targetTile;
+
 		if (!belongsToTile) {
 			if (diagnostics != null) {
 				diagnostics.add(

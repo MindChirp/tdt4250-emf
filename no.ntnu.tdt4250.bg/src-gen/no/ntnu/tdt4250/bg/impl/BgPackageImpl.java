@@ -908,7 +908,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				"boardDimensionsMustBePositive tilePositionsMustBeUnique boardMustBelongToGame" });
 		addAnnotation(playerEClass, source, new String[] { "constraints", "playerHexColorMustBeValid" });
 		addAnnotation(legalMovesPipelineEClass, source,
-				new String[] { "constraints", "legalMovesPipelineFiltersMustFromValidChain" });
+				new String[] { "constraints", "legalMovesPipelineFiltersMustFormValidChain" });
 		addAnnotation(effectPipelineEClass, source,
 				new String[] { "constraints", "effectPipelineFiltersMustFormValidChain" });
 		addAnnotation(filterEClass, source, new String[] { "constraints", "filterMustBelongToGame" });
