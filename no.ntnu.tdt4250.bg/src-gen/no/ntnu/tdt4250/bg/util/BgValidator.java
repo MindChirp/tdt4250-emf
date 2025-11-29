@@ -3,7 +3,9 @@
 package no.ntnu.tdt4250.bg.util;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 
 import no.ntnu.tdt4250.bg.*;
@@ -382,7 +384,7 @@ public class BgValidator extends EObjectValidator {
 	 * Validates the playerHexColorMustBeValid constraint of '<em>Player</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validatePlayer_playerHexColorMustBeValid(Player player, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
@@ -390,7 +392,11 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		String playerHex = player.getHexColor();
+		boolean isValidHex = playerHex != null && playerHex.matches("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");)
+		
+		
+		if (!isValidHex) {
 			if (diagnostics != null) {
 				diagnostics.add(
 						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
@@ -500,15 +506,36 @@ public class BgValidator extends EObjectValidator {
 	 * Validates the effectPipelineFiltersMustFormValidChain constraint of '<em>Effect Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
+	private boolean isValidFilterChain(Filter start) {
+	    Filter slow = start;
+	    Filter fast = start;
+
+	    while (fast != null && fast.getNextFilter() != null) {
+	        slow = slow.getNextFilter();                   
+	        fast = fast.getNextFilter().getNextFilter();   
+
+	        if (slow == fast) {
+	            // A cycle exists
+	            return false;
+	        }
+	    }
+
+	    // No cycle found — chain is valid
+	    return true;
+	}
+	
 	public boolean validateEffectPipeline_effectPipelineFiltersMustFormValidChain(EffectPipeline effectPipeline,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		Filter startFilter = effectPipeline.getFilter();
+		boolean isValidChain = isValidFilterChain(startFilter);
+		
+		if (!isValidChain) {
 			if (diagnostics != null) {
 				diagnostics.add(createDiagnostic(
 						Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", new Object[] {
@@ -670,7 +697,7 @@ public class BgValidator extends EObjectValidator {
 	 * Validates the tileMustHaveInitialState constraint of '<em>Tile</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateTile_tileMustHaveInitialState(Tile tile, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
@@ -678,7 +705,9 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		boolean hasInitialState = tile.getInitialState() != null;
+		
+		if (!hasInitialState) {
 			if (diagnostics != null) {
 				diagnostics.add(
 						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
@@ -694,7 +723,7 @@ public class BgValidator extends EObjectValidator {
 	 * Validates the tileStateNamesMustBeUnique constraint of '<em>Tile</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateTile_tileStateNamesMustBeUnique(Tile tile, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
@@ -702,7 +731,19 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		
+		Set<String> seenNames = new HashSet<>();
+	    boolean allUnique = true;
+
+	    for (State state : tile.getStates()) {
+	        String name = state.getName();
+	        if (name != null && !seenNames.add(name)) {
+	            allUnique = false;
+	            break;
+	        }
+	    }
+		
+		if (!allUnique) {
 			if (diagnostics != null) {
 				diagnostics.add(
 						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
@@ -726,6 +767,28 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
+		
+		State initial = tile.getInitialState();
+		Set<State> visited = new HashSet<>();
+	    Queue<State> queue = new LinkedList<>();
+	    queue.add(initial);
+	    visited.add(initial);
+
+	    while (!queue.isEmpty()) {
+	    	State current = queue.poll();
+	    	Transition t = current.getOutbound(); // single outbound transition
+	        if (t != null) {
+	            State target = t.getTarget();
+	            if (target != null && !visited.contains(target)) {
+	                visited.add(target);
+	                queue.add(target);
+	            }
+	        }
+	    }
+
+	    // Check if all states are visited
+	    boolean allReachable = visited.containsAll(tile.getStates());
+		
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add(
