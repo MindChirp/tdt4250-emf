@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getState()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='stateMachineMustBeDeterministic stateHexColorMustBeValid'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='stateHexColorMustBeValid'"
  * @generated
  */
 public interface State extends EObject {

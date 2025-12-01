@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
-
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.EObjectValidator;
@@ -311,10 +311,10 @@ public class BgValidator extends EObjectValidator {
 
 			if (!positions.add(coordinate)) {
 				if (diagnostics != null) {
-					diagnostics.add(
-							createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "Duplicate tile position: " + coordinate,
-									new Object[] { "tilePositionsMustBeUnique", getObjectLabel(board, context) },
-									new Object[] { t }, context));
+					diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0,
+							"Duplicate tile position: " + coordinate,
+							new Object[] { "tilePositionsMustBeUnique", getObjectLabel(board, context) },
+							new Object[] { t }, context));
 				}
 				return false;
 			}
@@ -509,7 +509,7 @@ public class BgValidator extends EObjectValidator {
 			}
 		}
 
-		// No cycle found — chain is valid
+		// No cycle found - chain is valid
 		return true;
 	}
 
@@ -692,7 +692,7 @@ public class BgValidator extends EObjectValidator {
 	 */
 	public boolean validateTile_tileMustHaveInitialState(Tile tile, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		
+
 		boolean hasInitialState = tile.getInitialState() != null;
 
 		if (!hasInitialState) {
@@ -786,54 +786,49 @@ public class BgValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean validateTile_tileTransitionsMustBeWellFormed(
-	        Tile tile, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateTile_tileTransitionsMustBeWellFormed(Tile tile, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 
-	    boolean allWellFormed = true;
+		boolean allWellFormed = true;
 
-	    Set<State> tileStates = new HashSet<>(tile.getStates());
+		Set<State> tileStates = new HashSet<>(tile.getStates());
 
-	    for (State state : tile.getStates()) {
+		for (State state : tile.getStates()) {
 
-	        for (Transition trans : state.getOutbound()) {
+			for (Transition trans : state.getOutbound()) {
 
-	            if (!tileStates.containsAll(trans.getSource()) ||
-	                !tileStates.contains(trans.getTarget())) {
+				if (!tileStates.containsAll(trans.getSource()) || !tileStates.contains(trans.getTarget())) {
 
-	                allWellFormed = false;
-	                break;
-	            }
+					allWellFormed = false;
+					break;
+				}
 
-	            if (!trans.getSource().contains(state)) {
-	                allWellFormed = false;
-	                break;
-	            }
+				if (!trans.getSource().contains(state)) {
+					allWellFormed = false;
+					break;
+				}
 
-	            if (trans.getTarget() == null) {
-	                allWellFormed = false;
-	                break;
-	            }
-	        }
+				if (trans.getTarget() == null) {
+					allWellFormed = false;
+					break;
+				}
+			}
 
-	        if (!allWellFormed)
-	            break;
-	    }
+			if (!allWellFormed)
+				break;
+		}
 
-	    if (!allWellFormed) {
-	        if (diagnostics != null) {
-	            diagnostics.add(createDiagnostic(
-	                Diagnostic.ERROR,
-	                DIAGNOSTIC_SOURCE,
-	                0,
-	                "_UI_GenericConstraint_diagnostic",
-	                new Object[] { "tileTransitionsMustBeWellFormed", getObjectLabel(tile, context) },
-	                new Object[] { tile },
-	                context));
-	        }
-	        return false;
-	    }
+		if (!allWellFormed) {
+			if (diagnostics != null) {
+				diagnostics.add(
+						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
+								new Object[] { "tileTransitionsMustBeWellFormed", getObjectLabel(tile, context) },
+								new Object[] { tile }, context));
+			}
+			return false;
+		}
 
-	    return true;
+		return true;
 	}
 
 	/**
@@ -881,34 +876,8 @@ public class BgValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(state, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateState_stateMachineMustBeDeterministic(state, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validateState_stateHexColorMustBeValid(state, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * Validates the stateMachineMustBeDeterministic constraint of '<em>State</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateState_stateMachineMustBeDeterministic(State state, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add(
-						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
-								new Object[] { "stateMachineMustBeDeterministic", getObjectLabel(state, context) },
-								new Object[] { state }, context));
-			}
-			return false;
-		}
-		return true;
 	}
 
 	/**
@@ -960,8 +929,6 @@ public class BgValidator extends EObjectValidator {
 			result &= validate_EveryMapEntryUnique(transition, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateTransition_transitionMustStayWithinTile(transition, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateTransition_transitionMustBelongToTile(transition, diagnostics, context);
 		return result;
 	}
 
@@ -972,68 +939,69 @@ public class BgValidator extends EObjectValidator {
 	 * @generated NOT
 	 */
 	public boolean validateTransition_transitionMustStayWithinTile(Transition transition, DiagnosticChain diagnostics,
-	        Map<Object, Object> context) {
+			Map<Object, Object> context) {
 
-	    State target = transition.getTarget();
-	    if (target == null) {
-	        if (diagnostics != null) {
-	            diagnostics.add(createDiagnostic(
-	                Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
-	                new Object[] { "transitionMustStayWithinTile: target is null", getObjectLabel(transition, context) },
-	                new Object[] { transition }, context));
-	        }
-	        return false;
-	    }
+		State target = transition.getTarget();
+		if (target == null) {
+			if (diagnostics != null) {
+				diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0,
+						"_UI_GenericConstraint_diagnostic", new Object[] {
+								"transitionMustStayWithinTile: target is null", getObjectLabel(transition, context) },
+						new Object[] { transition }, context));
+			}
+			return false;
+		}
 
-	    Tile targetTile = (Tile) target.eContainer();
-	    if (targetTile == null) {
-	        if (diagnostics != null) {
-	            diagnostics.add(createDiagnostic(
-	                Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
-	                new Object[] { "transitionMustStayWithinTile: target is not contained in a Tile",
-	                        getObjectLabel(transition, context) },
-	                new Object[] { transition }, context));
-	        }
-	        return false;
-	    }
+		Tile targetTile = (Tile) target.eContainer();
+		if (targetTile == null) {
+			if (diagnostics != null) {
+				diagnostics.add(
+						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
+								new Object[] { "transitionMustStayWithinTile: target is not contained in a Tile",
+										getObjectLabel(transition, context) },
+								new Object[] { transition }, context));
+			}
+			return false;
+		}
 
-	    EList<State> sources = transition.getSource();
-	    if (sources == null || sources.isEmpty()) {
-	        if (diagnostics != null) {
-	            diagnostics.add(createDiagnostic(
-	                Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
-	                new Object[] { "transitionMustStayWithinTile: no sources declared",
-	                        getObjectLabel(transition, context) },
-	                new Object[] { transition }, context));
-	        }
-	        return false;
-	    }
+		EList<State> sources = transition.getSource();
+		if (sources == null || sources.isEmpty()) {
+			if (diagnostics != null) {
+				diagnostics.add(
+						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
+								new Object[] { "transitionMustStayWithinTile: no sources declared",
+										getObjectLabel(transition, context) },
+								new Object[] { transition }, context));
+			}
+			return false;
+		}
 
-	    for (State source : sources) {
-	        if (source == null) {
-	            if (diagnostics != null) {
-	                diagnostics.add(createDiagnostic(
-	                    Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
-	                    new Object[] { "transitionMustStayWithinTile: a source is null", getObjectLabel(transition, context) },
-	                    new Object[] { transition }, context));
-	            }
-	            return false;
-	        }
+		for (State source : sources) {
+			if (source == null) {
+				if (diagnostics != null) {
+					diagnostics.add(
+							createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
+									new Object[] { "transitionMustStayWithinTile: a source is null",
+											getObjectLabel(transition, context) },
+									new Object[] { transition }, context));
+				}
+				return false;
+			}
 
-	        Tile sourceTile = (Tile) source.eContainer();
-	        if (sourceTile == null || sourceTile != targetTile) {
-	            if (diagnostics != null) {
-	                diagnostics.add(createDiagnostic(
-	                    Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
-	                    new Object[] { "transitionMustStayWithinTile", getObjectLabel(transition, context) },
-	                    new Object[] { transition }, context));
-	            }
-	            return false;
-	        }
-	    }
+			Tile sourceTile = (Tile) source.eContainer();
+			if (sourceTile == null || sourceTile != targetTile) {
+				if (diagnostics != null) {
+					diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0,
+							"_UI_GenericConstraint_diagnostic",
+							new Object[] { "transitionMustStayWithinTile", getObjectLabel(transition, context) },
+							new Object[] { transition }, context));
+				}
+				return false;
+			}
+		}
 
-	    // all sources and target live in the same tile
-	    return true;
+		// all sources and target live in the same tile
+		return true;
 	}
 
 	/**
@@ -1043,7 +1011,134 @@ public class BgValidator extends EObjectValidator {
 	 */
 	public boolean validateTilePlacement(TilePlacement tilePlacement, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(tilePlacement, diagnostics, context);
+		if (!validate_NoCircularContainment(tilePlacement, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(tilePlacement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(tilePlacement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(tilePlacement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(tilePlacement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(tilePlacement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(tilePlacement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(tilePlacement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(tilePlacement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateTilePlacement_rowAndColumnMustBeNonNegative(tilePlacement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateTilePlacement_tilePlacementMustBelongToBoard(tilePlacement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateTilePlacement_rowAndColumnMustBeWithinBoardBounds(tilePlacement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateTilePlacement_tileMustBeSet(tilePlacement, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the rowAndColumnMustBeNonNegative constraint of '<em>Tile Placement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateTilePlacement_rowAndColumnMustBeNonNegative(TilePlacement tilePlacement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		
+		if (tilePlacement.getColumn() < 0 || tilePlacement.getRow() < 0) {
+			if (diagnostics != null) {
+				diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0,
+						"_UI_GenericConstraint_diagnostic",
+						new Object[] { "rowAndColumnMustBeNonNegative", getObjectLabel(tilePlacement, context) },
+						new Object[] { tilePlacement }, context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the tilePlacementMustBelongToBoard constraint of '<em>Tile Placement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateTilePlacement_tilePlacementMustBelongToBoard(TilePlacement tilePlacement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		
+		if (!(tilePlacement.eContainer() instanceof Board)) {
+			if (diagnostics != null) {
+				diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0,
+						"_UI_GenericConstraint_diagnostic",
+						new Object[] { "tilePlacementMustBelongToBoard", getObjectLabel(tilePlacement, context) },
+						new Object[] { tilePlacement }, context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the rowAndColumnMustBeWithinBoardBounds constraint of '<em>Tile Placement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateTilePlacement_rowAndColumnMustBeWithinBoardBounds(TilePlacement tilePlacement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+
+	    EObject container = tilePlacement.eContainer();
+	    if (!(container instanceof Board)) {
+	    	// this is checked in another constraint, so we just return true
+	        return true;
+	    }
+
+	    Board board = (Board) container;
+
+	    int row = tilePlacement.getRow();
+	    int col = tilePlacement.getColumn();
+
+	    boolean inBounds =
+	            row >= 0 &&
+	            col >= 0 &&
+	            row < board.getHeight() &&
+	            col < board.getWidth();
+		if (!inBounds) {
+			if (diagnostics != null) {
+				diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0,
+						"_UI_GenericConstraint_diagnostic",
+						new Object[] { "rowAndColumnMustBeWithinBoardBounds", getObjectLabel(tilePlacement, context) },
+						new Object[] { tilePlacement }, context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the tileMustBeSet constraint of '<em>Tile Placement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateTilePlacement_tileMustBeSet(TilePlacement tilePlacement, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		
+		Tile tile = tilePlacement.getTile();
+		
+		if (tile == null) {
+			if (diagnostics != null) {
+				diagnostics.add(
+						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
+								new Object[] { "tileMustBeSet", getObjectLabel(tilePlacement, context) },
+								new Object[] { tilePlacement }, context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**

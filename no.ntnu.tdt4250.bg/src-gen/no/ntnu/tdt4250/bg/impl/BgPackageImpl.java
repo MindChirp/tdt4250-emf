@@ -541,6 +541,16 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getTile_HexColor() {
+		return (EAttribute) tileEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getState() {
 		return stateEClass;
 	}
@@ -767,6 +777,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEReference(tileEClass, TILE__TRANSITIONS);
 		createEReference(tileEClass, TILE__INITIAL_STATE);
 		createEAttribute(tileEClass, TILE__TYPE);
+		createEAttribute(tileEClass, TILE__HEX_COLOR);
 
 		stateEClass = createEClass(STATE);
 		createEReference(stateEClass, STATE__OUTBOUND);
@@ -907,6 +918,8 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTile_Type(), ecorePackage.getEString(), "type", null, 1, 1, Tile.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTile_HexColor(), ecorePackage.getEString(), "hexColor", "#ffffff", 1, 1, Tile.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getState_Outbound(), this.getTransition(), this.getTransition_Source(), "outbound", null, 0, -1,
@@ -979,10 +992,10 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		addAnnotation(filterEClass, source, new String[] { "constraints", "filterMustBelongToGame" });
 		addAnnotation(tileEClass, source, new String[] { "constraints",
 				"tileMustHaveInitialState tileStateNamesMustBeUnique allStatesMustBeReachable tileTransitionsMustBeWellFormed tilesMustHaveAtLeastOneState" });
-		addAnnotation(stateEClass, source,
-				new String[] { "constraints", "stateMachineMustBeDeterministic stateHexColorMustBeValid" });
-		addAnnotation(transitionEClass, source,
-				new String[] { "constraints", "transitionMustStayWithinTile transitionMustBelongToTile" });
+		addAnnotation(stateEClass, source, new String[] { "constraints", "stateHexColorMustBeValid" });
+		addAnnotation(transitionEClass, source, new String[] { "constraints", "transitionMustStayWithinTile" });
+		addAnnotation(tilePlacementEClass, source, new String[] { "constraints",
+				"rowAndColumnMustBeNonNegative tilePlacementMustBelongToBoard rowAndColumnMustBeWithinBoardBounds tileMustBeSet" });
 	}
 
 } //BgPackageImpl

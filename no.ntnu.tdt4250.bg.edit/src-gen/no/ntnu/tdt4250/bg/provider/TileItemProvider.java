@@ -57,6 +57,7 @@ public class TileItemProvider extends ItemProviderAdapter implements IEditingDom
 			super.getPropertyDescriptors(object);
 
 			addTypePropertyDescriptor(object);
+			addHexColorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -74,6 +75,21 @@ public class TileItemProvider extends ItemProviderAdapter implements IEditingDom
 						getString("_UI_PropertyDescriptor_description", "_UI_Tile_type_feature", "_UI_Tile_type"),
 						BgPackage.Literals.TILE__TYPE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 						null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Hex Color feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addHexColorPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Tile_hexColor_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Tile_hexColor_feature", "_UI_Tile_type"),
+						BgPackage.Literals.TILE__HEX_COLOR, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -155,6 +171,7 @@ public class TileItemProvider extends ItemProviderAdapter implements IEditingDom
 
 		switch (notification.getFeatureID(Tile.class)) {
 		case BgPackage.TILE__TYPE:
+		case BgPackage.TILE__HEX_COLOR:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case BgPackage.TILE__STATES:

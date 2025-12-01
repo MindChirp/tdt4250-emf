@@ -176,21 +176,17 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 	 */
 	@Override
 	public String getName() {
-	    EList<State> sources = getSource();
-	    State target = getTarget();
+		EList<State> sources = getSource();
+		State target = getTarget();
 
-	    if ((sources == null || sources.isEmpty()) &&
-	        (target == null || target.getName().isBlank())) {
-	        return "<unresolved>";
-	    }
+		if ((sources == null || sources.isEmpty()) && (target == null || target.getName().isBlank())) {
+			return "<unresolved>";
+		}
 
-	    String sourcePart = (sources == null || sources.isEmpty())
-	            ? "<none>"
-	            : sources.stream()
-	                     .map(State::getName)
-	                     .collect(Collectors.joining(","));
+		String sourcePart = (sources == null || sources.isEmpty()) ? "<none>"
+				: sources.stream().map(State::getName).collect(Collectors.joining(","));
 
-	    return sourcePart + " -> " + target;
+		return sourcePart + " -> " + target;
 	}
 
 	/**

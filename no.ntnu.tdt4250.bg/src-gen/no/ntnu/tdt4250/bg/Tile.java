@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getTransitions <em>Transitions</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getInitialState <em>Initial State</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getType <em>Type</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.Tile#getHexColor <em>Hex Color</em>}</li>
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getTile()
@@ -93,5 +94,28 @@ public interface Tile extends EObject {
 	 * @generated
 	 */
 	void setType(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Hex Color</b></em>' attribute.
+	 * The default value is <code>"#ffffff"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Hex Color</em>' attribute.
+	 * @see #setHexColor(String)
+	 * @see no.ntnu.tdt4250.bg.BgPackage#getTile_HexColor()
+	 * @model default="#ffffff" required="true"
+	 * @generated
+	 */
+	String getHexColor();
+
+	/**
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Tile#getHexColor <em>Hex Color</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Hex Color</em>' attribute.
+	 * @see #getHexColor()
+	 * @generated
+	 */
+	void setHexColor(String value);
 
 } // Tile
