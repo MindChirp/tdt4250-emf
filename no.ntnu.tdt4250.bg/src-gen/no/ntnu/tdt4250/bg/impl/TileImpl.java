@@ -5,6 +5,7 @@ package no.ntnu.tdt4250.bg.impl;
 import java.util.Collection;
 
 import no.ntnu.tdt4250.bg.BgPackage;
+import no.ntnu.tdt4250.bg.Board;
 import no.ntnu.tdt4250.bg.State;
 import no.ntnu.tdt4250.bg.Tile;
 import no.ntnu.tdt4250.bg.Transition;
@@ -312,13 +313,14 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean isDarker() {
 		// TODO: implement this method to return the 'Darker' attribute
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Board board = (Board) this.eContainer();
+		return board.isCheckered() && (this.row + this.col) % 2 == 1;
 	}
 
 	/**
