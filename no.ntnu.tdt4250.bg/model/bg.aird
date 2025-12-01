@@ -13,7 +13,7 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" uid="_OiWcYMiOEfCqZucgZy4p2g">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/no.ntnu.tdt4250.bg.design/description/bg.odesign#//@ownedViewpoints[name='Tile']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_uIotoMiOEfCqZucgZy4p2g" name="new State" repPath="#_uImRYMiOEfCqZucgZy4p2g" changeId="1763917575593">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_uIotoMiOEfCqZucgZy4p2g" name="new State" repPath="#_uImRYMiOEfCqZucgZy4p2g" changeId="1763917595921">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/no.ntnu.tdt4250.bg.design/description/bg.odesign#//@ownedViewpoints[name='Tile']/@ownedRepresentations[name='State']"/>
         <target xmi:type="bg:Tile" href="Game.xmi#//@board/@tiles.0"/>
       </ownedRepresentationDescriptors>
@@ -1062,6 +1062,10 @@
         <children xmi:type="notation:Node" xmi:id="_uI-r4MiOEfCqZucgZy4p2g" type="2001" element="_uI3-MMiOEfCqZucgZy4p2g">
           <children xmi:type="notation:Node" xmi:id="_uJCWQMiOEfCqZucgZy4p2g" type="5002">
             <layoutConstraint xmi:type="notation:Location" xmi:id="_uJCWQciOEfCqZucgZy4p2g" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_xK92MMiOEfCqZucgZy4p2g" type="3003" element="_xIgYEMiOEfCqZucgZy4p2g">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_xK92MciOEfCqZucgZy4p2g" fontName="Segoe UI"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xK92MsiOEfCqZucgZy4p2g"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_uI-r4ciOEfCqZucgZy4p2g" fontName="Segoe UI"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uI-r4siOEfCqZucgZy4p2g" width="20" height="20"/>
