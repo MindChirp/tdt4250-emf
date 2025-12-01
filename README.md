@@ -18,7 +18,8 @@ The project is built on **EMF/Ecore**, **Java**, **Xtend** and **Sirius**.
     - [State Machines](#state-machines)  
     - [Pipelines](#pipelines)  
     - [Filters](#filters)  
-    - [Constraints](#constraints)  
+    - [Constraints](#constraints)
+    - [Derived Attributes](#derived-attributes)  
   - [Generated Code Deep Dive](#generated-code-deep-dive)  
   - [Game Logic Flow Deep Dive](#game-logic-flow-deep-dive)  
 - [Example Game: Connect 4](#example-game-connect-4)  
@@ -315,6 +316,46 @@ An abstract class with reusable logic units that form part of a pipeline's chain
 
     - `effectPipelineMustBeValidChain`  
       Same as above, but applied to the effect pipeline; ensures effects are applied in a consistent sequence.
+
+---
+
+## Derived Attributes
+
+- Implemented in the generated `*Impl` classes using Java (`@generated NOT` getters).
+- All derived attributes in the Ecore model are declared with:
+  - `derived = true`
+  - `volatile = true`
+  - `changeable = false`
+
+  This ensures they are computed dynamically and never stored in the underlying model.
+
+---
+
+### **Board derived attribute**
+
+- **`/size`**  
+  Computes the total number of addressable cells on the board using `width * height`.  
+
+---
+
+### **TilePlacement derived attributes**
+
+- **`/darker`**  
+  Determines whether the tile position should be visually rendered as a dark-colored square on checkered boards.  
+  Computed using `(row + column) % 2 == 1` when `Board.checkered` is enabled.
+
+- **`/coordinate`**  
+  Provides a human-readable coordinate for the tile placement in the format: `(row, column)`.  
+
+---
+
+### **Transition derived attribute**
+
+- **`/name`**  
+  Automatically generates a descriptive transition label based on the inbound and outbound states.  
+  Formatted as:  
+  `source1,source2 -> target`  
+  Ensures consistent, readable state machine transitions without requiring manual naming.
 
 ---
 
