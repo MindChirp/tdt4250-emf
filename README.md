@@ -92,7 +92,7 @@ All logic is declarative - you create games by assembling pipelines and transiti
 The following diagram shows the complete structure of the Tile-Based Game Engine metamodel.  
 It includes the core game entities (Game, Board, Tile), tile state machines, pipelines, and filters used to determine legal moves and apply effects during gameplay.
 
-![Metamodel Diagram](bg_ecore_model.jpg)
+![Metamodel Diagram](newest_model.jpg)
 
 ---
 
