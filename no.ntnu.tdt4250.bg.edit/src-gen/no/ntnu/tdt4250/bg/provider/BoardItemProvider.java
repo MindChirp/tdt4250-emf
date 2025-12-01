@@ -60,6 +60,7 @@ public class BoardItemProvider extends ItemProviderAdapter implements IEditingDo
 			addHeightPropertyDescriptor(object);
 			addCheckeredPropertyDescriptor(object);
 			addTileplacementPropertyDescriptor(object);
+			addSizePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -123,6 +124,21 @@ public class BoardItemProvider extends ItemProviderAdapter implements IEditingDo
 						getString("_UI_PropertyDescriptor_description", "_UI_Board_tileplacement_feature",
 								"_UI_Board_type"),
 						BgPackage.Literals.BOARD__TILEPLACEMENT, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Size feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSizePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Board_size_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Board_size_feature", "_UI_Board_type"),
+						BgPackage.Literals.BOARD__SIZE, false, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -206,6 +222,7 @@ public class BoardItemProvider extends ItemProviderAdapter implements IEditingDo
 		case BgPackage.BOARD__WIDTH:
 		case BgPackage.BOARD__HEIGHT:
 		case BgPackage.BOARD__CHECKERED:
+		case BgPackage.BOARD__SIZE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case BgPackage.BOARD__TILES:

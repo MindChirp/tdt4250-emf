@@ -351,6 +351,16 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getBoard_Size() {
+		return (EAttribute) boardEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getPlayer() {
 		return playerEClass;
 	}
@@ -521,18 +531,8 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getTile_Color() {
-		return (EAttribute) tileEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getTile_Type() {
-		return (EAttribute) tileEClass.getEStructuralFeatures().get(4);
+		return (EAttribute) tileEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -681,6 +681,16 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getTilePlacement_Coordinate() {
+		return (EAttribute) tilePlacementEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getTurnType() {
 		return turnTypeEEnum;
 	}
@@ -730,6 +740,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEAttribute(boardEClass, BOARD__HEIGHT);
 		createEAttribute(boardEClass, BOARD__CHECKERED);
 		createEReference(boardEClass, BOARD__TILEPLACEMENT);
+		createEAttribute(boardEClass, BOARD__SIZE);
 
 		playerEClass = createEClass(PLAYER);
 		createEAttribute(playerEClass, PLAYER__NAME);
@@ -755,7 +766,6 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEReference(tileEClass, TILE__STATES);
 		createEReference(tileEClass, TILE__TRANSITIONS);
 		createEReference(tileEClass, TILE__INITIAL_STATE);
-		createEAttribute(tileEClass, TILE__COLOR);
 		createEAttribute(tileEClass, TILE__TYPE);
 
 		stateEClass = createEClass(STATE);
@@ -774,6 +784,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEAttribute(tilePlacementEClass, TILE_PLACEMENT__COLUMN);
 		createEReference(tilePlacementEClass, TILE_PLACEMENT__TILE);
 		createEAttribute(tilePlacementEClass, TILE_PLACEMENT__DARKER);
+		createEAttribute(tilePlacementEClass, TILE_PLACEMENT__COORDINATE);
 
 		// Create enums
 		turnTypeEEnum = createEEnum(TURN_TYPE);
@@ -847,6 +858,8 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		initEReference(getBoard_Tileplacement(), this.getTilePlacement(), null, "tileplacement", null, 1, -1,
 				Board.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoard_Size(), ecorePackage.getEInt(), "size", null, 1, 1, Board.class, IS_TRANSIENT,
+				IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(playerEClass, Player.class, "Player", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPlayer_Name(), ecorePackage.getEString(), "name", null, 1, 1, Player.class, !IS_TRANSIENT,
@@ -892,8 +905,6 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		initEReference(getTile_InitialState(), this.getState(), null, "initialState", null, 1, 1, Tile.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTile_Color(), ecorePackage.getEString(), "color", null, 1, 1, Tile.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTile_Type(), ecorePackage.getEString(), "type", null, 1, 1, Tile.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -918,7 +929,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransition_Name(), ecorePackage.getEString(), "name", null, 1, 1, Transition.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(tilePlacementEClass, TilePlacement.class, "TilePlacement", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -931,6 +942,9 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTilePlacement_Darker(), ecorePackage.getEBoolean(), "darker", null, 1, 1, TilePlacement.class,
 				IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTilePlacement_Coordinate(), ecorePackage.getEString(), "coordinate", null, 1, 1,
+				TilePlacement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(turnTypeEEnum, TurnType.class, "TurnType");

@@ -204,13 +204,22 @@ public interface BgPackage extends EPackage {
 	int BOARD__TILEPLACEMENT = 6;
 
 	/**
+	 * The feature id for the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOARD__SIZE = 7;
+
+	/**
 	 * The number of structural features of the '<em>Board</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOARD_FEATURE_COUNT = 7;
+	int BOARD_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>Board</em>' class.
@@ -527,22 +536,13 @@ public interface BgPackage extends EPackage {
 	int TILE__INITIAL_STATE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Color</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TILE__COLOR = 3;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TILE__TYPE = 4;
+	int TILE__TYPE = 3;
 
 	/**
 	 * The number of structural features of the '<em>Tile</em>' class.
@@ -551,7 +551,7 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TILE_FEATURE_COUNT = 5;
+	int TILE_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Tile</em>' class.
@@ -728,13 +728,22 @@ public interface BgPackage extends EPackage {
 	int TILE_PLACEMENT__DARKER = 3;
 
 	/**
+	 * The feature id for the '<em><b>Coordinate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TILE_PLACEMENT__COORDINATE = 4;
+
+	/**
 	 * The number of structural features of the '<em>Tile Placement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TILE_PLACEMENT_FEATURE_COUNT = 4;
+	int TILE_PLACEMENT_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Tile Placement</em>' class.
@@ -906,6 +915,17 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getBoard_Tileplacement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Board#getSize <em>Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Size</em>'.
+	 * @see no.ntnu.tdt4250.bg.Board#getSize()
+	 * @see #getBoard()
+	 * @generated
+	 */
+	EAttribute getBoard_Size();
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Player <em>Player</em>}'.
@@ -1087,17 +1107,6 @@ public interface BgPackage extends EPackage {
 	EReference getTile_InitialState();
 
 	/**
-	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Tile#getColor <em>Color</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Color</em>'.
-	 * @see no.ntnu.tdt4250.bg.Tile#getColor()
-	 * @see #getTile()
-	 * @generated
-	 */
-	EAttribute getTile_Color();
-
-	/**
 	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Tile#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1260,6 +1269,17 @@ public interface BgPackage extends EPackage {
 	EAttribute getTilePlacement_Darker();
 
 	/**
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.TilePlacement#getCoordinate <em>Coordinate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Coordinate</em>'.
+	 * @see no.ntnu.tdt4250.bg.TilePlacement#getCoordinate()
+	 * @see #getTilePlacement()
+	 * @generated
+	 */
+	EAttribute getTilePlacement_Coordinate();
+
+	/**
 	 * Returns the meta object for enum '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1407,6 +1427,14 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EReference BOARD__TILEPLACEMENT = eINSTANCE.getBoard_Tileplacement();
+
+		/**
+		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOARD__SIZE = eINSTANCE.getBoard_Size();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.PlayerImpl <em>Player</em>}' class.
@@ -1561,14 +1589,6 @@ public interface BgPackage extends EPackage {
 		EReference TILE__INITIAL_STATE = eINSTANCE.getTile_InitialState();
 
 		/**
-		 * The meta object literal for the '<em><b>Color</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TILE__COLOR = eINSTANCE.getTile_Color();
-
-		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1693,6 +1713,14 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TILE_PLACEMENT__DARKER = eINSTANCE.getTilePlacement_Darker();
+
+		/**
+		 * The meta object literal for the '<em><b>Coordinate</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TILE_PLACEMENT__COORDINATE = eINSTANCE.getTilePlacement_Coordinate();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}' enum.

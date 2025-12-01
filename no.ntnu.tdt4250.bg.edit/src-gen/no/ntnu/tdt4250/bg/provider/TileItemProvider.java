@@ -56,25 +56,9 @@ public class TileItemProvider extends ItemProviderAdapter implements IEditingDom
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addColorPropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Color feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addColorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Tile_color_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Tile_color_feature", "_UI_Tile_type"),
-						BgPackage.Literals.TILE__COLOR, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null, null));
 	}
 
 	/**
@@ -153,7 +137,7 @@ public class TileItemProvider extends ItemProviderAdapter implements IEditingDom
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Tile) object).getColor();
+		String label = ((Tile) object).getType();
 		return label == null || label.length() == 0 ? getString("_UI_Tile_type")
 				: getString("_UI_Tile_type") + " " + label;
 	}
@@ -170,7 +154,6 @@ public class TileItemProvider extends ItemProviderAdapter implements IEditingDom
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Tile.class)) {
-		case BgPackage.TILE__COLOR:
 		case BgPackage.TILE__TYPE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

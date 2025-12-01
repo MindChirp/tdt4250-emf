@@ -29,6 +29,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Board/height"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Board/checkered"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//Board/tileplacement"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Board/size"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//Player">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Player/name"/>
@@ -52,8 +53,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Tile/states"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Tile/transitions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Tile/initialState"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Tile/color"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Tile/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Tile/hexColor"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//State">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//State/outbound"/>
@@ -71,6 +72,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//TilePlacement/column"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//TilePlacement/tile"/>
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//TilePlacement/darker"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//TilePlacement/coordinate"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

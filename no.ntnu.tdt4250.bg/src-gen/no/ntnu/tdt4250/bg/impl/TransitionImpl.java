@@ -3,6 +3,7 @@
 package no.ntnu.tdt4250.bg.impl;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import no.ntnu.tdt4250.bg.BgPackage;
 import no.ntnu.tdt4250.bg.State;
@@ -67,16 +68,6 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -181,24 +172,25 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getName() {
-		return name;
-	}
+	    EList<State> sources = getSource();
+	    State target = getTarget();
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.TRANSITION__NAME, oldName, name));
+	    if ((sources == null || sources.isEmpty()) &&
+	        (target == null || target.getName().isBlank())) {
+	        return "<unresolved>";
+	    }
+
+	    String sourcePart = (sources == null || sources.isEmpty())
+	            ? "<none>"
+	            : sources.stream()
+	                     .map(State::getName)
+	                     .collect(Collectors.joining(","));
+
+	    return sourcePart + " -> " + target;
 	}
 
 	/**
@@ -272,9 +264,6 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 		case BgPackage.TRANSITION__TARGET:
 			setTarget((State) newValue);
 			return;
-		case BgPackage.TRANSITION__NAME:
-			setName((String) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -293,9 +282,6 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 		case BgPackage.TRANSITION__TARGET:
 			setTarget((State) null);
 			return;
-		case BgPackage.TRANSITION__NAME:
-			setName(NAME_EDEFAULT);
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -313,26 +299,9 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 		case BgPackage.TRANSITION__TARGET:
 			return target != null;
 		case BgPackage.TRANSITION__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
 	}
 
 } //TransitionImpl

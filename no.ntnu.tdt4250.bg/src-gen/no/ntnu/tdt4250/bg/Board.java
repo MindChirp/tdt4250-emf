@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.ntnu.tdt4250.bg.Board#getHeight <em>Height</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Board#isCheckered <em>Checkered</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Board#getTileplacement <em>Tileplacement</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.Board#getSize <em>Size</em>}</li>
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getBoard()
@@ -142,5 +143,16 @@ public interface Board extends EObject {
 	 * @generated
 	 */
 	EList<TilePlacement> getTileplacement();
+
+	/**
+	 * Returns the value of the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Size</em>' attribute.
+	 * @see no.ntnu.tdt4250.bg.BgPackage#getBoard_Size()
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 * @generated
+	 */
+	int getSize();
 
 } // Board

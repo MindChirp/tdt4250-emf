@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getStates <em>States</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getTransitions <em>Transitions</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getInitialState <em>Initial State</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getColor <em>Color</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getType <em>Type</em>}</li>
  * </ul>
  *
@@ -70,26 +69,6 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 	 * @ordered
 	 */
 	protected State initialState;
-
-	/**
-	 * The default value of the '{@link #getColor() <em>Color</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getColor()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String COLOR_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getColor() <em>Color</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getColor()
-	 * @generated
-	 * @ordered
-	 */
-	protected String color = COLOR_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -214,29 +193,6 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 	 * @generated
 	 */
 	@Override
-	public String getColor() {
-		return color;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setColor(String newColor) {
-		String oldColor = color;
-		color = newColor;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.TILE__COLOR, oldColor, color));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public String getType() {
 		return type;
 	}
@@ -286,8 +242,6 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 			return getTransitions();
 		case BgPackage.TILE__INITIAL_STATE:
 			return getInitialState();
-		case BgPackage.TILE__COLOR:
-			return getColor();
 		case BgPackage.TILE__TYPE:
 			return getType();
 		}
@@ -314,9 +268,6 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 		case BgPackage.TILE__INITIAL_STATE:
 			setInitialState((State) newValue);
 			return;
-		case BgPackage.TILE__COLOR:
-			setColor((String) newValue);
-			return;
 		case BgPackage.TILE__TYPE:
 			setType((String) newValue);
 			return;
@@ -341,9 +292,6 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 		case BgPackage.TILE__INITIAL_STATE:
 			setInitialState((State) null);
 			return;
-		case BgPackage.TILE__COLOR:
-			setColor(COLOR_EDEFAULT);
-			return;
 		case BgPackage.TILE__TYPE:
 			setType(TYPE_EDEFAULT);
 			return;
@@ -365,8 +313,6 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 			return transitions != null && !transitions.isEmpty();
 		case BgPackage.TILE__INITIAL_STATE:
 			return initialState != null;
-		case BgPackage.TILE__COLOR:
-			return COLOR_EDEFAULT == null ? color != null : !COLOR_EDEFAULT.equals(color);
 		case BgPackage.TILE__TYPE:
 			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		}
@@ -384,9 +330,7 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 			return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (color: ");
-		result.append(color);
-		result.append(", type: ");
+		result.append(" (type: ");
 		result.append(type);
 		result.append(')');
 		return result.toString();

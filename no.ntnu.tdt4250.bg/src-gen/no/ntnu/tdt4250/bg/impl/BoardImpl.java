@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.ntnu.tdt4250.bg.impl.BoardImpl#getHeight <em>Height</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.BoardImpl#isCheckered <em>Checkered</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.BoardImpl#getTileplacement <em>Tileplacement</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.impl.BoardImpl#getSize <em>Size</em>}</li>
  * </ul>
  *
  * @generated
@@ -144,6 +145,16 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 	 * @ordered
 	 */
 	protected EList<TilePlacement> tileplacement;
+
+	/**
+	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSize()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int SIZE_EDEFAULT = 0;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -291,6 +302,16 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public int getSize() {
+		return getWidth() * getHeight();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -330,6 +351,8 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 			return isCheckered();
 		case BgPackage.BOARD__TILEPLACEMENT:
 			return getTileplacement();
+		case BgPackage.BOARD__SIZE:
+			return getSize();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -427,6 +450,8 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 			return checkered != CHECKERED_EDEFAULT;
 		case BgPackage.BOARD__TILEPLACEMENT:
 			return tileplacement != null && !tileplacement.isEmpty();
+		case BgPackage.BOARD__SIZE:
+			return getSize() != SIZE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

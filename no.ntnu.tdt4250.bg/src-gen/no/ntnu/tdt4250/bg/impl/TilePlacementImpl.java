@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TilePlacementImpl#getColumn <em>Column</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TilePlacementImpl#getTile <em>Tile</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TilePlacementImpl#isDarker <em>Darker</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.impl.TilePlacementImpl#getCoordinate <em>Coordinate</em>}</li>
  * </ul>
  *
  * @generated
@@ -91,6 +92,16 @@ public class TilePlacementImpl extends MinimalEObjectImpl.Container implements T
 	 * @ordered
 	 */
 	protected static final boolean DARKER_EDEFAULT = false;
+
+	/**
+	 * The default value of the '{@link #getCoordinate() <em>Coordinate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCoordinate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String COORDINATE_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -205,10 +216,18 @@ public class TilePlacementImpl extends MinimalEObjectImpl.Container implements T
 	 */
 	@Override
 	public boolean isDarker() {
-		// TODO: implement this method to return the 'Darker' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
 		Board board = (Board) this.eContainer();
 		return board.isCheckered() && (this.row + this.column) % 2 == 1;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String getCoordinate() {
+		return "(" + getRow() + ", " + getColumn() + ")";
 	}
 
 	/**
@@ -229,6 +248,8 @@ public class TilePlacementImpl extends MinimalEObjectImpl.Container implements T
 			return basicGetTile();
 		case BgPackage.TILE_PLACEMENT__DARKER:
 			return isDarker();
+		case BgPackage.TILE_PLACEMENT__COORDINATE:
+			return getCoordinate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -291,6 +312,8 @@ public class TilePlacementImpl extends MinimalEObjectImpl.Container implements T
 			return tile != null;
 		case BgPackage.TILE_PLACEMENT__DARKER:
 			return isDarker() != DARKER_EDEFAULT;
+		case BgPackage.TILE_PLACEMENT__COORDINATE:
+			return COORDINATE_EDEFAULT == null ? getCoordinate() != null : !COORDINATE_EDEFAULT.equals(getCoordinate());
 		}
 		return super.eIsSet(featureID);
 	}
