@@ -263,59 +263,87 @@ An abstract class with reusable logic units that form part of a pipeline's chain
   - `NextTurnEffect` - switch player turn
   - `CheckWinEffect` - detect winner
 
-#### Constraints
+## Constraints
 
 - Implemented in the generated `Validator` using Java.
 
-  - **Game constraints**
-    - `playersMustHaveUniqueHexColors`  
-      Ensures that no two players share the same `hexColor`, guaranteeing a unique visual identity for each player.
+---
 
-    - `playersMustHaveUniqueNames`  
-      Ensures that every player in a game has a distinct name to avoid ambiguity in UI and rule processing.
+### **Game constraints**
 
-    - `gameMustHaveAtLeastOnePlayer`  
-      Prevents creation of a game without players; every valid game must include at least one participant.
+- **`playersMustHaveUniqueHexColors`**  
+  Ensures that no two players share the same `hexColor`, guaranteeing a unique visual identity for each player.
 
-  - **Board constraints**
-    - `tilePositionsMustBeUnique`  
-      Ensures that no two tiles occupy the same `(row, col)` coordinate, enforcing a consistent grid.
+- **`playersMustHaveUniqueNames`**  
+  Ensures that every player in a game has a distinct name to avoid ambiguity in UI and rule processing.
 
-    - `boardDimensionsMustBePositive`  
-      Validates that both `width` and `height` are greater than zero, preventing invalid board sizes.
+- **`gameMustHaveAtLeastOnePlayer`**  
+  Prevents creation of a game without players; every valid game must include at least one participant.
 
-    - `tilesInsideBoardBounds`  
-      Ensures tile coordinates do not exceed the board’s dimensions; all tiles must lie within the defined area.
+---
 
-    - `boardMustBelongToGame`  
-      Ensures the board is associated with exactly one game, preventing detached or orphaned boards.
+### **Board constraints**
 
-  - **Tile constraints**
-    - `tileMustHaveInitialState`  
-      Validates that each tile defines one and only one `initialState`, ensuring a known starting point.
+- **`tilePositionsMustBeUnique`**  
+  Ensures that no two `TilePlacement` instances occupy the same `(row, column)` coordinate within a board.
 
-    - `stateNamesUniqueWithinTile`  
-      Ensures all states inside a tile have unique names, avoiding ambiguity when transitions or rules refer to them.
+- **`boardDimensionsMustBePositive`**  
+  Validates that both `width` and `height` are greater than zero, preventing invalid board sizes.
 
-  - **State machine constraints**
-    - `allStatesMustBeReachable`  
-      Ensures every state can be reached from the `initialState`, preventing unused or isolated states.
+- **`tilesInsideBoardBounds`**  
+  Ensures that all `TilePlacement` coordinates lie within the board’s width and height.
 
-    - `stateMachineMustBeDeterministic`  
-      Ensures no state has conflicting or ambiguous outbound transitions that would make the machine nondeterministic.
+- **`boardMustBelongToGame`**  
+  Ensures every board is associated with exactly one game, preventing orphaned boards.
 
-    - `transitionMustStayWithinTile`  
-      Validates that transition source and target states belong to the same tile, keeping state machines self-contained.
+---
 
-    - `stateHexColourMustBeValid`  
-      Confirms the `hexColor` follows the `#RRGGBB` format, ensuring valid color definitions.
+### **Tile constraints**
 
-  - **Pipeline constraints**
-    - `legalPipelineMustBeValidChain`  
-      Ensures the legal moves pipeline forms a proper, cycle-free chain where each filter correctly links to the next.
+- **`tileMustHaveInitialState`**  
+  Validates that each tile defines exactly one `initialState`, ensuring a deterministic starting point.
 
-    - `effectPipelineMustBeValidChain`  
-      Same as above, but applied to the effect pipeline; ensures effects are applied in a consistent sequence.
+- **`stateNamesUniqueWithinTile`**  
+  Ensures all states within a tile have unique names, preventing ambiguity when transitions reference them.
+
+---
+
+### **TilePlacement constraints**
+
+- **`tilePlacementMustBelongToBoard`**  
+  Ensures each `TilePlacement` is contained within a `Board`.
+
+- **`rowAndColumnMustBeNonNegative`**  
+  Ensures `row` and `column` coordinates are never negative.
+
+- **`rowAndColumnMustBeWithinBoardBounds`**  
+  Verifies that the placement’s coordinates fit inside the board dimensions.
+
+- **`tileMustBeSet`**  
+  Ensures that every `TilePlacement` references a valid `Tile` (no empty placements).
+
+---
+
+### **State machine constraints**
+
+- **`allStatesMustBeReachable`**  
+  Ensures every state inside a tile can be reached from the tile’s `initialState`.
+
+- **`transitionMustStayWithinTile`**  
+  Validates that all transition source and target states belong to the same tile, preventing cross-tile transitions.
+
+- **`stateHexColourMustBeValid`**  
+  Confirms that the `hexColor` attribute follows the `#RRGGBB` pattern.
+
+---
+
+### **Pipeline constraints**
+
+- **`legalPipelineMustBeValidChain`**  
+  Ensures the legal-moves pipeline forms a properly linked, acyclic chain of filters.
+
+- **`effectPipelineMustBeValidChain`**  
+  Same as above, but applied to the effect pipeline; ensures effects execute in the intended order.
 
 ---
 
