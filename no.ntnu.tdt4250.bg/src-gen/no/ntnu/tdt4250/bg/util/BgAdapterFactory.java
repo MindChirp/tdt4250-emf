@@ -127,6 +127,11 @@ public class BgAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseTilePlacement(TilePlacement object) {
+			return createTilePlacementAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -310,6 +315,20 @@ public class BgAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTransitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.ntnu.tdt4250.bg.TilePlacement <em>Tile Placement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.ntnu.tdt4250.bg.TilePlacement
+	 * @generated
+	 */
+	public Adapter createTilePlacementAdapter() {
 		return null;
 	}
 

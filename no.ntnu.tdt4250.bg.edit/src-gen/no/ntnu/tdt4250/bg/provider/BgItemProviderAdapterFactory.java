@@ -326,6 +326,29 @@ public class BgItemProviderAdapterFactory extends BgAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link no.ntnu.tdt4250.bg.TilePlacement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TilePlacementItemProvider tilePlacementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link no.ntnu.tdt4250.bg.TilePlacement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTilePlacementAdapter() {
+		if (tilePlacementItemProvider == null) {
+			tilePlacementItemProvider = new TilePlacementItemProvider(this);
+		}
+
+		return tilePlacementItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -452,6 +475,8 @@ public class BgItemProviderAdapterFactory extends BgAdapterFactory
 			stateItemProvider.dispose();
 		if (transitionItemProvider != null)
 			transitionItemProvider.dispose();
+		if (tilePlacementItemProvider != null)
+			tilePlacementItemProvider.dispose();
 	}
 
 }

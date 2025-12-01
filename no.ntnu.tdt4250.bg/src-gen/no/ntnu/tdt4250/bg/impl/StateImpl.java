@@ -2,6 +2,7 @@
  */
 package no.ntnu.tdt4250.bg.impl;
 
+import java.util.Collection;
 import no.ntnu.tdt4250.bg.BgPackage;
 import no.ntnu.tdt4250.bg.State;
 import no.ntnu.tdt4250.bg.Transition;
@@ -9,11 +10,14 @@ import no.ntnu.tdt4250.bg.Transition;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,24 +37,24 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	/**
-	 * The cached value of the '{@link #getOutbound() <em>Outbound</em>}' reference.
+	 * The cached value of the '{@link #getOutbound() <em>Outbound</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOutbound()
 	 * @generated
 	 * @ordered
 	 */
-	protected Transition outbound;
+	protected EList<Transition> outbound;
 
 	/**
-	 * The cached value of the '{@link #getInbound() <em>Inbound</em>}' reference.
+	 * The cached value of the '{@link #getInbound() <em>Inbound</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInbound()
 	 * @generated
 	 * @ordered
 	 */
-	protected Transition inbound;
+	protected EList<Transition> inbound;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -117,15 +121,10 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	 * @generated
 	 */
 	@Override
-	public Transition getOutbound() {
-		if (outbound != null && outbound.eIsProxy()) {
-			InternalEObject oldOutbound = (InternalEObject) outbound;
-			outbound = (Transition) eResolveProxy(oldOutbound);
-			if (outbound != oldOutbound) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BgPackage.STATE__OUTBOUND, oldOutbound,
-							outbound));
-			}
+	public EList<Transition> getOutbound() {
+		if (outbound == null) {
+			outbound = new EObjectWithInverseResolvingEList.ManyInverse<Transition>(Transition.class, this,
+					BgPackage.STATE__OUTBOUND, BgPackage.TRANSITION__SOURCE);
 		}
 		return outbound;
 	}
@@ -135,118 +134,13 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Transition basicGetOutbound() {
-		return outbound;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOutbound(Transition newOutbound, NotificationChain msgs) {
-		Transition oldOutbound = outbound;
-		outbound = newOutbound;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BgPackage.STATE__OUTBOUND,
-					oldOutbound, newOutbound);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public void setOutbound(Transition newOutbound) {
-		if (newOutbound != outbound) {
-			NotificationChain msgs = null;
-			if (outbound != null)
-				msgs = ((InternalEObject) outbound).eInverseRemove(this, BgPackage.TRANSITION__SOURCE, Transition.class,
-						msgs);
-			if (newOutbound != null)
-				msgs = ((InternalEObject) newOutbound).eInverseAdd(this, BgPackage.TRANSITION__SOURCE, Transition.class,
-						msgs);
-			msgs = basicSetOutbound(newOutbound, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.STATE__OUTBOUND, newOutbound, newOutbound));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Transition getInbound() {
-		if (inbound != null && inbound.eIsProxy()) {
-			InternalEObject oldInbound = (InternalEObject) inbound;
-			inbound = (Transition) eResolveProxy(oldInbound);
-			if (inbound != oldInbound) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BgPackage.STATE__INBOUND, oldInbound,
-							inbound));
-			}
+	public EList<Transition> getInbound() {
+		if (inbound == null) {
+			inbound = new EObjectWithInverseResolvingEList<Transition>(Transition.class, this, BgPackage.STATE__INBOUND,
+					BgPackage.TRANSITION__TARGET);
 		}
 		return inbound;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Transition basicGetInbound() {
-		return inbound;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetInbound(Transition newInbound, NotificationChain msgs) {
-		Transition oldInbound = inbound;
-		inbound = newInbound;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BgPackage.STATE__INBOUND,
-					oldInbound, newInbound);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setInbound(Transition newInbound) {
-		if (newInbound != inbound) {
-			NotificationChain msgs = null;
-			if (inbound != null)
-				msgs = ((InternalEObject) inbound).eInverseRemove(this, BgPackage.TRANSITION__TARGET, Transition.class,
-						msgs);
-			if (newInbound != null)
-				msgs = ((InternalEObject) newInbound).eInverseAdd(this, BgPackage.TRANSITION__TARGET, Transition.class,
-						msgs);
-			msgs = basicSetInbound(newInbound, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.STATE__INBOUND, newInbound, newInbound));
 	}
 
 	/**
@@ -300,19 +194,14 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case BgPackage.STATE__OUTBOUND:
-			if (outbound != null)
-				msgs = ((InternalEObject) outbound).eInverseRemove(this, BgPackage.TRANSITION__SOURCE, Transition.class,
-						msgs);
-			return basicSetOutbound((Transition) otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOutbound()).basicAdd(otherEnd, msgs);
 		case BgPackage.STATE__INBOUND:
-			if (inbound != null)
-				msgs = ((InternalEObject) inbound).eInverseRemove(this, BgPackage.TRANSITION__TARGET, Transition.class,
-						msgs);
-			return basicSetInbound((Transition) otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInbound()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -326,9 +215,9 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case BgPackage.STATE__OUTBOUND:
-			return basicSetOutbound(null, msgs);
+			return ((InternalEList<?>) getOutbound()).basicRemove(otherEnd, msgs);
 		case BgPackage.STATE__INBOUND:
-			return basicSetInbound(null, msgs);
+			return ((InternalEList<?>) getInbound()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -342,13 +231,9 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case BgPackage.STATE__OUTBOUND:
-			if (resolve)
-				return getOutbound();
-			return basicGetOutbound();
+			return getOutbound();
 		case BgPackage.STATE__INBOUND:
-			if (resolve)
-				return getInbound();
-			return basicGetInbound();
+			return getInbound();
 		case BgPackage.STATE__NAME:
 			return getName();
 		case BgPackage.STATE__HEX_COLOR:
@@ -362,14 +247,17 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case BgPackage.STATE__OUTBOUND:
-			setOutbound((Transition) newValue);
+			getOutbound().clear();
+			getOutbound().addAll((Collection<? extends Transition>) newValue);
 			return;
 		case BgPackage.STATE__INBOUND:
-			setInbound((Transition) newValue);
+			getInbound().clear();
+			getInbound().addAll((Collection<? extends Transition>) newValue);
 			return;
 		case BgPackage.STATE__NAME:
 			setName((String) newValue);
@@ -390,10 +278,10 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case BgPackage.STATE__OUTBOUND:
-			setOutbound((Transition) null);
+			getOutbound().clear();
 			return;
 		case BgPackage.STATE__INBOUND:
-			setInbound((Transition) null);
+			getInbound().clear();
 			return;
 		case BgPackage.STATE__NAME:
 			setName(NAME_EDEFAULT);
@@ -414,9 +302,9 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case BgPackage.STATE__OUTBOUND:
-			return outbound != null;
+			return outbound != null && !outbound.isEmpty();
 		case BgPackage.STATE__INBOUND:
-			return inbound != null;
+			return inbound != null && !inbound.isEmpty();
 		case BgPackage.STATE__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case BgPackage.STATE__HEX_COLOR:

@@ -5,16 +5,14 @@ package no.ntnu.tdt4250.bg.provider;
 import java.util.Collection;
 import java.util.List;
 
-import no.ntnu.tdt4250.bg.BgFactory;
 import no.ntnu.tdt4250.bg.BgPackage;
+import no.ntnu.tdt4250.bg.TilePlacement;
 
-import no.ntnu.tdt4250.bg.LegalMovesPipeline;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,16 +20,17 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link no.ntnu.tdt4250.bg.LegalMovesPipeline} object.
+ * This is the item provider adapter for a {@link no.ntnu.tdt4250.bg.TilePlacement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class TilePlacementItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -39,7 +38,7 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LegalMovesPipelineItemProvider(AdapterFactory adapterFactory) {
+	public TilePlacementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -54,65 +53,86 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addFilterPropertyDescriptor(object);
+			addRowPropertyDescriptor(object);
+			addColumnPropertyDescriptor(object);
+			addTilePropertyDescriptor(object);
+			addDarkerPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Filter feature.
+	 * This adds a property descriptor for the Row feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFilterPropertyDescriptor(Object object) {
+	protected void addRowPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LegalMovesPipeline_filter_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LegalMovesPipeline_filter_feature",
-								"_UI_LegalMovesPipeline_type"),
-						BgPackage.Literals.LEGAL_MOVES_PIPELINE__FILTER, true, false, true, null, null, null));
+						getResourceLocator(), getString("_UI_TilePlacement_row_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_TilePlacement_row_feature",
+								"_UI_TilePlacement_type"),
+						BgPackage.Literals.TILE_PLACEMENT__ROW, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Column feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(BgPackage.Literals.LEGAL_MOVES_PIPELINE__FILTER);
-		}
-		return childrenFeatures;
+	protected void addColumnPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_TilePlacement_column_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_TilePlacement_column_feature",
+								"_UI_TilePlacement_type"),
+						BgPackage.Literals.TILE_PLACEMENT__COLUMN, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
+	 * This adds a property descriptor for the Tile feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+	protected void addTilePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_TilePlacement_tile_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_TilePlacement_tile_feature",
+								"_UI_TilePlacement_type"),
+						BgPackage.Literals.TILE_PLACEMENT__TILE, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This returns LegalMovesPipeline.gif.
+	 * This adds a property descriptor for the Darker feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDarkerPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_TilePlacement_darker_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_TilePlacement_darker_feature",
+								"_UI_TilePlacement_type"),
+						BgPackage.Literals.TILE_PLACEMENT__DARKER, false, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This returns TilePlacement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/LegalMovesPipeline"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/TilePlacement"));
 	}
 
 	/**
@@ -133,7 +153,8 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_LegalMovesPipeline_type");
+		TilePlacement tilePlacement = (TilePlacement) object;
+		return getString("_UI_TilePlacement_type") + " " + tilePlacement.getRow();
 	}
 
 	/**
@@ -147,9 +168,11 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LegalMovesPipeline.class)) {
-		case BgPackage.LEGAL_MOVES_PIPELINE__FILTER:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+		switch (notification.getFeatureID(TilePlacement.class)) {
+		case BgPackage.TILE_PLACEMENT__ROW:
+		case BgPackage.TILE_PLACEMENT__COLUMN:
+		case BgPackage.TILE_PLACEMENT__DARKER:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -165,12 +188,6 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add(createChildParameter(BgPackage.Literals.LEGAL_MOVES_PIPELINE__FILTER,
-				BgFactory.eINSTANCE.createSomeFilter1()));
-
-		newChildDescriptors.add(createChildParameter(BgPackage.Literals.LEGAL_MOVES_PIPELINE__FILTER,
-				BgFactory.eINSTANCE.createSomeFilter2()));
 	}
 
 	/**

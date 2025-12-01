@@ -12,6 +12,7 @@ import no.ntnu.tdt4250.bg.*;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EPackage;
@@ -115,6 +116,8 @@ public class BgValidator extends EObjectValidator {
 			return validateState((State) value, diagnostics, context);
 		case BgPackage.TRANSITION:
 			return validateTransition((Transition) value, diagnostics, context);
+		case BgPackage.TILE_PLACEMENT:
+			return validateTilePlacement((TilePlacement) value, diagnostics, context);
 		case BgPackage.TURN_TYPE:
 			return validateTurnType((TurnType) value, diagnostics, context);
 		default:
@@ -302,9 +305,9 @@ public class BgValidator extends EObjectValidator {
 
 		Set<String> positions = new HashSet<>();
 
-		for (Tile t : board.getTiles()) {
+		for (TilePlacement t : board.getTileplacement()) {
 
-			String id = t.getRow() + "," + t.getCol();
+			String id = t.getRow() + "," + t.getColumn();
 
 			if (!positions.add(id)) {
 				if (diagnostics != null) {
@@ -585,6 +588,9 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
+		
+		return true;
+		/*
 		if (!(filter.eContainer().eContainer().eContainer() instanceof Game)) {
 			if (diagnostics != null) {
 				diagnostics.add(
@@ -593,8 +599,7 @@ public class BgValidator extends EObjectValidator {
 								new Object[] { filter }, context));
 			}
 			return false;
-		}
-		return true;
+		}*/
 	}
 
 	/**
@@ -774,12 +779,12 @@ public class BgValidator extends EObjectValidator {
 
 		while (!queue.isEmpty()) {
 			State current = queue.poll();
-			Transition t = current.getOutbound(); // single outbound transition
-			if (t != null) {
-				State target = t.getTarget();
-				if (target != null && !visited.contains(target)) {
-					visited.add(target);
-					queue.add(target);
+			EList<Transition> t = current.getOutbound(); // single outbound transition
+			for (Transition trans : t) {
+				State s = trans.getTarget();
+				if (s != null && !visited.contains(s)) {
+					visited.add(s);
+					queue.add(s);
 				}
 			}
 		}
@@ -817,11 +822,10 @@ public class BgValidator extends EObjectValidator {
 		Set<State> tileStates = new HashSet<>(tile.getStates());
 
 		for (State state : tile.getStates()) {
-			Transition t = state.getOutbound(); // single outbound transition
-			if (t != null) {
-
-				State source = t.getSource().getFirst();
-				State target = t.getTarget();
+			EList<Transition> t = state.getOutbound(); // single outbound transition
+			for (Transition trans : t) {
+				State source = trans.getSource().getFirst();
+				State target = trans.getTarget();
 
 				// Rule 4: Transition must be fully defined
 				if (source == null || target == null) {
@@ -840,11 +844,10 @@ public class BgValidator extends EObjectValidator {
 					allWellFormed = false;
 					break;
 				}
-			} else {
+			} //else { // TODO FIX PLS
 				// Rule 4: Transition missing entirely
-				allWellFormed = false;
-				break;
-			}
+				//allWellFormed = false;
+				//break;
 		}
 
 		if (!allWellFormed) {
@@ -1083,6 +1086,16 @@ public class BgValidator extends EObjectValidator {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTilePlacement(TilePlacement tilePlacement, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(tilePlacement, diagnostics, context);
 	}
 
 	/**

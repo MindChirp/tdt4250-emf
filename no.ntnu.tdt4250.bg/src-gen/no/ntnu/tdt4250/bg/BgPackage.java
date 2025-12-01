@@ -195,13 +195,22 @@ public interface BgPackage extends EPackage {
 	int BOARD__CHECKERED = 5;
 
 	/**
+	 * The feature id for the '<em><b>Tileplacement</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOARD__TILEPLACEMENT = 6;
+
+	/**
 	 * The number of structural features of the '<em>Board</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOARD_FEATURE_COUNT = 6;
+	int BOARD_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Board</em>' class.
@@ -232,22 +241,13 @@ public interface BgPackage extends EPackage {
 	int PLAYER__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLAYER__IS_ACTIVE = 1;
-
-	/**
 	 * The feature id for the '<em><b>Hex Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLAYER__HEX_COLOR = 2;
+	int PLAYER__HEX_COLOR = 1;
 
 	/**
 	 * The number of structural features of the '<em>Player</em>' class.
@@ -256,7 +256,7 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLAYER_FEATURE_COUNT = 3;
+	int PLAYER_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Player</em>' class.
@@ -315,7 +315,7 @@ public interface BgPackage extends EPackage {
 	int LEGAL_MOVES_PIPELINE = 4;
 
 	/**
-	 * The feature id for the '<em><b>Filter</b></em>' reference.
+	 * The feature id for the '<em><b>Filter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -352,7 +352,7 @@ public interface BgPackage extends EPackage {
 	int EFFECT_PIPELINE = 5;
 
 	/**
-	 * The feature id for the '<em><b>Filter</b></em>' reference.
+	 * The feature id for the '<em><b>Filter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -527,40 +527,22 @@ public interface BgPackage extends EPackage {
 	int TILE__INITIAL_STATE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Row</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TILE__ROW = 3;
-
-	/**
-	 * The feature id for the '<em><b>Col</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TILE__COL = 4;
-
-	/**
 	 * The feature id for the '<em><b>Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TILE__COLOR = 5;
+	int TILE__COLOR = 3;
 
 	/**
-	 * The feature id for the '<em><b>Darker</b></em>' attribute.
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TILE__DARKER = 6;
+	int TILE__TYPE = 4;
 
 	/**
 	 * The number of structural features of the '<em>Tile</em>' class.
@@ -569,7 +551,7 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TILE_FEATURE_COUNT = 7;
+	int TILE_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Tile</em>' class.
@@ -591,7 +573,7 @@ public interface BgPackage extends EPackage {
 	int STATE = 10;
 
 	/**
-	 * The feature id for the '<em><b>Outbound</b></em>' reference.
+	 * The feature id for the '<em><b>Outbound</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -600,7 +582,7 @@ public interface BgPackage extends EPackage {
 	int STATE__OUTBOUND = 0;
 
 	/**
-	 * The feature id for the '<em><b>Inbound</b></em>' reference.
+	 * The feature id for the '<em><b>Inbound</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -700,6 +682,70 @@ public interface BgPackage extends EPackage {
 	int TRANSITION_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.impl.TilePlacementImpl <em>Tile Placement</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.ntnu.tdt4250.bg.impl.TilePlacementImpl
+	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getTilePlacement()
+	 * @generated
+	 */
+	int TILE_PLACEMENT = 12;
+
+	/**
+	 * The feature id for the '<em><b>Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TILE_PLACEMENT__ROW = 0;
+
+	/**
+	 * The feature id for the '<em><b>Column</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TILE_PLACEMENT__COLUMN = 1;
+
+	/**
+	 * The feature id for the '<em><b>Tile</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TILE_PLACEMENT__TILE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Darker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TILE_PLACEMENT__DARKER = 3;
+
+	/**
+	 * The number of structural features of the '<em>Tile Placement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TILE_PLACEMENT_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Tile Placement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TILE_PLACEMENT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -707,7 +753,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getTurnType()
 	 * @generated
 	 */
-	int TURN_TYPE = 12;
+	int TURN_TYPE = 13;
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Game <em>Game</em>}'.
@@ -851,6 +897,17 @@ public interface BgPackage extends EPackage {
 	EAttribute getBoard_Checkered();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link no.ntnu.tdt4250.bg.Board#getTileplacement <em>Tileplacement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Tileplacement</em>'.
+	 * @see no.ntnu.tdt4250.bg.Board#getTileplacement()
+	 * @see #getBoard()
+	 * @generated
+	 */
+	EReference getBoard_Tileplacement();
+
+	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Player <em>Player</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -870,17 +927,6 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPlayer_Name();
-
-	/**
-	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Player#isIsActive <em>Is Active</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Active</em>'.
-	 * @see no.ntnu.tdt4250.bg.Player#isIsActive()
-	 * @see #getPlayer()
-	 * @generated
-	 */
-	EAttribute getPlayer_IsActive();
 
 	/**
 	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Player#getHexColor <em>Hex Color</em>}'.
@@ -925,10 +971,10 @@ public interface BgPackage extends EPackage {
 	EClass getLegalMovesPipeline();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.ntnu.tdt4250.bg.LegalMovesPipeline#getFilter <em>Filter</em>}'.
+	 * Returns the meta object for the containment reference '{@link no.ntnu.tdt4250.bg.LegalMovesPipeline#getFilter <em>Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Filter</em>'.
+	 * @return the meta object for the containment reference '<em>Filter</em>'.
 	 * @see no.ntnu.tdt4250.bg.LegalMovesPipeline#getFilter()
 	 * @see #getLegalMovesPipeline()
 	 * @generated
@@ -946,10 +992,10 @@ public interface BgPackage extends EPackage {
 	EClass getEffectPipeline();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.ntnu.tdt4250.bg.EffectPipeline#getFilter <em>Filter</em>}'.
+	 * Returns the meta object for the containment reference '{@link no.ntnu.tdt4250.bg.EffectPipeline#getFilter <em>Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Filter</em>'.
+	 * @return the meta object for the containment reference '<em>Filter</em>'.
 	 * @see no.ntnu.tdt4250.bg.EffectPipeline#getFilter()
 	 * @see #getEffectPipeline()
 	 * @generated
@@ -1041,28 +1087,6 @@ public interface BgPackage extends EPackage {
 	EReference getTile_InitialState();
 
 	/**
-	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Tile#getRow <em>Row</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Row</em>'.
-	 * @see no.ntnu.tdt4250.bg.Tile#getRow()
-	 * @see #getTile()
-	 * @generated
-	 */
-	EAttribute getTile_Row();
-
-	/**
-	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Tile#getCol <em>Col</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Col</em>'.
-	 * @see no.ntnu.tdt4250.bg.Tile#getCol()
-	 * @see #getTile()
-	 * @generated
-	 */
-	EAttribute getTile_Col();
-
-	/**
 	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Tile#getColor <em>Color</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1074,15 +1098,15 @@ public interface BgPackage extends EPackage {
 	EAttribute getTile_Color();
 
 	/**
-	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Tile#isDarker <em>Darker</em>}'.
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Tile#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Darker</em>'.
-	 * @see no.ntnu.tdt4250.bg.Tile#isDarker()
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see no.ntnu.tdt4250.bg.Tile#getType()
 	 * @see #getTile()
 	 * @generated
 	 */
-	EAttribute getTile_Darker();
+	EAttribute getTile_Type();
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.State <em>State</em>}'.
@@ -1095,10 +1119,10 @@ public interface BgPackage extends EPackage {
 	EClass getState();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.ntnu.tdt4250.bg.State#getOutbound <em>Outbound</em>}'.
+	 * Returns the meta object for the reference list '{@link no.ntnu.tdt4250.bg.State#getOutbound <em>Outbound</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Outbound</em>'.
+	 * @return the meta object for the reference list '<em>Outbound</em>'.
 	 * @see no.ntnu.tdt4250.bg.State#getOutbound()
 	 * @see #getState()
 	 * @generated
@@ -1106,10 +1130,10 @@ public interface BgPackage extends EPackage {
 	EReference getState_Outbound();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.ntnu.tdt4250.bg.State#getInbound <em>Inbound</em>}'.
+	 * Returns the meta object for the reference list '{@link no.ntnu.tdt4250.bg.State#getInbound <em>Inbound</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Inbound</em>'.
+	 * @return the meta object for the reference list '<em>Inbound</em>'.
 	 * @see no.ntnu.tdt4250.bg.State#getInbound()
 	 * @see #getState()
 	 * @generated
@@ -1180,6 +1204,60 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTransition_Name();
+
+	/**
+	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.TilePlacement <em>Tile Placement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Tile Placement</em>'.
+	 * @see no.ntnu.tdt4250.bg.TilePlacement
+	 * @generated
+	 */
+	EClass getTilePlacement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.TilePlacement#getRow <em>Row</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Row</em>'.
+	 * @see no.ntnu.tdt4250.bg.TilePlacement#getRow()
+	 * @see #getTilePlacement()
+	 * @generated
+	 */
+	EAttribute getTilePlacement_Row();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.TilePlacement#getColumn <em>Column</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Column</em>'.
+	 * @see no.ntnu.tdt4250.bg.TilePlacement#getColumn()
+	 * @see #getTilePlacement()
+	 * @generated
+	 */
+	EAttribute getTilePlacement_Column();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.ntnu.tdt4250.bg.TilePlacement#getTile <em>Tile</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Tile</em>'.
+	 * @see no.ntnu.tdt4250.bg.TilePlacement#getTile()
+	 * @see #getTilePlacement()
+	 * @generated
+	 */
+	EReference getTilePlacement_Tile();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.TilePlacement#isDarker <em>Darker</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Darker</em>'.
+	 * @see no.ntnu.tdt4250.bg.TilePlacement#isDarker()
+	 * @see #getTilePlacement()
+	 * @generated
+	 */
+	EAttribute getTilePlacement_Darker();
 
 	/**
 	 * Returns the meta object for enum '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}'.
@@ -1323,6 +1401,14 @@ public interface BgPackage extends EPackage {
 		EAttribute BOARD__CHECKERED = eINSTANCE.getBoard_Checkered();
 
 		/**
+		 * The meta object literal for the '<em><b>Tileplacement</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BOARD__TILEPLACEMENT = eINSTANCE.getBoard_Tileplacement();
+
+		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.PlayerImpl <em>Player</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1339,14 +1425,6 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PLAYER__NAME = eINSTANCE.getPlayer_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Active</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PLAYER__IS_ACTIVE = eINSTANCE.getPlayer_IsActive();
 
 		/**
 		 * The meta object literal for the '<em><b>Hex Color</b></em>' attribute feature.
@@ -1385,7 +1463,7 @@ public interface BgPackage extends EPackage {
 		EClass LEGAL_MOVES_PIPELINE = eINSTANCE.getLegalMovesPipeline();
 
 		/**
-		 * The meta object literal for the '<em><b>Filter</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Filter</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1403,7 +1481,7 @@ public interface BgPackage extends EPackage {
 		EClass EFFECT_PIPELINE = eINSTANCE.getEffectPipeline();
 
 		/**
-		 * The meta object literal for the '<em><b>Filter</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Filter</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1483,22 +1561,6 @@ public interface BgPackage extends EPackage {
 		EReference TILE__INITIAL_STATE = eINSTANCE.getTile_InitialState();
 
 		/**
-		 * The meta object literal for the '<em><b>Row</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TILE__ROW = eINSTANCE.getTile_Row();
-
-		/**
-		 * The meta object literal for the '<em><b>Col</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TILE__COL = eINSTANCE.getTile_Col();
-
-		/**
 		 * The meta object literal for the '<em><b>Color</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1507,12 +1569,12 @@ public interface BgPackage extends EPackage {
 		EAttribute TILE__COLOR = eINSTANCE.getTile_Color();
 
 		/**
-		 * The meta object literal for the '<em><b>Darker</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TILE__DARKER = eINSTANCE.getTile_Darker();
+		EAttribute TILE__TYPE = eINSTANCE.getTile_Type();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.StateImpl <em>State</em>}' class.
@@ -1525,7 +1587,7 @@ public interface BgPackage extends EPackage {
 		EClass STATE = eINSTANCE.getState();
 
 		/**
-		 * The meta object literal for the '<em><b>Outbound</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Outbound</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1533,7 +1595,7 @@ public interface BgPackage extends EPackage {
 		EReference STATE__OUTBOUND = eINSTANCE.getState_Outbound();
 
 		/**
-		 * The meta object literal for the '<em><b>Inbound</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Inbound</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1589,6 +1651,48 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TRANSITION__NAME = eINSTANCE.getTransition_Name();
+
+		/**
+		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.TilePlacementImpl <em>Tile Placement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.ntnu.tdt4250.bg.impl.TilePlacementImpl
+		 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getTilePlacement()
+		 * @generated
+		 */
+		EClass TILE_PLACEMENT = eINSTANCE.getTilePlacement();
+
+		/**
+		 * The meta object literal for the '<em><b>Row</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TILE_PLACEMENT__ROW = eINSTANCE.getTilePlacement_Row();
+
+		/**
+		 * The meta object literal for the '<em><b>Column</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TILE_PLACEMENT__COLUMN = eINSTANCE.getTilePlacement_Column();
+
+		/**
+		 * The meta object literal for the '<em><b>Tile</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TILE_PLACEMENT__TILE = eINSTANCE.getTilePlacement_Tile();
+
+		/**
+		 * The meta object literal for the '<em><b>Darker</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TILE_PLACEMENT__DARKER = eINSTANCE.getTilePlacement_Darker();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}' enum.

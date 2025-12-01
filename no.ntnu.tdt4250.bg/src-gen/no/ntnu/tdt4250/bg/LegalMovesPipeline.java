@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface LegalMovesPipeline extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Filter</b></em>' reference.
+	 * Returns the value of the '<em><b>Filter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Filter</em>' reference.
+	 * @return the value of the '<em>Filter</em>' containment reference.
 	 * @see #setFilter(Filter)
 	 * @see no.ntnu.tdt4250.bg.BgPackage#getLegalMovesPipeline_Filter()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	Filter getFilter();
 
 	/**
-	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.LegalMovesPipeline#getFilter <em>Filter</em>}' reference.
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.LegalMovesPipeline#getFilter <em>Filter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Filter</em>' reference.
+	 * @param value the new value of the '<em>Filter</em>' containment reference.
 	 * @see #getFilter()
 	 * @generated
 	 */

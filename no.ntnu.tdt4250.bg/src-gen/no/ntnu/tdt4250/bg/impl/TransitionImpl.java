@@ -105,8 +105,8 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 	@Override
 	public EList<State> getSource() {
 		if (source == null) {
-			source = new EObjectWithInverseResolvingEList<State>(State.class, this, BgPackage.TRANSITION__SOURCE,
-					BgPackage.STATE__OUTBOUND);
+			source = new EObjectWithInverseResolvingEList.ManyInverse<State>(State.class, this,
+					BgPackage.TRANSITION__SOURCE, BgPackage.STATE__OUTBOUND);
 		}
 		return source;
 	}

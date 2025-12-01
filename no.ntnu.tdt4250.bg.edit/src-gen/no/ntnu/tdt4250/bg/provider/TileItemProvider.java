@@ -56,42 +56,10 @@ public class TileItemProvider extends ItemProviderAdapter implements IEditingDom
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addRowPropertyDescriptor(object);
-			addColPropertyDescriptor(object);
 			addColorPropertyDescriptor(object);
-			addDarkerPropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Row feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRowPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Tile_row_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Tile_row_feature", "_UI_Tile_type"),
-						BgPackage.Literals.TILE__ROW, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-						null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Col feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addColPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Tile_col_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Tile_col_feature", "_UI_Tile_type"),
-						BgPackage.Literals.TILE__COL, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-						null, null));
 	}
 
 	/**
@@ -110,17 +78,17 @@ public class TileItemProvider extends ItemProviderAdapter implements IEditingDom
 	}
 
 	/**
-	 * This adds a property descriptor for the Darker feature.
+	 * This adds a property descriptor for the Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDarkerPropertyDescriptor(Object object) {
+	protected void addTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Tile_darker_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Tile_darker_feature", "_UI_Tile_type"),
-						BgPackage.Literals.TILE__DARKER, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+						getResourceLocator(), getString("_UI_Tile_type_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Tile_type_feature", "_UI_Tile_type"),
+						BgPackage.Literals.TILE__TYPE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 						null, null));
 	}
 
@@ -185,8 +153,9 @@ public class TileItemProvider extends ItemProviderAdapter implements IEditingDom
 	 */
 	@Override
 	public String getText(Object object) {
-		Tile tile = (Tile) object;
-		return getString("_UI_Tile_type") + " " + tile.getRow();
+		String label = ((Tile) object).getColor();
+		return label == null || label.length() == 0 ? getString("_UI_Tile_type")
+				: getString("_UI_Tile_type") + " " + label;
 	}
 
 	/**
@@ -201,10 +170,8 @@ public class TileItemProvider extends ItemProviderAdapter implements IEditingDom
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Tile.class)) {
-		case BgPackage.TILE__ROW:
-		case BgPackage.TILE__COL:
 		case BgPackage.TILE__COLOR:
-		case BgPackage.TILE__DARKER:
+		case BgPackage.TILE__TYPE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case BgPackage.TILE__STATES:

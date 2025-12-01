@@ -121,6 +121,15 @@ public interface BgFactory extends EFactory {
 	Transition createTransition();
 
 	/**
+	 * Returns a new object of class '<em>Tile Placement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tile Placement</em>'.
+	 * @generated
+	 */
+	TilePlacement createTilePlacement();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

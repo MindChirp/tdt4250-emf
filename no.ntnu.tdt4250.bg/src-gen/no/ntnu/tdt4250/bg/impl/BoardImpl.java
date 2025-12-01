@@ -10,6 +10,7 @@ import no.ntnu.tdt4250.bg.EffectPipeline;
 import no.ntnu.tdt4250.bg.LegalMovesPipeline;
 import no.ntnu.tdt4250.bg.Tile;
 
+import no.ntnu.tdt4250.bg.TilePlacement;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -38,6 +39,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.ntnu.tdt4250.bg.impl.BoardImpl#getEffectPipeline <em>Effect Pipeline</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.BoardImpl#getHeight <em>Height</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.BoardImpl#isCheckered <em>Checkered</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.impl.BoardImpl#getTileplacement <em>Tileplacement</em>}</li>
  * </ul>
  *
  * @generated
@@ -132,6 +134,16 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 	 * @ordered
 	 */
 	protected boolean checkered = CHECKERED_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getTileplacement() <em>Tileplacement</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTileplacement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TilePlacement> tileplacement;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -268,6 +280,20 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 	 * @generated
 	 */
 	@Override
+	public EList<TilePlacement> getTileplacement() {
+		if (tileplacement == null) {
+			tileplacement = new EObjectContainmentEList<TilePlacement>(TilePlacement.class, this,
+					BgPackage.BOARD__TILEPLACEMENT);
+		}
+		return tileplacement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case BgPackage.BOARD__TILES:
@@ -276,6 +302,8 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 			return ((InternalEList<?>) getLegalMovesPipeline()).basicRemove(otherEnd, msgs);
 		case BgPackage.BOARD__EFFECT_PIPELINE:
 			return ((InternalEList<?>) getEffectPipeline()).basicRemove(otherEnd, msgs);
+		case BgPackage.BOARD__TILEPLACEMENT:
+			return ((InternalEList<?>) getTileplacement()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -300,6 +328,8 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 			return getHeight();
 		case BgPackage.BOARD__CHECKERED:
 			return isCheckered();
+		case BgPackage.BOARD__TILEPLACEMENT:
+			return getTileplacement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -334,6 +364,10 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 		case BgPackage.BOARD__CHECKERED:
 			setCheckered((Boolean) newValue);
 			return;
+		case BgPackage.BOARD__TILEPLACEMENT:
+			getTileplacement().clear();
+			getTileplacement().addAll((Collection<? extends TilePlacement>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -364,6 +398,9 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 		case BgPackage.BOARD__CHECKERED:
 			setCheckered(CHECKERED_EDEFAULT);
 			return;
+		case BgPackage.BOARD__TILEPLACEMENT:
+			getTileplacement().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -388,6 +425,8 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 			return height != HEIGHT_EDEFAULT;
 		case BgPackage.BOARD__CHECKERED:
 			return checkered != CHECKERED_EDEFAULT;
+		case BgPackage.BOARD__TILEPLACEMENT:
+			return tileplacement != null && !tileplacement.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

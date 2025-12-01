@@ -5,7 +5,6 @@ package no.ntnu.tdt4250.bg.impl;
 import java.util.Collection;
 
 import no.ntnu.tdt4250.bg.BgPackage;
-import no.ntnu.tdt4250.bg.Board;
 import no.ntnu.tdt4250.bg.State;
 import no.ntnu.tdt4250.bg.Tile;
 import no.ntnu.tdt4250.bg.Transition;
@@ -35,10 +34,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getStates <em>States</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getTransitions <em>Transitions</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getInitialState <em>Initial State</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getRow <em>Row</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getCol <em>Col</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getColor <em>Color</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#isDarker <em>Darker</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -75,46 +72,6 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 	protected State initialState;
 
 	/**
-	 * The default value of the '{@link #getRow() <em>Row</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRow()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int ROW_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getRow() <em>Row</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRow()
-	 * @generated
-	 * @ordered
-	 */
-	protected int row = ROW_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getCol() <em>Col</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCol()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int COL_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getCol() <em>Col</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCol()
-	 * @generated
-	 * @ordered
-	 */
-	protected int col = COL_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getColor() <em>Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -135,14 +92,24 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 	protected String color = COLOR_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isDarker() <em>Darker</em>}' attribute.
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDarker()
+	 * @see #getType()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean DARKER_EDEFAULT = false;
+	protected static final String TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String type = TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -247,52 +214,6 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 	 * @generated
 	 */
 	@Override
-	public int getRow() {
-		return row;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setRow(int newRow) {
-		int oldRow = row;
-		row = newRow;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.TILE__ROW, oldRow, row));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int getCol() {
-		return col;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setCol(int newCol) {
-		int oldCol = col;
-		col = newCol;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.TILE__COL, oldCol, col));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public String getColor() {
 		return color;
 	}
@@ -313,14 +234,24 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
-	public boolean isDarker() {
-		// TODO: implement this method to return the 'Darker' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		Board board = (Board) this.eContainer();
-		return board.isCheckered() && (this.row + this.col) % 2 == 1;
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setType(String newType) {
+		String oldType = type;
+		type = newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.TILE__TYPE, oldType, type));
 	}
 
 	/**
@@ -355,14 +286,10 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 			return getTransitions();
 		case BgPackage.TILE__INITIAL_STATE:
 			return getInitialState();
-		case BgPackage.TILE__ROW:
-			return getRow();
-		case BgPackage.TILE__COL:
-			return getCol();
 		case BgPackage.TILE__COLOR:
 			return getColor();
-		case BgPackage.TILE__DARKER:
-			return isDarker();
+		case BgPackage.TILE__TYPE:
+			return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -387,14 +314,11 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 		case BgPackage.TILE__INITIAL_STATE:
 			setInitialState((State) newValue);
 			return;
-		case BgPackage.TILE__ROW:
-			setRow((Integer) newValue);
-			return;
-		case BgPackage.TILE__COL:
-			setCol((Integer) newValue);
-			return;
 		case BgPackage.TILE__COLOR:
 			setColor((String) newValue);
+			return;
+		case BgPackage.TILE__TYPE:
+			setType((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -417,14 +341,11 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 		case BgPackage.TILE__INITIAL_STATE:
 			setInitialState((State) null);
 			return;
-		case BgPackage.TILE__ROW:
-			setRow(ROW_EDEFAULT);
-			return;
-		case BgPackage.TILE__COL:
-			setCol(COL_EDEFAULT);
-			return;
 		case BgPackage.TILE__COLOR:
 			setColor(COLOR_EDEFAULT);
+			return;
+		case BgPackage.TILE__TYPE:
+			setType(TYPE_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -444,14 +365,10 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 			return transitions != null && !transitions.isEmpty();
 		case BgPackage.TILE__INITIAL_STATE:
 			return initialState != null;
-		case BgPackage.TILE__ROW:
-			return row != ROW_EDEFAULT;
-		case BgPackage.TILE__COL:
-			return col != COL_EDEFAULT;
 		case BgPackage.TILE__COLOR:
 			return COLOR_EDEFAULT == null ? color != null : !COLOR_EDEFAULT.equals(color);
-		case BgPackage.TILE__DARKER:
-			return isDarker() != DARKER_EDEFAULT;
+		case BgPackage.TILE__TYPE:
+			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -467,12 +384,10 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 			return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (row: ");
-		result.append(row);
-		result.append(", col: ");
-		result.append(col);
-		result.append(", color: ");
+		result.append(" (color: ");
 		result.append(color);
+		result.append(", type: ");
+		result.append(type);
 		result.append(')');
 		return result.toString();
 	}

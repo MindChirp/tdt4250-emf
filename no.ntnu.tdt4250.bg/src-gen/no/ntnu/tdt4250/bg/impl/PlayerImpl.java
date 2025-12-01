@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.PlayerImpl#getName <em>Name</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.impl.PlayerImpl#isIsActive <em>Is Active</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.PlayerImpl#getHexColor <em>Hex Color</em>}</li>
  * </ul>
  *
@@ -47,16 +46,6 @@ public class PlayerImpl extends MinimalEObjectImpl.Container implements Player {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isIsActive() <em>Is Active</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsActive()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_ACTIVE_EDEFAULT = false;
 
 	/**
 	 * The default value of the '{@link #getHexColor() <em>Hex Color</em>}' attribute.
@@ -126,18 +115,6 @@ public class PlayerImpl extends MinimalEObjectImpl.Container implements Player {
 	 * @generated
 	 */
 	@Override
-	public boolean isIsActive() {
-		// TODO: implement this method to return the 'Is Active' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public String getHexColor() {
 		return hexColor;
 	}
@@ -165,8 +142,6 @@ public class PlayerImpl extends MinimalEObjectImpl.Container implements Player {
 		switch (featureID) {
 		case BgPackage.PLAYER__NAME:
 			return getName();
-		case BgPackage.PLAYER__IS_ACTIVE:
-			return isIsActive();
 		case BgPackage.PLAYER__HEX_COLOR:
 			return getHexColor();
 		}
@@ -219,8 +194,6 @@ public class PlayerImpl extends MinimalEObjectImpl.Container implements Player {
 		switch (featureID) {
 		case BgPackage.PLAYER__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case BgPackage.PLAYER__IS_ACTIVE:
-			return isIsActive() != IS_ACTIVE_EDEFAULT;
 		case BgPackage.PLAYER__HEX_COLOR:
 			return HEX_COLOR_EDEFAULT == null ? hexColor != null : !HEX_COLOR_EDEFAULT.equals(hexColor);
 		}

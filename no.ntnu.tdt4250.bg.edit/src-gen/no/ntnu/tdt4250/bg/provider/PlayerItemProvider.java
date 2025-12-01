@@ -54,7 +54,6 @@ public class PlayerItemProvider extends ItemProviderAdapter implements IEditingD
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addIsActivePropertyDescriptor(object);
 			addHexColorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -73,22 +72,6 @@ public class PlayerItemProvider extends ItemProviderAdapter implements IEditingD
 						getString("_UI_PropertyDescriptor_description", "_UI_Player_name_feature", "_UI_Player_type"),
 						BgPackage.Literals.PLAYER__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 						null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Is Active feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIsActivePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Player_isActive_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Player_isActive_feature",
-								"_UI_Player_type"),
-						BgPackage.Literals.PLAYER__IS_ACTIVE, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -154,7 +137,6 @@ public class PlayerItemProvider extends ItemProviderAdapter implements IEditingD
 
 		switch (notification.getFeatureID(Player.class)) {
 		case BgPackage.PLAYER__NAME:
-		case BgPackage.PLAYER__IS_ACTIVE:
 		case BgPackage.PLAYER__HEX_COLOR:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

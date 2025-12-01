@@ -6,7 +6,7 @@
     <semanticResources>Game.xmi</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_MnzRsMiCEfCSmJykj95E4w">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_MqR98MiCEfCSmJykj95E4w" name="bg" repPath="#_MpZNIMiCEfCSmJykj95E4w" changeId="1764588372341">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_MqR98MiCEfCSmJykj95E4w" name="bg" repPath="#_MpZNIMiCEfCSmJykj95E4w" changeId="1764590002895">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="bg.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -851,7 +851,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_aI2FwMiLEfCSmJykj95E4w" sourceNode="_VfvMoMiLEfCSmJykj95E4w" targetNode="_Vv_2MMiLEfCSmJykj95E4w" beginLabel="[1..*] source" endLabel="[0..1] outbound">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_aI2FwMiLEfCSmJykj95E4w" sourceNode="_VfvMoMiLEfCSmJykj95E4w" targetNode="_Vv_2MMiLEfCSmJykj95E4w" beginLabel="[1..*] source" endLabel="[0..*] outbound">
       <target xmi:type="ecore:EReference" href="bg.ecore#//State/outbound"/>
       <semanticElements xmi:type="ecore:EReference" href="bg.ecore#//State/outbound"/>
       <semanticElements xmi:type="ecore:EReference" href="bg.ecore#//Transition/source"/>
@@ -862,7 +862,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='Bi-directional%20EC_EReference%20']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_aZw2oMiLEfCSmJykj95E4w" sourceNode="_VfvMoMiLEfCSmJykj95E4w" targetNode="_Vv_2MMiLEfCSmJykj95E4w" beginLabel="[1..1] target" endLabel="[0..1] inbound">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_aZw2oMiLEfCSmJykj95E4w" sourceNode="_VfvMoMiLEfCSmJykj95E4w" targetNode="_Vv_2MMiLEfCSmJykj95E4w" beginLabel="[1..1] target" endLabel="[0..*] inbound">
       <target xmi:type="ecore:EReference" href="bg.ecore#//State/inbound"/>
       <semanticElements xmi:type="ecore:EReference" href="bg.ecore#//State/inbound"/>
       <semanticElements xmi:type="ecore:EReference" href="bg.ecore#//Transition/target"/>

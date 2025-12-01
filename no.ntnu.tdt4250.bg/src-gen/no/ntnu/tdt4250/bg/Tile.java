@@ -18,10 +18,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getStates <em>States</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getTransitions <em>Transitions</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getInitialState <em>Initial State</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.Tile#getRow <em>Row</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.Tile#getCol <em>Col</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getColor <em>Color</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.Tile#isDarker <em>Darker</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.Tile#getType <em>Type</em>}</li>
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getTile()
@@ -76,50 +74,6 @@ public interface Tile extends EObject {
 	void setInitialState(State value);
 
 	/**
-	 * Returns the value of the '<em><b>Row</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Row</em>' attribute.
-	 * @see #setRow(int)
-	 * @see no.ntnu.tdt4250.bg.BgPackage#getTile_Row()
-	 * @model required="true"
-	 * @generated
-	 */
-	int getRow();
-
-	/**
-	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Tile#getRow <em>Row</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Row</em>' attribute.
-	 * @see #getRow()
-	 * @generated
-	 */
-	void setRow(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Col</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Col</em>' attribute.
-	 * @see #setCol(int)
-	 * @see no.ntnu.tdt4250.bg.BgPackage#getTile_Col()
-	 * @model required="true"
-	 * @generated
-	 */
-	int getCol();
-
-	/**
-	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Tile#getCol <em>Col</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Col</em>' attribute.
-	 * @see #getCol()
-	 * @generated
-	 */
-	void setCol(int value);
-
-	/**
 	 * Returns the value of the '<em><b>Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -142,14 +96,25 @@ public interface Tile extends EObject {
 	void setColor(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Darker</b></em>' attribute.
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Darker</em>' attribute.
-	 * @see no.ntnu.tdt4250.bg.BgPackage#getTile_Darker()
-	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see #setType(String)
+	 * @see no.ntnu.tdt4250.bg.BgPackage#getTile_Type()
+	 * @model required="true"
 	 * @generated
 	 */
-	boolean isDarker();
+	String getType();
+
+	/**
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Tile#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(String value);
 
 } // Tile

@@ -78,6 +78,8 @@ public class BgFactoryImpl extends EFactoryImpl implements BgFactory {
 			return createState();
 		case BgPackage.TRANSITION:
 			return createTransition();
+		case BgPackage.TILE_PLACEMENT:
+			return createTilePlacement();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -232,6 +234,17 @@ public class BgFactoryImpl extends EFactoryImpl implements BgFactory {
 	public Transition createTransition() {
 		TransitionImpl transition = new TransitionImpl();
 		return transition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TilePlacement createTilePlacement() {
+		TilePlacementImpl tilePlacement = new TilePlacementImpl();
+		return tilePlacement;
 	}
 
 	/**

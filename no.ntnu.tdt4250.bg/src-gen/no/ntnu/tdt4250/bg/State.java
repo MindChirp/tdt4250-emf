@@ -2,6 +2,7 @@
  */
 package no.ntnu.tdt4250.bg;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -25,52 +26,32 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface State extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Outbound</b></em>' reference.
+	 * Returns the value of the '<em><b>Outbound</b></em>' reference list.
+	 * The list contents are of type {@link no.ntnu.tdt4250.bg.Transition}.
 	 * It is bidirectional and its opposite is '{@link no.ntnu.tdt4250.bg.Transition#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Outbound</em>' reference.
-	 * @see #setOutbound(Transition)
+	 * @return the value of the '<em>Outbound</em>' reference list.
 	 * @see no.ntnu.tdt4250.bg.BgPackage#getState_Outbound()
 	 * @see no.ntnu.tdt4250.bg.Transition#getSource
 	 * @model opposite="source"
 	 * @generated
 	 */
-	Transition getOutbound();
+	EList<Transition> getOutbound();
 
 	/**
-	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.State#getOutbound <em>Outbound</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Outbound</em>' reference.
-	 * @see #getOutbound()
-	 * @generated
-	 */
-	void setOutbound(Transition value);
-
-	/**
-	 * Returns the value of the '<em><b>Inbound</b></em>' reference.
+	 * Returns the value of the '<em><b>Inbound</b></em>' reference list.
+	 * The list contents are of type {@link no.ntnu.tdt4250.bg.Transition}.
 	 * It is bidirectional and its opposite is '{@link no.ntnu.tdt4250.bg.Transition#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Inbound</em>' reference.
-	 * @see #setInbound(Transition)
+	 * @return the value of the '<em>Inbound</em>' reference list.
 	 * @see no.ntnu.tdt4250.bg.BgPackage#getState_Inbound()
 	 * @see no.ntnu.tdt4250.bg.Transition#getTarget
 	 * @model opposite="target"
 	 * @generated
 	 */
-	Transition getInbound();
-
-	/**
-	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.State#getInbound <em>Inbound</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Inbound</em>' reference.
-	 * @see #getInbound()
-	 * @generated
-	 */
-	void setInbound(Transition value);
+	EList<Transition> getInbound();
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
