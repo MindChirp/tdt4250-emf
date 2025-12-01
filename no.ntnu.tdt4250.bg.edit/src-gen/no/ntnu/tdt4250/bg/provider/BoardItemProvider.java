@@ -59,6 +59,8 @@ public class BoardItemProvider extends ItemProviderAdapter implements IEditingDo
 			addWidthPropertyDescriptor(object);
 			addHeightPropertyDescriptor(object);
 			addCheckeredPropertyDescriptor(object);
+			addTileplacementPropertyDescriptor(object);
+			addSizePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -110,6 +112,36 @@ public class BoardItemProvider extends ItemProviderAdapter implements IEditingDo
 	}
 
 	/**
+	 * This adds a property descriptor for the Tileplacement feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTileplacementPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Board_tileplacement_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Board_tileplacement_feature",
+								"_UI_Board_type"),
+						BgPackage.Literals.BOARD__TILEPLACEMENT, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Size feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSizePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Board_size_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Board_size_feature", "_UI_Board_type"),
+						BgPackage.Literals.BOARD__SIZE, false, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -124,6 +156,7 @@ public class BoardItemProvider extends ItemProviderAdapter implements IEditingDo
 			childrenFeatures.add(BgPackage.Literals.BOARD__TILES);
 			childrenFeatures.add(BgPackage.Literals.BOARD__LEGAL_MOVES_PIPELINE);
 			childrenFeatures.add(BgPackage.Literals.BOARD__EFFECT_PIPELINE);
+			childrenFeatures.add(BgPackage.Literals.BOARD__TILEPLACEMENT);
 		}
 		return childrenFeatures;
 	}
@@ -189,11 +222,13 @@ public class BoardItemProvider extends ItemProviderAdapter implements IEditingDo
 		case BgPackage.BOARD__WIDTH:
 		case BgPackage.BOARD__HEIGHT:
 		case BgPackage.BOARD__CHECKERED:
+		case BgPackage.BOARD__SIZE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case BgPackage.BOARD__TILES:
 		case BgPackage.BOARD__LEGAL_MOVES_PIPELINE:
 		case BgPackage.BOARD__EFFECT_PIPELINE:
+		case BgPackage.BOARD__TILEPLACEMENT:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -219,6 +254,9 @@ public class BoardItemProvider extends ItemProviderAdapter implements IEditingDo
 
 		newChildDescriptors.add(createChildParameter(BgPackage.Literals.BOARD__EFFECT_PIPELINE,
 				BgFactory.eINSTANCE.createEffectPipeline()));
+
+		newChildDescriptors.add(createChildParameter(BgPackage.Literals.BOARD__TILEPLACEMENT,
+				BgFactory.eINSTANCE.createTilePlacement()));
 	}
 
 	/**

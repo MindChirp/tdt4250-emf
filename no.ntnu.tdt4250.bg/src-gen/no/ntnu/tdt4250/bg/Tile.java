@@ -18,14 +18,12 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getStates <em>States</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getTransitions <em>Transitions</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getInitialState <em>Initial State</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.Tile#getRow <em>Row</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.Tile#getCol <em>Col</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.Tile#getColor <em>Color</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.Tile#isDarker <em>Darker</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.Tile#getType <em>Type</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.Tile#getHexColor <em>Hex Color</em>}</li>
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getTile()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='tileMustHaveInitialState tileStateNamesMustBeUnique allStatesMustBeReachable tileTransitionsMustBeWellFormed tilesMustHaveAtLeastOneState'"
  * @generated
  */
 public interface Tile extends EObject {
@@ -76,80 +74,48 @@ public interface Tile extends EObject {
 	void setInitialState(State value);
 
 	/**
-	 * Returns the value of the '<em><b>Row</b></em>' attribute.
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Row</em>' attribute.
-	 * @see #setRow(int)
-	 * @see no.ntnu.tdt4250.bg.BgPackage#getTile_Row()
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see #setType(String)
+	 * @see no.ntnu.tdt4250.bg.BgPackage#getTile_Type()
 	 * @model required="true"
 	 * @generated
 	 */
-	int getRow();
+	String getType();
 
 	/**
-	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Tile#getRow <em>Row</em>}' attribute.
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Tile#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Row</em>' attribute.
-	 * @see #getRow()
+	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see #getType()
 	 * @generated
 	 */
-	void setRow(int value);
+	void setType(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Col</b></em>' attribute.
+	 * Returns the value of the '<em><b>Hex Color</b></em>' attribute.
+	 * The default value is <code>"#ffffff"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Col</em>' attribute.
-	 * @see #setCol(int)
-	 * @see no.ntnu.tdt4250.bg.BgPackage#getTile_Col()
-	 * @model required="true"
+	 * @return the value of the '<em>Hex Color</em>' attribute.
+	 * @see #setHexColor(String)
+	 * @see no.ntnu.tdt4250.bg.BgPackage#getTile_HexColor()
+	 * @model default="#ffffff" required="true"
 	 * @generated
 	 */
-	int getCol();
+	String getHexColor();
 
 	/**
-	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Tile#getCol <em>Col</em>}' attribute.
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Tile#getHexColor <em>Hex Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Col</em>' attribute.
-	 * @see #getCol()
+	 * @param value the new value of the '<em>Hex Color</em>' attribute.
+	 * @see #getHexColor()
 	 * @generated
 	 */
-	void setCol(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Color</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Color</em>' attribute.
-	 * @see #setColor(String)
-	 * @see no.ntnu.tdt4250.bg.BgPackage#getTile_Color()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getColor();
-
-	/**
-	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Tile#getColor <em>Color</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Color</em>' attribute.
-	 * @see #getColor()
-	 * @generated
-	 */
-	void setColor(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Darker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Darker</em>' attribute.
-	 * @see no.ntnu.tdt4250.bg.BgPackage#getTile_Darker()
-	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 * @generated
-	 */
-	boolean isDarker();
+	void setHexColor(String value);
 
 } // Tile

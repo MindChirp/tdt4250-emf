@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getFilter()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='filterMustBelongToGame'"
  * @generated
  */
 public interface Filter extends EObject {

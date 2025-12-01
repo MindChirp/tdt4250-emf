@@ -28,19 +28,21 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Board/effectPipeline"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Board/height"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Board/checkered"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//Board/tileplacement"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Board/size"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//Player">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Player/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Player/isActive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Player/hexColor"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//TurnPolicy">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//TurnPolicy/type"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//LegalMovesPipeline">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//LegalMovesPipeline/filter"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//LegalMovesPipeline/filter"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//EffectPipeline">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//EffectPipeline/filter"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//EffectPipeline/filter"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//Filter">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Filter/nextFilter"/>
@@ -51,10 +53,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Tile/states"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Tile/transitions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Tile/initialState"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Tile/row"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Tile/col"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Tile/color"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Tile/darker"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Tile/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Tile/hexColor"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//State">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//State/outbound"/>
@@ -66,6 +66,13 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//Transition/source"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//Transition/target"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Transition/name"/>
+    </genClasses>
+    <genClasses ecoreClass="bg.ecore#//TilePlacement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//TilePlacement/row"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//TilePlacement/column"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//TilePlacement/tile"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//TilePlacement/darker"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//TilePlacement/coordinate"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

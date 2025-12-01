@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bg:Game xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bg="http://www.example.org/bg" name="TicTacToe" initialPlayer="//@players.0">
+  <board width="3" height="3">
+    <tiles color="HAHAAH" type="Main">
+      <states inbound="//@board/@tiles.0/@transitions.0" name="Cross"/>
+      <states inbound="//@board/@tiles.0/@transitions.1" name="Circle"/>
+      <transitions source="//@board/@tiles.0/@initialState" target="//@board/@tiles.0/@states.0" name="EmptyToCross"/>
+      <transitions source="//@board/@tiles.0/@initialState" target="//@board/@tiles.0/@states.1" name="EmptyToCircle"/>
+      <initialState outbound="//@board/@tiles.0/@transitions.1 //@board/@tiles.0/@transitions.0" name="Empty"/>
+    </tiles>
+    <legalMovesPipeline>
+      <filter xsi:type="bg:SomeFilter1">
+        <nextFilter xsi:type="bg:SomeFilter2"/>
+      </filter>
+    </legalMovesPipeline>
+    <effectPipeline>
+      <filter xsi:type="bg:SomeFilter2">
+        <nextFilter xsi:type="bg:SomeFilter1"/>
+      </filter>
+    </effectPipeline>
+    <tileplacement tile="//@board/@tiles.0"/>
+    <tileplacement row="1" tile="//@board/@tiles.0"/>
+    <tileplacement row="2" tile="//@board/@tiles.0"/>
+    <tileplacement column="1" tile="//@board/@tiles.0"/>
+    <tileplacement row="1" column="1" tile="//@board/@tiles.0"/>
+    <tileplacement row="2" column="1" tile="//@board/@tiles.0"/>
+    <tileplacement column="2" tile="//@board/@tiles.0"/>
+    <tileplacement row="1" column="2" tile="//@board/@tiles.0"/>
+    <tileplacement row="2" column="2" tile="//@board/@tiles.0"/>
+  </board>
+  <players name="Circle" hexColor="#bbbbbb"/>
+  <players name="Cross" hexColor="#ffffff"/>
+  <turnPolicy/>
+</bg:Game>

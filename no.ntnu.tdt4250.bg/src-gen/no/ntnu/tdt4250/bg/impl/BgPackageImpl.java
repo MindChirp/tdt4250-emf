@@ -14,16 +14,19 @@ import no.ntnu.tdt4250.bg.SomeFilter1;
 import no.ntnu.tdt4250.bg.SomeFilter2;
 import no.ntnu.tdt4250.bg.State;
 import no.ntnu.tdt4250.bg.Tile;
+import no.ntnu.tdt4250.bg.TilePlacement;
 import no.ntnu.tdt4250.bg.Transition;
 import no.ntnu.tdt4250.bg.TurnPolicy;
 import no.ntnu.tdt4250.bg.TurnType;
 
+import no.ntnu.tdt4250.bg.util.BgValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -122,6 +125,13 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass tilePlacementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum turnTypeEEnum = null;
 
 	/**
@@ -178,6 +188,14 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 
 		// Initialize created meta-data
 		theBgPackage.initializePackageContents();
+
+		// Register package validator
+		EValidator.Registry.INSTANCE.put(theBgPackage, new EValidator.Descriptor() {
+			@Override
+			public EValidator getEValidator() {
+				return BgValidator.INSTANCE;
+			}
+		});
 
 		// Mark meta-data to indicate it can't be changed
 		theBgPackage.freeze();
@@ -323,6 +341,26 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
+	public EReference getBoard_Tileplacement() {
+		return (EReference) boardEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBoard_Size() {
+		return (EAttribute) boardEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getPlayer() {
 		return playerEClass;
 	}
@@ -343,7 +381,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getPlayer_IsActive() {
+	public EAttribute getPlayer_HexColor() {
 		return (EAttribute) playerEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -493,7 +531,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getTile_Row() {
+	public EAttribute getTile_Type() {
 		return (EAttribute) tileEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -503,28 +541,8 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getTile_Col() {
+	public EAttribute getTile_HexColor() {
 		return (EAttribute) tileEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getTile_Color() {
-		return (EAttribute) tileEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getTile_Darker() {
-		return (EAttribute) tileEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -623,6 +641,66 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getTilePlacement() {
+		return tilePlacementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTilePlacement_Row() {
+		return (EAttribute) tilePlacementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTilePlacement_Column() {
+		return (EAttribute) tilePlacementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTilePlacement_Tile() {
+		return (EReference) tilePlacementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTilePlacement_Darker() {
+		return (EAttribute) tilePlacementEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTilePlacement_Coordinate() {
+		return (EAttribute) tilePlacementEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getTurnType() {
 		return turnTypeEEnum;
 	}
@@ -671,10 +749,12 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEReference(boardEClass, BOARD__EFFECT_PIPELINE);
 		createEAttribute(boardEClass, BOARD__HEIGHT);
 		createEAttribute(boardEClass, BOARD__CHECKERED);
+		createEReference(boardEClass, BOARD__TILEPLACEMENT);
+		createEAttribute(boardEClass, BOARD__SIZE);
 
 		playerEClass = createEClass(PLAYER);
 		createEAttribute(playerEClass, PLAYER__NAME);
-		createEAttribute(playerEClass, PLAYER__IS_ACTIVE);
+		createEAttribute(playerEClass, PLAYER__HEX_COLOR);
 
 		turnPolicyEClass = createEClass(TURN_POLICY);
 		createEAttribute(turnPolicyEClass, TURN_POLICY__TYPE);
@@ -696,10 +776,8 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEReference(tileEClass, TILE__STATES);
 		createEReference(tileEClass, TILE__TRANSITIONS);
 		createEReference(tileEClass, TILE__INITIAL_STATE);
-		createEAttribute(tileEClass, TILE__ROW);
-		createEAttribute(tileEClass, TILE__COL);
-		createEAttribute(tileEClass, TILE__COLOR);
-		createEAttribute(tileEClass, TILE__DARKER);
+		createEAttribute(tileEClass, TILE__TYPE);
+		createEAttribute(tileEClass, TILE__HEX_COLOR);
 
 		stateEClass = createEClass(STATE);
 		createEReference(stateEClass, STATE__OUTBOUND);
@@ -711,6 +789,13 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEReference(transitionEClass, TRANSITION__SOURCE);
 		createEReference(transitionEClass, TRANSITION__TARGET);
 		createEAttribute(transitionEClass, TRANSITION__NAME);
+
+		tilePlacementEClass = createEClass(TILE_PLACEMENT);
+		createEAttribute(tilePlacementEClass, TILE_PLACEMENT__ROW);
+		createEAttribute(tilePlacementEClass, TILE_PLACEMENT__COLUMN);
+		createEReference(tilePlacementEClass, TILE_PLACEMENT__TILE);
+		createEAttribute(tilePlacementEClass, TILE_PLACEMENT__DARKER);
+		createEAttribute(tilePlacementEClass, TILE_PLACEMENT__COORDINATE);
 
 		// Create enums
 		turnTypeEEnum = createEEnum(TURN_TYPE);
@@ -781,12 +866,17 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBoard_Checkered(), ecorePackage.getEBoolean(), "checkered", null, 1, 1, Board.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBoard_Tileplacement(), this.getTilePlacement(), null, "tileplacement", null, 1, -1,
+				Board.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoard_Size(), ecorePackage.getEInt(), "size", null, 1, 1, Board.class, IS_TRANSIENT,
+				IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(playerEClass, Player.class, "Player", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPlayer_Name(), ecorePackage.getEString(), "name", null, 1, 1, Player.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPlayer_IsActive(), ecorePackage.getEBoolean(), "isActive", null, 1, 1, Player.class,
-				IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPlayer_HexColor(), ecorePackage.getEString(), "hexColor", null, 1, 1, Player.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(turnPolicyEClass, TurnPolicy.class, "TurnPolicy", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -796,13 +886,13 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		initEClass(legalMovesPipelineEClass, LegalMovesPipeline.class, "LegalMovesPipeline", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLegalMovesPipeline_Filter(), this.getFilter(), null, "filter", null, 0, 1,
-				LegalMovesPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				LegalMovesPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(effectPipelineEClass, EffectPipeline.class, "EffectPipeline", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEffectPipeline_Filter(), this.getFilter(), null, "filter", null, 0, 1, EffectPipeline.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(filterEClass, Filter.class, "Filter", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -826,20 +916,16 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		initEReference(getTile_InitialState(), this.getState(), null, "initialState", null, 1, 1, Tile.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTile_Row(), ecorePackage.getEInt(), "row", null, 1, 1, Tile.class, !IS_TRANSIENT,
+		initEAttribute(getTile_Type(), ecorePackage.getEString(), "type", null, 1, 1, Tile.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTile_Col(), ecorePackage.getEInt(), "col", null, 1, 1, Tile.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTile_Color(), ecorePackage.getEString(), "color", null, 1, 1, Tile.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTile_Darker(), ecorePackage.getEBoolean(), "darker", null, 1, 1, Tile.class, IS_TRANSIENT,
-				IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTile_HexColor(), ecorePackage.getEString(), "hexColor", "#ffffff", 1, 1, Tile.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getState_Outbound(), this.getTransition(), this.getTransition_Source(), "outbound", null, 0, 1,
+		initEReference(getState_Outbound(), this.getTransition(), this.getTransition_Source(), "outbound", null, 0, -1,
 				State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getState_Inbound(), this.getTransition(), this.getTransition_Target(), "inbound", null, 0, 1,
+		initEReference(getState_Inbound(), this.getTransition(), this.getTransition_Target(), "inbound", null, 0, -1,
 				State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getState_Name(), ecorePackage.getEString(), "name", null, 0, 1, State.class, !IS_TRANSIENT,
@@ -856,7 +942,22 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransition_Name(), ecorePackage.getEString(), "name", null, 1, 1, Transition.class,
+				IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		initEClass(tilePlacementEClass, TilePlacement.class, "TilePlacement", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTilePlacement_Row(), ecorePackage.getEInt(), "row", null, 1, 1, TilePlacement.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTilePlacement_Column(), ecorePackage.getEInt(), "column", null, 1, 1, TilePlacement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTilePlacement_Tile(), this.getTile(), null, "tile", null, 1, 1, TilePlacement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTilePlacement_Darker(), ecorePackage.getEBoolean(), "darker", null, 1, 1, TilePlacement.class,
+				IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTilePlacement_Coordinate(), ecorePackage.getEString(), "coordinate", null, 1, 1,
+				TilePlacement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(turnTypeEEnum, TurnType.class, "TurnType");
@@ -865,6 +966,36 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";
+		addAnnotation(gameEClass, source, new String[] { "constraints",
+				"playersMustHaveUniqueHexColors playersMustHaveUniqueNames gameMustHaveAtLeastOnePlayer" });
+		addAnnotation(boardEClass, source, new String[] { "constraints",
+				"boardDimensionsMustBePositive tilePositionsMustBeUnique boardMustBelongToGame" });
+		addAnnotation(playerEClass, source, new String[] { "constraints", "playerHexColorMustBeValid" });
+		addAnnotation(legalMovesPipelineEClass, source,
+				new String[] { "constraints", "legalMovesPipelineFiltersMustFormValidChain" });
+		addAnnotation(effectPipelineEClass, source,
+				new String[] { "constraints", "effectPipelineFiltersMustFormValidChain" });
+		addAnnotation(filterEClass, source, new String[] { "constraints", "filterMustBelongToGame" });
+		addAnnotation(tileEClass, source, new String[] { "constraints",
+				"tileMustHaveInitialState tileStateNamesMustBeUnique allStatesMustBeReachable tileTransitionsMustBeWellFormed tilesMustHaveAtLeastOneState" });
+		addAnnotation(stateEClass, source, new String[] { "constraints", "stateHexColorMustBeValid" });
+		addAnnotation(transitionEClass, source, new String[] { "constraints", "transitionMustStayWithinTile" });
+		addAnnotation(tilePlacementEClass, source, new String[] { "constraints",
+				"rowAndColumnMustBeNonNegative tilePlacementMustBelongToBoard rowAndColumnMustBeWithinBoardBounds tileMustBeSet" });
 	}
 
 } //BgPackageImpl
