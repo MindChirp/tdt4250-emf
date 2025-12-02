@@ -20,9 +20,7 @@ class BgDslFormatter extends AbstractFormatter2 {
 		for (player : game.players) {
 			player.format
 		}
-		for (turnPolicy : game.turnPolicy) {
-			turnPolicy.format
-		}
+		
 	}
 
 	def dispatch void format(Board board, extension IFormattableDocument document) {
