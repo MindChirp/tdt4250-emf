@@ -551,6 +551,16 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getTile_Name() {
+		return (EAttribute) tileEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getState() {
 		return stateEClass;
 	}
@@ -778,6 +788,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEReference(tileEClass, TILE__INITIAL_STATE);
 		createEAttribute(tileEClass, TILE__TYPE);
 		createEAttribute(tileEClass, TILE__HEX_COLOR);
+		createEAttribute(tileEClass, TILE__NAME);
 
 		stateEClass = createEClass(STATE);
 		createEReference(stateEClass, STATE__OUTBOUND);
@@ -917,9 +928,11 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTile_Type(), ecorePackage.getEString(), "type", null, 1, 1, Tile.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTile_HexColor(), ecorePackage.getEString(), "hexColor", "#ffffff", 1, 1, Tile.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTile_Name(), ecorePackage.getEString(), "name", null, 1, 1, Tile.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getState_Outbound(), this.getTransition(), this.getTransition_Source(), "outbound", null, 0, -1,
@@ -942,7 +955,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransition_Name(), ecorePackage.getEString(), "name", null, 1, 1, Transition.class,
-				IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tilePlacementEClass, TilePlacement.class, "TilePlacement", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

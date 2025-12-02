@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: no.ntnu.tdt4250.bg.bgdsl
+Bundle-ManifestVersion: 2
+Bundle-Name: no.ntnu.tdt4250.bg.bgdsl
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: no.ntnu.tdt4250.bg.bgdsl; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: no.ntnu.tdt4250.bg,
+ org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.19.0",
+ org.eclipse.xtext.xbase.lib;bundle-version="2.39.0",
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Export-Package: no.ntnu.tdt4250.bg.bgdsl.scoping,
+ no.ntnu.tdt4250.bg.bgdsl.parser.antlr.internal,
+ no.ntnu.tdt4250.bg.bgdsl.services,
+ no.ntnu.tdt4250.bg.bgdsl.parser.antlr,
+ no.ntnu.tdt4250.bg.bgdsl.generator,
+ no.ntnu.tdt4250.bg.bgdsl.serializer,
+ no.ntnu.tdt4250.bg.bgdsl.formatting2,
+ no.ntnu.tdt4250.bg.bgdsl,
+ no.ntnu.tdt4250.bg.bgdsl.validation
+Import-Package: org.apache.log4j

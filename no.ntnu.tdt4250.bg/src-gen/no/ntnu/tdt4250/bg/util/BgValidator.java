@@ -1047,7 +1047,7 @@ public class BgValidator extends EObjectValidator {
 	 */
 	public boolean validateTilePlacement_rowAndColumnMustBeNonNegative(TilePlacement tilePlacement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		
+
 		if (tilePlacement.getColumn() < 0 || tilePlacement.getRow() < 0) {
 			if (diagnostics != null) {
 				diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0,
@@ -1068,7 +1068,7 @@ public class BgValidator extends EObjectValidator {
 	 */
 	public boolean validateTilePlacement_tilePlacementMustBelongToBoard(TilePlacement tilePlacement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		
+
 		if (!(tilePlacement.eContainer() instanceof Board)) {
 			if (diagnostics != null) {
 				diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0,
@@ -1090,22 +1090,18 @@ public class BgValidator extends EObjectValidator {
 	public boolean validateTilePlacement_rowAndColumnMustBeWithinBoardBounds(TilePlacement tilePlacement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 
-	    EObject container = tilePlacement.eContainer();
-	    if (!(container instanceof Board)) {
-	    	// this is checked in another constraint, so we just return true
-	        return true;
-	    }
+		EObject container = tilePlacement.eContainer();
+		if (!(container instanceof Board)) {
+			// this is checked in another constraint, so we just return true
+			return true;
+		}
 
-	    Board board = (Board) container;
+		Board board = (Board) container;
 
-	    int row = tilePlacement.getRow();
-	    int col = tilePlacement.getColumn();
+		int row = tilePlacement.getRow();
+		int col = tilePlacement.getColumn();
 
-	    boolean inBounds =
-	            row >= 0 &&
-	            col >= 0 &&
-	            row < board.getHeight() &&
-	            col < board.getWidth();
+		boolean inBounds = row >= 0 && col >= 0 && row < board.getHeight() && col < board.getWidth();
 		if (!inBounds) {
 			if (diagnostics != null) {
 				diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0,
@@ -1126,9 +1122,9 @@ public class BgValidator extends EObjectValidator {
 	 */
 	public boolean validateTilePlacement_tileMustBeSet(TilePlacement tilePlacement, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		
+
 		Tile tile = tilePlacement.getTile();
-		
+
 		if (tile == null) {
 			if (diagnostics != null) {
 				diagnostics.add(

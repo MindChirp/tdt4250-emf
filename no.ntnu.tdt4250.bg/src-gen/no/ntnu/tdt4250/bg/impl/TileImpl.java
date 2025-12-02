@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getInitialState <em>Initial State</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getType <em>Type</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getHexColor <em>Hex Color</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -110,6 +111,26 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 	 * @ordered
 	 */
 	protected String hexColor = HEX_COLOR_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -260,6 +281,29 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 	 * @generated
 	 */
 	@Override
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.TILE__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case BgPackage.TILE__STATES:
@@ -290,6 +334,8 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 			return getType();
 		case BgPackage.TILE__HEX_COLOR:
 			return getHexColor();
+		case BgPackage.TILE__NAME:
+			return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -320,6 +366,9 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 		case BgPackage.TILE__HEX_COLOR:
 			setHexColor((String) newValue);
 			return;
+		case BgPackage.TILE__NAME:
+			setName((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -347,6 +396,9 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 		case BgPackage.TILE__HEX_COLOR:
 			setHexColor(HEX_COLOR_EDEFAULT);
 			return;
+		case BgPackage.TILE__NAME:
+			setName(NAME_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -369,6 +421,8 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		case BgPackage.TILE__HEX_COLOR:
 			return HEX_COLOR_EDEFAULT == null ? hexColor != null : !HEX_COLOR_EDEFAULT.equals(hexColor);
+		case BgPackage.TILE__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -388,6 +442,8 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 		result.append(type);
 		result.append(", hexColor: ");
 		result.append(hexColor);
+		result.append(", name: ");
+		result.append(name);
 		result.append(')');
 		return result.toString();
 	}
