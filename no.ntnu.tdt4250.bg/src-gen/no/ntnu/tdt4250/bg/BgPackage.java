@@ -113,13 +113,22 @@ public interface BgPackage extends EPackage {
 	int GAME__INITIAL_PLAYER = 4;
 
 	/**
+	 * The feature id for the '<em><b>Active Player</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GAME__ACTIVE_PLAYER = 5;
+
+	/**
 	 * The number of structural features of the '<em>Game</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GAME_FEATURE_COUNT = 5;
+	int GAME_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Game</em>' class.
@@ -848,6 +857,17 @@ public interface BgPackage extends EPackage {
 	EReference getGame_InitialPlayer();
 
 	/**
+	 * Returns the meta object for the reference '{@link no.ntnu.tdt4250.bg.Game#getActivePlayer <em>Active Player</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Active Player</em>'.
+	 * @see no.ntnu.tdt4250.bg.Game#getActivePlayer()
+	 * @see #getGame()
+	 * @generated
+	 */
+	EReference getGame_ActivePlayer();
+
+	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Board <em>Board</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1401,6 +1421,14 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GAME__INITIAL_PLAYER = eINSTANCE.getGame_InitialPlayer();
+
+		/**
+		 * The meta object literal for the '<em><b>Active Player</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GAME__ACTIVE_PLAYER = eINSTANCE.getGame_ActivePlayer();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.BoardImpl <em>Board</em>}' class.

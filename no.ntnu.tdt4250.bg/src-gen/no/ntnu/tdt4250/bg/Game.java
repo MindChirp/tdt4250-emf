@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.ntnu.tdt4250.bg.Game#getPlayers <em>Players</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Game#getTurnPolicy <em>Turn Policy</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Game#getInitialPlayer <em>Initial Player</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.Game#getActivePlayer <em>Active Player</em>}</li>
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getGame()
@@ -116,5 +117,27 @@ public interface Game extends EObject {
 	 * @generated
 	 */
 	void setInitialPlayer(Player value);
+
+	/**
+	 * Returns the value of the '<em><b>Active Player</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Active Player</em>' reference.
+	 * @see #setActivePlayer(Player)
+	 * @see no.ntnu.tdt4250.bg.BgPackage#getGame_ActivePlayer()
+	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @generated
+	 */
+	Player getActivePlayer();
+
+	/**
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Game#getActivePlayer <em>Active Player</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Active Player</em>' reference.
+	 * @see #getActivePlayer()
+	 * @generated
+	 */
+	void setActivePlayer(Player value);
 
 } // Game

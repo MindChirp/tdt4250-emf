@@ -6,8 +6,10 @@ package no.ntnu.tdt4250.bg.bgdsl.generator;
 import java.util.Objects;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -34,28 +36,179 @@ public class BgDslGenerator extends AbstractGenerator {
       return it.eClass();
     };
     final Set<EClass> allUniqueEClasses = IterableExtensions.<EClass>toSet(IterableExtensions.<EObject, EClass>map(IteratorExtensions.<EObject>toIterable(gameInstance.eAllContents()), _function));
+    allUniqueEClasses.add(gameEClass);
     if ((gameInstance == null)) {
       System.err.println("Model resource is empty. Cannot generate data.");
       return;
     }
     System.out.println("Generating code with model instance data...");
-    String _name = gameEClass.getName();
-    String _plus = ("Generating Game file with name: " + _name);
-    System.out.println(_plus);
-    String _name_1 = gameEClass.getName();
-    String _plus_1 = (_name_1 + ".py");
-    fsa.generateFile(_plus_1, 
-      this.compileWithData(gameInstance));
-    final Function1<EClass, Boolean> _function_1 = (EClass it) -> {
-      return Boolean.valueOf((!Objects.equals(it, gameEClass)));
-    };
-    Iterable<EClass> _filter = IterableExtensions.<EClass>filter(allUniqueEClasses, _function_1);
-    for (final EClass eClass : _filter) {
-      String _name_2 = eClass.getName();
-      String _plus_2 = (_name_2 + ".py");
-      fsa.generateFile(_plus_2, 
-        this.compileStructural(eClass));
+    fsa.generateFile(
+      ("models" + ".py"), 
+      this.compileModels(allUniqueEClasses, gameInstance));
+  }
+
+  public CharSequence compileModels(final Set<EClass> models, final EObject gameInstance) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("from typing import List, Optional");
+    _builder.newLine();
+    _builder.append("from pydantic import BaseModel");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      for(final EClass model : models) {
+        _builder.append("class ");
+        String _name = model.getName();
+        _builder.append(_name);
+        _builder.append("(BaseModel):");
+        _builder.newLineIfNotEmpty();
+        {
+          boolean _isEmpty = model.getEAllStructuralFeatures().isEmpty();
+          if (_isEmpty) {
+            _builder.append("\t");
+            _builder.append("pass");
+            _builder.newLine();
+          } else {
+            {
+              EList<EStructuralFeature> _eAllStructuralFeatures = model.getEAllStructuralFeatures();
+              for(final EStructuralFeature field : _eAllStructuralFeatures) {
+                CharSequence _pythonFieldDec = this.toPythonFieldDec(field);
+                _builder.append(_pythonFieldDec);
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        _builder.newLine();
+      }
     }
+    {
+      for(final EClass model_1 : models) {
+        String _name_1 = model_1.getName();
+        _builder.append(_name_1);
+        _builder.append(".model_rebuild()");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    CharSequence _initializeValues = this.initializeValues(gameInstance);
+    _builder.append(_initializeValues);
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+
+  public CharSequence initializeValues(final EObject gameInstance) {
+    CharSequence _xblockexpression = null;
+    {
+      Object _eGet = gameInstance.eGet(gameInstance.eClass().getEStructuralFeature("board"));
+      final EObject boardInstance = ((EObject) _eGet);
+      Object _eGet_1 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("width"));
+      final Integer width = ((Integer) _eGet_1);
+      Object _eGet_2 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("height"));
+      final Integer height = ((Integer) _eGet_2);
+      Object _eGet_3 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("tiles"));
+      final EList<EObject> tiles = ((EList<EObject>) _eGet_3);
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("tiles = [");
+      _builder.newLine();
+      {
+        for(final EObject tile : tiles) {
+          _builder.append("Tile(");
+          Object _eGet_4 = tile.eGet(tile.eClass().getEStructuralFeature("name"));
+          _builder.append(_eGet_4);
+          _builder.append(")");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.append("]");
+      _builder.newLine();
+      _xblockexpression = _builder;
+    }
+    return _xblockexpression;
+  }
+
+  public CharSequence toPythonFieldDec(final EStructuralFeature field) {
+    CharSequence _xblockexpression = null;
+    {
+      final String typeStr = this.pythonTypeString(field);
+      CharSequence _xifexpression = null;
+      boolean _isMany = field.isMany();
+      if (_isMany) {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("\t");
+        String _name = field.getName();
+        _builder.append(_name, "\t");
+        _builder.append(": List[\"");
+        _builder.append(typeStr, "\t");
+        _builder.append("\"] = []");
+        _xifexpression = _builder;
+      } else {
+        CharSequence _xifexpression_1 = null;
+        int _lowerBound = field.getLowerBound();
+        boolean _equals = (_lowerBound == 0);
+        if (_equals) {
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("\t");
+          String _name_1 = field.getName();
+          _builder_1.append(_name_1, "\t");
+          _builder_1.append(": Optional[\"");
+          _builder_1.append(typeStr, "\t");
+          _builder_1.append("\"] = None");
+          _xifexpression_1 = _builder_1;
+        } else {
+          StringConcatenation _builder_2 = new StringConcatenation();
+          _builder_2.append("\t");
+          String _name_2 = field.getName();
+          _builder_2.append(_name_2, "\t");
+          _builder_2.append(": \"");
+          _builder_2.append(typeStr, "\t");
+          _builder_2.append("\"");
+          _xifexpression_1 = _builder_2;
+        }
+        _xifexpression = _xifexpression_1;
+      }
+      _xblockexpression = _xifexpression;
+    }
+    return _xblockexpression;
+  }
+
+  public String pythonTypeString(final EStructuralFeature field) {
+    String _switchResult = null;
+    boolean _matched = false;
+    if (field instanceof EAttribute) {
+      _matched=true;
+      String _xblockexpression = null;
+      {
+        final String icn = ((EAttribute)field).getEAttributeType().getInstanceClassName();
+        String _xifexpression = null;
+        if ((Objects.equals(icn, "int") || Objects.equals(icn, "java.lang.Integer"))) {
+          _xifexpression = "int";
+        } else {
+          String _xifexpression_1 = null;
+          if ((Objects.equals(icn, "boolean") || Objects.equals(icn, "java.lang.Boolean"))) {
+            _xifexpression_1 = "bool";
+          } else {
+            _xifexpression_1 = "str";
+          }
+          _xifexpression = _xifexpression_1;
+        }
+        _xblockexpression = _xifexpression;
+      }
+      _switchResult = _xblockexpression;
+    }
+    if (!_matched) {
+      if (field instanceof EReference) {
+        _matched=true;
+        String _xblockexpression = null;
+        {
+          final EClass refType = ((EReference) field).getEReferenceType();
+          _xblockexpression = refType.getName();
+        }
+        _switchResult = _xblockexpression;
+      }
+    }
+    if (!_matched) {
+      _switchResult = "str";
+    }
+    return _switchResult;
   }
 
   public CharSequence compileStructural(final EClass c) {

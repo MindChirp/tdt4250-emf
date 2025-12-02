@@ -10,6 +10,10 @@ import org.eclipse.xtext.generator.IGeneratorContext
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EStructuralFeature
+import java.util.Set
+import org.eclipse.emf.ecore.EAttribute
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.common.util.EList
 
 /**
  * Generates code from your model files on save.
@@ -25,10 +29,14 @@ class BgDslGenerator extends AbstractGenerator {
 //				.map[name]
 //				.join(', '))
 
+		//val models = resource.allCSontents
+		
 		val gameInstance = resource.contents.head as EObject
 		val gameEClass = gameInstance.eClass
 		
 		val allUniqueEClasses = gameInstance.eAllContents.toIterable.map[eClass].toSet
+		
+		allUniqueEClasses.add(gameEClass)
         
         if (gameInstance === null) {
             System.err.println("Model resource is empty. Cannot generate data.")
@@ -36,25 +44,97 @@ class BgDslGenerator extends AbstractGenerator {
         }
         
         System.out.println("Generating code with model instance data...")
-        System.out.println("Generating Game file with name: " + gameEClass.name)
         
         // 1a. Generate the Board file (Data-Specific)
         fsa.generateFile(
-            gameEClass.name + ".py",
-            gameInstance.compileWithData 
+            "models" + ".py",
+            allUniqueEClasses.compileModels(gameInstance)
         )
         
         // 1b. Generate all other structural classes (e.g., Tile)
         // Filter out the Board class and generate the structural blueprints.
-        for (eClass : allUniqueEClasses.filter[it != gameEClass]) {
+        /*for (eClass : allUniqueEClasses.filter[it != gameEClass]) {
             fsa.generateFile(
                 eClass.name + ".py",
                 eClass.compileStructural
             )
-        }
+        }*/
         
   
 	}
+	
+	def compileModels(Set<EClass> models, EObject gameInstance)
+'''
+from typing import List, Optional
+from pydantic import BaseModel
+
+«FOR model : models»
+class «model.name»(BaseModel):
+	«IF model.EAllStructuralFeatures.empty»
+	pass
+	«ELSE»
+	«FOR field : model.EAllStructuralFeatures»
+«field.toPythonFieldDec»
+	«ENDFOR»
+	«ENDIF»
+
+«ENDFOR»
+«FOR model : models»
+«model.name».model_rebuild()
+«ENDFOR»
+«initializeValues(gameInstance)»
+'''
+
+
+def initializeValues(EObject gameInstance) {
+	val boardInstance = gameInstance.eGet(gameInstance.eClass.getEStructuralFeature("board")) as EObject
+	val width = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("width")) as Integer
+	val height = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("height")) as Integer
+	
+	val tiles = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("tiles"))	as EList<EObject>
+'''
+tiles = [
+«FOR tile : tiles»
+Tile(«tile.eGet(tile.eClass.getEStructuralFeature("name"))»)
+«ENDFOR»
+]
+'''
+}
+def toPythonFieldDec(EStructuralFeature field) {
+	val typeStr = field.pythonTypeString
+	if (field.many) {
+		'''	«field.name»: List["«typeStr»"] = []'''
+	} else {
+		if (field.lowerBound == 0) {
+			'''	«field.name»: Optional["«typeStr»"] = None'''
+		} else {
+			'''	«field.name»: "«typeStr»"'''
+		}
+	}
+}
+
+def pythonTypeString(EStructuralFeature field) {
+	switch field {
+		EAttribute: {
+			val icn = field.EAttributeType.instanceClassName
+                if (icn == "int" || icn == "java.lang.Integer") {
+                    "int"
+                } else if (icn == "boolean" || icn == "java.lang.Boolean") {
+                    "bool"
+                } else {
+                    // default to string (also covers enums for now)
+                    "str"
+                }
+		}
+		EReference: {
+			val refType = (field as EReference).EReferenceType
+			refType.name
+		}
+		default: "str"
+	}
+}
+
+
 	
 	def compileStructural(EClass c) 
 '''

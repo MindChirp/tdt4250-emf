@@ -5,4 +5,4 @@ target/
 /.metadata/
 *.xtendbin
 *._trace
-/no.ntnu.tdt4250.bg.bgdsl.tests/test-bin
+/no.ntnu.tdt4250.bg.bgdsl.tests/test-bin/

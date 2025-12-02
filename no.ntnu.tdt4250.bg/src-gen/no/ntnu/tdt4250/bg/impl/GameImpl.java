@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.ntnu.tdt4250.bg.impl.GameImpl#getPlayers <em>Players</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.GameImpl#getTurnPolicy <em>Turn Policy</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.GameImpl#getInitialPlayer <em>Initial Player</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.impl.GameImpl#getActivePlayer <em>Active Player</em>}</li>
  * </ul>
  *
  * @generated
@@ -269,6 +270,42 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 	 * @generated
 	 */
 	@Override
+	public Player getActivePlayer() {
+		Player activePlayer = basicGetActivePlayer();
+		return activePlayer != null && activePlayer.eIsProxy() ? (Player) eResolveProxy((InternalEObject) activePlayer)
+				: activePlayer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Player basicGetActivePlayer() {
+		// TODO: implement this method to return the 'Active Player' reference
+		// -> do not perform proxy resolution
+		// Ensure that you remove @generated or mark it @generated NOT
+		return this.initialPlayer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setActivePlayer(Player newActivePlayer) {
+		// TODO: implement this method to set the 'Active Player' reference
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case BgPackage.GAME__BOARD:
@@ -301,6 +338,10 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 			if (resolve)
 				return getInitialPlayer();
 			return basicGetInitialPlayer();
+		case BgPackage.GAME__ACTIVE_PLAYER:
+			if (resolve)
+				return getActivePlayer();
+			return basicGetActivePlayer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -331,6 +372,9 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 		case BgPackage.GAME__INITIAL_PLAYER:
 			setInitialPlayer((Player) newValue);
 			return;
+		case BgPackage.GAME__ACTIVE_PLAYER:
+			setActivePlayer((Player) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -358,6 +402,9 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 		case BgPackage.GAME__INITIAL_PLAYER:
 			setInitialPlayer((Player) null);
 			return;
+		case BgPackage.GAME__ACTIVE_PLAYER:
+			setActivePlayer((Player) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -380,6 +427,8 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 			return turnPolicy != null && !turnPolicy.isEmpty();
 		case BgPackage.GAME__INITIAL_PLAYER:
 			return initialPlayer != null;
+		case BgPackage.GAME__ACTIVE_PLAYER:
+			return basicGetActivePlayer() != null;
 		}
 		return super.eIsSet(featureID);
 	}

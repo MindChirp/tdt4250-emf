@@ -271,6 +271,16 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
+	public EReference getGame_ActivePlayer() {
+		return (EReference) gameEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getBoard() {
 		return boardEClass;
 	}
@@ -751,6 +761,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEReference(gameEClass, GAME__PLAYERS);
 		createEReference(gameEClass, GAME__TURN_POLICY);
 		createEReference(gameEClass, GAME__INITIAL_PLAYER);
+		createEReference(gameEClass, GAME__ACTIVE_PLAYER);
 
 		boardEClass = createEClass(BOARD);
 		createEAttribute(boardEClass, BOARD__WIDTH);
@@ -860,6 +871,9 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		initEReference(getGame_InitialPlayer(), this.getPlayer(), null, "initialPlayer", null, 0, 1, Game.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGame_ActivePlayer(), this.getPlayer(), null, "activePlayer", null, 1, 1, Game.class,
+				IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				IS_DERIVED, IS_ORDERED);
 
 		initEClass(boardEClass, Board.class, "Board", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBoard_Width(), ecorePackage.getEInt(), "width", null, 1, 1, Board.class, !IS_TRANSIENT,

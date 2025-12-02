@@ -20,6 +20,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Game/players"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Game/turnPolicy"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//Game/initialPlayer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//Game/activePlayer"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//Board">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Board/width"/>

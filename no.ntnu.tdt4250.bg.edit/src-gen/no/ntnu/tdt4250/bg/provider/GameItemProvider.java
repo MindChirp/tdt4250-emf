@@ -58,6 +58,7 @@ public class GameItemProvider extends ItemProviderAdapter implements IEditingDom
 
 			addNamePropertyDescriptor(object);
 			addInitialPlayerPropertyDescriptor(object);
+			addActivePlayerPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -90,6 +91,21 @@ public class GameItemProvider extends ItemProviderAdapter implements IEditingDom
 						getString("_UI_PropertyDescriptor_description", "_UI_Game_initialPlayer_feature",
 								"_UI_Game_type"),
 						BgPackage.Literals.GAME__INITIAL_PLAYER, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Active Player feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addActivePlayerPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Game_activePlayer_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Game_activePlayer_feature",
+								"_UI_Game_type"),
+						BgPackage.Literals.GAME__ACTIVE_PLAYER, true, false, true, null, null, null));
 	}
 
 	/**
