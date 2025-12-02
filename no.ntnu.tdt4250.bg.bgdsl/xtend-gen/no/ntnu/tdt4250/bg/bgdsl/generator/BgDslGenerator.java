@@ -3,10 +3,20 @@
  */
 package no.ntnu.tdt4250.bg.bgdsl.generator;
 
+import java.util.Objects;
+import java.util.Set;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 
 /**
  * Generates code from your model files on save.
@@ -17,5 +27,133 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 public class BgDslGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    EObject _head = IterableExtensions.<EObject>head(resource.getContents());
+    final EObject gameInstance = ((EObject) _head);
+    final EClass gameEClass = gameInstance.eClass();
+    final Function1<EObject, EClass> _function = (EObject it) -> {
+      return it.eClass();
+    };
+    final Set<EClass> allUniqueEClasses = IterableExtensions.<EClass>toSet(IterableExtensions.<EObject, EClass>map(IteratorExtensions.<EObject>toIterable(gameInstance.eAllContents()), _function));
+    if ((gameInstance == null)) {
+      System.err.println("Model resource is empty. Cannot generate data.");
+      return;
+    }
+    System.out.println("Generating code with model instance data...");
+    String _name = gameEClass.getName();
+    String _plus = ("Generating Game file with name: " + _name);
+    System.out.println(_plus);
+    String _name_1 = gameEClass.getName();
+    String _plus_1 = (_name_1 + ".py");
+    fsa.generateFile(_plus_1, 
+      this.compileWithData(gameInstance));
+    final Function1<EClass, Boolean> _function_1 = (EClass it) -> {
+      return Boolean.valueOf((!Objects.equals(it, gameEClass)));
+    };
+    Iterable<EClass> _filter = IterableExtensions.<EClass>filter(allUniqueEClasses, _function_1);
+    for (final EClass eClass : _filter) {
+      String _name_2 = eClass.getName();
+      String _plus_2 = (_name_2 + ".py");
+      fsa.generateFile(_plus_2, 
+        this.compileStructural(eClass));
+    }
+  }
+
+  public CharSequence compileStructural(final EClass c) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("class ");
+    String _name = c.getName();
+    _builder.append(_name);
+    _builder.append(":");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("def __init__(self, **kwargs):");
+    _builder.newLine();
+    {
+      EList<EStructuralFeature> _eAllStructuralFeatures = c.getEAllStructuralFeatures();
+      for(final EStructuralFeature feature : _eAllStructuralFeatures) {
+        _builder.append("\t");
+        _builder.append("self.");
+        String _name_1 = feature.getName();
+        _builder.append(_name_1, "\t");
+        _builder.append(" = kwargs.get(\"");
+        String _name_2 = feature.getName();
+        _builder.append(_name_2, "\t");
+        _builder.append("\", ");
+        String _compileInitialization = this.compileInitialization(feature);
+        _builder.append(_compileInitialization, "\t");
+        _builder.append(")");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("def __str__(self):");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return \"Instance of ");
+    String _name_3 = c.getName();
+    _builder.append(_name_3, "\t\t");
+    _builder.append("\"");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+
+  public CharSequence compileWithData(final EObject instance) {
+    CharSequence _xblockexpression = null;
+    {
+      EClass _eClass = instance.eClass();
+      final EClass eClass = ((EClass) _eClass);
+      final Function1<EStructuralFeature, Boolean> _function = (EStructuralFeature it) -> {
+        String _name = it.getName();
+        return Boolean.valueOf(Objects.equals(_name, "name"));
+      };
+      final EStructuralFeature nameFeature = IterableExtensions.<EStructuralFeature>findFirst(eClass.getEStructuralFeatures(), _function);
+      Object _eGet = instance.eGet(nameFeature);
+      final String name = ((String) _eGet);
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("class ");
+      String _name = eClass.getName();
+      _builder.append(_name);
+      _builder.append(":");
+      _builder.newLineIfNotEmpty();
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("# Data pulled directly from the textual model instance and hardcoded");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("name = ");
+      _builder.append(name, "\t");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("def __init__(self):");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("self.name = name");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("def __str__(self):");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("return \"Game with name ");
+      _builder.append(name, "\t\t");
+      _builder.append("\"");
+      _builder.newLineIfNotEmpty();
+      _xblockexpression = _builder;
+    }
+    return _xblockexpression;
+  }
+
+  public String compileInitialization(final EStructuralFeature feature) {
+    String _xifexpression = null;
+    boolean _isMany = feature.isMany();
+    if (_isMany) {
+      _xifexpression = "[]";
+    } else {
+      _xifexpression = "None";
+    }
+    return _xifexpression;
   }
 }

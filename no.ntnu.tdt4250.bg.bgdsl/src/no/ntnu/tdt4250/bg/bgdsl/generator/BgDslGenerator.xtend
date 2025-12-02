@@ -7,6 +7,9 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EStructuralFeature
 
 /**
  * Generates code from your model files on save.
@@ -21,5 +24,82 @@ class BgDslGenerator extends AbstractGenerator {
 //				.filter(Greeting)
 //				.map[name]
 //				.join(', '))
+
+		val gameInstance = resource.contents.head as EObject
+		val gameEClass = gameInstance.eClass
+		
+		val allUniqueEClasses = gameInstance.eAllContents.toIterable.map[eClass].toSet
+        
+        if (gameInstance === null) {
+            System.err.println("Model resource is empty. Cannot generate data.")
+            return;
+        }
+        
+        System.out.println("Generating code with model instance data...")
+        System.out.println("Generating Game file with name: " + gameEClass.name)
+        
+        // 1a. Generate the Board file (Data-Specific)
+        fsa.generateFile(
+            gameEClass.name + ".py",
+            gameInstance.compileWithData 
+        )
+        
+        // 1b. Generate all other structural classes (e.g., Tile)
+        // Filter out the Board class and generate the structural blueprints.
+        for (eClass : allUniqueEClasses.filter[it != gameEClass]) {
+            fsa.generateFile(
+                eClass.name + ".py",
+                eClass.compileStructural
+            )
+        }
+        
+  
 	}
+	
+	def compileStructural(EClass c) 
+'''
+		class «c.name»:
+			def __init__(self, **kwargs):
+			«FOR feature : c.EAllStructuralFeatures»
+				self.«feature.name» = kwargs.get("«feature.name»", «feature.compileInitialization»)
+			«ENDFOR»
+
+			def __str__(self):
+				return "Instance of «c.name»"
+'''
+
+	def compileWithData(EObject instance) {
+	        
+	        val eClass = instance.eClass as EClass 
+	        
+	        // 🚨 DATA EXTRACTION 🚨
+	        // 1. Find the EStructuralFeatures for 'width' and 'height'
+	        val nameFeature = eClass.EStructuralFeatures.findFirst[name == "name"]
+	        
+	        // 2. Extract the actual values from the instance object
+	        val name = instance.eGet(nameFeature) as String
+	        
+	'''
+	class «eClass.name»:
+	
+		# Data pulled directly from the textual model instance and hardcoded
+		name = «name»
+		
+		def __init__(self):
+			self.name = name
+	
+		def __str__(self):
+			return "Game with name «name»"
+	'''
+	
+	
+	}
+
+def compileInitialization(EStructuralFeature feature) {
+        if (feature.isMany) {
+            '[]'
+        } else {
+            'None'
+        }
+    }
 }
