@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getInitialState <em>Initial State</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getType <em>Type</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getHexColor <em>Hex Color</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.Tile#getName <em>Name</em>}</li>
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getTile()
@@ -80,7 +81,7 @@ public interface Tile extends EObject {
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see #setType(String)
 	 * @see no.ntnu.tdt4250.bg.BgPackage#getTile_Type()
-	 * @model required="true"
+	 * @model id="true" required="true"
 	 * @generated
 	 */
 	String getType();
@@ -117,5 +118,27 @@ public interface Tile extends EObject {
 	 * @generated
 	 */
 	void setHexColor(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see no.ntnu.tdt4250.bg.BgPackage#getTile_Name()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Tile#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
 
 } // Tile

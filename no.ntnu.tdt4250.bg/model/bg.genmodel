@@ -55,6 +55,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Tile/initialState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Tile/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Tile/hexColor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Tile/name"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//State">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//State/outbound"/>

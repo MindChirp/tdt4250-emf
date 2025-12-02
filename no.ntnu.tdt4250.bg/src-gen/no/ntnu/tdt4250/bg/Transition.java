@@ -68,10 +68,21 @@ public interface Transition extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
 	 * @see no.ntnu.tdt4250.bg.BgPackage#getTransition_Name()
-	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	String getName();
+
+	/**
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Transition#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
 
 } // Transition

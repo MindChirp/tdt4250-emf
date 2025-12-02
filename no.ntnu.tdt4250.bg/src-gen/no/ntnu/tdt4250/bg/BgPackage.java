@@ -554,13 +554,22 @@ public interface BgPackage extends EPackage {
 	int TILE__HEX_COLOR = 4;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TILE__NAME = 5;
+
+	/**
 	 * The number of structural features of the '<em>Tile</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TILE_FEATURE_COUNT = 5;
+	int TILE_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Tile</em>' class.
@@ -1138,6 +1147,17 @@ public interface BgPackage extends EPackage {
 	EAttribute getTile_HexColor();
 
 	/**
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Tile#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see no.ntnu.tdt4250.bg.Tile#getName()
+	 * @see #getTile()
+	 * @generated
+	 */
+	EAttribute getTile_Name();
+
+	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.State <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1623,6 +1643,14 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TILE__HEX_COLOR = eINSTANCE.getTile_HexColor();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TILE__NAME = eINSTANCE.getTile_Name();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.StateImpl <em>State</em>}' class.
