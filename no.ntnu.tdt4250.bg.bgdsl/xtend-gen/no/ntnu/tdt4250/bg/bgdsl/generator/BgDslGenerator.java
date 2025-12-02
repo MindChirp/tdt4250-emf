@@ -3,19 +3,445 @@
  */
 package no.ntnu.tdt4250.bg.bgdsl.generator;
 
+import com.google.common.collect.Iterables;
+import no.ntnu.tdt4250.bg.Board;
+import no.ntnu.tdt4250.bg.Game;
+import no.ntnu.tdt4250.bg.Player;
+import no.ntnu.tdt4250.bg.State;
+import no.ntnu.tdt4250.bg.Tile;
+import no.ntnu.tdt4250.bg.TilePlacement;
+import no.ntnu.tdt4250.bg.Transition;
+import no.ntnu.tdt4250.bg.TurnPolicy;
+import no.ntnu.tdt4250.bg.TurnType;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 
-/**
- * Generates code from your model files on save.
- * 
- * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
- */
 @SuppressWarnings("all")
 public class BgDslGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    boolean _isEmpty = resource.getContents().isEmpty();
+    if (_isEmpty) {
+      return;
+    }
+    final EObject model = IterableExtensions.<EObject>head(resource.getContents());
+    final Iterable<Game> games = Iterables.<Game>filter(IteratorExtensions.<EObject>toIterable(model.eAllContents()), Game.class);
+    for (final Game g : games) {
+      {
+        String _lowerCase = g.getName().toLowerCase();
+        String _plus = ("generated/" + _lowerCase);
+        final String fileName = (_plus + ".py");
+        fsa.generateFile(fileName, this.compileGameToPython(g));
+      }
+    }
+  }
+
+  public CharSequence compileGameToPython(final Game g) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("# ---------------------------------------------------------");
+    _builder.newLine();
+    _builder.append("#  AUTO-GENERATED PYTHON CODE FROM BgDSL");
+    _builder.newLine();
+    _builder.append("#  Game: ");
+    String _name = g.getName();
+    _builder.append(_name);
+    _builder.newLineIfNotEmpty();
+    _builder.append("# ---------------------------------------------------------");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("class Game:");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("def __init__(self):");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("self.name = \"");
+    String _name_1 = g.getName();
+    _builder.append(_name_1, "        ");
+    _builder.append("\"");
+    _builder.newLineIfNotEmpty();
+    _builder.append("        ");
+    _builder.append("self.players = [");
+    {
+      EList<Player> _players = g.getPlayers();
+      boolean _hasElements = false;
+      for(final Player p : _players) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(", ", "        ");
+        }
+        _builder.append("\"");
+        String _name_2 = p.getName();
+        _builder.append(_name_2, "        ");
+        _builder.append("\"");
+      }
+    }
+    _builder.append("]");
+    _builder.newLineIfNotEmpty();
+    _builder.append("        ");
+    _builder.append("self.initial_player = \"");
+    String _elvis = null;
+    Player _initialPlayer = g.getInitialPlayer();
+    String _name_3 = null;
+    if (_initialPlayer!=null) {
+      _name_3=_initialPlayer.getName();
+    }
+    if (_name_3 != null) {
+      _elvis = _name_3;
+    } else {
+      _elvis = "None";
+    }
+    _builder.append(_elvis, "        ");
+    _builder.append("\"");
+    _builder.newLineIfNotEmpty();
+    _builder.append("        ");
+    _builder.append("self.turn_policy = \"");
+    String _elvis_1 = null;
+    TurnPolicy _turnPolicy = g.getTurnPolicy();
+    TurnType _type = null;
+    if (_turnPolicy!=null) {
+      _type=_turnPolicy.getType();
+    }
+    String _literal = _type.getLiteral();
+    if (_literal != null) {
+      _elvis_1 = _literal;
+    } else {
+      _elvis_1 = "TurnBased";
+    }
+    _builder.append(_elvis_1, "        ");
+    _builder.append("\"");
+    _builder.newLineIfNotEmpty();
+    _builder.append("        ");
+    _builder.append("self.board = Board()");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("def get_players(self):");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("return self.players");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("def get_initial_player(self):");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("return self.initial_player");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("def print_info(self):");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("print(\"Game:\", self.name)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("print(\"Players:\", self.players)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("print(\"Initial Player:\", self.initial_player)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("print(\"Turn Policy:\", self.turn_policy)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("self.board.print_info()");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("# ---------------------------------------------------------");
+    _builder.newLine();
+    _builder.append("#  BOARD");
+    _builder.newLine();
+    _builder.append("# ---------------------------------------------------------");
+    _builder.newLine();
+    _builder.append("class Board:");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("def __init__(self):");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("self.width = ");
+    int _width = g.getBoard().getWidth();
+    _builder.append(_width, "        ");
+    _builder.newLineIfNotEmpty();
+    _builder.append("        ");
+    _builder.append("self.height = ");
+    int _height = g.getBoard().getHeight();
+    _builder.append(_height, "        ");
+    _builder.newLineIfNotEmpty();
+    _builder.append("        ");
+    _builder.append("self.checkered = ");
+    String _lowerCase = Boolean.valueOf(g.getBoard().isCheckered()).toString().toLowerCase();
+    _builder.append(_lowerCase, "        ");
+    _builder.newLineIfNotEmpty();
+    _builder.append("        ");
+    _builder.append("self.tiles = [");
+    _builder.newLine();
+    {
+      EList<TilePlacement> _tileplacement = g.getBoard().getTileplacement();
+      boolean _hasElements_1 = false;
+      for(final TilePlacement p_1 : _tileplacement) {
+        if (!_hasElements_1) {
+          _hasElements_1 = true;
+        } else {
+          _builder.appendImmediate(",\n            ", "            ");
+        }
+        _builder.append("            ");
+        _builder.append("TilePlacement(");
+        int _row = p_1.getRow();
+        _builder.append(_row, "            ");
+        _builder.append(", ");
+        int _column = p_1.getColumn();
+        _builder.append(_column, "            ");
+        _builder.append(", \"");
+        String _name_4 = p_1.getTile().getName();
+        _builder.append(_name_4, "            ");
+        _builder.append("\")");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("        ");
+    _builder.append("]");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("def print_info(self):");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("print(\"Board:\", self.width, \"x\", self.height)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("print(\"Checkered:\", self.checkered)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("print(\"Tile placements:\")");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("for t in self.tiles:");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("print(\"   (\", t.row, \",\", t.column, \") ->\", t.tile)");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("# ---------------------------------------------------------");
+    _builder.newLine();
+    _builder.append("#  TILE PLACEMENT");
+    _builder.newLine();
+    _builder.append("# ---------------------------------------------------------");
+    _builder.newLine();
+    _builder.append("class TilePlacement:");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("def __init__(self, row, column, tile):");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("self.row = row");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("self.column = column");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("self.tile = tile");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("# ---------------------------------------------------------");
+    _builder.newLine();
+    _builder.append("#  TILE DEFINITIONS");
+    _builder.newLine();
+    _builder.append("# ---------------------------------------------------------");
+    _builder.newLine();
+    CharSequence _tilesToPython = this.tilesToPython(g.getBoard());
+    _builder.append(_tilesToPython);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    return _builder;
+  }
+
+  public CharSequence tilesToPython(final Board b) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("# Tiles");
+    _builder.newLine();
+    {
+      EList<Tile> _tiles = b.getTiles();
+      for(final Tile t : _tiles) {
+        _builder.append("class ");
+        String _name = t.getName();
+        _builder.append(_name);
+        _builder.append("Tile:");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("def __init__(self):");
+        _builder.newLine();
+        _builder.append("        ");
+        _builder.append("self.name = \"");
+        String _name_1 = t.getName();
+        _builder.append(_name_1, "        ");
+        _builder.append("\"");
+        _builder.newLineIfNotEmpty();
+        _builder.append("        ");
+        _builder.append("self.type = \"");
+        String _elvis = null;
+        String _type = t.getType();
+        if (_type != null) {
+          _elvis = _type;
+        } else {
+          String _name_2 = t.getName();
+          _elvis = _name_2;
+        }
+        _builder.append(_elvis, "        ");
+        _builder.append("\"");
+        _builder.newLineIfNotEmpty();
+        _builder.append("        ");
+        _builder.append("self.hex_color = \"");
+        String _hexColor = t.getHexColor();
+        _builder.append(_hexColor, "        ");
+        _builder.append("\"");
+        _builder.newLineIfNotEmpty();
+        _builder.append("        ");
+        _builder.append("self.states = [");
+        {
+          EList<State> _states = t.getStates();
+          boolean _hasElements = false;
+          for(final State s : _states) {
+            if (!_hasElements) {
+              _hasElements = true;
+            } else {
+              _builder.appendImmediate(", ", "        ");
+            }
+            _builder.append("\"");
+            String _name_3 = s.getName();
+            _builder.append(_name_3, "        ");
+            _builder.append("\"");
+          }
+        }
+        _builder.append("]");
+        _builder.newLineIfNotEmpty();
+        _builder.append("        ");
+        _builder.append("self.initial_state = \"");
+        String _name_4 = t.getInitialState().getName();
+        _builder.append(_name_4, "        ");
+        _builder.append("\"");
+        _builder.newLineIfNotEmpty();
+        _builder.newLine();
+        _builder.append("    ");
+        _builder.append("def print_info(self):");
+        _builder.newLine();
+        _builder.append("        ");
+        _builder.append("print(\"Tile:\", self.name)");
+        _builder.newLine();
+        _builder.append("        ");
+        _builder.append("print(\"States:\", self.states)");
+        _builder.newLine();
+        _builder.append("        ");
+        _builder.append("print(\"Initial:\", self.initial_state)");
+        _builder.newLine();
+        _builder.newLine();
+        _builder.append("# States for ");
+        String _name_5 = t.getName();
+        _builder.append(_name_5);
+        _builder.newLineIfNotEmpty();
+        CharSequence _statesToPython = this.statesToPython(t);
+        _builder.append(_statesToPython);
+        _builder.newLineIfNotEmpty();
+        _builder.newLine();
+        _builder.append("# Transitions for ");
+        String _name_6 = t.getName();
+        _builder.append(_name_6);
+        _builder.newLineIfNotEmpty();
+        CharSequence _transitionsToPython = this.transitionsToPython(t);
+        _builder.append(_transitionsToPython);
+        _builder.newLineIfNotEmpty();
+        _builder.newLine();
+      }
+    }
+    return _builder;
+  }
+
+  public CharSequence statesToPython(final Tile t) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<State> _states = t.getStates();
+      for(final State s : _states) {
+        _builder.append("class ");
+        String _name = s.getName();
+        _builder.append(_name);
+        _builder.append("State:");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("def __init__(self):");
+        _builder.newLine();
+        _builder.append("        ");
+        _builder.append("self.name = \"");
+        String _name_1 = s.getName();
+        _builder.append(_name_1, "        ");
+        _builder.append("\"");
+        _builder.newLineIfNotEmpty();
+        _builder.append("        ");
+        _builder.append("self.hex_color = \"");
+        String _hexColor = s.getHexColor();
+        _builder.append(_hexColor, "        ");
+        _builder.append("\"");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+
+  public CharSequence transitionsToPython(final Tile t) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<Transition> _transitions = t.getTransitions();
+      for(final Transition tr : _transitions) {
+        _builder.append("class ");
+        String _name = tr.getName();
+        _builder.append(_name);
+        _builder.append("Transition:");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("def __init__(self):");
+        _builder.newLine();
+        _builder.append("        ");
+        _builder.append("self.name = \"");
+        String _name_1 = tr.getName();
+        _builder.append(_name_1, "        ");
+        _builder.append("\"");
+        _builder.newLineIfNotEmpty();
+        _builder.append("        ");
+        _builder.append("self.source = [");
+        {
+          EList<State> _source = tr.getSource();
+          boolean _hasElements = false;
+          for(final State s : _source) {
+            if (!_hasElements) {
+              _hasElements = true;
+            } else {
+              _builder.appendImmediate(", ", "        ");
+            }
+            _builder.append("\"");
+            String _name_2 = s.getName();
+            _builder.append(_name_2, "        ");
+            _builder.append("\"");
+          }
+        }
+        _builder.append("]");
+        _builder.newLineIfNotEmpty();
+        _builder.append("        ");
+        _builder.append("self.target = \"");
+        String _name_3 = tr.getTarget().getName();
+        _builder.append(_name_3, "        ");
+        _builder.append("\"");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
   }
 }

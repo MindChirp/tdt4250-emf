@@ -95,7 +95,7 @@ public interface BgPackage extends EPackage {
 	int GAME__PLAYERS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Turn Policy</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Turn Policy</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -826,10 +826,10 @@ public interface BgPackage extends EPackage {
 	EReference getGame_Players();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link no.ntnu.tdt4250.bg.Game#getTurnPolicy <em>Turn Policy</em>}'.
+	 * Returns the meta object for the containment reference '{@link no.ntnu.tdt4250.bg.Game#getTurnPolicy <em>Turn Policy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Turn Policy</em>'.
+	 * @return the meta object for the containment reference '<em>Turn Policy</em>'.
 	 * @see no.ntnu.tdt4250.bg.Game#getTurnPolicy()
 	 * @see #getGame()
 	 * @generated
@@ -1387,7 +1387,7 @@ public interface BgPackage extends EPackage {
 		EReference GAME__PLAYERS = eINSTANCE.getGame_Players();
 
 		/**
-		 * The meta object literal for the '<em><b>Turn Policy</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Turn Policy</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

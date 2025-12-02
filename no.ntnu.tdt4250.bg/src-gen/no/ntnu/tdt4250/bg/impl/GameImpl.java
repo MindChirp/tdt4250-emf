@@ -83,14 +83,14 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 	protected EList<Player> players;
 
 	/**
-	 * The cached value of the '{@link #getTurnPolicy() <em>Turn Policy</em>}' containment reference list.
+	 * The cached value of the '{@link #getTurnPolicy() <em>Turn Policy</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTurnPolicy()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TurnPolicy> turnPolicy;
+	protected TurnPolicy turnPolicy;
 
 	/**
 	 * The cached value of the '{@link #getInitialPlayer() <em>Initial Player</em>}' reference.
@@ -214,11 +214,50 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 	 * @generated
 	 */
 	@Override
-	public EList<TurnPolicy> getTurnPolicy() {
-		if (turnPolicy == null) {
-			turnPolicy = new EObjectContainmentEList<TurnPolicy>(TurnPolicy.class, this, BgPackage.GAME__TURN_POLICY);
-		}
+	public TurnPolicy getTurnPolicy() {
 		return turnPolicy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTurnPolicy(TurnPolicy newTurnPolicy, NotificationChain msgs) {
+		TurnPolicy oldTurnPolicy = turnPolicy;
+		turnPolicy = newTurnPolicy;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BgPackage.GAME__TURN_POLICY,
+					oldTurnPolicy, newTurnPolicy);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTurnPolicy(TurnPolicy newTurnPolicy) {
+		if (newTurnPolicy != turnPolicy) {
+			NotificationChain msgs = null;
+			if (turnPolicy != null)
+				msgs = ((InternalEObject) turnPolicy).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - BgPackage.GAME__TURN_POLICY, null, msgs);
+			if (newTurnPolicy != null)
+				msgs = ((InternalEObject) newTurnPolicy).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - BgPackage.GAME__TURN_POLICY, null, msgs);
+			msgs = basicSetTurnPolicy(newTurnPolicy, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.GAME__TURN_POLICY, newTurnPolicy,
+					newTurnPolicy));
 	}
 
 	/**
@@ -276,7 +315,7 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 		case BgPackage.GAME__PLAYERS:
 			return ((InternalEList<?>) getPlayers()).basicRemove(otherEnd, msgs);
 		case BgPackage.GAME__TURN_POLICY:
-			return ((InternalEList<?>) getTurnPolicy()).basicRemove(otherEnd, msgs);
+			return basicSetTurnPolicy(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -325,8 +364,7 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 			getPlayers().addAll((Collection<? extends Player>) newValue);
 			return;
 		case BgPackage.GAME__TURN_POLICY:
-			getTurnPolicy().clear();
-			getTurnPolicy().addAll((Collection<? extends TurnPolicy>) newValue);
+			setTurnPolicy((TurnPolicy) newValue);
 			return;
 		case BgPackage.GAME__INITIAL_PLAYER:
 			setInitialPlayer((Player) newValue);
@@ -353,7 +391,7 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 			getPlayers().clear();
 			return;
 		case BgPackage.GAME__TURN_POLICY:
-			getTurnPolicy().clear();
+			setTurnPolicy((TurnPolicy) null);
 			return;
 		case BgPackage.GAME__INITIAL_PLAYER:
 			setInitialPlayer((Player) null);
@@ -377,7 +415,7 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 		case BgPackage.GAME__PLAYERS:
 			return players != null && !players.isEmpty();
 		case BgPackage.GAME__TURN_POLICY:
-			return turnPolicy != null && !turnPolicy.isEmpty();
+			return turnPolicy != null;
 		case BgPackage.GAME__INITIAL_PLAYER:
 			return initialPlayer != null;
 		}

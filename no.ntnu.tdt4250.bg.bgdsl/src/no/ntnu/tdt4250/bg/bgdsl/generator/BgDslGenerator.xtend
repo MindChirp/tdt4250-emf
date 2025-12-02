@@ -3,23 +3,142 @@
  */
 package no.ntnu.tdt4250.bg.bgdsl.generator
 
+import no.ntnu.tdt4250.bg.Board
+import no.ntnu.tdt4250.bg.Game
+import no.ntnu.tdt4250.bg.Tile
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 
-/**
- * Generates code from your model files on save.
- * 
- * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
- */
 class BgDslGenerator extends AbstractGenerator {
 
-	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
-	}
+    override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+        if (resource.contents.empty) return
+
+        val model = resource.contents.head
+
+        // Find the game in the model (your DSL always has exactly one root Game)
+        val games = model.eAllContents.toIterable.filter(Game)
+
+        for (g : games) {
+            val fileName = "generated/" + g.name.toLowerCase + ".py"
+            fsa.generateFile(fileName, g.compileGameToPython)
+        }
+    }
+
+    // --------------------------------------------------------------------
+    // GAME
+    // --------------------------------------------------------------------
+    def compileGameToPython(Game g) '''
+# ---------------------------------------------------------
+#  AUTO-GENERATED PYTHON CODE FROM BgDSL
+#  Game: «g.name»
+# ---------------------------------------------------------
+
+class Game:
+    def __init__(self):
+        self.name = "«g.name»"
+        self.players = [«FOR p : g.players SEPARATOR ", "»"«p.name»"«ENDFOR»]
+        self.initial_player = "«g.initialPlayer?.name ?: "None"»"
+        self.turn_policy = "«g.turnPolicy?.type.literal ?: "TurnBased"»"
+        self.board = Board()
+
+    def get_players(self):
+        return self.players
+
+    def get_initial_player(self):
+        return self.initial_player
+
+    def print_info(self):
+        print("Game:", self.name)
+        print("Players:", self.players)
+        print("Initial Player:", self.initial_player)
+        print("Turn Policy:", self.turn_policy)
+        self.board.print_info()
+
+
+# ---------------------------------------------------------
+#  BOARD
+# ---------------------------------------------------------
+class Board:
+    def __init__(self):
+        self.width = «g.board.width»
+        self.height = «g.board.height»
+        self.checkered = «g.board.checkered.toString.toLowerCase»
+        self.tiles = [
+            «FOR p : g.board.tileplacement SEPARATOR ",\n            "»
+            TilePlacement(«p.row», «p.column», "«p.tile.name»")
+            «ENDFOR»
+        ]
+
+    def print_info(self):
+        print("Board:", self.width, "x", self.height)
+        print("Checkered:", self.checkered)
+        print("Tile placements:")
+        for t in self.tiles:
+            print("   (", t.row, ",", t.column, ") ->", t.tile)
+
+# ---------------------------------------------------------
+#  TILE PLACEMENT
+# ---------------------------------------------------------
+class TilePlacement:
+    def __init__(self, row, column, tile):
+        self.row = row
+        self.column = column
+        self.tile = tile
+
+# ---------------------------------------------------------
+#  TILE DEFINITIONS
+# ---------------------------------------------------------
+«g.board.tilesToPython»
+
+'''
+
+    // Helper: generate python for each tile in the board
+    def tilesToPython(Board b) '''
+# Tiles
+«FOR t : b.tiles»
+class «t.name»Tile:
+    def __init__(self):
+        self.name = "«t.name»"
+        self.type = "«t.type ?: t.name»"
+        self.hex_color = "«t.hexColor»"
+        self.states = [«FOR s : t.states SEPARATOR ", "»"«s.name»"«ENDFOR»]
+        self.initial_state = "«t.initialState.name»"
+
+    def print_info(self):
+        print("Tile:", self.name)
+        print("States:", self.states)
+        print("Initial:", self.initial_state)
+
+# States for «t.name»
+«t.statesToPython»
+
+# Transitions for «t.name»
+«t.transitionsToPython»
+
+«ENDFOR»
+'''
+
+    // Generate Python for all states inside a tile
+    def statesToPython(Tile t) '''
+«FOR s : t.states»
+class «s.name»State:
+    def __init__(self):
+        self.name = "«s.name»"
+        self.hex_color = "«s.hexColor»"
+«ENDFOR»
+'''
+
+    // Generate transitions
+    def transitionsToPython(Tile t) '''
+«FOR tr : t.transitions»
+class «tr.name»Transition:
+    def __init__(self):
+        self.name = "«tr.name»"
+        self.source = [«FOR s : tr.source SEPARATOR ", "»"«s.name»"«ENDFOR»]
+        self.target = "«tr.target.name»"
+«ENDFOR»
+'''
 }

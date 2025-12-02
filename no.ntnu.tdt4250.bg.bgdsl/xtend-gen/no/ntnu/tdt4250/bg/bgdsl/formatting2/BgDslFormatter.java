@@ -9,10 +9,8 @@ import no.ntnu.tdt4250.bg.Board;
 import no.ntnu.tdt4250.bg.EffectPipeline;
 import no.ntnu.tdt4250.bg.Game;
 import no.ntnu.tdt4250.bg.LegalMovesPipeline;
-import no.ntnu.tdt4250.bg.Player;
 import no.ntnu.tdt4250.bg.Tile;
 import no.ntnu.tdt4250.bg.TilePlacement;
-import no.ntnu.tdt4250.bg.TurnPolicy;
 import no.ntnu.tdt4250.bg.bgdsl.services.BgDslGrammarAccess;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -29,15 +27,8 @@ public class BgDslFormatter extends AbstractFormatter2 {
   private BgDslGrammarAccess _bgDslGrammarAccess;
 
   protected void _format(final Game game, @Extension final IFormattableDocument document) {
-    document.<Board>format(game.getBoard());
-    EList<Player> _players = game.getPlayers();
-    for (final Player player : _players) {
-      document.<Player>format(player);
-    }
-    EList<TurnPolicy> _turnPolicy = game.getTurnPolicy();
-    for (final TurnPolicy turnPolicy : _turnPolicy) {
-      document.<TurnPolicy>format(turnPolicy);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from TurnPolicy to Iterable<?>");
   }
 
   protected void _format(final Board board, @Extension final IFormattableDocument document) {

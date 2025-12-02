@@ -84,16 +84,26 @@ public interface Game extends EObject {
 	EList<Player> getPlayers();
 
 	/**
-	 * Returns the value of the '<em><b>Turn Policy</b></em>' containment reference list.
-	 * The list contents are of type {@link no.ntnu.tdt4250.bg.TurnPolicy}.
+	 * Returns the value of the '<em><b>Turn Policy</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Turn Policy</em>' containment reference list.
+	 * @return the value of the '<em>Turn Policy</em>' containment reference.
+	 * @see #setTurnPolicy(TurnPolicy)
 	 * @see no.ntnu.tdt4250.bg.BgPackage#getGame_TurnPolicy()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<TurnPolicy> getTurnPolicy();
+	TurnPolicy getTurnPolicy();
+
+	/**
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Game#getTurnPolicy <em>Turn Policy</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Turn Policy</em>' containment reference.
+	 * @see #getTurnPolicy()
+	 * @generated
+	 */
+	void setTurnPolicy(TurnPolicy value);
 
 	/**
 	 * Returns the value of the '<em><b>Initial Player</b></em>' reference.

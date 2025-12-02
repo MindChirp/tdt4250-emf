@@ -854,7 +854,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		initEReference(getGame_Players(), this.getPlayer(), null, "players", null, 0, -1, Game.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEReference(getGame_TurnPolicy(), this.getTurnPolicy(), null, "turnPolicy", null, 0, -1, Game.class,
+		initEReference(getGame_TurnPolicy(), this.getTurnPolicy(), null, "turnPolicy", null, 1, 1, Game.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGame_InitialPlayer(), this.getPlayer(), null, "initialPlayer", null, 0, 1, Game.class,

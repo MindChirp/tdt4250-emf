@@ -10,7 +10,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="players" upperBound="-1"
         eType="#//Player" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="turnPolicy" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="turnPolicy" lowerBound="1"
         eType="#//TurnPolicy" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialPlayer" eType="#//Player"/>
   </eClassifiers>
