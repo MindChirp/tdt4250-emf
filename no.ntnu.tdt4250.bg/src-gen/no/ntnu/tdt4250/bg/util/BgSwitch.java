@@ -115,20 +115,11 @@ public class BgSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case BgPackage.SOME_FILTER1: {
-			SomeFilter1 someFilter1 = (SomeFilter1) theEObject;
-			T result = caseSomeFilter1(someFilter1);
+		case BgPackage.PATTERN_FILTER: {
+			PatternFilter patternFilter = (PatternFilter) theEObject;
+			T result = casePatternFilter(patternFilter);
 			if (result == null)
-				result = caseFilter(someFilter1);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case BgPackage.SOME_FILTER2: {
-			SomeFilter2 someFilter2 = (SomeFilter2) theEObject;
-			T result = caseSomeFilter2(someFilter2);
-			if (result == null)
-				result = caseFilter(someFilter2);
+				result = caseFilter(patternFilter);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -157,6 +148,20 @@ public class BgSwitch<T> extends Switch<T> {
 		case BgPackage.TILE_PLACEMENT: {
 			TilePlacement tilePlacement = (TilePlacement) theEObject;
 			T result = caseTilePlacement(tilePlacement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case BgPackage.PATTERN: {
+			Pattern pattern = (Pattern) theEObject;
+			T result = casePattern(pattern);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case BgPackage.RELATIVE_COORDINATE: {
+			RelativeCoordinate relativeCoordinate = (RelativeCoordinate) theEObject;
+			T result = caseRelativeCoordinate(relativeCoordinate);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -272,32 +277,17 @@ public class BgSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Some Filter1</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Pattern Filter</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Some Filter1</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Pattern Filter</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSomeFilter1(SomeFilter1 object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Some Filter2</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Some Filter2</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSomeFilter2(SomeFilter2 object) {
+	public T casePatternFilter(PatternFilter object) {
 		return null;
 	}
 
@@ -358,6 +348,36 @@ public class BgSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTilePlacement(TilePlacement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pattern</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pattern</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePattern(Pattern object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Relative Coordinate</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Relative Coordinate</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRelativeCoordinate(RelativeCoordinate object) {
 		return null;
 	}
 

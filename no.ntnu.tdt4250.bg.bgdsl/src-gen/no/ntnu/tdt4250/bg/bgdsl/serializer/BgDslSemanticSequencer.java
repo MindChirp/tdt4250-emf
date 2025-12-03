@@ -10,9 +10,10 @@ import no.ntnu.tdt4250.bg.Board;
 import no.ntnu.tdt4250.bg.EffectPipeline;
 import no.ntnu.tdt4250.bg.Game;
 import no.ntnu.tdt4250.bg.LegalMovesPipeline;
+import no.ntnu.tdt4250.bg.Pattern;
+import no.ntnu.tdt4250.bg.PatternFilter;
 import no.ntnu.tdt4250.bg.Player;
-import no.ntnu.tdt4250.bg.SomeFilter1;
-import no.ntnu.tdt4250.bg.SomeFilter2;
+import no.ntnu.tdt4250.bg.RelativeCoordinate;
 import no.ntnu.tdt4250.bg.State;
 import no.ntnu.tdt4250.bg.Tile;
 import no.ntnu.tdt4250.bg.TilePlacement;
@@ -55,14 +56,17 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case BgPackage.LEGAL_MOVES_PIPELINE:
 				sequence_LegalMovesPipeline(context, (LegalMovesPipeline) semanticObject); 
 				return; 
+			case BgPackage.PATTERN:
+				sequence_Pattern(context, (Pattern) semanticObject); 
+				return; 
+			case BgPackage.PATTERN_FILTER:
+				sequence_PatternFilter(context, (PatternFilter) semanticObject); 
+				return; 
 			case BgPackage.PLAYER:
 				sequence_Player(context, (Player) semanticObject); 
 				return; 
-			case BgPackage.SOME_FILTER1:
-				sequence_SomeFilter1(context, (SomeFilter1) semanticObject); 
-				return; 
-			case BgPackage.SOME_FILTER2:
-				sequence_SomeFilter2(context, (SomeFilter2) semanticObject); 
+			case BgPackage.RELATIVE_COORDINATE:
+				sequence_RelativeCoordinate(context, (RelativeCoordinate) semanticObject); 
 				return; 
 			case BgPackage.STATE:
 				sequence_State(context, (State) semanticObject); 
@@ -153,6 +157,35 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     Filter returns PatternFilter
+	 *     PatternFilter returns PatternFilter
+	 *
+	 * Constraint:
+	 *     (name=EString nextFilter=Filter? patterns+=Pattern patterns+=Pattern*)
+	 * </pre>
+	 */
+	protected void sequence_PatternFilter(ISerializationContext context, PatternFilter semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Pattern returns Pattern
+	 *
+	 * Constraint:
+	 *     (name=EString relativecoordinates+=RelativeCoordinate relativecoordinates+=RelativeCoordinate*)
+	 * </pre>
+	 */
+	protected void sequence_Pattern(ISerializationContext context, Pattern semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     Player returns Player
 	 *
 	 * Constraint:
@@ -176,30 +209,23 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Filter returns SomeFilter1
-	 *     SomeFilter1 returns SomeFilter1
+	 *     RelativeCoordinate returns RelativeCoordinate
 	 *
 	 * Constraint:
-	 *     nextFilter=Filter?
+	 *     (x=EInt y=EInt)
 	 * </pre>
 	 */
-	protected void sequence_SomeFilter1(ISerializationContext context, SomeFilter1 semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     Filter returns SomeFilter2
-	 *     SomeFilter2 returns SomeFilter2
-	 *
-	 * Constraint:
-	 *     nextFilter=Filter?
-	 * </pre>
-	 */
-	protected void sequence_SomeFilter2(ISerializationContext context, SomeFilter2 semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_RelativeCoordinate(ISerializationContext context, RelativeCoordinate semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BgPackage.Literals.RELATIVE_COORDINATE__X) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BgPackage.Literals.RELATIVE_COORDINATE__X));
+			if (transientValues.isValueTransient(semanticObject, BgPackage.Literals.RELATIVE_COORDINATE__Y) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BgPackage.Literals.RELATIVE_COORDINATE__Y));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getRelativeCoordinateAccess().getXEIntParserRuleCall_3_0(), semanticObject.getX());
+		feeder.accept(grammarAccess.getRelativeCoordinateAccess().getYEIntParserRuleCall_5_0(), semanticObject.getY());
+		feeder.finish();
 	}
 	
 	

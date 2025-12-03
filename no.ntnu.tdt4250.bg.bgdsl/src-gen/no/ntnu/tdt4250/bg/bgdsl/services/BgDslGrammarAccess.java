@@ -185,22 +185,14 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class FilterElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.Filter");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cSomeFilter1ParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cSomeFilter2ParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cPatternFilterParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//Filter returns Filter:
-		//    SomeFilter1 | SomeFilter2;
+		//    PatternFilter;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//SomeFilter1 | SomeFilter2
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//SomeFilter1
-		public RuleCall getSomeFilter1ParserRuleCall_0() { return cSomeFilter1ParserRuleCall_0; }
-		
-		//SomeFilter2
-		public RuleCall getSomeFilter2ParserRuleCall_1() { return cSomeFilter2ParserRuleCall_1; }
+		//PatternFilter
+		public RuleCall getPatternFilterParserRuleCall() { return cPatternFilterParserRuleCall; }
 	}
 	public class BoardElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.Board");
@@ -1162,107 +1154,234 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_10() { return cRightCurlyBracketKeyword_10; }
 	}
-	public class SomeFilter1Elements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.SomeFilter1");
+	public class PatternFilterElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.PatternFilter");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cSomeFilter1Action_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cSomeFilter1Keyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cNextFilterKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cNextFilterAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cNextFilterFilterParserRuleCall_3_1_0 = (RuleCall)cNextFilterAssignment_3_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Action cPatternFilterAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cPatternFilterKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameEStringParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cNextFilterKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cNextFilterAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cNextFilterFilterParserRuleCall_4_1_0 = (RuleCall)cNextFilterAssignment_4_1.eContents().get(0);
+		private final Keyword cPatternsKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cPatternsAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cPatternsPatternParserRuleCall_7_0 = (RuleCall)cPatternsAssignment_7.eContents().get(0);
+		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
+		private final Keyword cCommaKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
+		private final Assignment cPatternsAssignment_8_1 = (Assignment)cGroup_8.eContents().get(1);
+		private final RuleCall cPatternsPatternParserRuleCall_8_1_0 = (RuleCall)cPatternsAssignment_8_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Keyword cRightCurlyBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		
-		//SomeFilter1 returns SomeFilter1:
-		//    {SomeFilter1}
-		//    'SomeFilter1'
+		//PatternFilter returns PatternFilter:
+		//    {PatternFilter}
+		//    'PatternFilter'
+		//    name=EString
 		//    '{'
 		//        ('nextFilter' nextFilter=Filter)?
+		//        'patterns' '{' patterns+=Pattern ( "," patterns+=Pattern)* '}'
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SomeFilter1}
-		//'SomeFilter1'
+		//{PatternFilter}
+		//'PatternFilter'
+		//name=EString
 		//'{'
 		//    ('nextFilter' nextFilter=Filter)?
+		//    'patterns' '{' patterns+=Pattern ( "," patterns+=Pattern)* '}'
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
-		//{SomeFilter1}
-		public Action getSomeFilter1Action_0() { return cSomeFilter1Action_0; }
+		//{PatternFilter}
+		public Action getPatternFilterAction_0() { return cPatternFilterAction_0; }
 		
-		//'SomeFilter1'
-		public Keyword getSomeFilter1Keyword_1() { return cSomeFilter1Keyword_1; }
+		//'PatternFilter'
+		public Keyword getPatternFilterKeyword_1() { return cPatternFilterKeyword_1; }
+		
+		//name=EString
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		
+		//EString
+		public RuleCall getNameEStringParserRuleCall_2_0() { return cNameEStringParserRuleCall_2_0; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 		
 		//('nextFilter' nextFilter=Filter)?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_4() { return cGroup_4; }
 		
 		//'nextFilter'
-		public Keyword getNextFilterKeyword_3_0() { return cNextFilterKeyword_3_0; }
+		public Keyword getNextFilterKeyword_4_0() { return cNextFilterKeyword_4_0; }
 		
 		//nextFilter=Filter
-		public Assignment getNextFilterAssignment_3_1() { return cNextFilterAssignment_3_1; }
+		public Assignment getNextFilterAssignment_4_1() { return cNextFilterAssignment_4_1; }
 		
 		//Filter
-		public RuleCall getNextFilterFilterParserRuleCall_3_1_0() { return cNextFilterFilterParserRuleCall_3_1_0; }
+		public RuleCall getNextFilterFilterParserRuleCall_4_1_0() { return cNextFilterFilterParserRuleCall_4_1_0; }
+		
+		//'patterns'
+		public Keyword getPatternsKeyword_5() { return cPatternsKeyword_5; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
+		
+		//patterns+=Pattern
+		public Assignment getPatternsAssignment_7() { return cPatternsAssignment_7; }
+		
+		//Pattern
+		public RuleCall getPatternsPatternParserRuleCall_7_0() { return cPatternsPatternParserRuleCall_7_0; }
+		
+		//( "," patterns+=Pattern)*
+		public Group getGroup_8() { return cGroup_8; }
+		
+		//","
+		public Keyword getCommaKeyword_8_0() { return cCommaKeyword_8_0; }
+		
+		//patterns+=Pattern
+		public Assignment getPatternsAssignment_8_1() { return cPatternsAssignment_8_1; }
+		
+		//Pattern
+		public RuleCall getPatternsPatternParserRuleCall_8_1_0() { return cPatternsPatternParserRuleCall_8_1_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_10() { return cRightCurlyBracketKeyword_10; }
 	}
-	public class SomeFilter2Elements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.SomeFilter2");
+	public class PatternElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.Pattern");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cSomeFilter2Action_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cSomeFilter2Keyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cPatternKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameEStringParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cNextFilterKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cNextFilterAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cNextFilterFilterParserRuleCall_3_1_0 = (RuleCall)cNextFilterAssignment_3_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cRelativeCoordinatesKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cRelativecoordinatesAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cRelativecoordinatesRelativeCoordinateParserRuleCall_5_0 = (RuleCall)cRelativecoordinatesAssignment_5.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cCommaKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cRelativecoordinatesAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cRelativecoordinatesRelativeCoordinateParserRuleCall_6_1_0 = (RuleCall)cRelativecoordinatesAssignment_6_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
-		//SomeFilter2 returns SomeFilter2:
-		//    {SomeFilter2}
-		//    'SomeFilter2'
+		//Pattern returns Pattern:
+		//    'Pattern'
+		//    name=EString
 		//    '{'
-		//        ('nextFilter' nextFilter=Filter)?
+		//        'relativeCoordinates' '{' relativecoordinates+=RelativeCoordinate ( ","  relativecoordinates+=RelativeCoordinate)* '}'
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SomeFilter2}
-		//'SomeFilter2'
+		//'Pattern'
+		//name=EString
 		//'{'
-		//    ('nextFilter' nextFilter=Filter)?
+		//    'relativeCoordinates' '{' relativecoordinates+=RelativeCoordinate ( ","  relativecoordinates+=RelativeCoordinate)* '}'
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
-		//{SomeFilter2}
-		public Action getSomeFilter2Action_0() { return cSomeFilter2Action_0; }
+		//'Pattern'
+		public Keyword getPatternKeyword_0() { return cPatternKeyword_0; }
 		
-		//'SomeFilter2'
-		public Keyword getSomeFilter2Keyword_1() { return cSomeFilter2Keyword_1; }
+		//name=EString
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//EString
+		public RuleCall getNameEStringParserRuleCall_1_0() { return cNameEStringParserRuleCall_1_0; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//('nextFilter' nextFilter=Filter)?
-		public Group getGroup_3() { return cGroup_3; }
+		//'relativeCoordinates'
+		public Keyword getRelativeCoordinatesKeyword_3() { return cRelativeCoordinatesKeyword_3; }
 		
-		//'nextFilter'
-		public Keyword getNextFilterKeyword_3_0() { return cNextFilterKeyword_3_0; }
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
 		
-		//nextFilter=Filter
-		public Assignment getNextFilterAssignment_3_1() { return cNextFilterAssignment_3_1; }
+		//relativecoordinates+=RelativeCoordinate
+		public Assignment getRelativecoordinatesAssignment_5() { return cRelativecoordinatesAssignment_5; }
 		
-		//Filter
-		public RuleCall getNextFilterFilterParserRuleCall_3_1_0() { return cNextFilterFilterParserRuleCall_3_1_0; }
+		//RelativeCoordinate
+		public RuleCall getRelativecoordinatesRelativeCoordinateParserRuleCall_5_0() { return cRelativecoordinatesRelativeCoordinateParserRuleCall_5_0; }
+		
+		//( ","  relativecoordinates+=RelativeCoordinate)*
+		public Group getGroup_6() { return cGroup_6; }
+		
+		//","
+		public Keyword getCommaKeyword_6_0() { return cCommaKeyword_6_0; }
+		
+		//relativecoordinates+=RelativeCoordinate
+		public Assignment getRelativecoordinatesAssignment_6_1() { return cRelativecoordinatesAssignment_6_1; }
+		
+		//RelativeCoordinate
+		public RuleCall getRelativecoordinatesRelativeCoordinateParserRuleCall_6_1_0() { return cRelativecoordinatesRelativeCoordinateParserRuleCall_6_1_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
+	}
+	public class RelativeCoordinateElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.RelativeCoordinate");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cRelativeCoordinateKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cXKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cXAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cXEIntParserRuleCall_3_0 = (RuleCall)cXAssignment_3.eContents().get(0);
+		private final Keyword cYKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cYAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cYEIntParserRuleCall_5_0 = (RuleCall)cYAssignment_5.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		
+		//RelativeCoordinate returns RelativeCoordinate:
+		//    'RelativeCoordinate'
+		//    '{'
+		//        'x' x=EInt
+		//        'y' y=EInt
+		//    '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'RelativeCoordinate'
+		//'{'
+		//    'x' x=EInt
+		//    'y' y=EInt
+		//'}'
+		public Group getGroup() { return cGroup; }
+		
+		//'RelativeCoordinate'
+		public Keyword getRelativeCoordinateKeyword_0() { return cRelativeCoordinateKeyword_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+		
+		//'x'
+		public Keyword getXKeyword_2() { return cXKeyword_2; }
+		
+		//x=EInt
+		public Assignment getXAssignment_3() { return cXAssignment_3; }
+		
+		//EInt
+		public RuleCall getXEIntParserRuleCall_3_0() { return cXEIntParserRuleCall_3_0; }
+		
+		//'y'
+		public Keyword getYKeyword_4() { return cYKeyword_4; }
+		
+		//y=EInt
+		public Assignment getYAssignment_5() { return cYAssignment_5; }
+		
+		//EInt
+		public RuleCall getYEIntParserRuleCall_5_0() { return cYEIntParserRuleCall_5_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
 	
 	public class TurnTypeElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
@@ -1307,8 +1426,9 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final TilePlacementElements pTilePlacement;
 	private final StateElements pState;
 	private final TransitionElements pTransition;
-	private final SomeFilter1Elements pSomeFilter1;
-	private final SomeFilter2Elements pSomeFilter2;
+	private final PatternFilterElements pPatternFilter;
+	private final PatternElements pPattern;
+	private final RelativeCoordinateElements pRelativeCoordinate;
 	private final TurnTypeElements eTurnType;
 	
 	private final Grammar grammar;
@@ -1334,8 +1454,9 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pTilePlacement = new TilePlacementElements();
 		this.pState = new StateElements();
 		this.pTransition = new TransitionElements();
-		this.pSomeFilter1 = new SomeFilter1Elements();
-		this.pSomeFilter2 = new SomeFilter2Elements();
+		this.pPatternFilter = new PatternFilterElements();
+		this.pPattern = new PatternElements();
+		this.pRelativeCoordinate = new RelativeCoordinateElements();
 		this.eTurnType = new TurnTypeElements();
 	}
 	
@@ -1384,7 +1505,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//Filter returns Filter:
-	//    SomeFilter1 | SomeFilter2;
+	//    PatternFilter;
 	public FilterElements getFilterAccess() {
 		return pFilter;
 	}
@@ -1561,32 +1682,48 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getTransitionAccess().getRule();
 	}
 	
-	//SomeFilter1 returns SomeFilter1:
-	//    {SomeFilter1}
-	//    'SomeFilter1'
+	//PatternFilter returns PatternFilter:
+	//    {PatternFilter}
+	//    'PatternFilter'
+	//    name=EString
 	//    '{'
 	//        ('nextFilter' nextFilter=Filter)?
+	//        'patterns' '{' patterns+=Pattern ( "," patterns+=Pattern)* '}'
 	//    '}';
-	public SomeFilter1Elements getSomeFilter1Access() {
-		return pSomeFilter1;
+	public PatternFilterElements getPatternFilterAccess() {
+		return pPatternFilter;
 	}
 	
-	public ParserRule getSomeFilter1Rule() {
-		return getSomeFilter1Access().getRule();
+	public ParserRule getPatternFilterRule() {
+		return getPatternFilterAccess().getRule();
 	}
 	
-	//SomeFilter2 returns SomeFilter2:
-	//    {SomeFilter2}
-	//    'SomeFilter2'
+	//Pattern returns Pattern:
+	//    'Pattern'
+	//    name=EString
 	//    '{'
-	//        ('nextFilter' nextFilter=Filter)?
+	//        'relativeCoordinates' '{' relativecoordinates+=RelativeCoordinate ( ","  relativecoordinates+=RelativeCoordinate)* '}'
 	//    '}';
-	public SomeFilter2Elements getSomeFilter2Access() {
-		return pSomeFilter2;
+	public PatternElements getPatternAccess() {
+		return pPattern;
 	}
 	
-	public ParserRule getSomeFilter2Rule() {
-		return getSomeFilter2Access().getRule();
+	public ParserRule getPatternRule() {
+		return getPatternAccess().getRule();
+	}
+	
+	//RelativeCoordinate returns RelativeCoordinate:
+	//    'RelativeCoordinate'
+	//    '{'
+	//        'x' x=EInt
+	//        'y' y=EInt
+	//    '}';
+	public RelativeCoordinateElements getRelativeCoordinateAccess() {
+		return pRelativeCoordinate;
+	}
+	
+	public ParserRule getRelativeCoordinateRule() {
+		return getRelativeCoordinateAccess().getRule();
 	}
 	
 	//enum TurnType returns TurnType:

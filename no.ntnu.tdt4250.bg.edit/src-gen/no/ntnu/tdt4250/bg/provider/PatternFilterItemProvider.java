@@ -7,39 +7,32 @@ import java.util.List;
 
 import no.ntnu.tdt4250.bg.BgFactory;
 import no.ntnu.tdt4250.bg.BgPackage;
+import no.ntnu.tdt4250.bg.PatternFilter;
 
-import no.ntnu.tdt4250.bg.LegalMovesPipeline;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link no.ntnu.tdt4250.bg.LegalMovesPipeline} object.
+ * This is the item provider adapter for a {@link no.ntnu.tdt4250.bg.PatternFilter} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class PatternFilterItemProvider extends FilterItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LegalMovesPipelineItemProvider(AdapterFactory adapterFactory) {
+	public PatternFilterItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -54,24 +47,25 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addFilterPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Filter feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFilterPropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LegalMovesPipeline_filter_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LegalMovesPipeline_filter_feature",
-								"_UI_LegalMovesPipeline_type"),
-						BgPackage.Literals.LEGAL_MOVES_PIPELINE__FILTER, true, false, true, null, null, null));
+						getResourceLocator(), getString("_UI_PatternFilter_name_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_PatternFilter_name_feature",
+								"_UI_PatternFilter_type"),
+						BgPackage.Literals.PATTERN_FILTER__NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -86,7 +80,7 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(BgPackage.Literals.LEGAL_MOVES_PIPELINE__FILTER);
+			childrenFeatures.add(BgPackage.Literals.PATTERN_FILTER__PATTERNS);
 		}
 		return childrenFeatures;
 	}
@@ -105,14 +99,14 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	}
 
 	/**
-	 * This returns LegalMovesPipeline.gif.
+	 * This returns PatternFilter.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/LegalMovesPipeline"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PatternFilter"));
 	}
 
 	/**
@@ -133,7 +127,9 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_LegalMovesPipeline_type");
+		String label = ((PatternFilter) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_PatternFilter_type")
+				: getString("_UI_PatternFilter_type") + " " + label;
 	}
 
 	/**
@@ -147,8 +143,11 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LegalMovesPipeline.class)) {
-		case BgPackage.LEGAL_MOVES_PIPELINE__FILTER:
+		switch (notification.getFeatureID(PatternFilter.class)) {
+		case BgPackage.PATTERN_FILTER__NAME:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case BgPackage.PATTERN_FILTER__PATTERNS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -166,19 +165,8 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(BgPackage.Literals.LEGAL_MOVES_PIPELINE__FILTER,
-				BgFactory.eINSTANCE.createPatternFilter()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return BgEditPlugin.INSTANCE;
+		newChildDescriptors.add(
+				createChildParameter(BgPackage.Literals.PATTERN_FILTER__PATTERNS, BgFactory.eINSTANCE.createPattern()));
 	}
 
 }

@@ -7,14 +7,15 @@ import java.util.List;
 
 import no.ntnu.tdt4250.bg.BgFactory;
 import no.ntnu.tdt4250.bg.BgPackage;
+import no.ntnu.tdt4250.bg.Pattern;
 
-import no.ntnu.tdt4250.bg.LegalMovesPipeline;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,16 +23,17 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link no.ntnu.tdt4250.bg.LegalMovesPipeline} object.
+ * This is the item provider adapter for a {@link no.ntnu.tdt4250.bg.Pattern} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class PatternItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -39,7 +41,7 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LegalMovesPipelineItemProvider(AdapterFactory adapterFactory) {
+	public PatternItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -54,24 +56,58 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addFilterPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
+			addTileTypeNamePropertyDescriptor(object);
+			addTileStateNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Filter feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFilterPropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LegalMovesPipeline_filter_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LegalMovesPipeline_filter_feature",
-								"_UI_LegalMovesPipeline_type"),
-						BgPackage.Literals.LEGAL_MOVES_PIPELINE__FILTER, true, false, true, null, null, null));
+						getResourceLocator(), getString("_UI_Pattern_name_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Pattern_name_feature", "_UI_Pattern_type"),
+						BgPackage.Literals.PATTERN__NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Tile Type Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTileTypeNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Pattern_tileTypeName_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Pattern_tileTypeName_feature",
+								"_UI_Pattern_type"),
+						BgPackage.Literals.PATTERN__TILE_TYPE_NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Tile State Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTileStateNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Pattern_tileStateName_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Pattern_tileStateName_feature",
+								"_UI_Pattern_type"),
+						BgPackage.Literals.PATTERN__TILE_STATE_NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -86,7 +122,7 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(BgPackage.Literals.LEGAL_MOVES_PIPELINE__FILTER);
+			childrenFeatures.add(BgPackage.Literals.PATTERN__RELATIVECOORDINATES);
 		}
 		return childrenFeatures;
 	}
@@ -105,14 +141,14 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	}
 
 	/**
-	 * This returns LegalMovesPipeline.gif.
+	 * This returns Pattern.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/LegalMovesPipeline"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Pattern"));
 	}
 
 	/**
@@ -133,7 +169,9 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_LegalMovesPipeline_type");
+		String label = ((Pattern) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_Pattern_type")
+				: getString("_UI_Pattern_type") + " " + label;
 	}
 
 	/**
@@ -147,8 +185,13 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LegalMovesPipeline.class)) {
-		case BgPackage.LEGAL_MOVES_PIPELINE__FILTER:
+		switch (notification.getFeatureID(Pattern.class)) {
+		case BgPackage.PATTERN__NAME:
+		case BgPackage.PATTERN__TILE_TYPE_NAME:
+		case BgPackage.PATTERN__TILE_STATE_NAME:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case BgPackage.PATTERN__RELATIVECOORDINATES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -166,8 +209,8 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(BgPackage.Literals.LEGAL_MOVES_PIPELINE__FILTER,
-				BgFactory.eINSTANCE.createPatternFilter()));
+		newChildDescriptors.add(createChildParameter(BgPackage.Literals.PATTERN__RELATIVECOORDINATES,
+				BgFactory.eINSTANCE.createRelativeCoordinate()));
 	}
 
 	/**

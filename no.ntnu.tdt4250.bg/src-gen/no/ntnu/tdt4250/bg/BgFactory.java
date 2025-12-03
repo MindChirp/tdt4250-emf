@@ -76,22 +76,13 @@ public interface BgFactory extends EFactory {
 	EffectPipeline createEffectPipeline();
 
 	/**
-	 * Returns a new object of class '<em>Some Filter1</em>'.
+	 * Returns a new object of class '<em>Pattern Filter</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Some Filter1</em>'.
+	 * @return a new object of class '<em>Pattern Filter</em>'.
 	 * @generated
 	 */
-	SomeFilter1 createSomeFilter1();
-
-	/**
-	 * Returns a new object of class '<em>Some Filter2</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Some Filter2</em>'.
-	 * @generated
-	 */
-	SomeFilter2 createSomeFilter2();
+	PatternFilter createPatternFilter();
 
 	/**
 	 * Returns a new object of class '<em>Tile</em>'.
@@ -128,6 +119,24 @@ public interface BgFactory extends EFactory {
 	 * @generated
 	 */
 	TilePlacement createTilePlacement();
+
+	/**
+	 * Returns a new object of class '<em>Pattern</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Pattern</em>'.
+	 * @generated
+	 */
+	Pattern createPattern();
+
+	/**
+	 * Returns a new object of class '<em>Relative Coordinate</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Relative Coordinate</em>'.
+	 * @generated
+	 */
+	RelativeCoordinate createRelativeCoordinate();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -167,10 +167,7 @@ public class EffectPipelineItemProvider extends ItemProviderAdapter implements I
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(BgPackage.Literals.EFFECT_PIPELINE__FILTER,
-				BgFactory.eINSTANCE.createSomeFilter1()));
-
-		newChildDescriptors.add(createChildParameter(BgPackage.Literals.EFFECT_PIPELINE__FILTER,
-				BgFactory.eINSTANCE.createSomeFilter2()));
+				BgFactory.eINSTANCE.createPatternFilter()));
 	}
 
 	/**
