@@ -311,44 +311,59 @@ public class BgDslGenerator extends AbstractGenerator {
           _builder.append("states=[");
           _builder.newLine();
           {
+            boolean _hasElements_1 = false;
             for(final EObject state_1 : states) {
+              if (!_hasElements_1) {
+                _hasElements_1 = true;
+              } else {
+                _builder.appendImmediate(", ", "        \t");
+              }
               _builder.append("        \t");
+              _builder.append("state");
               Object _eGet_16 = state_1.eGet(state_1.eClass().getEStructuralFeature("name"));
               _builder.append(_eGet_16, "        \t");
               _builder.newLineIfNotEmpty();
             }
           }
           _builder.append("        \t");
-          _builder.append("]");
+          _builder.append("],");
           _builder.newLine();
           _builder.append("        \t");
           _builder.append("transitions=[");
           _builder.newLine();
           {
+            boolean _hasElements_2 = false;
             for(final EObject transition_2 : transitions) {
+              if (!_hasElements_2) {
+                _hasElements_2 = true;
+              } else {
+                _builder.appendImmediate(", ", "        \t");
+              }
               _builder.append("        \t");
+              _builder.append("transition");
               Object _eGet_17 = transition_2.eGet(transition_2.eClass().getEStructuralFeature("name"));
               _builder.append(_eGet_17, "        \t");
               _builder.newLineIfNotEmpty();
             }
           }
           _builder.append("        \t");
-          _builder.append("]");
+          _builder.append("],");
           _builder.newLine();
           _builder.append("        \t");
-          _builder.append("initialState=");
+          _builder.append("initialState=state");
           Object _eGet_18 = initState.eGet(initState.eClass().getEStructuralFeature("name"));
           _builder.append(_eGet_18, "        \t");
+          _builder.append(",");
           _builder.newLineIfNotEmpty();
           _builder.append("        \t");
           _builder.append("type=\"");
           _builder.append(tileName, "        \t");
-          _builder.append("\"");
+          _builder.append("\",");
           _builder.newLineIfNotEmpty();
           _builder.append("        \t");
           _builder.append("hexColor=\"");
           _builder.append(tileColor, "        \t");
-          _builder.append("\"");
+          _builder.append("\",");
           _builder.newLineIfNotEmpty();
           _builder.append("        \t");
           _builder.append("name=\"");
@@ -361,14 +376,13 @@ public class BgDslGenerator extends AbstractGenerator {
         }
       }
       _builder.newLine();
-      _builder.newLine();
       _builder.append("tileplacements = [");
       _builder.newLine();
       {
-        boolean _hasElements_1 = false;
+        boolean _hasElements_3 = false;
         for(final EObject tilePlacement : tilePlacements) {
-          if (!_hasElements_1) {
-            _hasElements_1 = true;
+          if (!_hasElements_3) {
+            _hasElements_3 = true;
           } else {
             _builder.appendImmediate(", ", "    ");
           }
@@ -437,14 +451,13 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.append("]");
       _builder.newLine();
       _builder.newLine();
-      _builder.newLine();
       _builder.append("players = [");
       _builder.newLine();
       {
-        boolean _hasElements_2 = false;
+        boolean _hasElements_4 = false;
         for(final EObject player : players) {
-          if (!_hasElements_2) {
-            _hasElements_2 = true;
+          if (!_hasElements_4) {
+            _hasElements_4 = true;
           } else {
             _builder.appendImmediate(", ", "    ");
           }
@@ -468,7 +481,6 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.append("]");
       _builder.newLine();
       _builder.newLine();
-      _builder.newLine();
       Object _eGet_27 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("width"));
       final Integer boardWidth = ((Integer) _eGet_27);
       _builder.newLineIfNotEmpty();
@@ -478,7 +490,6 @@ public class BgDslGenerator extends AbstractGenerator {
       Object _eGet_29 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("checkered"));
       final Boolean isCheckered = ((Boolean) _eGet_29);
       _builder.newLineIfNotEmpty();
-      _builder.newLine();
       _builder.append("board = Board(");
       _builder.newLine();
       _builder.append("    ");
@@ -510,10 +521,11 @@ public class BgDslGenerator extends AbstractGenerator {
       Object _eGet_30 = gameInstance.eGet(gameInstance.eClass().getEStructuralFeature("initialPlayer"));
       final EObject initialPlayer = ((EObject) _eGet_30);
       _builder.newLineIfNotEmpty();
+      final int initialPlayerIndex = players.indexOf(initialPlayer);
+      _builder.newLineIfNotEmpty();
       Object _eGet_31 = gameInstance.eGet(gameInstance.eClass().getEStructuralFeature("name"));
       final String gameName = ((String) _eGet_31);
       _builder.newLineIfNotEmpty();
-      _builder.newLine();
       _builder.append("game = Game(");
       _builder.newLine();
       _builder.append("    ");
@@ -523,15 +535,21 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.append("players=players,");
       _builder.newLine();
       _builder.append("    ");
-      _builder.append("activePlayer=players[0],");
-      _builder.newLine();
+      _builder.append("activePlayer=players[");
+      _builder.append(initialPlayerIndex, "    ");
+      _builder.append("],");
+      _builder.newLineIfNotEmpty();
       _builder.append("    ");
       _builder.append("name=\"");
       _builder.append(gameName, "    ");
-      _builder.append("\"");
+      _builder.append("\",");
+      _builder.newLineIfNotEmpty();
+      _builder.append("    ");
+      _builder.append("initialPlayer=players[");
+      _builder.append(initialPlayerIndex, "    ");
+      _builder.append("]");
       _builder.newLineIfNotEmpty();
       _builder.append(")");
-      _builder.newLine();
       _builder.newLine();
       _xblockexpression = _builder;
     }

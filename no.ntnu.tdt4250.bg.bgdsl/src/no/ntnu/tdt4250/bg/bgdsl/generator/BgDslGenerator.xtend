@@ -156,22 +156,21 @@ class «tileName»(Tile):
         
         super().__init__(
         	states=[
-        	«FOR state : states»
-        	«state.eGet(state.eClass.getEStructuralFeature("name"))»
+        	«FOR state : states SEPARATOR ", "»
+        		state«state.eGet(state.eClass.getEStructuralFeature("name"))»
         	«ENDFOR»
-        	]
+        	],
         	transitions=[
-        	«FOR transition : transitions»
-        	«transition.eGet(transition.eClass.getEStructuralFeature("name"))»
+        	«FOR transition : transitions SEPARATOR ", "»
+        		transition«transition.eGet(transition.eClass.getEStructuralFeature("name"))»
         	«ENDFOR»
-        	]
-        	initialState=«initState.eGet(initState.eClass.getEStructuralFeature("name"))»
-        	type="«tileName»"
-        	hexColor="«tileColor»"
+        	],
+        	initialState=state«initState.eGet(initState.eClass.getEStructuralFeature("name"))»,
+        	type="«tileName»",
+        	hexColor="«tileColor»",
         	name="«tileName»"
         )
 «ENDFOR»
-
 
 tileplacements = [
     «FOR tilePlacement : tilePlacements SEPARATOR ", "»
@@ -191,7 +190,6 @@ tileplacements = [
     «ENDFOR»
 ]
 
-
 players = [
     «FOR player : players SEPARATOR ", "»
         «val playerName = player.eGet(player.eClass.getEStructuralFeature("name")) as String»
@@ -200,11 +198,9 @@ players = [
     «ENDFOR»
 ]
 
-
 «val boardWidth = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("width")) as Integer»
 «val boardHeight = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("height")) as Integer»
 «val isCheckered = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("checkered")) as Boolean»
-
 board = Board(
     width=«boardWidth»,
     height=«boardHeight»,
@@ -214,17 +210,16 @@ board = Board(
 )
 
 «val initialPlayer = gameInstance.eGet(gameInstance.eClass.getEStructuralFeature("initialPlayer")) as EObject»
+«val initialPlayerIndex = players.indexOf(initialPlayer)»
 «val gameName = gameInstance.eGet(gameInstance.eClass.getEStructuralFeature("name")) as String»
-
 game = Game(
     board=board,
     players=players,
-    activePlayer=players[0],
-    name="«gameName»"
+    activePlayer=players[«initialPlayerIndex»],
+    name="«gameName»",
+    initialPlayer=players[«initialPlayerIndex»]
 )
-
 '''
-	
 }
 
 def generateBoard(EObject boardInstance) {
