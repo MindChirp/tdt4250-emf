@@ -82,24 +82,203 @@ class «model.name»(BaseModel):
 «FOR model : models»
 «model.name».model_rebuild()
 «ENDFOR»
+
 «initializeValues(gameInstance)»
 '''
 
 
 def initializeValues(EObject gameInstance) {
 	val boardInstance = gameInstance.eGet(gameInstance.eClass.getEStructuralFeature("board")) as EObject
-	val width = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("width")) as Integer
-	val height = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("height")) as Integer
 	
-	val tiles = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("tiles"))	as EList<EObject>
+	val tileTypes = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("tiles")) as EList<EObject>
+	
+
+	// ??? vi har vel ikke en game class (?) så idk hvordan vi skal finne ut hvor mange players vi har
+	val players = gameInstance.eGet(gameInstance.eClass.getEStructuralFeature("players")) as EList<EObject>
+	
+	val turnPolicy = gameInstance.eGet(gameInstance.eClass.getEStructuralFeature("turnPolicy")) as EList<EObject>
+
 '''
-tiles = [
-«FOR tile : tiles»
-Tile(«tile.eGet(tile.eClass.getEStructuralFeature("name"))»)
+«FOR tileType : tileTypes»
+    «val initState = tileType.eGet(tileType.eClass.getEStructuralFeature("initialState"))as EObject»
+    «val initName = initState.eGet(initState.eClass.getEStructuralFeature("name"))»
+    «val initColor = initState.eGet(initState.eClass.getEStructuralFeature("hexColor"))»
+
+state«initName» = State(
+    name="«initName»",
+    hexColor="«initColor»",
+    outbound=[]
+)
+
+    «FOR state : tileType.eGet(tileType.eClass.getEStructuralFeature("states")) as EList<EObject>»
+        «val sName = state.eGet(state.eClass.getEStructuralFeature("name"))»
+state«sName» = State(
+    name="«sName»",
+    hexColor="#ffffff",
+    outbound=[],
+    inbound=[]
+)
+    «ENDFOR»
+
+    «FOR transition : tileType.eGet(tileType.eClass.getEStructuralFeature("transitions")) as EList<EObject>»
+        «val tName = transition.eGet(transition.eClass.getEStructuralFeature("name"))»
+        
+        «val rawSources = transition.eGet(transition.eClass.getEStructuralFeature("source")) as EList<EObject>»
+                «val srcList = rawSources.toSet()»
+transition«tName» = Transition(
+    source=[
+        «FOR src : srcList SEPARATOR ", "»
+            state«src.eGet(src.eClass.getEStructuralFeature("name"))»
+        «ENDFOR»
+    ],
+    «val target = transition.eGet(transition.eClass.getEStructuralFeature("target")) as EObject»
+    target=state«target.eGet(target.eClass.getEStructuralFeature("name"))»
+)
+
+    «ENDFOR»
+«FOR transition : tileType.eGet(tileType.eClass.getEStructuralFeature("transitions")) as EList<EObject>»
+        «val tName = transition.eGet(transition.eClass.getEStructuralFeature("name"))»
+        
+        «val rawSources = transition.eGet(transition.eClass.getEStructuralFeature("source")) as EList<EObject>»
+        «val srcList = rawSources.toSet()»
+        
+        «FOR src : srcList»
+state«src.eGet(src.eClass.getEStructuralFeature("name"))».outbound += transition«tName»
+        «ENDFOR»
+        «val target = transition.eGet(transition.eClass.getEStructuralFeature("target")) as EObject»
+state«target.eGet(target.eClass.getEStructuralFeature("name"))».inbound += transition«tName»
+    «ENDFOR»
 «ENDFOR»
+'''
+	
+}
+
+def generateBoard(EObject boardInstance) {
+	// Board
+	val width = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("width")) as Integer
+    val height = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("height")) as Integer
+    val checkered = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("checkered")) as Boolean
+    val size = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("size")) as Integer
+    val tiles = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("tiles")) as EList<EObject>
+    val tileplacement = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("tileplacement")) as EList<EObject>
+    // ???
+    val legalMovePipeline = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("legalMovesPipeline")) as EList<EObject>
+    val effectPipeline = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("effectPipeline")) as EList<EObject>
+	
+
+
+'''
+Board(
+	width=«width»,
+	height=«height»,
+	checkered=«checkered»,
+	size=«size»,
+	tiles = [
+	«FOR tile : tiles»
+	«generateTile(tile)»
+	«ENDFOR»
+	]
+	tileplacement = [
+	«FOR tile : tileplacement»
+	«generateTileplacement(tile)»
+	«ENDFOR»
 ]
+)
+'''
+
+}
+
+// State Machine Start
+
+def generateTile(EObject tile) {
+	val name = tile.eGet(tile.eClass.getEStructuralFeature("name")) as String
+    val type = tile.eGet(tile.eClass.getEStructuralFeature("type")) as String
+    val hexColor = tile.eGet(tile.eClass.getEStructuralFeature("hexColor")) as String
+    val initialState = tile.eGet(tile.eClass.getEStructuralFeature("initialState")) as EObject
+    val states = tile.eGet(tile.eClass.getEStructuralFeature("states")) as EList<EObject>
+    val transitions = tile.eGet(tile.eClass.getEStructuralFeature("transitions")) as EList<EObject>
+    
+'''
+Tile(
+    name="«name»",
+    type="«type»",
+    hexColor="«hexColor»",
+    initialState=«IF initialState !== null»«generateState(initialState)»«ELSE»None«ENDIF»,
+    states=[
+        «FOR state : states SEPARATOR ","»
+            «generateState(state)»
+        «ENDFOR»
+    ],
+    transitions=[
+        «FOR transition : transitions SEPARATOR ","»
+            «generateTransition(transition)»
+        «ENDFOR»
+    ]
+)'''
+}
+
+def generateState(EObject state) { 
+	val outbound = state.eGet(state.eClass.getEStructuralFeature("outbound")) as EList<EObject> // hjelp her andreas
+	val inbound = state.eGet(state.eClass.getEStructuralFeature("inbound")) as EList<EObject>
+	val name = state.eGet(state.eClass.getEStructuralFeature("name")) as String
+	val hexColor = state.eGet(state.eClass.getEStructuralFeature("hexColor")) as String
+	
+'''
+State(
+    name=«IF name !== null»"«name»"«ELSE»None«ENDIF»,
+    hexColor="«hexColor»",
+    outbound=[
+        «FOR transition : outbound»
+        «transition.eGet(transition.eClass.getEStructuralFeature("name"))»
+        «ENDFOR»
+        ],
+    inbound=[
+        «FOR transition : inbound»
+        «transition.eGet(transition.eClass.getEStructuralFeature("name"))»
+        «ENDFOR»
+        ]
+)'''
+	
+}
+
+def generateTransition(EObject transition) {
+	val name = transition.eGet(transition.eClass.getEStructuralFeature("name")) as String
+	val source = transition.eGet(transition.eClass.getEStructuralFeature("source")) as EList<EObject> // her og
+	val target = transition.eGet(transition.eClass.getEStructuralFeature("target")) as EObject
+	
+'''
+Transition(
+	name=«IF name !== null»"«name»"«ELSE»None«ENDIF»,
+	source=[
+	    «FOR state : source»
+	    «state.eGet(state.eClass.getEStructuralFeature("name"))»
+	    «ENDFOR»
+	    ],
+	target=«target.eGet(target.eClass.getEStructuralFeature("name"))»
 '''
 }
+	
+// State Machine End
+
+// Tile Placement
+def generateTileplacement(EObject tileplacement) {
+	val tile = tileplacement.eGet(tileplacement.eClass.getEStructuralFeature("tile")) as EObject
+	val row = tileplacement.eGet(tileplacement.eClass.getEStructuralFeature("row")) as Integer
+	val column = tileplacement.eGet(tileplacement.eClass.getEStructuralFeature("column")) as Integer
+	val darker = tileplacement.eGet(tileplacement.eClass.getEStructuralFeature("darker")) as Boolean
+	val coordinate = tileplacement.eGet(tileplacement.eClass.getEStructuralFeature("coordinate")) as String
+	
+'''
+Tileplacement(
+	tile=«tile.eGet(tile.eClass.getEStructuralFeature("name")) as String»,,
+	row=«row»,
+	column=«column»,
+	darker=«darker»,
+	coordinate="«coordinate»"
+)
+'''
+}
+
 def toPythonFieldDec(EStructuralFeature field) {
 	val typeStr = field.pythonTypeString
 	if (field.many) {

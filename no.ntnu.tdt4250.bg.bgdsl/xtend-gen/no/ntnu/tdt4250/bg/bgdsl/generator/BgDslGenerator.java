@@ -89,6 +89,7 @@ public class BgDslGenerator extends AbstractGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.newLine();
     CharSequence _initializeValues = this.initializeValues(gameInstance);
     _builder.append(_initializeValues);
     _builder.newLineIfNotEmpty();
@@ -100,25 +101,500 @@ public class BgDslGenerator extends AbstractGenerator {
     {
       Object _eGet = gameInstance.eGet(gameInstance.eClass().getEStructuralFeature("board"));
       final EObject boardInstance = ((EObject) _eGet);
-      Object _eGet_1 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("width"));
-      final Integer width = ((Integer) _eGet_1);
-      Object _eGet_2 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("height"));
-      final Integer height = ((Integer) _eGet_2);
-      Object _eGet_3 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("tiles"));
-      final EList<EObject> tiles = ((EList<EObject>) _eGet_3);
+      Object _eGet_1 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("tiles"));
+      final EList<EObject> tileTypes = ((EList<EObject>) _eGet_1);
+      Object _eGet_2 = gameInstance.eGet(gameInstance.eClass().getEStructuralFeature("players"));
+      final EList<EObject> players = ((EList<EObject>) _eGet_2);
+      Object _eGet_3 = gameInstance.eGet(gameInstance.eClass().getEStructuralFeature("turnPolicy"));
+      final EList<EObject> turnPolicy = ((EList<EObject>) _eGet_3);
       StringConcatenation _builder = new StringConcatenation();
+      {
+        for(final EObject tileType : tileTypes) {
+          _builder.append("    ");
+          Object _eGet_4 = tileType.eGet(tileType.eClass().getEStructuralFeature("initialState"));
+          final EObject initState = ((EObject) _eGet_4);
+          _builder.newLineIfNotEmpty();
+          _builder.append("    ");
+          final Object initName = initState.eGet(initState.eClass().getEStructuralFeature("name"));
+          _builder.newLineIfNotEmpty();
+          _builder.append("    ");
+          final Object initColor = initState.eGet(initState.eClass().getEStructuralFeature("hexColor"));
+          _builder.newLineIfNotEmpty();
+          _builder.newLine();
+          _builder.append("state");
+          _builder.append(initName);
+          _builder.append(" = State(");
+          _builder.newLineIfNotEmpty();
+          _builder.append("    ");
+          _builder.append("name=\"");
+          _builder.append(initName, "    ");
+          _builder.append("\",");
+          _builder.newLineIfNotEmpty();
+          _builder.append("    ");
+          _builder.append("hexColor=\"");
+          _builder.append(initColor, "    ");
+          _builder.append("\",");
+          _builder.newLineIfNotEmpty();
+          _builder.append("    ");
+          _builder.append("outbound=[]");
+          _builder.newLine();
+          _builder.append(")");
+          _builder.newLine();
+          _builder.newLine();
+          {
+            Object _eGet_5 = tileType.eGet(tileType.eClass().getEStructuralFeature("states"));
+            for(final EObject state : ((EList<EObject>) _eGet_5)) {
+              _builder.append("        ");
+              final Object sName = state.eGet(state.eClass().getEStructuralFeature("name"));
+              _builder.newLineIfNotEmpty();
+              _builder.append("state");
+              _builder.append(sName);
+              _builder.append(" = State(");
+              _builder.newLineIfNotEmpty();
+              _builder.append("    ");
+              _builder.append("name=\"");
+              _builder.append(sName, "    ");
+              _builder.append("\",");
+              _builder.newLineIfNotEmpty();
+              _builder.append("    ");
+              _builder.append("hexColor=\"#ffffff\",");
+              _builder.newLine();
+              _builder.append("    ");
+              _builder.append("outbound=[],");
+              _builder.newLine();
+              _builder.append("    ");
+              _builder.append("inbound=[]");
+              _builder.newLine();
+              _builder.append(")");
+              _builder.newLine();
+            }
+          }
+          _builder.newLine();
+          {
+            Object _eGet_6 = tileType.eGet(tileType.eClass().getEStructuralFeature("transitions"));
+            for(final EObject transition : ((EList<EObject>) _eGet_6)) {
+              _builder.append("        ");
+              final Object tName = transition.eGet(transition.eClass().getEStructuralFeature("name"));
+              _builder.newLineIfNotEmpty();
+              _builder.append("        ");
+              _builder.newLine();
+              _builder.append("        ");
+              Object _eGet_7 = transition.eGet(transition.eClass().getEStructuralFeature("source"));
+              final EList<EObject> rawSources = ((EList<EObject>) _eGet_7);
+              _builder.newLineIfNotEmpty();
+              _builder.append("                ");
+              final Set<EObject> srcList = IterableExtensions.<EObject>toSet(rawSources);
+              _builder.newLineIfNotEmpty();
+              _builder.append("transition");
+              _builder.append(tName);
+              _builder.append(" = Transition(");
+              _builder.newLineIfNotEmpty();
+              _builder.append("    ");
+              _builder.append("source=[");
+              _builder.newLine();
+              {
+                boolean _hasElements = false;
+                for(final EObject src : srcList) {
+                  if (!_hasElements) {
+                    _hasElements = true;
+                  } else {
+                    _builder.appendImmediate(", ", "        ");
+                  }
+                  _builder.append("        ");
+                  _builder.append("state");
+                  Object _eGet_8 = src.eGet(src.eClass().getEStructuralFeature("name"));
+                  _builder.append(_eGet_8, "        ");
+                  _builder.newLineIfNotEmpty();
+                }
+              }
+              _builder.append("    ");
+              _builder.append("],");
+              _builder.newLine();
+              _builder.append("    ");
+              Object _eGet_9 = transition.eGet(transition.eClass().getEStructuralFeature("target"));
+              final EObject target = ((EObject) _eGet_9);
+              _builder.newLineIfNotEmpty();
+              _builder.append("    ");
+              _builder.append("target=state");
+              Object _eGet_10 = target.eGet(target.eClass().getEStructuralFeature("name"));
+              _builder.append(_eGet_10, "    ");
+              _builder.newLineIfNotEmpty();
+              _builder.append(")");
+              _builder.newLine();
+              _builder.newLine();
+            }
+          }
+          {
+            Object _eGet_11 = tileType.eGet(tileType.eClass().getEStructuralFeature("transitions"));
+            for(final EObject transition_1 : ((EList<EObject>) _eGet_11)) {
+              _builder.append("        ");
+              final Object tName_1 = transition_1.eGet(transition_1.eClass().getEStructuralFeature("name"));
+              _builder.newLineIfNotEmpty();
+              _builder.append("        ");
+              _builder.newLine();
+              _builder.append("        ");
+              Object _eGet_12 = transition_1.eGet(transition_1.eClass().getEStructuralFeature("source"));
+              final EList<EObject> rawSources_1 = ((EList<EObject>) _eGet_12);
+              _builder.newLineIfNotEmpty();
+              _builder.append("        ");
+              final Set<EObject> srcList_1 = IterableExtensions.<EObject>toSet(rawSources_1);
+              _builder.newLineIfNotEmpty();
+              _builder.append("        ");
+              _builder.newLine();
+              {
+                for(final EObject src_1 : srcList_1) {
+                  _builder.append("state");
+                  Object _eGet_13 = src_1.eGet(src_1.eClass().getEStructuralFeature("name"));
+                  _builder.append(_eGet_13);
+                  _builder.append(".outbound += transition");
+                  _builder.append(tName_1);
+                  _builder.newLineIfNotEmpty();
+                }
+              }
+              _builder.append("        ");
+              Object _eGet_14 = transition_1.eGet(transition_1.eClass().getEStructuralFeature("target"));
+              final EObject target_1 = ((EObject) _eGet_14);
+              _builder.newLineIfNotEmpty();
+              _builder.append("state");
+              Object _eGet_15 = target_1.eGet(target_1.eClass().getEStructuralFeature("name"));
+              _builder.append(_eGet_15);
+              _builder.append(".inbound += transition");
+              _builder.append(tName_1);
+              _builder.newLineIfNotEmpty();
+            }
+          }
+        }
+      }
+      _xblockexpression = _builder;
+    }
+    return _xblockexpression;
+  }
+
+  public CharSequence generateBoard(final EObject boardInstance) {
+    CharSequence _xblockexpression = null;
+    {
+      Object _eGet = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("width"));
+      final Integer width = ((Integer) _eGet);
+      Object _eGet_1 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("height"));
+      final Integer height = ((Integer) _eGet_1);
+      Object _eGet_2 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("checkered"));
+      final Boolean checkered = ((Boolean) _eGet_2);
+      Object _eGet_3 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("size"));
+      final Integer size = ((Integer) _eGet_3);
+      Object _eGet_4 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("tiles"));
+      final EList<EObject> tiles = ((EList<EObject>) _eGet_4);
+      Object _eGet_5 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("tileplacement"));
+      final EList<EObject> tileplacement = ((EList<EObject>) _eGet_5);
+      Object _eGet_6 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("legalMovesPipeline"));
+      final EList<EObject> legalMovePipeline = ((EList<EObject>) _eGet_6);
+      Object _eGet_7 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("effectPipeline"));
+      final EList<EObject> effectPipeline = ((EList<EObject>) _eGet_7);
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Board(");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("width=");
+      _builder.append(width, "\t");
+      _builder.append(",");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
+      _builder.append("height=");
+      _builder.append(height, "\t");
+      _builder.append(",");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
+      _builder.append("checkered=");
+      _builder.append(checkered, "\t");
+      _builder.append(",");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
+      _builder.append("size=");
+      _builder.append(size, "\t");
+      _builder.append(",");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
       _builder.append("tiles = [");
       _builder.newLine();
       {
         for(final EObject tile : tiles) {
-          _builder.append("Tile(");
-          Object _eGet_4 = tile.eGet(tile.eClass().getEStructuralFeature("name"));
-          _builder.append(_eGet_4);
-          _builder.append(")");
+          _builder.append("\t");
+          CharSequence _generateTile = this.generateTile(tile);
+          _builder.append(_generateTile, "\t");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.append("\t");
+      _builder.append("]");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("tileplacement = [");
+      _builder.newLine();
+      {
+        for(final EObject tile_1 : tileplacement) {
+          _builder.append("\t");
+          CharSequence _generateTileplacement = this.generateTileplacement(tile_1);
+          _builder.append(_generateTileplacement, "\t");
           _builder.newLineIfNotEmpty();
         }
       }
       _builder.append("]");
+      _builder.newLine();
+      _builder.append(")");
+      _builder.newLine();
+      _xblockexpression = _builder;
+    }
+    return _xblockexpression;
+  }
+
+  public CharSequence generateTile(final EObject tile) {
+    CharSequence _xblockexpression = null;
+    {
+      Object _eGet = tile.eGet(tile.eClass().getEStructuralFeature("name"));
+      final String name = ((String) _eGet);
+      Object _eGet_1 = tile.eGet(tile.eClass().getEStructuralFeature("type"));
+      final String type = ((String) _eGet_1);
+      Object _eGet_2 = tile.eGet(tile.eClass().getEStructuralFeature("hexColor"));
+      final String hexColor = ((String) _eGet_2);
+      Object _eGet_3 = tile.eGet(tile.eClass().getEStructuralFeature("initialState"));
+      final EObject initialState = ((EObject) _eGet_3);
+      Object _eGet_4 = tile.eGet(tile.eClass().getEStructuralFeature("states"));
+      final EList<EObject> states = ((EList<EObject>) _eGet_4);
+      Object _eGet_5 = tile.eGet(tile.eClass().getEStructuralFeature("transitions"));
+      final EList<EObject> transitions = ((EList<EObject>) _eGet_5);
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Tile(");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("name=\"");
+      _builder.append(name, "    ");
+      _builder.append("\",");
+      _builder.newLineIfNotEmpty();
+      _builder.append("    ");
+      _builder.append("type=\"");
+      _builder.append(type, "    ");
+      _builder.append("\",");
+      _builder.newLineIfNotEmpty();
+      _builder.append("    ");
+      _builder.append("hexColor=\"");
+      _builder.append(hexColor, "    ");
+      _builder.append("\",");
+      _builder.newLineIfNotEmpty();
+      _builder.append("    ");
+      _builder.append("initialState=");
+      {
+        if ((initialState != null)) {
+          CharSequence _generateState = this.generateState(initialState);
+          _builder.append(_generateState, "    ");
+        } else {
+          _builder.append("None");
+        }
+      }
+      _builder.append(",");
+      _builder.newLineIfNotEmpty();
+      _builder.append("    ");
+      _builder.append("states=[");
+      _builder.newLine();
+      {
+        boolean _hasElements = false;
+        for(final EObject state : states) {
+          if (!_hasElements) {
+            _hasElements = true;
+          } else {
+            _builder.appendImmediate(",", "        ");
+          }
+          _builder.append("        ");
+          CharSequence _generateState_1 = this.generateState(state);
+          _builder.append(_generateState_1, "        ");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.append("    ");
+      _builder.append("],");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("transitions=[");
+      _builder.newLine();
+      {
+        boolean _hasElements_1 = false;
+        for(final EObject transition : transitions) {
+          if (!_hasElements_1) {
+            _hasElements_1 = true;
+          } else {
+            _builder.appendImmediate(",", "        ");
+          }
+          _builder.append("        ");
+          CharSequence _generateTransition = this.generateTransition(transition);
+          _builder.append(_generateTransition, "        ");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.append("    ");
+      _builder.append("]");
+      _builder.newLine();
+      _builder.append(")");
+      _xblockexpression = _builder;
+    }
+    return _xblockexpression;
+  }
+
+  public CharSequence generateState(final EObject state) {
+    CharSequence _xblockexpression = null;
+    {
+      Object _eGet = state.eGet(state.eClass().getEStructuralFeature("outbound"));
+      final EList<EObject> outbound = ((EList<EObject>) _eGet);
+      Object _eGet_1 = state.eGet(state.eClass().getEStructuralFeature("inbound"));
+      final EList<EObject> inbound = ((EList<EObject>) _eGet_1);
+      Object _eGet_2 = state.eGet(state.eClass().getEStructuralFeature("name"));
+      final String name = ((String) _eGet_2);
+      Object _eGet_3 = state.eGet(state.eClass().getEStructuralFeature("hexColor"));
+      final String hexColor = ((String) _eGet_3);
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("State(");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("name=");
+      {
+        if ((name != null)) {
+          _builder.append("\"");
+          _builder.append(name, "    ");
+          _builder.append("\"");
+        } else {
+          _builder.append("None");
+        }
+      }
+      _builder.append(",");
+      _builder.newLineIfNotEmpty();
+      _builder.append("    ");
+      _builder.append("hexColor=\"");
+      _builder.append(hexColor, "    ");
+      _builder.append("\",");
+      _builder.newLineIfNotEmpty();
+      _builder.append("    ");
+      _builder.append("outbound=[");
+      _builder.newLine();
+      {
+        for(final EObject transition : outbound) {
+          _builder.append("        ");
+          Object _eGet_4 = transition.eGet(transition.eClass().getEStructuralFeature("name"));
+          _builder.append(_eGet_4, "        ");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.append("        ");
+      _builder.append("],");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("inbound=[");
+      _builder.newLine();
+      {
+        for(final EObject transition_1 : inbound) {
+          _builder.append("        ");
+          Object _eGet_5 = transition_1.eGet(transition_1.eClass().getEStructuralFeature("name"));
+          _builder.append(_eGet_5, "        ");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.append("        ");
+      _builder.append("]");
+      _builder.newLine();
+      _builder.append(")");
+      _xblockexpression = _builder;
+    }
+    return _xblockexpression;
+  }
+
+  public CharSequence generateTransition(final EObject transition) {
+    CharSequence _xblockexpression = null;
+    {
+      Object _eGet = transition.eGet(transition.eClass().getEStructuralFeature("name"));
+      final String name = ((String) _eGet);
+      Object _eGet_1 = transition.eGet(transition.eClass().getEStructuralFeature("source"));
+      final EList<EObject> source = ((EList<EObject>) _eGet_1);
+      Object _eGet_2 = transition.eGet(transition.eClass().getEStructuralFeature("target"));
+      final EObject target = ((EObject) _eGet_2);
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Transition(");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("name=");
+      {
+        if ((name != null)) {
+          _builder.append("\"");
+          _builder.append(name, "\t");
+          _builder.append("\"");
+        } else {
+          _builder.append("None");
+        }
+      }
+      _builder.append(",");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
+      _builder.append("source=[");
+      _builder.newLine();
+      {
+        for(final EObject state : source) {
+          _builder.append("\t    ");
+          Object _eGet_3 = state.eGet(state.eClass().getEStructuralFeature("name"));
+          _builder.append(_eGet_3, "\t    ");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.append("\t    ");
+      _builder.append("],");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("target=");
+      Object _eGet_4 = target.eGet(target.eClass().getEStructuralFeature("name"));
+      _builder.append(_eGet_4, "\t");
+      _builder.newLineIfNotEmpty();
+      _xblockexpression = _builder;
+    }
+    return _xblockexpression;
+  }
+
+  public CharSequence generateTileplacement(final EObject tileplacement) {
+    CharSequence _xblockexpression = null;
+    {
+      Object _eGet = tileplacement.eGet(tileplacement.eClass().getEStructuralFeature("tile"));
+      final EObject tile = ((EObject) _eGet);
+      Object _eGet_1 = tileplacement.eGet(tileplacement.eClass().getEStructuralFeature("row"));
+      final Integer row = ((Integer) _eGet_1);
+      Object _eGet_2 = tileplacement.eGet(tileplacement.eClass().getEStructuralFeature("column"));
+      final Integer column = ((Integer) _eGet_2);
+      Object _eGet_3 = tileplacement.eGet(tileplacement.eClass().getEStructuralFeature("darker"));
+      final Boolean darker = ((Boolean) _eGet_3);
+      Object _eGet_4 = tileplacement.eGet(tileplacement.eClass().getEStructuralFeature("coordinate"));
+      final String coordinate = ((String) _eGet_4);
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Tileplacement(");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("tile=");
+      Object _eGet_5 = tile.eGet(tile.eClass().getEStructuralFeature("name"));
+      _builder.append(((String) _eGet_5), "\t");
+      _builder.append(",,");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
+      _builder.append("row=");
+      _builder.append(row, "\t");
+      _builder.append(",");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
+      _builder.append("column=");
+      _builder.append(column, "\t");
+      _builder.append(",");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
+      _builder.append("darker=");
+      _builder.append(darker, "\t");
+      _builder.append(",");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
+      _builder.append("coordinate=\"");
+      _builder.append(coordinate, "\t");
+      _builder.append("\"");
+      _builder.newLineIfNotEmpty();
+      _builder.append(")");
       _builder.newLine();
       _xblockexpression = _builder;
     }
