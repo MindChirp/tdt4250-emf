@@ -14,6 +14,11 @@
       <genEnumLiterals ecoreEnumLiteral="bg.ecore#//TurnType/TurnBased"/>
       <genEnumLiterals ecoreEnumLiteral="bg.ecore#//TurnType/Simultaneous"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="bg.ecore#//StateSelection">
+      <genEnumLiterals ecoreEnumLiteral="bg.ecore#//StateSelection/CurrentPlayer"/>
+      <genEnumLiterals ecoreEnumLiteral="bg.ecore#//StateSelection/OtherPlayer"/>
+      <genEnumLiterals ecoreEnumLiteral="bg.ecore#//StateSelection/State"/>
+    </genEnums>
     <genClasses ecoreClass="bg.ecore#//Game">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Game/board"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Game/name"/>
@@ -35,6 +40,7 @@
     <genClasses ecoreClass="bg.ecore#//Player">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Player/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Player/hexColor"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//Player/associatedState"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//TurnPolicy">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//TurnPolicy/type"/>
@@ -81,8 +87,8 @@
     <genClasses ecoreClass="bg.ecore#//Pattern">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Pattern/relativecoordinates"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Pattern/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Pattern/tileTypeName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Pattern/tileStateName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Pattern/stateSelection"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//Pattern/matchState"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//RelativeCoordinate">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//RelativeCoordinate/x"/>

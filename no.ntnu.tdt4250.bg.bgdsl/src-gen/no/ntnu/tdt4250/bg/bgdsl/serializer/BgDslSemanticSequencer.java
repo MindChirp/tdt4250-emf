@@ -175,7 +175,13 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Pattern returns Pattern
 	 *
 	 * Constraint:
-	 *     (name=EString relativecoordinates+=RelativeCoordinate relativecoordinates+=RelativeCoordinate*)
+	 *     (
+	 *         name=EString 
+	 *         stateSelection=StateSelection 
+	 *         matchState=[State|EString]? 
+	 *         relativecoordinates+=RelativeCoordinate 
+	 *         relativecoordinates+=RelativeCoordinate*
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_Pattern(ISerializationContext context, Pattern semanticObject) {
@@ -189,7 +195,7 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Player returns Player
 	 *
 	 * Constraint:
-	 *     (name=EString hexColor=EString)
+	 *     (name=EString hexColor=EString associatedState=[State|EString])
 	 * </pre>
 	 */
 	protected void sequence_Player(ISerializationContext context, Player semanticObject) {
@@ -198,10 +204,13 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BgPackage.Literals.PLAYER__NAME));
 			if (transientValues.isValueTransient(semanticObject, BgPackage.Literals.PLAYER__HEX_COLOR) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BgPackage.Literals.PLAYER__HEX_COLOR));
+			if (transientValues.isValueTransient(semanticObject, BgPackage.Literals.PLAYER__ASSOCIATED_STATE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BgPackage.Literals.PLAYER__ASSOCIATED_STATE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getPlayerAccess().getNameEStringParserRuleCall_1_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getPlayerAccess().getHexColorEStringParserRuleCall_4_0(), semanticObject.getHexColor());
+		feeder.accept(grammarAccess.getPlayerAccess().getAssociatedStateStateEStringParserRuleCall_6_0_1(), semanticObject.eGet(BgPackage.Literals.PLAYER__ASSOCIATED_STATE, false));
 		feeder.finish();
 	}
 	

@@ -268,13 +268,22 @@ public interface BgPackage extends EPackage {
 	int PLAYER__HEX_COLOR = 1;
 
 	/**
+	 * The feature id for the '<em><b>Associated State</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLAYER__ASSOCIATED_STATE = 2;
+
+	/**
 	 * The number of structural features of the '<em>Player</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLAYER_FEATURE_COUNT = 2;
+	int PLAYER_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Player</em>' class.
@@ -800,13 +809,22 @@ public interface BgPackage extends EPackage {
 	int PATTERN__TILE_TYPE_NAME = 2;
 
 	/**
-	 * The feature id for the '<em><b>Tile State Name</b></em>' attribute.
+	 * The feature id for the '<em><b>State Selection</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN__TILE_STATE_NAME = 3;
+	int PATTERN__STATE_SELECTION = 3;
+
+	/**
+	 * The feature id for the '<em><b>Match State</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN__MATCH_STATE = 4;
 
 	/**
 	 * The number of structural features of the '<em>Pattern</em>' class.
@@ -815,7 +833,7 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_FEATURE_COUNT = 4;
+	int PATTERN_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Pattern</em>' class.
@@ -881,6 +899,16 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 */
 	int TURN_TYPE = 14;
+
+	/**
+	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.StateSelection <em>State Selection</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.ntnu.tdt4250.bg.StateSelection
+	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getStateSelection()
+	 * @generated
+	 */
+	int STATE_SELECTION = 15;
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Game <em>Game</em>}'.
@@ -1087,6 +1115,17 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPlayer_HexColor();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.ntnu.tdt4250.bg.Player#getAssociatedState <em>Associated State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Associated State</em>'.
+	 * @see no.ntnu.tdt4250.bg.Player#getAssociatedState()
+	 * @see #getPlayer()
+	 * @generated
+	 */
+	EReference getPlayer_AssociatedState();
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.TurnPolicy <em>Turn Policy</em>}'.
@@ -1486,15 +1525,26 @@ public interface BgPackage extends EPackage {
 	EAttribute getPattern_TileTypeName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Pattern#getTileStateName <em>Tile State Name</em>}'.
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Pattern#getStateSelection <em>State Selection</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Tile State Name</em>'.
-	 * @see no.ntnu.tdt4250.bg.Pattern#getTileStateName()
+	 * @return the meta object for the attribute '<em>State Selection</em>'.
+	 * @see no.ntnu.tdt4250.bg.Pattern#getStateSelection()
 	 * @see #getPattern()
 	 * @generated
 	 */
-	EAttribute getPattern_TileStateName();
+	EAttribute getPattern_StateSelection();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.ntnu.tdt4250.bg.Pattern#getMatchState <em>Match State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Match State</em>'.
+	 * @see no.ntnu.tdt4250.bg.Pattern#getMatchState()
+	 * @see #getPattern()
+	 * @generated
+	 */
+	EReference getPattern_MatchState();
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.RelativeCoordinate <em>Relative Coordinate</em>}'.
@@ -1537,6 +1587,16 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getTurnType();
+
+	/**
+	 * Returns the meta object for enum '{@link no.ntnu.tdt4250.bg.StateSelection <em>State Selection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>State Selection</em>'.
+	 * @see no.ntnu.tdt4250.bg.StateSelection
+	 * @generated
+	 */
+	EEnum getStateSelection();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1718,6 +1778,14 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PLAYER__HEX_COLOR = eINSTANCE.getPlayer_HexColor();
+
+		/**
+		 * The meta object literal for the '<em><b>Associated State</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PLAYER__ASSOCIATED_STATE = eINSTANCE.getPlayer_AssociatedState();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.TurnPolicyImpl <em>Turn Policy</em>}' class.
@@ -2036,12 +2104,20 @@ public interface BgPackage extends EPackage {
 		EAttribute PATTERN__TILE_TYPE_NAME = eINSTANCE.getPattern_TileTypeName();
 
 		/**
-		 * The meta object literal for the '<em><b>Tile State Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>State Selection</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PATTERN__TILE_STATE_NAME = eINSTANCE.getPattern_TileStateName();
+		EAttribute PATTERN__STATE_SELECTION = eINSTANCE.getPattern_StateSelection();
+
+		/**
+		 * The meta object literal for the '<em><b>Match State</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PATTERN__MATCH_STATE = eINSTANCE.getPattern_MatchState();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.RelativeCoordinateImpl <em>Relative Coordinate</em>}' class.
@@ -2078,6 +2154,16 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum TURN_TYPE = eINSTANCE.getTurnType();
+
+		/**
+		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.StateSelection <em>State Selection</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.ntnu.tdt4250.bg.StateSelection
+		 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getStateSelection()
+		 * @generated
+		 */
+		EEnum STATE_SELECTION = eINSTANCE.getStateSelection();
 
 	}
 

@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link no.ntnu.tdt4250.bg.Player#getName <em>Name</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Player#getHexColor <em>Hex Color</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.Player#getAssociatedState <em>Associated State</em>}</li>
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getPlayer()
@@ -65,5 +66,27 @@ public interface Player extends EObject {
 	 * @generated
 	 */
 	void setHexColor(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Associated State</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Associated State</em>' reference.
+	 * @see #setAssociatedState(State)
+	 * @see no.ntnu.tdt4250.bg.BgPackage#getPlayer_AssociatedState()
+	 * @model required="true"
+	 * @generated
+	 */
+	State getAssociatedState();
+
+	/**
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Player#getAssociatedState <em>Associated State</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Associated State</em>' reference.
+	 * @see #getAssociatedState()
+	 * @generated
+	 */
+	void setAssociatedState(State value);
 
 } // Player

@@ -8,6 +8,8 @@ import no.ntnu.tdt4250.bg.BgPackage;
 import no.ntnu.tdt4250.bg.Pattern;
 import no.ntnu.tdt4250.bg.RelativeCoordinate;
 
+import no.ntnu.tdt4250.bg.State;
+import no.ntnu.tdt4250.bg.StateSelection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -33,7 +35,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.ntnu.tdt4250.bg.impl.PatternImpl#getRelativecoordinates <em>Relativecoordinates</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.PatternImpl#getName <em>Name</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.PatternImpl#getTileTypeName <em>Tile Type Name</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.impl.PatternImpl#getTileStateName <em>Tile State Name</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.impl.PatternImpl#getStateSelection <em>State Selection</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.impl.PatternImpl#getMatchState <em>Match State</em>}</li>
  * </ul>
  *
  * @generated
@@ -90,24 +93,34 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
 	protected String tileTypeName = TILE_TYPE_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTileStateName() <em>Tile State Name</em>}' attribute.
+	 * The default value of the '{@link #getStateSelection() <em>State Selection</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTileStateName()
+	 * @see #getStateSelection()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String TILE_STATE_NAME_EDEFAULT = null;
+	protected static final StateSelection STATE_SELECTION_EDEFAULT = StateSelection.CURRENT_PLAYER;
 
 	/**
-	 * The cached value of the '{@link #getTileStateName() <em>Tile State Name</em>}' attribute.
+	 * The cached value of the '{@link #getStateSelection() <em>State Selection</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTileStateName()
+	 * @see #getStateSelection()
 	 * @generated
 	 * @ordered
 	 */
-	protected String tileStateName = TILE_STATE_NAME_EDEFAULT;
+	protected StateSelection stateSelection = STATE_SELECTION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getMatchState() <em>Match State</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMatchState()
+	 * @generated
+	 * @ordered
+	 */
+	protected State matchState;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -195,8 +208,8 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
 	 * @generated
 	 */
 	@Override
-	public String getTileStateName() {
-		return tileStateName;
+	public StateSelection getStateSelection() {
+		return stateSelection;
 	}
 
 	/**
@@ -205,12 +218,54 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
 	 * @generated
 	 */
 	@Override
-	public void setTileStateName(String newTileStateName) {
-		String oldTileStateName = tileStateName;
-		tileStateName = newTileStateName;
+	public void setStateSelection(StateSelection newStateSelection) {
+		StateSelection oldStateSelection = stateSelection;
+		stateSelection = newStateSelection == null ? STATE_SELECTION_EDEFAULT : newStateSelection;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.PATTERN__TILE_STATE_NAME, oldTileStateName,
-					tileStateName));
+			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.PATTERN__STATE_SELECTION, oldStateSelection,
+					stateSelection));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public State getMatchState() {
+		if (matchState != null && matchState.eIsProxy()) {
+			InternalEObject oldMatchState = (InternalEObject) matchState;
+			matchState = (State) eResolveProxy(oldMatchState);
+			if (matchState != oldMatchState) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BgPackage.PATTERN__MATCH_STATE,
+							oldMatchState, matchState));
+			}
+		}
+		return matchState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public State basicGetMatchState() {
+		return matchState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setMatchState(State newMatchState) {
+		State oldMatchState = matchState;
+		matchState = newMatchState;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.PATTERN__MATCH_STATE, oldMatchState,
+					matchState));
 	}
 
 	/**
@@ -241,8 +296,12 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
 			return getName();
 		case BgPackage.PATTERN__TILE_TYPE_NAME:
 			return getTileTypeName();
-		case BgPackage.PATTERN__TILE_STATE_NAME:
-			return getTileStateName();
+		case BgPackage.PATTERN__STATE_SELECTION:
+			return getStateSelection();
+		case BgPackage.PATTERN__MATCH_STATE:
+			if (resolve)
+				return getMatchState();
+			return basicGetMatchState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -266,8 +325,11 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
 		case BgPackage.PATTERN__TILE_TYPE_NAME:
 			setTileTypeName((String) newValue);
 			return;
-		case BgPackage.PATTERN__TILE_STATE_NAME:
-			setTileStateName((String) newValue);
+		case BgPackage.PATTERN__STATE_SELECTION:
+			setStateSelection((StateSelection) newValue);
+			return;
+		case BgPackage.PATTERN__MATCH_STATE:
+			setMatchState((State) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -290,8 +352,11 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
 		case BgPackage.PATTERN__TILE_TYPE_NAME:
 			setTileTypeName(TILE_TYPE_NAME_EDEFAULT);
 			return;
-		case BgPackage.PATTERN__TILE_STATE_NAME:
-			setTileStateName(TILE_STATE_NAME_EDEFAULT);
+		case BgPackage.PATTERN__STATE_SELECTION:
+			setStateSelection(STATE_SELECTION_EDEFAULT);
+			return;
+		case BgPackage.PATTERN__MATCH_STATE:
+			setMatchState((State) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -312,9 +377,10 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
 		case BgPackage.PATTERN__TILE_TYPE_NAME:
 			return TILE_TYPE_NAME_EDEFAULT == null ? tileTypeName != null
 					: !TILE_TYPE_NAME_EDEFAULT.equals(tileTypeName);
-		case BgPackage.PATTERN__TILE_STATE_NAME:
-			return TILE_STATE_NAME_EDEFAULT == null ? tileStateName != null
-					: !TILE_STATE_NAME_EDEFAULT.equals(tileStateName);
+		case BgPackage.PATTERN__STATE_SELECTION:
+			return stateSelection != STATE_SELECTION_EDEFAULT;
+		case BgPackage.PATTERN__MATCH_STATE:
+			return matchState != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -334,8 +400,8 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
 		result.append(name);
 		result.append(", tileTypeName: ");
 		result.append(tileTypeName);
-		result.append(", tileStateName: ");
-		result.append(tileStateName);
+		result.append(", stateSelection: ");
+		result.append(stateSelection);
 		result.append(')');
 		return result.toString();
 	}

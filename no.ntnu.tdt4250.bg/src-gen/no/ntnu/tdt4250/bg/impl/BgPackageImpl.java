@@ -14,6 +14,7 @@ import no.ntnu.tdt4250.bg.PatternFilter;
 import no.ntnu.tdt4250.bg.Player;
 import no.ntnu.tdt4250.bg.RelativeCoordinate;
 import no.ntnu.tdt4250.bg.State;
+import no.ntnu.tdt4250.bg.StateSelection;
 import no.ntnu.tdt4250.bg.Tile;
 import no.ntnu.tdt4250.bg.TilePlacement;
 import no.ntnu.tdt4250.bg.Transition;
@@ -141,6 +142,13 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	private EEnum turnTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum stateSelectionEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -401,6 +409,16 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	@Override
 	public EAttribute getPlayer_HexColor() {
 		return (EAttribute) playerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPlayer_AssociatedState() {
+		return (EReference) playerEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -779,8 +797,18 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getPattern_TileStateName() {
+	public EAttribute getPattern_StateSelection() {
 		return (EAttribute) patternEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPattern_MatchState() {
+		return (EReference) patternEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -821,6 +849,16 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	@Override
 	public EEnum getTurnType() {
 		return turnTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getStateSelection() {
+		return stateSelectionEEnum;
 	}
 
 	/**
@@ -874,6 +912,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		playerEClass = createEClass(PLAYER);
 		createEAttribute(playerEClass, PLAYER__NAME);
 		createEAttribute(playerEClass, PLAYER__HEX_COLOR);
+		createEReference(playerEClass, PLAYER__ASSOCIATED_STATE);
 
 		turnPolicyEClass = createEClass(TURN_POLICY);
 		createEAttribute(turnPolicyEClass, TURN_POLICY__TYPE);
@@ -921,7 +960,8 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEReference(patternEClass, PATTERN__RELATIVECOORDINATES);
 		createEAttribute(patternEClass, PATTERN__NAME);
 		createEAttribute(patternEClass, PATTERN__TILE_TYPE_NAME);
-		createEAttribute(patternEClass, PATTERN__TILE_STATE_NAME);
+		createEAttribute(patternEClass, PATTERN__STATE_SELECTION);
+		createEReference(patternEClass, PATTERN__MATCH_STATE);
 
 		relativeCoordinateEClass = createEClass(RELATIVE_COORDINATE);
 		createEAttribute(relativeCoordinateEClass, RELATIVE_COORDINATE__X);
@@ -929,6 +969,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 
 		// Create enums
 		turnTypeEEnum = createEEnum(TURN_TYPE);
+		stateSelectionEEnum = createEEnum(STATE_SELECTION);
 	}
 
 	/**
@@ -1009,6 +1050,9 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPlayer_HexColor(), ecorePackage.getEString(), "hexColor", null, 1, 1, Player.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPlayer_AssociatedState(), this.getState(), null, "associatedState", null, 1, 1, Player.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(turnPolicyEClass, TurnPolicy.class, "TurnPolicy", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1103,9 +1147,12 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPattern_TileTypeName(), ecorePackage.getEString(), "tileTypeName", null, 0, 1, Pattern.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPattern_TileStateName(), ecorePackage.getEString(), "tileStateName", null, 0, 1,
+		initEAttribute(getPattern_StateSelection(), this.getStateSelection(), "stateSelection", null, 0, 1,
 				Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		initEReference(getPattern_MatchState(), this.getState(), null, "matchState", null, 0, 1, Pattern.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(relativeCoordinateEClass, RelativeCoordinate.class, "RelativeCoordinate", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1118,6 +1165,11 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		initEEnum(turnTypeEEnum, TurnType.class, "TurnType");
 		addEEnumLiteral(turnTypeEEnum, TurnType.TURN_BASED);
 		addEEnumLiteral(turnTypeEEnum, TurnType.SIMULTANEOUS);
+
+		initEEnum(stateSelectionEEnum, StateSelection.class, "StateSelection");
+		addEEnumLiteral(stateSelectionEEnum, StateSelection.CURRENT_PLAYER);
+		addEEnumLiteral(stateSelectionEEnum, StateSelection.OTHER_PLAYER);
+		addEEnumLiteral(stateSelectionEEnum, StateSelection.STATE_NAME);
 
 		// Create resource
 		createResource(eNS_URI);
