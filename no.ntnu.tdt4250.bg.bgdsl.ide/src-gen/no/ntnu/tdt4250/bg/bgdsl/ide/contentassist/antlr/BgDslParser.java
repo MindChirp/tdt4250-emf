@@ -34,6 +34,7 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEStringAccess().getAlternatives(), "rule__EString__Alternatives");
 			builder.put(grammarAccess.getEBooleanAccess().getAlternatives(), "rule__EBoolean__Alternatives");
 			builder.put(grammarAccess.getTurnTypeAccess().getAlternatives(), "rule__TurnType__Alternatives");
+			builder.put(grammarAccess.getStateSelectionAccess().getAlternatives(), "rule__StateSelection__Alternatives");
 			builder.put(grammarAccess.getGameAccess().getGroup(), "rule__Game__Group__0");
 			builder.put(grammarAccess.getGameAccess().getGroup_3(), "rule__Game__Group_3__0");
 			builder.put(grammarAccess.getGameAccess().getGroup_6(), "rule__Game__Group_6__0");
@@ -70,7 +71,8 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPatternFilterAccess().getGroup_4(), "rule__PatternFilter__Group_4__0");
 			builder.put(grammarAccess.getPatternFilterAccess().getGroup_8(), "rule__PatternFilter__Group_8__0");
 			builder.put(grammarAccess.getPatternAccess().getGroup(), "rule__Pattern__Group__0");
-			builder.put(grammarAccess.getPatternAccess().getGroup_6(), "rule__Pattern__Group_6__0");
+			builder.put(grammarAccess.getPatternAccess().getGroup_5(), "rule__Pattern__Group_5__0");
+			builder.put(grammarAccess.getPatternAccess().getGroup_9(), "rule__Pattern__Group_9__0");
 			builder.put(grammarAccess.getRelativeCoordinateAccess().getGroup(), "rule__RelativeCoordinate__Group__0");
 			builder.put(grammarAccess.getGameAccess().getNameAssignment_1(), "rule__Game__NameAssignment_1");
 			builder.put(grammarAccess.getGameAccess().getInitialPlayerAssignment_3_1(), "rule__Game__InitialPlayerAssignment_3_1");
@@ -92,6 +94,7 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBoardAccess().getTileplacementAssignment_17_1(), "rule__Board__TileplacementAssignment_17_1");
 			builder.put(grammarAccess.getPlayerAccess().getNameAssignment_1(), "rule__Player__NameAssignment_1");
 			builder.put(grammarAccess.getPlayerAccess().getHexColorAssignment_4(), "rule__Player__HexColorAssignment_4");
+			builder.put(grammarAccess.getPlayerAccess().getAssociatedStateAssignment_6(), "rule__Player__AssociatedStateAssignment_6");
 			builder.put(grammarAccess.getTurnPolicyAccess().getTypeAssignment_3(), "rule__TurnPolicy__TypeAssignment_3");
 			builder.put(grammarAccess.getTileAccess().getTypeAssignment_1(), "rule__Tile__TypeAssignment_1");
 			builder.put(grammarAccess.getTileAccess().getHexColorAssignment_4(), "rule__Tile__HexColorAssignment_4");
@@ -121,8 +124,10 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPatternFilterAccess().getPatternsAssignment_7(), "rule__PatternFilter__PatternsAssignment_7");
 			builder.put(grammarAccess.getPatternFilterAccess().getPatternsAssignment_8_1(), "rule__PatternFilter__PatternsAssignment_8_1");
 			builder.put(grammarAccess.getPatternAccess().getNameAssignment_1(), "rule__Pattern__NameAssignment_1");
-			builder.put(grammarAccess.getPatternAccess().getRelativecoordinatesAssignment_5(), "rule__Pattern__RelativecoordinatesAssignment_5");
-			builder.put(grammarAccess.getPatternAccess().getRelativecoordinatesAssignment_6_1(), "rule__Pattern__RelativecoordinatesAssignment_6_1");
+			builder.put(grammarAccess.getPatternAccess().getStateSelectionAssignment_4(), "rule__Pattern__StateSelectionAssignment_4");
+			builder.put(grammarAccess.getPatternAccess().getMatchStateAssignment_5_1(), "rule__Pattern__MatchStateAssignment_5_1");
+			builder.put(grammarAccess.getPatternAccess().getRelativecoordinatesAssignment_8(), "rule__Pattern__RelativecoordinatesAssignment_8");
+			builder.put(grammarAccess.getPatternAccess().getRelativecoordinatesAssignment_9_1(), "rule__Pattern__RelativecoordinatesAssignment_9_1");
 			builder.put(grammarAccess.getRelativeCoordinateAccess().getXAssignment_3(), "rule__RelativeCoordinate__XAssignment_3");
 			builder.put(grammarAccess.getRelativeCoordinateAccess().getYAssignment_5(), "rule__RelativeCoordinate__YAssignment_5");
 		}

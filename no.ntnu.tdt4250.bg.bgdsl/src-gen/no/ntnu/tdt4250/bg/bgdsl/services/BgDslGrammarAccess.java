@@ -448,13 +448,18 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cHexColorKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cHexColorAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cHexColorEStringParserRuleCall_4_0 = (RuleCall)cHexColorAssignment_4.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cAssociatedStateKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cAssociatedStateAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final CrossReference cAssociatedStateStateCrossReference_6_0 = (CrossReference)cAssociatedStateAssignment_6.eContents().get(0);
+		private final RuleCall cAssociatedStateStateEStringParserRuleCall_6_0_1 = (RuleCall)cAssociatedStateStateCrossReference_6_0.eContents().get(1);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//Player returns Player:
 		//    'Player'
 		//    name=EString
 		//    '{'
 		//        'hexColor' hexColor=EString
+		//        'associatedState' associatedState=[State|EString]
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -462,6 +467,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//name=EString
 		//'{'
 		//    'hexColor' hexColor=EString
+		//    'associatedState' associatedState=[State|EString]
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
@@ -486,8 +492,20 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//EString
 		public RuleCall getHexColorEStringParserRuleCall_4_0() { return cHexColorEStringParserRuleCall_4_0; }
 		
+		//'associatedState'
+		public Keyword getAssociatedStateKeyword_5() { return cAssociatedStateKeyword_5; }
+		
+		//associatedState=[State|EString]
+		public Assignment getAssociatedStateAssignment_6() { return cAssociatedStateAssignment_6; }
+		
+		//[State|EString]
+		public CrossReference getAssociatedStateStateCrossReference_6_0() { return cAssociatedStateStateCrossReference_6_0; }
+		
+		//EString
+		public RuleCall getAssociatedStateStateEStringParserRuleCall_6_0_1() { return cAssociatedStateStateEStringParserRuleCall_6_0_1; }
+		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
 	}
 	public class TurnPolicyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.TurnPolicy");
@@ -1260,21 +1278,31 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameEStringParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cRelativeCoordinatesKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cRelativecoordinatesAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cRelativecoordinatesRelativeCoordinateParserRuleCall_5_0 = (RuleCall)cRelativecoordinatesAssignment_5.eContents().get(0);
-		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cCommaKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Assignment cRelativecoordinatesAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cRelativecoordinatesRelativeCoordinateParserRuleCall_6_1_0 = (RuleCall)cRelativecoordinatesAssignment_6_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
-		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Keyword cStateSelectionKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cStateSelectionAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cStateSelectionStateSelectionEnumRuleCall_4_0 = (RuleCall)cStateSelectionAssignment_4.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cMatchStateKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cMatchStateAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final CrossReference cMatchStateStateCrossReference_5_1_0 = (CrossReference)cMatchStateAssignment_5_1.eContents().get(0);
+		private final RuleCall cMatchStateStateEStringParserRuleCall_5_1_0_1 = (RuleCall)cMatchStateStateCrossReference_5_1_0.eContents().get(1);
+		private final Keyword cRelativeCoordinatesKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cLeftCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cRelativecoordinatesAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cRelativecoordinatesRelativeCoordinateParserRuleCall_8_0 = (RuleCall)cRelativecoordinatesAssignment_8.eContents().get(0);
+		private final Group cGroup_9 = (Group)cGroup.eContents().get(9);
+		private final Keyword cCommaKeyword_9_0 = (Keyword)cGroup_9.eContents().get(0);
+		private final Assignment cRelativecoordinatesAssignment_9_1 = (Assignment)cGroup_9.eContents().get(1);
+		private final RuleCall cRelativecoordinatesRelativeCoordinateParserRuleCall_9_1_0 = (RuleCall)cRelativecoordinatesAssignment_9_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
 		
 		//Pattern returns Pattern:
 		//    'Pattern'
 		//    name=EString
 		//    '{'
+		//        'stateSelection' stateSelection=StateSelection
+		//        ('matchState' matchState=[State|EString])?
 		//        'relativeCoordinates' '{' relativecoordinates+=RelativeCoordinate ( ","  relativecoordinates+=RelativeCoordinate)* '}'
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
@@ -1282,6 +1310,8 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'Pattern'
 		//name=EString
 		//'{'
+		//    'stateSelection' stateSelection=StateSelection
+		//    ('matchState' matchState=[State|EString])?
 		//    'relativeCoordinates' '{' relativecoordinates+=RelativeCoordinate ( ","  relativecoordinates+=RelativeCoordinate)* '}'
 		//'}'
 		public Group getGroup() { return cGroup; }
@@ -1298,35 +1328,59 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
+		//'stateSelection'
+		public Keyword getStateSelectionKeyword_3() { return cStateSelectionKeyword_3; }
+		
+		//stateSelection=StateSelection
+		public Assignment getStateSelectionAssignment_4() { return cStateSelectionAssignment_4; }
+		
+		//StateSelection
+		public RuleCall getStateSelectionStateSelectionEnumRuleCall_4_0() { return cStateSelectionStateSelectionEnumRuleCall_4_0; }
+		
+		//('matchState' matchState=[State|EString])?
+		public Group getGroup_5() { return cGroup_5; }
+		
+		//'matchState'
+		public Keyword getMatchStateKeyword_5_0() { return cMatchStateKeyword_5_0; }
+		
+		//matchState=[State|EString]
+		public Assignment getMatchStateAssignment_5_1() { return cMatchStateAssignment_5_1; }
+		
+		//[State|EString]
+		public CrossReference getMatchStateStateCrossReference_5_1_0() { return cMatchStateStateCrossReference_5_1_0; }
+		
+		//EString
+		public RuleCall getMatchStateStateEStringParserRuleCall_5_1_0_1() { return cMatchStateStateEStringParserRuleCall_5_1_0_1; }
+		
 		//'relativeCoordinates'
-		public Keyword getRelativeCoordinatesKeyword_3() { return cRelativeCoordinatesKeyword_3; }
+		public Keyword getRelativeCoordinatesKeyword_6() { return cRelativeCoordinatesKeyword_6; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
+		public Keyword getLeftCurlyBracketKeyword_7() { return cLeftCurlyBracketKeyword_7; }
 		
 		//relativecoordinates+=RelativeCoordinate
-		public Assignment getRelativecoordinatesAssignment_5() { return cRelativecoordinatesAssignment_5; }
+		public Assignment getRelativecoordinatesAssignment_8() { return cRelativecoordinatesAssignment_8; }
 		
 		//RelativeCoordinate
-		public RuleCall getRelativecoordinatesRelativeCoordinateParserRuleCall_5_0() { return cRelativecoordinatesRelativeCoordinateParserRuleCall_5_0; }
+		public RuleCall getRelativecoordinatesRelativeCoordinateParserRuleCall_8_0() { return cRelativecoordinatesRelativeCoordinateParserRuleCall_8_0; }
 		
 		//( ","  relativecoordinates+=RelativeCoordinate)*
-		public Group getGroup_6() { return cGroup_6; }
+		public Group getGroup_9() { return cGroup_9; }
 		
 		//","
-		public Keyword getCommaKeyword_6_0() { return cCommaKeyword_6_0; }
+		public Keyword getCommaKeyword_9_0() { return cCommaKeyword_9_0; }
 		
 		//relativecoordinates+=RelativeCoordinate
-		public Assignment getRelativecoordinatesAssignment_6_1() { return cRelativecoordinatesAssignment_6_1; }
+		public Assignment getRelativecoordinatesAssignment_9_1() { return cRelativecoordinatesAssignment_9_1; }
 		
 		//RelativeCoordinate
-		public RuleCall getRelativecoordinatesRelativeCoordinateParserRuleCall_6_1_0() { return cRelativecoordinatesRelativeCoordinateParserRuleCall_6_1_0; }
+		public RuleCall getRelativecoordinatesRelativeCoordinateParserRuleCall_9_1_0() { return cRelativecoordinatesRelativeCoordinateParserRuleCall_9_1_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
+		public Keyword getRightCurlyBracketKeyword_10() { return cRightCurlyBracketKeyword_10; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
+		public Keyword getRightCurlyBracketKeyword_11() { return cRightCurlyBracketKeyword_11; }
 	}
 	public class RelativeCoordinateElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.RelativeCoordinate");
@@ -1411,6 +1465,41 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'Simultaneous'
 		public Keyword getSimultaneousSimultaneousKeyword_1_0() { return cSimultaneousSimultaneousKeyword_1_0; }
 	}
+	public class StateSelectionElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.StateSelection");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cCurrentPlayerEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cCurrentPlayerCurrentPlayerKeyword_0_0 = (Keyword)cCurrentPlayerEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cOtherPlayerEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cOtherPlayerOtherPlayerKeyword_1_0 = (Keyword)cOtherPlayerEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cStateEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cStateStateKeyword_2_0 = (Keyword)cStateEnumLiteralDeclaration_2.eContents().get(0);
+		
+		//enum StateSelection returns StateSelection:
+		//    CurrentPlayer = 'CurrentPlayer' | OtherPlayer = 'OtherPlayer' | State = 'State';
+		public EnumRule getRule() { return rule; }
+		
+		//CurrentPlayer = 'CurrentPlayer' | OtherPlayer = 'OtherPlayer' | State = 'State'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//CurrentPlayer = 'CurrentPlayer'
+		public EnumLiteralDeclaration getCurrentPlayerEnumLiteralDeclaration_0() { return cCurrentPlayerEnumLiteralDeclaration_0; }
+		
+		//'CurrentPlayer'
+		public Keyword getCurrentPlayerCurrentPlayerKeyword_0_0() { return cCurrentPlayerCurrentPlayerKeyword_0_0; }
+		
+		//OtherPlayer = 'OtherPlayer'
+		public EnumLiteralDeclaration getOtherPlayerEnumLiteralDeclaration_1() { return cOtherPlayerEnumLiteralDeclaration_1; }
+		
+		//'OtherPlayer'
+		public Keyword getOtherPlayerOtherPlayerKeyword_1_0() { return cOtherPlayerOtherPlayerKeyword_1_0; }
+		
+		//State = 'State'
+		public EnumLiteralDeclaration getStateEnumLiteralDeclaration_2() { return cStateEnumLiteralDeclaration_2; }
+		
+		//'State'
+		public Keyword getStateStateKeyword_2_0() { return cStateStateKeyword_2_0; }
+	}
 	
 	private final GameElements pGame;
 	private final FilterElements pFilter;
@@ -1430,6 +1519,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final PatternElements pPattern;
 	private final RelativeCoordinateElements pRelativeCoordinate;
 	private final TurnTypeElements eTurnType;
+	private final StateSelectionElements eStateSelection;
 	
 	private final Grammar grammar;
 	
@@ -1458,6 +1548,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pPattern = new PatternElements();
 		this.pRelativeCoordinate = new RelativeCoordinateElements();
 		this.eTurnType = new TurnTypeElements();
+		this.eStateSelection = new StateSelectionElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1548,6 +1639,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    name=EString
 	//    '{'
 	//        'hexColor' hexColor=EString
+	//        'associatedState' associatedState=[State|EString]
 	//    '}';
 	public PlayerElements getPlayerAccess() {
 		return pPlayer;
@@ -1702,6 +1794,8 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    'Pattern'
 	//    name=EString
 	//    '{'
+	//        'stateSelection' stateSelection=StateSelection
+	//        ('matchState' matchState=[State|EString])?
 	//        'relativeCoordinates' '{' relativecoordinates+=RelativeCoordinate ( ","  relativecoordinates+=RelativeCoordinate)* '}'
 	//    '}';
 	public PatternElements getPatternAccess() {
@@ -1734,6 +1828,16 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public EnumRule getTurnTypeRule() {
 		return getTurnTypeAccess().getRule();
+	}
+	
+	//enum StateSelection returns StateSelection:
+	//    CurrentPlayer = 'CurrentPlayer' | OtherPlayer = 'OtherPlayer' | State = 'State';
+	public StateSelectionElements getStateSelectionAccess() {
+		return eStateSelection;
+	}
+	
+	public EnumRule getStateSelectionRule() {
+		return getStateSelectionAccess().getRule();
 	}
 	
 	//terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;

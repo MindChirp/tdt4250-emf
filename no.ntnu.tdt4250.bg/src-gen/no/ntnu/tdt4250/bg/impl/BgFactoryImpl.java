@@ -97,6 +97,8 @@ public class BgFactoryImpl extends EFactoryImpl implements BgFactory {
 		switch (eDataType.getClassifierID()) {
 		case BgPackage.TURN_TYPE:
 			return createTurnTypeFromString(eDataType, initialValue);
+		case BgPackage.STATE_SELECTION:
+			return createStateSelectionFromString(eDataType, initialValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -112,6 +114,8 @@ public class BgFactoryImpl extends EFactoryImpl implements BgFactory {
 		switch (eDataType.getClassifierID()) {
 		case BgPackage.TURN_TYPE:
 			return convertTurnTypeToString(eDataType, instanceValue);
+		case BgPackage.STATE_SELECTION:
+			return convertStateSelectionToString(eDataType, instanceValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -279,6 +283,28 @@ public class BgFactoryImpl extends EFactoryImpl implements BgFactory {
 	 * @generated
 	 */
 	public String convertTurnTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StateSelection createStateSelectionFromString(EDataType eDataType, String initialValue) {
+		StateSelection result = StateSelection.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertStateSelectionToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
