@@ -68,10 +68,8 @@ public class BgFactoryImpl extends EFactoryImpl implements BgFactory {
 			return createLegalMovesPipeline();
 		case BgPackage.EFFECT_PIPELINE:
 			return createEffectPipeline();
-		case BgPackage.SOME_FILTER1:
-			return createSomeFilter1();
-		case BgPackage.SOME_FILTER2:
-			return createSomeFilter2();
+		case BgPackage.PATTERN_FILTER:
+			return createPatternFilter();
 		case BgPackage.TILE:
 			return createTile();
 		case BgPackage.STATE:
@@ -80,6 +78,10 @@ public class BgFactoryImpl extends EFactoryImpl implements BgFactory {
 			return createTransition();
 		case BgPackage.TILE_PLACEMENT:
 			return createTilePlacement();
+		case BgPackage.PATTERN:
+			return createPattern();
+		case BgPackage.RELATIVE_COORDINATE:
+			return createRelativeCoordinate();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -187,20 +189,9 @@ public class BgFactoryImpl extends EFactoryImpl implements BgFactory {
 	 * @generated
 	 */
 	@Override
-	public SomeFilter1 createSomeFilter1() {
-		SomeFilter1Impl someFilter1 = new SomeFilter1Impl();
-		return someFilter1;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SomeFilter2 createSomeFilter2() {
-		SomeFilter2Impl someFilter2 = new SomeFilter2Impl();
-		return someFilter2;
+	public PatternFilter createPatternFilter() {
+		PatternFilterImpl patternFilter = new PatternFilterImpl();
+		return patternFilter;
 	}
 
 	/**
@@ -245,6 +236,28 @@ public class BgFactoryImpl extends EFactoryImpl implements BgFactory {
 	public TilePlacement createTilePlacement() {
 		TilePlacementImpl tilePlacement = new TilePlacementImpl();
 		return tilePlacement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Pattern createPattern() {
+		PatternImpl pattern = new PatternImpl();
+		return pattern;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RelativeCoordinate createRelativeCoordinate() {
+		RelativeCoordinateImpl relativeCoordinate = new RelativeCoordinateImpl();
+		return relativeCoordinate;
 	}
 
 	/**

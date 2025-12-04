@@ -18,7 +18,7 @@ Game returns Game:
 
 
 Filter returns Filter:
-	SomeFilter1 | SomeFilter2;
+	PatternFilter;
 
 Board returns Board:
 	checkered?='checkered'
@@ -104,18 +104,30 @@ Transition returns Transition:
 		'target' target=[State|EString]
 	'}';
 
-SomeFilter1 returns SomeFilter1:
-	{SomeFilter1}
-	'SomeFilter1'
+PatternFilter returns PatternFilter:
+	{PatternFilter}
+	'PatternFilter'
+	name=EString
 	'{'
 		('nextFilter' nextFilter=Filter)?
+		'patterns' '{' patterns+=Pattern ( "," patterns+=Pattern)* '}'
+	'}';
+	
+Pattern returns Pattern:
+	'Pattern'
+	name=EString
+	'{'
+		('tileTypeName' tileTypeName=EString)?
+		('tileStateName' tileStateName=EString)?
+		'relativeCoordinates' '{' relativecoordinates+=RelativeCoordinate ( ","  relativecoordinates+=RelativeCoordinate)* '}'
 	'}';
 
-SomeFilter2 returns SomeFilter2:
-	{SomeFilter2}
-	'SomeFilter2'
+
+RelativeCoordinate returns RelativeCoordinate:
+	'RelativeCoordinate'
 	'{'
-		('nextFilter' nextFilter=Filter)?
+		'x' x=EInt
+		'y' y=EInt
 	'}';
 
 enum TurnType returns TurnType:

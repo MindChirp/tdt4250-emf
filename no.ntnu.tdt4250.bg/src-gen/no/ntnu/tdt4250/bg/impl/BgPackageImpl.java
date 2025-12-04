@@ -9,9 +9,10 @@ import no.ntnu.tdt4250.bg.EffectPipeline;
 import no.ntnu.tdt4250.bg.Filter;
 import no.ntnu.tdt4250.bg.Game;
 import no.ntnu.tdt4250.bg.LegalMovesPipeline;
+import no.ntnu.tdt4250.bg.Pattern;
+import no.ntnu.tdt4250.bg.PatternFilter;
 import no.ntnu.tdt4250.bg.Player;
-import no.ntnu.tdt4250.bg.SomeFilter1;
-import no.ntnu.tdt4250.bg.SomeFilter2;
+import no.ntnu.tdt4250.bg.RelativeCoordinate;
 import no.ntnu.tdt4250.bg.State;
 import no.ntnu.tdt4250.bg.Tile;
 import no.ntnu.tdt4250.bg.TilePlacement;
@@ -90,14 +91,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass someFilter1EClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass someFilter2EClass = null;
+	private EClass patternFilterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -126,6 +120,20 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	private EClass tilePlacementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass patternEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass relativeCoordinateEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -481,8 +489,8 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EClass getSomeFilter1() {
-		return someFilter1EClass;
+	public EClass getPatternFilter() {
+		return patternFilterEClass;
 	}
 
 	/**
@@ -491,8 +499,18 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EClass getSomeFilter2() {
-		return someFilter2EClass;
+	public EReference getPatternFilter_Patterns() {
+		return (EReference) patternFilterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPatternFilter_Name() {
+		return (EAttribute) patternFilterEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -721,6 +739,86 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getPattern() {
+		return patternEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPattern_Relativecoordinates() {
+		return (EReference) patternEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPattern_Name() {
+		return (EAttribute) patternEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPattern_TileTypeName() {
+		return (EAttribute) patternEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPattern_TileStateName() {
+		return (EAttribute) patternEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getRelativeCoordinate() {
+		return relativeCoordinateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getRelativeCoordinate_X() {
+		return (EAttribute) relativeCoordinateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getRelativeCoordinate_Y() {
+		return (EAttribute) relativeCoordinateEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getTurnType() {
 		return turnTypeEEnum;
 	}
@@ -789,9 +887,9 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		filterEClass = createEClass(FILTER);
 		createEReference(filterEClass, FILTER__NEXT_FILTER);
 
-		someFilter1EClass = createEClass(SOME_FILTER1);
-
-		someFilter2EClass = createEClass(SOME_FILTER2);
+		patternFilterEClass = createEClass(PATTERN_FILTER);
+		createEReference(patternFilterEClass, PATTERN_FILTER__PATTERNS);
+		createEAttribute(patternFilterEClass, PATTERN_FILTER__NAME);
 
 		tileEClass = createEClass(TILE);
 		createEReference(tileEClass, TILE__STATES);
@@ -818,6 +916,16 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEReference(tilePlacementEClass, TILE_PLACEMENT__TILE);
 		createEAttribute(tilePlacementEClass, TILE_PLACEMENT__DARKER);
 		createEAttribute(tilePlacementEClass, TILE_PLACEMENT__COORDINATE);
+
+		patternEClass = createEClass(PATTERN);
+		createEReference(patternEClass, PATTERN__RELATIVECOORDINATES);
+		createEAttribute(patternEClass, PATTERN__NAME);
+		createEAttribute(patternEClass, PATTERN__TILE_TYPE_NAME);
+		createEAttribute(patternEClass, PATTERN__TILE_STATE_NAME);
+
+		relativeCoordinateEClass = createEClass(RELATIVE_COORDINATE);
+		createEAttribute(relativeCoordinateEClass, RELATIVE_COORDINATE__X);
+		createEAttribute(relativeCoordinateEClass, RELATIVE_COORDINATE__Y);
 
 		// Create enums
 		turnTypeEEnum = createEEnum(TURN_TYPE);
@@ -852,8 +960,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		someFilter1EClass.getESuperTypes().add(this.getFilter());
-		someFilter2EClass.getESuperTypes().add(this.getFilter());
+		patternFilterEClass.getESuperTypes().add(this.getFilter());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(gameEClass, Game.class, "Game", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -925,11 +1032,13 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(someFilter1EClass, SomeFilter1.class, "SomeFilter1", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(patternFilterEClass, PatternFilter.class, "PatternFilter", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(someFilter2EClass, SomeFilter2.class, "SomeFilter2", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPatternFilter_Patterns(), this.getPattern(), null, "patterns", null, 1, -1,
+				PatternFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPatternFilter_Name(), ecorePackage.getEString(), "name", null, 1, 1, PatternFilter.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tileEClass, Tile.class, "Tile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTile_States(), this.getState(), null, "states", null, 1, -1, Tile.class, !IS_TRANSIENT,
@@ -985,6 +1094,25 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		initEAttribute(getTilePlacement_Coordinate(), ecorePackage.getEString(), "coordinate", null, 1, 1,
 				TilePlacement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				IS_DERIVED, IS_ORDERED);
+
+		initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPattern_Relativecoordinates(), this.getRelativeCoordinate(), null, "relativecoordinates",
+				null, 1, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPattern_Name(), ecorePackage.getEString(), "name", null, 1, 1, Pattern.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPattern_TileTypeName(), ecorePackage.getEString(), "tileTypeName", null, 0, 1, Pattern.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPattern_TileStateName(), ecorePackage.getEString(), "tileStateName", null, 0, 1,
+				Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(relativeCoordinateEClass, RelativeCoordinate.class, "RelativeCoordinate", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRelativeCoordinate_X(), ecorePackage.getEInt(), "x", null, 1, 1, RelativeCoordinate.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRelativeCoordinate_Y(), ecorePackage.getEInt(), "y", null, 1, 1, RelativeCoordinate.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(turnTypeEEnum, TurnType.class, "TurnType");

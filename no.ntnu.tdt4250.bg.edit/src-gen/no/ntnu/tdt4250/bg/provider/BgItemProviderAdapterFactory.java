@@ -211,49 +211,26 @@ public class BgItemProviderAdapterFactory extends BgAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link no.ntnu.tdt4250.bg.SomeFilter1} instances.
+	 * This keeps track of the one adapter used for all {@link no.ntnu.tdt4250.bg.PatternFilter} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SomeFilter1ItemProvider someFilter1ItemProvider;
+	protected PatternFilterItemProvider patternFilterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link no.ntnu.tdt4250.bg.SomeFilter1}.
+	 * This creates an adapter for a {@link no.ntnu.tdt4250.bg.PatternFilter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createSomeFilter1Adapter() {
-		if (someFilter1ItemProvider == null) {
-			someFilter1ItemProvider = new SomeFilter1ItemProvider(this);
+	public Adapter createPatternFilterAdapter() {
+		if (patternFilterItemProvider == null) {
+			patternFilterItemProvider = new PatternFilterItemProvider(this);
 		}
 
-		return someFilter1ItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link no.ntnu.tdt4250.bg.SomeFilter2} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SomeFilter2ItemProvider someFilter2ItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link no.ntnu.tdt4250.bg.SomeFilter2}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSomeFilter2Adapter() {
-		if (someFilter2ItemProvider == null) {
-			someFilter2ItemProvider = new SomeFilter2ItemProvider(this);
-		}
-
-		return someFilter2ItemProvider;
+		return patternFilterItemProvider;
 	}
 
 	/**
@@ -346,6 +323,52 @@ public class BgItemProviderAdapterFactory extends BgAdapterFactory
 		}
 
 		return tilePlacementItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link no.ntnu.tdt4250.bg.Pattern} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PatternItemProvider patternItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link no.ntnu.tdt4250.bg.Pattern}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPatternAdapter() {
+		if (patternItemProvider == null) {
+			patternItemProvider = new PatternItemProvider(this);
+		}
+
+		return patternItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link no.ntnu.tdt4250.bg.RelativeCoordinate} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RelativeCoordinateItemProvider relativeCoordinateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link no.ntnu.tdt4250.bg.RelativeCoordinate}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRelativeCoordinateAdapter() {
+		if (relativeCoordinateItemProvider == null) {
+			relativeCoordinateItemProvider = new RelativeCoordinateItemProvider(this);
+		}
+
+		return relativeCoordinateItemProvider;
 	}
 
 	/**
@@ -465,10 +488,8 @@ public class BgItemProviderAdapterFactory extends BgAdapterFactory
 			legalMovesPipelineItemProvider.dispose();
 		if (effectPipelineItemProvider != null)
 			effectPipelineItemProvider.dispose();
-		if (someFilter1ItemProvider != null)
-			someFilter1ItemProvider.dispose();
-		if (someFilter2ItemProvider != null)
-			someFilter2ItemProvider.dispose();
+		if (patternFilterItemProvider != null)
+			patternFilterItemProvider.dispose();
 		if (tileItemProvider != null)
 			tileItemProvider.dispose();
 		if (stateItemProvider != null)
@@ -477,6 +498,10 @@ public class BgItemProviderAdapterFactory extends BgAdapterFactory
 			transitionItemProvider.dispose();
 		if (tilePlacementItemProvider != null)
 			tilePlacementItemProvider.dispose();
+		if (patternItemProvider != null)
+			patternItemProvider.dispose();
+		if (relativeCoordinateItemProvider != null)
+			relativeCoordinateItemProvider.dispose();
 	}
 
 }

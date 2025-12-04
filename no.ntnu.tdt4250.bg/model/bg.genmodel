@@ -48,8 +48,10 @@
     <genClasses ecoreClass="bg.ecore#//Filter">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Filter/nextFilter"/>
     </genClasses>
-    <genClasses ecoreClass="bg.ecore#//SomeFilter1"/>
-    <genClasses ecoreClass="bg.ecore#//SomeFilter2"/>
+    <genClasses ecoreClass="bg.ecore#//PatternFilter">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//PatternFilter/patterns"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//PatternFilter/name"/>
+    </genClasses>
     <genClasses ecoreClass="bg.ecore#//Tile">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Tile/states"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Tile/transitions"/>
@@ -75,6 +77,16 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//TilePlacement/tile"/>
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//TilePlacement/darker"/>
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//TilePlacement/coordinate"/>
+    </genClasses>
+    <genClasses ecoreClass="bg.ecore#//Pattern">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Pattern/relativecoordinates"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Pattern/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Pattern/tileTypeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Pattern/tileStateName"/>
+    </genClasses>
+    <genClasses ecoreClass="bg.ecore#//RelativeCoordinate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//RelativeCoordinate/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//RelativeCoordinate/y"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

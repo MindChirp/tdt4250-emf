@@ -102,13 +102,8 @@ public class BgAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseSomeFilter1(SomeFilter1 object) {
-			return createSomeFilter1Adapter();
-		}
-
-		@Override
-		public Adapter caseSomeFilter2(SomeFilter2 object) {
-			return createSomeFilter2Adapter();
+		public Adapter casePatternFilter(PatternFilter object) {
+			return createPatternFilterAdapter();
 		}
 
 		@Override
@@ -129,6 +124,16 @@ public class BgAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseTilePlacement(TilePlacement object) {
 			return createTilePlacementAdapter();
+		}
+
+		@Override
+		public Adapter casePattern(Pattern object) {
+			return createPatternAdapter();
+		}
+
+		@Override
+		public Adapter caseRelativeCoordinate(RelativeCoordinate object) {
+			return createRelativeCoordinateAdapter();
 		}
 
 		@Override
@@ -249,30 +254,16 @@ public class BgAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link no.ntnu.tdt4250.bg.SomeFilter1 <em>Some Filter1</em>}'.
+	 * Creates a new adapter for an object of class '{@link no.ntnu.tdt4250.bg.PatternFilter <em>Pattern Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see no.ntnu.tdt4250.bg.SomeFilter1
+	 * @see no.ntnu.tdt4250.bg.PatternFilter
 	 * @generated
 	 */
-	public Adapter createSomeFilter1Adapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link no.ntnu.tdt4250.bg.SomeFilter2 <em>Some Filter2</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see no.ntnu.tdt4250.bg.SomeFilter2
-	 * @generated
-	 */
-	public Adapter createSomeFilter2Adapter() {
+	public Adapter createPatternFilterAdapter() {
 		return null;
 	}
 
@@ -329,6 +320,34 @@ public class BgAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTilePlacementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.ntnu.tdt4250.bg.Pattern <em>Pattern</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.ntnu.tdt4250.bg.Pattern
+	 * @generated
+	 */
+	public Adapter createPatternAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.ntnu.tdt4250.bg.RelativeCoordinate <em>Relative Coordinate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.ntnu.tdt4250.bg.RelativeCoordinate
+	 * @generated
+	 */
+	public Adapter createRelativeCoordinateAdapter() {
 		return null;
 	}
 

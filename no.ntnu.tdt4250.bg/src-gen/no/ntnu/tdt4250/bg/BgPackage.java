@@ -434,14 +434,14 @@ public interface BgPackage extends EPackage {
 	int FILTER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.impl.SomeFilter1Impl <em>Some Filter1</em>}' class.
+	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.impl.PatternFilterImpl <em>Pattern Filter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.ntnu.tdt4250.bg.impl.SomeFilter1Impl
-	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getSomeFilter1()
+	 * @see no.ntnu.tdt4250.bg.impl.PatternFilterImpl
+	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getPatternFilter()
 	 * @generated
 	 */
-	int SOME_FILTER1 = 7;
+	int PATTERN_FILTER = 7;
 
 	/**
 	 * The feature id for the '<em><b>Next Filter</b></em>' containment reference.
@@ -450,62 +450,43 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOME_FILTER1__NEXT_FILTER = FILTER__NEXT_FILTER;
+	int PATTERN_FILTER__NEXT_FILTER = FILTER__NEXT_FILTER;
 
 	/**
-	 * The number of structural features of the '<em>Some Filter1</em>' class.
+	 * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOME_FILTER1_FEATURE_COUNT = FILTER_FEATURE_COUNT + 0;
+	int PATTERN_FILTER__PATTERNS = FILTER_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Some Filter1</em>' class.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOME_FILTER1_OPERATION_COUNT = FILTER_OPERATION_COUNT + 0;
+	int PATTERN_FILTER__NAME = FILTER_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.impl.SomeFilter2Impl <em>Some Filter2</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.ntnu.tdt4250.bg.impl.SomeFilter2Impl
-	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getSomeFilter2()
-	 * @generated
-	 */
-	int SOME_FILTER2 = 8;
-
-	/**
-	 * The feature id for the '<em><b>Next Filter</b></em>' containment reference.
+	 * The number of structural features of the '<em>Pattern Filter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOME_FILTER2__NEXT_FILTER = FILTER__NEXT_FILTER;
+	int PATTERN_FILTER_FEATURE_COUNT = FILTER_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Some Filter2</em>' class.
+	 * The number of operations of the '<em>Pattern Filter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOME_FILTER2_FEATURE_COUNT = FILTER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Some Filter2</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOME_FILTER2_OPERATION_COUNT = FILTER_OPERATION_COUNT + 0;
+	int PATTERN_FILTER_OPERATION_COUNT = FILTER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.impl.TileImpl <em>Tile</em>}' class.
@@ -515,7 +496,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getTile()
 	 * @generated
 	 */
-	int TILE = 9;
+	int TILE = 8;
 
 	/**
 	 * The feature id for the '<em><b>States</b></em>' containment reference list.
@@ -597,7 +578,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getState()
 	 * @generated
 	 */
-	int STATE = 10;
+	int STATE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Outbound</b></em>' reference list.
@@ -661,7 +642,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getTransition()
 	 * @generated
 	 */
-	int TRANSITION = 11;
+	int TRANSITION = 10;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference list.
@@ -716,7 +697,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getTilePlacement()
 	 * @generated
 	 */
-	int TILE_PLACEMENT = 12;
+	int TILE_PLACEMENT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Row</b></em>' attribute.
@@ -782,6 +763,116 @@ public interface BgPackage extends EPackage {
 	int TILE_PLACEMENT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.impl.PatternImpl <em>Pattern</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.ntnu.tdt4250.bg.impl.PatternImpl
+	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getPattern()
+	 * @generated
+	 */
+	int PATTERN = 12;
+
+	/**
+	 * The feature id for the '<em><b>Relativecoordinates</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN__RELATIVECOORDINATES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN__NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Tile Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN__TILE_TYPE_NAME = 2;
+
+	/**
+	 * The feature id for the '<em><b>Tile State Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN__TILE_STATE_NAME = 3;
+
+	/**
+	 * The number of structural features of the '<em>Pattern</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Pattern</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.impl.RelativeCoordinateImpl <em>Relative Coordinate</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.ntnu.tdt4250.bg.impl.RelativeCoordinateImpl
+	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getRelativeCoordinate()
+	 * @generated
+	 */
+	int RELATIVE_COORDINATE = 13;
+
+	/**
+	 * The feature id for the '<em><b>X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIVE_COORDINATE__X = 0;
+
+	/**
+	 * The feature id for the '<em><b>Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIVE_COORDINATE__Y = 1;
+
+	/**
+	 * The number of structural features of the '<em>Relative Coordinate</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIVE_COORDINATE_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Relative Coordinate</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIVE_COORDINATE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -789,7 +880,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getTurnType()
 	 * @generated
 	 */
-	int TURN_TYPE = 13;
+	int TURN_TYPE = 14;
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Game <em>Game</em>}'.
@@ -1082,24 +1173,36 @@ public interface BgPackage extends EPackage {
 	EReference getFilter_NextFilter();
 
 	/**
-	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.SomeFilter1 <em>Some Filter1</em>}'.
+	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.PatternFilter <em>Pattern Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Some Filter1</em>'.
-	 * @see no.ntnu.tdt4250.bg.SomeFilter1
+	 * @return the meta object for class '<em>Pattern Filter</em>'.
+	 * @see no.ntnu.tdt4250.bg.PatternFilter
 	 * @generated
 	 */
-	EClass getSomeFilter1();
+	EClass getPatternFilter();
 
 	/**
-	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.SomeFilter2 <em>Some Filter2</em>}'.
+	 * Returns the meta object for the containment reference list '{@link no.ntnu.tdt4250.bg.PatternFilter#getPatterns <em>Patterns</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Some Filter2</em>'.
-	 * @see no.ntnu.tdt4250.bg.SomeFilter2
+	 * @return the meta object for the containment reference list '<em>Patterns</em>'.
+	 * @see no.ntnu.tdt4250.bg.PatternFilter#getPatterns()
+	 * @see #getPatternFilter()
 	 * @generated
 	 */
-	EClass getSomeFilter2();
+	EReference getPatternFilter_Patterns();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.PatternFilter#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see no.ntnu.tdt4250.bg.PatternFilter#getName()
+	 * @see #getPatternFilter()
+	 * @generated
+	 */
+	EAttribute getPatternFilter_Name();
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Tile <em>Tile</em>}'.
@@ -1338,6 +1441,92 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTilePlacement_Coordinate();
+
+	/**
+	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Pattern <em>Pattern</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Pattern</em>'.
+	 * @see no.ntnu.tdt4250.bg.Pattern
+	 * @generated
+	 */
+	EClass getPattern();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link no.ntnu.tdt4250.bg.Pattern#getRelativecoordinates <em>Relativecoordinates</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Relativecoordinates</em>'.
+	 * @see no.ntnu.tdt4250.bg.Pattern#getRelativecoordinates()
+	 * @see #getPattern()
+	 * @generated
+	 */
+	EReference getPattern_Relativecoordinates();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Pattern#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see no.ntnu.tdt4250.bg.Pattern#getName()
+	 * @see #getPattern()
+	 * @generated
+	 */
+	EAttribute getPattern_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Pattern#getTileTypeName <em>Tile Type Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Tile Type Name</em>'.
+	 * @see no.ntnu.tdt4250.bg.Pattern#getTileTypeName()
+	 * @see #getPattern()
+	 * @generated
+	 */
+	EAttribute getPattern_TileTypeName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Pattern#getTileStateName <em>Tile State Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Tile State Name</em>'.
+	 * @see no.ntnu.tdt4250.bg.Pattern#getTileStateName()
+	 * @see #getPattern()
+	 * @generated
+	 */
+	EAttribute getPattern_TileStateName();
+
+	/**
+	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.RelativeCoordinate <em>Relative Coordinate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Relative Coordinate</em>'.
+	 * @see no.ntnu.tdt4250.bg.RelativeCoordinate
+	 * @generated
+	 */
+	EClass getRelativeCoordinate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.RelativeCoordinate#getX <em>X</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>X</em>'.
+	 * @see no.ntnu.tdt4250.bg.RelativeCoordinate#getX()
+	 * @see #getRelativeCoordinate()
+	 * @generated
+	 */
+	EAttribute getRelativeCoordinate_X();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.RelativeCoordinate#getY <em>Y</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Y</em>'.
+	 * @see no.ntnu.tdt4250.bg.RelativeCoordinate#getY()
+	 * @see #getRelativeCoordinate()
+	 * @generated
+	 */
+	EAttribute getRelativeCoordinate_Y();
 
 	/**
 	 * Returns the meta object for enum '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}'.
@@ -1603,24 +1792,30 @@ public interface BgPackage extends EPackage {
 		EReference FILTER__NEXT_FILTER = eINSTANCE.getFilter_NextFilter();
 
 		/**
-		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.SomeFilter1Impl <em>Some Filter1</em>}' class.
+		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.PatternFilterImpl <em>Pattern Filter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see no.ntnu.tdt4250.bg.impl.SomeFilter1Impl
-		 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getSomeFilter1()
+		 * @see no.ntnu.tdt4250.bg.impl.PatternFilterImpl
+		 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getPatternFilter()
 		 * @generated
 		 */
-		EClass SOME_FILTER1 = eINSTANCE.getSomeFilter1();
+		EClass PATTERN_FILTER = eINSTANCE.getPatternFilter();
 
 		/**
-		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.SomeFilter2Impl <em>Some Filter2</em>}' class.
+		 * The meta object literal for the '<em><b>Patterns</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see no.ntnu.tdt4250.bg.impl.SomeFilter2Impl
-		 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getSomeFilter2()
 		 * @generated
 		 */
-		EClass SOME_FILTER2 = eINSTANCE.getSomeFilter2();
+		EReference PATTERN_FILTER__PATTERNS = eINSTANCE.getPatternFilter_Patterns();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PATTERN_FILTER__NAME = eINSTANCE.getPatternFilter_Name();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.TileImpl <em>Tile</em>}' class.
@@ -1805,6 +2000,74 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TILE_PLACEMENT__COORDINATE = eINSTANCE.getTilePlacement_Coordinate();
+
+		/**
+		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.PatternImpl <em>Pattern</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.ntnu.tdt4250.bg.impl.PatternImpl
+		 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getPattern()
+		 * @generated
+		 */
+		EClass PATTERN = eINSTANCE.getPattern();
+
+		/**
+		 * The meta object literal for the '<em><b>Relativecoordinates</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PATTERN__RELATIVECOORDINATES = eINSTANCE.getPattern_Relativecoordinates();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PATTERN__NAME = eINSTANCE.getPattern_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Tile Type Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PATTERN__TILE_TYPE_NAME = eINSTANCE.getPattern_TileTypeName();
+
+		/**
+		 * The meta object literal for the '<em><b>Tile State Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PATTERN__TILE_STATE_NAME = eINSTANCE.getPattern_TileStateName();
+
+		/**
+		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.RelativeCoordinateImpl <em>Relative Coordinate</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.ntnu.tdt4250.bg.impl.RelativeCoordinateImpl
+		 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getRelativeCoordinate()
+		 * @generated
+		 */
+		EClass RELATIVE_COORDINATE = eINSTANCE.getRelativeCoordinate();
+
+		/**
+		 * The meta object literal for the '<em><b>X</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RELATIVE_COORDINATE__X = eINSTANCE.getRelativeCoordinate_X();
+
+		/**
+		 * The meta object literal for the '<em><b>Y</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RELATIVE_COORDINATE__Y = eINSTANCE.getRelativeCoordinate_Y();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}' enum.

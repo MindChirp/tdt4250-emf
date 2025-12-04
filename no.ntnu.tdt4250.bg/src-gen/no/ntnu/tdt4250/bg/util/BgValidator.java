@@ -106,10 +106,8 @@ public class BgValidator extends EObjectValidator {
 			return validateEffectPipeline((EffectPipeline) value, diagnostics, context);
 		case BgPackage.FILTER:
 			return validateFilter((Filter) value, diagnostics, context);
-		case BgPackage.SOME_FILTER1:
-			return validateSomeFilter1((SomeFilter1) value, diagnostics, context);
-		case BgPackage.SOME_FILTER2:
-			return validateSomeFilter2((SomeFilter2) value, diagnostics, context);
+		case BgPackage.PATTERN_FILTER:
+			return validatePatternFilter((PatternFilter) value, diagnostics, context);
 		case BgPackage.TILE:
 			return validateTile((Tile) value, diagnostics, context);
 		case BgPackage.STATE:
@@ -118,6 +116,10 @@ public class BgValidator extends EObjectValidator {
 			return validateTransition((Transition) value, diagnostics, context);
 		case BgPackage.TILE_PLACEMENT:
 			return validateTilePlacement((TilePlacement) value, diagnostics, context);
+		case BgPackage.PATTERN:
+			return validatePattern((Pattern) value, diagnostics, context);
+		case BgPackage.RELATIVE_COORDINATE:
+			return validateRelativeCoordinate((RelativeCoordinate) value, diagnostics, context);
 		case BgPackage.TURN_TYPE:
 			return validateTurnType((TurnType) value, diagnostics, context);
 		default:
@@ -595,56 +597,27 @@ public class BgValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSomeFilter1(SomeFilter1 someFilter1, DiagnosticChain diagnostics,
+	public boolean validatePatternFilter(PatternFilter patternFilter, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(someFilter1, diagnostics, context))
+		if (!validate_NoCircularContainment(patternFilter, diagnostics, context))
 			return false;
-		boolean result = validate_EveryMultiplicityConforms(someFilter1, diagnostics, context);
+		boolean result = validate_EveryMultiplicityConforms(patternFilter, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryDataValueConforms(someFilter1, diagnostics, context);
+			result &= validate_EveryDataValueConforms(patternFilter, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryReferenceIsContained(someFilter1, diagnostics, context);
+			result &= validate_EveryReferenceIsContained(patternFilter, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(someFilter1, diagnostics, context);
+			result &= validate_EveryBidirectionalReferenceIsPaired(patternFilter, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(someFilter1, diagnostics, context);
+			result &= validate_EveryProxyResolves(patternFilter, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_UniqueID(someFilter1, diagnostics, context);
+			result &= validate_UniqueID(patternFilter, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(someFilter1, diagnostics, context);
+			result &= validate_EveryKeyUnique(patternFilter, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryMapEntryUnique(someFilter1, diagnostics, context);
+			result &= validate_EveryMapEntryUnique(patternFilter, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateFilter_filterMustBelongToGame(someFilter1, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSomeFilter2(SomeFilter2 someFilter2, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(someFilter2, diagnostics, context))
-			return false;
-		boolean result = validate_EveryMultiplicityConforms(someFilter2, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryDataValueConforms(someFilter2, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryReferenceIsContained(someFilter2, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(someFilter2, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(someFilter2, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_UniqueID(someFilter2, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(someFilter2, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryMapEntryUnique(someFilter2, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateFilter_filterMustBelongToGame(someFilter2, diagnostics, context);
+			result &= validateFilter_filterMustBelongToGame(patternFilter, diagnostics, context);
 		return result;
 	}
 
@@ -1135,6 +1108,25 @@ public class BgValidator extends EObjectValidator {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePattern(Pattern pattern, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(pattern, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateRelativeCoordinate(RelativeCoordinate relativeCoordinate, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(relativeCoordinate, diagnostics, context);
 	}
 
 	/**

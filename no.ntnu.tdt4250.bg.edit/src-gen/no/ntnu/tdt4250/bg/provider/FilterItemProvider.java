@@ -150,11 +150,8 @@ public class FilterItemProvider extends ItemProviderAdapter implements IEditingD
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(
-				createChildParameter(BgPackage.Literals.FILTER__NEXT_FILTER, BgFactory.eINSTANCE.createSomeFilter1()));
-
-		newChildDescriptors.add(
-				createChildParameter(BgPackage.Literals.FILTER__NEXT_FILTER, BgFactory.eINSTANCE.createSomeFilter2()));
+		newChildDescriptors.add(createChildParameter(BgPackage.Literals.FILTER__NEXT_FILTER,
+				BgFactory.eINSTANCE.createPatternFilter()));
 	}
 
 	/**
