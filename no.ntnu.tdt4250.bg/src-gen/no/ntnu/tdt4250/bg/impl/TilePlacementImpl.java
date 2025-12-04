@@ -209,7 +209,6 @@ public class TilePlacementImpl extends MinimalEObjectImpl.Container implements T
 		return board.isCheckered() && (this.row + this.column) % 2 == 1;
 	}
 
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -45,12 +45,12 @@ class Transition(BaseModel):
     name: "str"
     
 class LegalMovesPipeline(BaseModel):
-    filter: Optional["Filter"] = None
+    filters: List["Filter"] = []
     
 class PatternFilter(Filter):
     nextFilter: Optional["Filter"] = None
-    patterns: List["Pattern"] = []
     name: "str"
+    patterns: List["Pattern"] = []
     
 class Pattern(BaseModel):
     relativecoordinates: List["RelativeCoordinate"] = []
@@ -64,7 +64,20 @@ class RelativeCoordinate(BaseModel):
     y: "int"
     
 class EffectPipeline(BaseModel):
-    filter: Optional["Filter"] = None
+    filters: List["Filter"] = []
+    
+class IterativeFilter(BaseModel):
+    nextFilter: Optional["Filter"] = None
+    name: "str"
+    directionVector: "RelativeCoordinate"
+    matchRule: "Pattern"
+    endRule: "Pattern"
+    
+class StateEffectFilter(BaseModel):
+    nextFilter: Optional["Filter"] = None
+    name: "str"
+    targetState: Optional["State"] = None
+    stateSelection: "str"
     
 class Player(BaseModel):
     name: "str"
@@ -90,6 +103,8 @@ PatternFilter.model_rebuild()
 Pattern.model_rebuild()
 RelativeCoordinate.model_rebuild()
 EffectPipeline.model_rebuild()
+IterativeFilter.model_rebuild()
+StateEffectFilter.model_rebuild()
 Player.model_rebuild()
 Game.model_rebuild()
 
@@ -105,47 +120,67 @@ class PlayTile(Tile):
         row = row
         column = column
 
-        stateXPlayed = State(
-            name="XPlayed",
+        stateWhitePlayed = State(
+            name="WhitePlayed",
             hexColor="#ffffff",
             outbound=[],
             inbound=[]
         )
-        stateOPlayed = State(
-            name="OPlayed",
+        stateBlackPlayed = State(
+            name="BlackPlayed",
             hexColor="#ffffff",
             outbound=[],
             inbound=[]
         )
 
-        transitionEmptyToO = Transition(
-            name="EmptyToO",
+        transitionEmptyToBlack = Transition(
+            name="EmptyToBlack",
             source=[
                 stateInitialEmpty
             ],
-            target=stateOPlayed
+            target=stateBlackPlayed
         )
-        transitionEmptyToX = Transition(
-            name="EmptyToX",
+        transitionEmptyToWhite = Transition(
+            name="EmptyToWhite",
             source=[
                 stateInitialEmpty
             ],
-            target=stateXPlayed
+            target=stateWhitePlayed
+        )
+        transitionBlackToWhite = Transition(
+            name="BlackToWhite",
+            source=[
+                stateBlackPlayed
+            ],
+            target=stateWhitePlayed
+        )
+        transitionWhiteToBlack = Transition(
+            name="WhiteToBlack",
+            source=[
+                stateWhitePlayed
+            ],
+            target=stateBlackPlayed
         )
 
-        stateInitialEmpty.outbound.append(transitionEmptyToO)
-        stateOPlayed.inbound.append(transitionEmptyToO)
-        stateInitialEmpty.outbound.append(transitionEmptyToX)
-        stateXPlayed.inbound.append(transitionEmptyToX)
+        stateInitialEmpty.outbound.append(transitionEmptyToBlack)
+        stateBlackPlayed.inbound.append(transitionEmptyToBlack)
+        stateInitialEmpty.outbound.append(transitionEmptyToWhite)
+        stateWhitePlayed.inbound.append(transitionEmptyToWhite)
+        stateBlackPlayed.outbound.append(transitionBlackToWhite)
+        stateWhitePlayed.inbound.append(transitionBlackToWhite)
+        stateWhitePlayed.outbound.append(transitionWhiteToBlack)
+        stateBlackPlayed.inbound.append(transitionWhiteToBlack)
 
         super().__init__(
             states=[
-                stateXPlayed, 
-                stateOPlayed
+                stateWhitePlayed, 
+                stateBlackPlayed
             ],
             transitions=[
-                transitionEmptyToO, 
-                transitionEmptyToX
+                transitionEmptyToBlack, 
+                transitionEmptyToWhite, 
+                transitionBlackToWhite, 
+                transitionWhiteToBlack
             ],
             initialState=stateInitialEmpty,
             activeState=stateInitialEmpty,
@@ -173,15 +208,80 @@ players = [
     Player(
         name="Player1",
         hexColor="#999999",
-        associatedState="OPlayed"
+        associatedState="BlackPlayed"
     ), 
     Player(
         name="Player2",
         hexColor="#99ffff",
-        associatedState="XPlayed"
+        associatedState="WhitePlayed"
     )
 ]
 
+
+legal_moves_pipeline = LegalMovesPipeline(
+    filters=[
+        PatternFilter(
+            name="MustBeEmptyPlace",
+            patterns=[
+                Pattern(
+                    name="CurrentTileMustBeEmpty",
+                    stateSelection="StateBased",
+                    matchState="InitialEmpty",
+                    relativecoordinates=[
+                        RelativeCoordinate(
+                            x=0,
+                            y=0
+                        )
+                    ]
+                )
+            ],
+            nextFilter=None
+        )
+    ]
+)
+        
+effect_pipeline = EffectPipeline(
+    filters=[
+        IterativeFilter(
+            name="SearchRight",
+            directionVector=RelativeCoordinate(
+                x=1,
+                y=0
+            )
+            ,
+            matchRule=Pattern(
+                name="MustBeOfOppositePlayer",
+                stateSelection="OtherPlayer",
+                matchState=None,
+                relativecoordinates=[
+                    RelativeCoordinate(
+                        x=0,
+                        y=0
+                    )
+                ]
+            )
+            ,
+            endRule=Pattern(
+                name="MustBeOwnEndingTile",
+                stateSelection="CurrentPlayer",
+                matchState=None,
+                relativecoordinates=[
+                    RelativeCoordinate(
+                        x=0,
+                        y=0
+                    )
+                ]
+            )
+            ,
+            nextFilter=StateEffectFilter(
+                name="FlipTilesToOwn",
+                stateSelection="CurrentPlayer",
+                targetState=None,
+                nextFilter=None
+            )
+        )
+    ]
+)
 
 board = Board(
     width=3,
@@ -189,22 +289,8 @@ board = Board(
     tiles=tiles,
     checkered=True,
     size=9,
-    legalMovesPipeline=LegalMovesPipeline(filter=PatternFilter(
-                name="MustBeEmptyPlace",
-                patterns=[Pattern(
-                        name="CurrentTileMustBeEmpty",
-                        stateSelection="StateBased",
-                        matchState="InitialEmpty",
-                        relativecoordinates=[RelativeCoordinate(x=0, y=0)]
-                    )])),
-    effectPipeline=EffectPipeline(filter=PatternFilter(
-                name="PlaceCurrentTile",
-                patterns=[Pattern(
-                        name="SelectCurrentTile",
-                        stateSelection="StateBased",
-                        matchState="InitialEmpty",
-                        relativecoordinates=[RelativeCoordinate(x=0, y=0)]
-                    )])),
+    legalMovesPipeline=legal_moves_pipeline,
+    effectPipeline=effect_pipeline,
     legalMoves=[]
 )
 
@@ -213,7 +299,7 @@ game = Game(
     board=board,
     players=players,
     activePlayer=players[0],
-    name="TicTacToe",
+    name="Othello",
     initialPlayer=players[0],
     turnPolicy="TurnBased"
 )

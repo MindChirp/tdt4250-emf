@@ -1258,13 +1258,7 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		boolean isLegal = true;
-
-		if (stateEffectFilter.getStateSelection().getLiteral() == (StateSelection.STATE_BASED).getLiteral()) {
-			isLegal = (stateEffectFilter.getTargetState() != null);
-		}
-		
-		if (!isLegal) {
+		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add(
 						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",

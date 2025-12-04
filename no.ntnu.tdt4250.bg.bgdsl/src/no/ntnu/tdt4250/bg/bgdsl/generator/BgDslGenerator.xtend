@@ -147,6 +147,9 @@ class BgDslGenerator extends AbstractGenerator {
         val tilePlacements = boardInstance.getFeature("tileplacement") as EList<EObject>
         
         val players = gameInstance.getFeature("players") as EList<EObject>
+        
+        val legalMovesPipeline = boardInstance.getFeature("legalMovesPipeline") as EObject
+        val effectPipeline = boardInstance.getFeature("effectPipeline") as EObject
 
         '''
         «FOR tileType : tileTypes»
@@ -254,18 +257,10 @@ class BgDslGenerator extends AbstractGenerator {
         «val boardWidth = boardInstance.getFeature("width") as Integer»
         «val boardHeight = boardInstance.getFeature("height") as Integer»
         «val isCheckered = boardInstance.getFeature("checkered") as Boolean»
-        «val legalPipelineObj = boardInstance.getFeature("legalMovesPipeline") as EObject»
-        «val legalMovesPipelineRendered =
-            if (legalPipelineObj !== null) {
-                val filter = legalPipelineObj.getFeature("filter") as EObject
-                renderFilter(filter)
-            } else ""»
-        «val effectPipelineObj = boardInstance.getFeature("effectPipeline") as EObject»
-        «val effectPipelineRendered =
-            if (effectPipelineObj !== null) {
-                val filter = effectPipelineObj.getFeature("filter") as EObject
-                renderFilter(filter)
-            } else ""»
+        
+        legal_moves_pipeline = «IF legalMovesPipeline !== null»«generatePipelineObject(legalMovesPipeline)»«ELSE»None«ENDIF»
+                
+        effect_pipeline = «IF effectPipeline !== null»«generatePipelineObject(effectPipeline)»«ELSE»None«ENDIF»
 
         board = Board(
             width=«boardWidth»,
@@ -273,12 +268,8 @@ class BgDslGenerator extends AbstractGenerator {
             tiles=tiles,
             checkered=«isCheckered.toPyBool()»,
             size=«boardWidth * boardHeight»,
-            «IF legalMovesPipelineRendered != ""»
-            legalMovesPipeline=LegalMovesPipeline(filter=«legalMovesPipelineRendered»),
-            «ENDIF»
-            «IF effectPipelineRendered != ""»
-            effectPipeline=EffectPipeline(filter=«effectPipelineRendered»),
-            «ENDIF»
+            legalMovesPipeline=legal_moves_pipeline,
+            effectPipeline=effect_pipeline,
             legalMoves=[]
         )
 
@@ -298,53 +289,86 @@ class BgDslGenerator extends AbstractGenerator {
 
         '''
     }
-
-    def String renderFilter(EObject filter) {
-        if (filter === null) return ""
-        
-        val filterName = filter.getFeature("name")
-        val nextFilter = filter.getFeature("nextFilter") as EObject
-        val patterns = filter.getFeature("patterns") as EList<EObject>
-
-        val patternsRendered = if (patterns !== null)
-            patterns.map[ pattern |
-                val patternName = pattern.getFeature("name")
-
-                // stateSelection is an enum
-                val stateSelectionEnum = pattern.getFeature("stateSelection")
-                val stateSelectionName = if (stateSelectionEnum !== null) stateSelectionEnum else "null"
-
-                // matchState is a cross-reference
-                val matchStateObj = pattern.getFeature("matchState") as EObject
-                val matchStateName = if (matchStateObj !== null)
-                    matchStateObj.getFeature("name")
-                else "null"
-
-                // relative coordinates
-                val relCoords = pattern.getFeature("relativecoordinates") as EList<EObject>
-                val coordsRendered = if (relCoords !== null)
-                    relCoords.map[ rc |
-                        val rx = rc.getFeature("x")
-                        val ry = rc.getFeature("y")
-                        'RelativeCoordinate(x=' + rx + ', y=' + ry + ')'
-                    ].join(", ")
-                else ""
-
-                'Pattern(
-                    name="' + patternName + '",
-                    stateSelection="'+ stateSelectionName + '",
-                    matchState="' + matchStateName + '",
-                    relativecoordinates=[' + coordsRendered + ']
-                )'
-            ].join(", ")
-        else ""
-
-        // Render current filter, then recursively render the next filter if present
-        'PatternFilter(
-            name="' + filterName + '",
-            patterns=[' + patternsRendered + ']' +
-            (if (nextFilter !== null) ', nextFilter=' + renderFilter(nextFilter) else "") +
-        ')'
+    
+def generatePipelineObject(EObject pipeline) '''
+        «pipeline.eClass.name»(
+            filters=[
+                «val filters = pipeline.getFeature("filters") as EList<EObject>»
+                «FOR filter : filters SEPARATOR ","»
+                «generateFilter(filter)»
+                «ENDFOR»
+            ]
+        )
+    '''
+    
+def dispatch String generateFilter(EObject filter) {
+        if (filter.eClass.name == "PatternFilter") {
+            val patterns = filter.getFeature("patterns") as EList<EObject>
+            val nextFilter = filter.getFeature("nextFilter") as EObject
+            '''
+            PatternFilter(
+                name="«filter.getFeature("name")»",
+                patterns=[
+                    «FOR p : patterns SEPARATOR ", "»
+                    «generatePattern(p)»
+                    «ENDFOR»
+                ],
+                nextFilter=«IF nextFilter !== null»«generateFilter(nextFilter)»«ELSE»None«ENDIF»
+            )'''
+        } else if (filter.eClass.name == "IterativeFilter") {
+            val nextFilter = filter.getFeature("nextFilter") as EObject
+            val dirVector = filter.getFeature("directionVector") as EObject
+            val matchRule = filter.getFeature("matchRule") as EObject
+            val endRule = filter.getFeature("endRule") as EObject
+            '''
+            IterativeFilter(
+                name="«filter.getFeature("name")»",
+                directionVector=«generateRelCoord(dirVector)»,
+                matchRule=«generatePattern(matchRule)»,
+                endRule=«generatePattern(endRule)»,
+                nextFilter=«IF nextFilter !== null»«generateFilter(nextFilter)»«ELSE»None«ENDIF»
+            )'''
+        } else if (filter.eClass.name == "StateEffectFilter") {
+            val nextFilter = filter.getFeature("nextFilter") as EObject
+            val targetState = filter.getFeature("targetState") as EObject
+            '''
+            StateEffectFilter(
+                name="«filter.getFeature("name")»",
+                stateSelection="«filter.getFeature("stateSelection")»",
+                targetState=«IF targetState !== null»"«targetState.getFeature("name")»"«ELSE»None«ENDIF»,
+                nextFilter=«IF nextFilter !== null»«generateFilter(nextFilter)»«ELSE»None«ENDIF»
+            )'''
+        } else {
+            '''None'''
+        }
+    }
+    
+    def generatePattern(EObject pattern) {
+        val coords = pattern.getFeature("relativecoordinates") as EList<EObject>
+        val matchState = pattern.getFeature("matchState") as EObject
+        '''
+        Pattern(
+            name="«pattern.getFeature("name")»",
+            stateSelection="«pattern.getFeature("stateSelection")»",
+            matchState=«IF matchState !== null»"«matchState.getFeature("name")»"«ELSE»None«ENDIF»,
+            relativecoordinates=[
+                «FOR c : coords SEPARATOR ", "»
+                «generateRelCoord(c)»
+                «ENDFOR»
+            ]
+        )
+        '''
+    }
+    
+    def generateRelCoord(EObject coord) '''
+        RelativeCoordinate(
+            x=«coord.getFeature("x")»,
+            y=«coord.getFeature("y")»
+        )
+    '''
+    
+    def getAllFilterTypes() {
+        newHashSet("PatternFilter", "IterativeFilter", "StateEffectFilter")
     }
 
     /* Helper Code */

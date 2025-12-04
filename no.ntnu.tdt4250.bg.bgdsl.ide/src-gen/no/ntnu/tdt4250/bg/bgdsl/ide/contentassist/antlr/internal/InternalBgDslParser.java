@@ -6423,21 +6423,21 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Tile__Group__1__Impl"
-    // InternalBgDsl.g:2106:1: rule__Tile__Group__1__Impl : ( ( rule__Tile__TileTypeAssignment_1 ) ) ;
+    // InternalBgDsl.g:2129:1: rule__Tile__Group__1__Impl : ( ( rule__Tile__TileTypeAssignment_1 ) ) ;
     public final void rule__Tile__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBgDsl.g:2110:1: ( ( ( rule__Tile__TileTypeAssignment_1 ) ) )
-            // InternalBgDsl.g:2111:1: ( ( rule__Tile__TileTypeAssignment_1 ) )
+            // InternalBgDsl.g:2133:1: ( ( ( rule__Tile__TileTypeAssignment_1 ) ) )
+            // InternalBgDsl.g:2134:1: ( ( rule__Tile__TileTypeAssignment_1 ) )
             {
-            // InternalBgDsl.g:2111:1: ( ( rule__Tile__TileTypeAssignment_1 ) )
-            // InternalBgDsl.g:2112:2: ( rule__Tile__TileTypeAssignment_1 )
+            // InternalBgDsl.g:2134:1: ( ( rule__Tile__TileTypeAssignment_1 ) )
+            // InternalBgDsl.g:2135:2: ( rule__Tile__TileTypeAssignment_1 )
             {
              before(grammarAccess.getTileAccess().getTileTypeAssignment_1()); 
-            // InternalBgDsl.g:2113:2: ( rule__Tile__TileTypeAssignment_1 )
-            // InternalBgDsl.g:2113:3: rule__Tile__TileTypeAssignment_1
+            // InternalBgDsl.g:2136:2: ( rule__Tile__TileTypeAssignment_1 )
+            // InternalBgDsl.g:2136:3: rule__Tile__TileTypeAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Tile__TileTypeAssignment_1();
@@ -19546,7 +19546,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Tile__TileTypeAssignment_1"
-    // InternalBgDsl.g:5616:1: rule__Tile__TileTypeAssignment_1 : ( ruleEString ) ;
+    // InternalBgDsl.g:6584:1: rule__Tile__TileTypeAssignment_1 : ( ruleEString ) ;
     public final void rule__Tile__TileTypeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();

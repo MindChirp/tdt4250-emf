@@ -99,5 +99,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//StateEffectFilter/targetState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//StateEffectFilter/stateSelection"/>
     </genClasses>
+    <genClasses ecoreClass="bg.ecore#//WinConditionFilter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//WinConditionFilter/patternfilter"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>
