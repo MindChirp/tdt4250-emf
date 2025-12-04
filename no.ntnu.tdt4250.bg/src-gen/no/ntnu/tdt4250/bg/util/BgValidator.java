@@ -442,10 +442,17 @@ public class BgValidator extends EObjectValidator {
 	public boolean validateLegalMovesPipeline_legalMovesPipelineFiltersMustFormValidChain(
 			LegalMovesPipeline legalMovesPipeline, DiagnosticChain diagnostics, Map<Object, Object> context) {
 
-		Filter startFilter = legalMovesPipeline.getFilter();
-		boolean isValidChain = isValidFilterChain(startFilter);
+		EList<Filter> filters = legalMovesPipeline.getFilters();
+		boolean isValidChains = true;
+		for (Filter filter : filters) {
+			if (!isValidFilterChain(filter)) {
+				isValidChains = false;
+				break;
+			}
+		}
+		
 
-		if (!isValidChain) {
+		if (!isValidChains) {
 			if (diagnostics != null) {
 				diagnostics.add(
 						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
@@ -518,10 +525,17 @@ public class BgValidator extends EObjectValidator {
 	 */
 	public boolean validateEffectPipeline_effectPipelineFiltersMustFormValidChain(EffectPipeline effectPipeline,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		Filter startFilter = effectPipeline.getFilters();
-		boolean isValidChain = isValidFilterChain(startFilter);
+		
+		EList<Filter> filters = effectPipeline.getFilters();
+		boolean isValidChains = true;
+		for (Filter filter : filters) {
+			if (!isValidFilterChain(filter)) {
+				isValidChains = false;
+				break;
+			}
+		}
 
-		if (!isValidChain) {
+		if (!isValidChains) {
 			if (diagnostics != null) {
 				diagnostics.add(createDiagnostic(
 						Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", new Object[] {
