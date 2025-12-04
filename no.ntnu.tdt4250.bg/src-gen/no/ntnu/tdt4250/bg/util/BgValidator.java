@@ -98,8 +98,6 @@ public class BgValidator extends EObjectValidator {
 			return validateBoard((Board) value, diagnostics, context);
 		case BgPackage.PLAYER:
 			return validatePlayer((Player) value, diagnostics, context);
-		case BgPackage.TURN_POLICY:
-			return validateTurnPolicy((TurnPolicy) value, diagnostics, context);
 		case BgPackage.LEGAL_MOVES_PIPELINE:
 			return validateLegalMovesPipeline((LegalMovesPipeline) value, diagnostics, context);
 		case BgPackage.EFFECT_PIPELINE:
@@ -399,15 +397,6 @@ public class BgValidator extends EObjectValidator {
 			return false;
 		}
 		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateTurnPolicy(TurnPolicy turnPolicy, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(turnPolicy, diagnostics, context);
 	}
 
 	/**

@@ -8,13 +8,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="board" lowerBound="1" eType="#//Board"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="players" upperBound="-1"
-        eType="#//Player" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="turnPolicy" lowerBound="1"
-        eType="#//TurnPolicy" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="initialPlayer" eType="#//Player"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="players" lowerBound="1"
+        upperBound="-1" eType="#//Player" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialPlayer" lowerBound="1"
+        eType="#//Player"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activePlayer" lowerBound="1"
         eType="#//Player" volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="turnPolicy" lowerBound="1"
+        eType="#//TurnType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Board">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -23,10 +24,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tiles" lowerBound="1" upperBound="-1"
         eType="#//Tile" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="legalMovesPipeline" upperBound="-1"
-        eType="#//LegalMovesPipeline" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="effectPipeline" upperBound="-1"
-        eType="#//EffectPipeline" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="legalMovesPipeline" eType="#//LegalMovesPipeline"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="effectPipeline" eType="#//EffectPipeline"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="checkered" lowerBound="1"
@@ -45,9 +46,6 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="associatedState" lowerBound="1"
         eType="#//State"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TurnPolicy">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//TurnType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TurnType">
     <eLiterals name="TurnBased"/>

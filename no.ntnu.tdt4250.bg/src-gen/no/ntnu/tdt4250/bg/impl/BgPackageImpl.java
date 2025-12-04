@@ -18,7 +18,6 @@ import no.ntnu.tdt4250.bg.StateSelection;
 import no.ntnu.tdt4250.bg.Tile;
 import no.ntnu.tdt4250.bg.TilePlacement;
 import no.ntnu.tdt4250.bg.Transition;
-import no.ntnu.tdt4250.bg.TurnPolicy;
 import no.ntnu.tdt4250.bg.TurnType;
 
 import no.ntnu.tdt4250.bg.util.BgValidator;
@@ -58,13 +57,6 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	private EClass playerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass turnPolicyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -267,7 +259,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getGame_TurnPolicy() {
+	public EReference getGame_InitialPlayer() {
 		return (EReference) gameEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -277,7 +269,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getGame_InitialPlayer() {
+	public EReference getGame_ActivePlayer() {
 		return (EReference) gameEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -287,8 +279,8 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getGame_ActivePlayer() {
-		return (EReference) gameEClass.getEStructuralFeatures().get(5);
+	public EAttribute getGame_TurnPolicy() {
+		return (EAttribute) gameEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -419,26 +411,6 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	@Override
 	public EReference getPlayer_AssociatedState() {
 		return (EReference) playerEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getTurnPolicy() {
-		return turnPolicyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getTurnPolicy_Type() {
-		return (EAttribute) turnPolicyEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -885,9 +857,9 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEReference(gameEClass, GAME__BOARD);
 		createEAttribute(gameEClass, GAME__NAME);
 		createEReference(gameEClass, GAME__PLAYERS);
-		createEReference(gameEClass, GAME__TURN_POLICY);
 		createEReference(gameEClass, GAME__INITIAL_PLAYER);
 		createEReference(gameEClass, GAME__ACTIVE_PLAYER);
+		createEAttribute(gameEClass, GAME__TURN_POLICY);
 
 		boardEClass = createEClass(BOARD);
 		createEAttribute(boardEClass, BOARD__WIDTH);
@@ -903,9 +875,6 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEAttribute(playerEClass, PLAYER__NAME);
 		createEAttribute(playerEClass, PLAYER__HEX_COLOR);
 		createEReference(playerEClass, PLAYER__ASSOCIATED_STATE);
-
-		turnPolicyEClass = createEClass(TURN_POLICY);
-		createEAttribute(turnPolicyEClass, TURN_POLICY__TYPE);
 
 		legalMovesPipelineEClass = createEClass(LEGAL_MOVES_PIPELINE);
 		createEReference(legalMovesPipelineEClass, LEGAL_MOVES_PIPELINE__FILTER);
@@ -999,18 +968,17 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				IS_ORDERED);
 		initEAttribute(getGame_Name(), ecorePackage.getEString(), "name", null, 1, 1, Game.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGame_Players(), this.getPlayer(), null, "players", null, 0, -1, Game.class, !IS_TRANSIENT,
+		initEReference(getGame_Players(), this.getPlayer(), null, "players", null, 1, -1, Game.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEReference(getGame_TurnPolicy(), this.getTurnPolicy(), null, "turnPolicy", null, 0, -1, Game.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGame_InitialPlayer(), this.getPlayer(), null, "initialPlayer", null, 0, 1, Game.class,
+		initEReference(getGame_InitialPlayer(), this.getPlayer(), null, "initialPlayer", null, 1, 1, Game.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGame_ActivePlayer(), this.getPlayer(), null, "activePlayer", null, 1, 1, Game.class,
 				IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGame_TurnPolicy(), this.getTurnType(), "turnPolicy", null, 1, 1, Game.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(boardEClass, Board.class, "Board", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBoard_Width(), ecorePackage.getEInt(), "width", null, 1, 1, Board.class, !IS_TRANSIENT,
@@ -1019,9 +987,9 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEReference(getBoard_LegalMovesPipeline(), this.getLegalMovesPipeline(), null, "legalMovesPipeline", null, 0,
-				-1, Board.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				1, Board.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBoard_EffectPipeline(), this.getEffectPipeline(), null, "effectPipeline", null, 0, -1,
+		initEReference(getBoard_EffectPipeline(), this.getEffectPipeline(), null, "effectPipeline", null, 0, 1,
 				Board.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBoard_Height(), ecorePackage.getEInt(), "height", null, 1, 1, Board.class, !IS_TRANSIENT,
@@ -1042,11 +1010,6 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		initEReference(getPlayer_AssociatedState(), this.getState(), null, "associatedState", null, 1, 1, Player.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(turnPolicyEClass, TurnPolicy.class, "TurnPolicy", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTurnPolicy_Type(), this.getTurnType(), "type", null, 1, 1, TurnPolicy.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(legalMovesPipelineEClass, LegalMovesPipeline.class, "LegalMovesPipeline", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

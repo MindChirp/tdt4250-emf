@@ -49,15 +49,6 @@ public interface BgFactory extends EFactory {
 	Player createPlayer();
 
 	/**
-	 * Returns a new object of class '<em>Turn Policy</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Turn Policy</em>'.
-	 * @generated
-	 */
-	TurnPolicy createTurnPolicy();
-
-	/**
 	 * Returns a new object of class '<em>Legal Moves Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

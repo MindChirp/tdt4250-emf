@@ -18,7 +18,6 @@ import no.ntnu.tdt4250.bg.State;
 import no.ntnu.tdt4250.bg.Tile;
 import no.ntnu.tdt4250.bg.TilePlacement;
 import no.ntnu.tdt4250.bg.Transition;
-import no.ntnu.tdt4250.bg.TurnPolicy;
 import no.ntnu.tdt4250.bg.bgdsl.services.BgDslGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -80,9 +79,6 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case BgPackage.TRANSITION:
 				sequence_Transition(context, (Transition) semanticObject); 
 				return; 
-			case BgPackage.TURN_POLICY:
-				sequence_TurnPolicy(context, (TurnPolicy) semanticObject); 
-				return; 
 			}
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
@@ -100,8 +96,8 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         height=EInt 
 	 *         tiles+=Tile 
 	 *         tiles+=Tile* 
-	 *         (legalMovesPipeline+=LegalMovesPipeline legalMovesPipeline+=LegalMovesPipeline*)? 
-	 *         (effectPipeline+=EffectPipeline effectPipeline+=EffectPipeline*)? 
+	 *         legalMovesPipeline=LegalMovesPipeline? 
+	 *         effectPipeline=EffectPipeline? 
 	 *         tileplacement+=TilePlacement 
 	 *         tileplacement+=TilePlacement*
 	 *     )
@@ -132,7 +128,7 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Game returns Game
 	 *
 	 * Constraint:
-	 *     (name=EString initialPlayer=[Player|EString]? board=Board (players+=Player players+=Player*)? turnPolicy=TurnPolicy)
+	 *     (name=EString initialPlayer=[Player|EString]? board=Board (players+=Player players+=Player*)? turnPolicy=TurnType)
 	 * </pre>
 	 */
 	protected void sequence_Game(ISerializationContext context, Game semanticObject) {
@@ -316,26 +312,6 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_Transition(ISerializationContext context, Transition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     TurnPolicy returns TurnPolicy
-	 *
-	 * Constraint:
-	 *     type=TurnType
-	 * </pre>
-	 */
-	protected void sequence_TurnPolicy(ISerializationContext context, TurnPolicy semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BgPackage.Literals.TURN_POLICY__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BgPackage.Literals.TURN_POLICY__TYPE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTurnPolicyAccess().getTypeTurnTypeEnumRuleCall_3_0(), semanticObject.getType());
-		feeder.finish();
 	}
 	
 	

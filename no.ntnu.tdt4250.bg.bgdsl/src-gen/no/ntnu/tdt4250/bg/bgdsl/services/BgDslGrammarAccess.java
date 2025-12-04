@@ -53,7 +53,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cRightCurlyBracketKeyword_6_4 = (Keyword)cGroup_6.eContents().get(4);
 		private final Keyword cTurnPolicyKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		private final Assignment cTurnPolicyAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final RuleCall cTurnPolicyTurnPolicyParserRuleCall_8_0 = (RuleCall)cTurnPolicyAssignment_8.eContents().get(0);
+		private final RuleCall cTurnPolicyTurnTypeEnumRuleCall_8_0 = (RuleCall)cTurnPolicyAssignment_8.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
 		//Game returns Game:
@@ -63,7 +63,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//        ('initialPlayer' initialPlayer=[Player|EString])?
 		//        'board' board=Board
 		//        ('players' '{' players+=Player ( "," players+=Player)* '}' )?
-		//        'turnPolicy' turnPolicy=TurnPolicy
+		//        'turnPolicy' turnPolicy=TurnType
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -73,7 +73,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    ('initialPlayer' initialPlayer=[Player|EString])?
 		//    'board' board=Board
 		//    ('players' '{' players+=Player ( "," players+=Player)* '}' )?
-		//    'turnPolicy' turnPolicy=TurnPolicy
+		//    'turnPolicy' turnPolicy=TurnType
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
@@ -146,11 +146,11 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'turnPolicy'
 		public Keyword getTurnPolicyKeyword_7() { return cTurnPolicyKeyword_7; }
 		
-		//turnPolicy=TurnPolicy
+		//turnPolicy=TurnType
 		public Assignment getTurnPolicyAssignment_8() { return cTurnPolicyAssignment_8; }
 		
-		//TurnPolicy
-		public RuleCall getTurnPolicyTurnPolicyParserRuleCall_8_0() { return cTurnPolicyTurnPolicyParserRuleCall_8_0; }
+		//TurnType
+		public RuleCall getTurnPolicyTurnTypeEnumRuleCall_8_0() { return cTurnPolicyTurnTypeEnumRuleCall_8_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
@@ -190,24 +190,12 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
 		private final Group cGroup_12 = (Group)cGroup.eContents().get(12);
 		private final Keyword cLegalMovesPipelineKeyword_12_0 = (Keyword)cGroup_12.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_12_1 = (Keyword)cGroup_12.eContents().get(1);
-		private final Assignment cLegalMovesPipelineAssignment_12_2 = (Assignment)cGroup_12.eContents().get(2);
-		private final RuleCall cLegalMovesPipelineLegalMovesPipelineParserRuleCall_12_2_0 = (RuleCall)cLegalMovesPipelineAssignment_12_2.eContents().get(0);
-		private final Group cGroup_12_3 = (Group)cGroup_12.eContents().get(3);
-		private final Keyword cCommaKeyword_12_3_0 = (Keyword)cGroup_12_3.eContents().get(0);
-		private final Assignment cLegalMovesPipelineAssignment_12_3_1 = (Assignment)cGroup_12_3.eContents().get(1);
-		private final RuleCall cLegalMovesPipelineLegalMovesPipelineParserRuleCall_12_3_1_0 = (RuleCall)cLegalMovesPipelineAssignment_12_3_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_12_4 = (Keyword)cGroup_12.eContents().get(4);
+		private final Assignment cLegalMovesPipelineAssignment_12_1 = (Assignment)cGroup_12.eContents().get(1);
+		private final RuleCall cLegalMovesPipelineLegalMovesPipelineParserRuleCall_12_1_0 = (RuleCall)cLegalMovesPipelineAssignment_12_1.eContents().get(0);
 		private final Group cGroup_13 = (Group)cGroup.eContents().get(13);
 		private final Keyword cEffectPipelineKeyword_13_0 = (Keyword)cGroup_13.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_13_1 = (Keyword)cGroup_13.eContents().get(1);
-		private final Assignment cEffectPipelineAssignment_13_2 = (Assignment)cGroup_13.eContents().get(2);
-		private final RuleCall cEffectPipelineEffectPipelineParserRuleCall_13_2_0 = (RuleCall)cEffectPipelineAssignment_13_2.eContents().get(0);
-		private final Group cGroup_13_3 = (Group)cGroup_13.eContents().get(3);
-		private final Keyword cCommaKeyword_13_3_0 = (Keyword)cGroup_13_3.eContents().get(0);
-		private final Assignment cEffectPipelineAssignment_13_3_1 = (Assignment)cGroup_13_3.eContents().get(1);
-		private final RuleCall cEffectPipelineEffectPipelineParserRuleCall_13_3_1_0 = (RuleCall)cEffectPipelineAssignment_13_3_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_13_4 = (Keyword)cGroup_13.eContents().get(4);
+		private final Assignment cEffectPipelineAssignment_13_1 = (Assignment)cGroup_13.eContents().get(1);
+		private final RuleCall cEffectPipelineEffectPipelineParserRuleCall_13_1_0 = (RuleCall)cEffectPipelineAssignment_13_1.eContents().get(0);
 		private final Keyword cTileplacementKeyword_14 = (Keyword)cGroup.eContents().get(14);
 		private final Keyword cLeftCurlyBracketKeyword_15 = (Keyword)cGroup.eContents().get(15);
 		private final Assignment cTileplacementAssignment_16 = (Assignment)cGroup.eContents().get(16);
@@ -226,8 +214,8 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//        'width' width=EInt
 		//        'height' height=EInt
 		//        'tiles' '{' tiles+=Tile ( "," tiles+=Tile)* '}'
-		//        ('legalMovesPipeline' '{' legalMovesPipeline+=LegalMovesPipeline ( "," legalMovesPipeline+=LegalMovesPipeline)* '}' )?
-		//        ('effectPipeline' '{' effectPipeline+=EffectPipeline ( "," effectPipeline+=EffectPipeline)* '}' )?
+		//        ('legalMovesPipeline' legalMovesPipeline=LegalMovesPipeline)?
+		//        ('effectPipeline'effectPipeline=EffectPipeline)?
 		//        'tileplacement' '{' tileplacement+=TilePlacement ( "," tileplacement+=TilePlacement)* '}'
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
@@ -238,8 +226,8 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    'width' width=EInt
 		//    'height' height=EInt
 		//    'tiles' '{' tiles+=Tile ( "," tiles+=Tile)* '}'
-		//    ('legalMovesPipeline' '{' legalMovesPipeline+=LegalMovesPipeline ( "," legalMovesPipeline+=LegalMovesPipeline)* '}' )?
-		//    ('effectPipeline' '{' effectPipeline+=EffectPipeline ( "," effectPipeline+=EffectPipeline)* '}' )?
+		//    ('legalMovesPipeline' legalMovesPipeline=LegalMovesPipeline)?
+		//    ('effectPipeline'effectPipeline=EffectPipeline)?
 		//    'tileplacement' '{' tileplacement+=TilePlacement ( "," tileplacement+=TilePlacement)* '}'
 		//'}'
 		public Group getGroup() { return cGroup; }
@@ -301,65 +289,29 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_11() { return cRightCurlyBracketKeyword_11; }
 		
-		//('legalMovesPipeline' '{' legalMovesPipeline+=LegalMovesPipeline ( "," legalMovesPipeline+=LegalMovesPipeline)* '}' )?
+		//('legalMovesPipeline' legalMovesPipeline=LegalMovesPipeline)?
 		public Group getGroup_12() { return cGroup_12; }
 		
 		//'legalMovesPipeline'
 		public Keyword getLegalMovesPipelineKeyword_12_0() { return cLegalMovesPipelineKeyword_12_0; }
 		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_12_1() { return cLeftCurlyBracketKeyword_12_1; }
-		
-		//legalMovesPipeline+=LegalMovesPipeline
-		public Assignment getLegalMovesPipelineAssignment_12_2() { return cLegalMovesPipelineAssignment_12_2; }
+		//legalMovesPipeline=LegalMovesPipeline
+		public Assignment getLegalMovesPipelineAssignment_12_1() { return cLegalMovesPipelineAssignment_12_1; }
 		
 		//LegalMovesPipeline
-		public RuleCall getLegalMovesPipelineLegalMovesPipelineParserRuleCall_12_2_0() { return cLegalMovesPipelineLegalMovesPipelineParserRuleCall_12_2_0; }
+		public RuleCall getLegalMovesPipelineLegalMovesPipelineParserRuleCall_12_1_0() { return cLegalMovesPipelineLegalMovesPipelineParserRuleCall_12_1_0; }
 		
-		//( "," legalMovesPipeline+=LegalMovesPipeline)*
-		public Group getGroup_12_3() { return cGroup_12_3; }
-		
-		//","
-		public Keyword getCommaKeyword_12_3_0() { return cCommaKeyword_12_3_0; }
-		
-		//legalMovesPipeline+=LegalMovesPipeline
-		public Assignment getLegalMovesPipelineAssignment_12_3_1() { return cLegalMovesPipelineAssignment_12_3_1; }
-		
-		//LegalMovesPipeline
-		public RuleCall getLegalMovesPipelineLegalMovesPipelineParserRuleCall_12_3_1_0() { return cLegalMovesPipelineLegalMovesPipelineParserRuleCall_12_3_1_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_12_4() { return cRightCurlyBracketKeyword_12_4; }
-		
-		//('effectPipeline' '{' effectPipeline+=EffectPipeline ( "," effectPipeline+=EffectPipeline)* '}' )?
+		//('effectPipeline'effectPipeline=EffectPipeline)?
 		public Group getGroup_13() { return cGroup_13; }
 		
 		//'effectPipeline'
 		public Keyword getEffectPipelineKeyword_13_0() { return cEffectPipelineKeyword_13_0; }
 		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_13_1() { return cLeftCurlyBracketKeyword_13_1; }
-		
-		//effectPipeline+=EffectPipeline
-		public Assignment getEffectPipelineAssignment_13_2() { return cEffectPipelineAssignment_13_2; }
+		//effectPipeline=EffectPipeline
+		public Assignment getEffectPipelineAssignment_13_1() { return cEffectPipelineAssignment_13_1; }
 		
 		//EffectPipeline
-		public RuleCall getEffectPipelineEffectPipelineParserRuleCall_13_2_0() { return cEffectPipelineEffectPipelineParserRuleCall_13_2_0; }
-		
-		//( "," effectPipeline+=EffectPipeline)*
-		public Group getGroup_13_3() { return cGroup_13_3; }
-		
-		//","
-		public Keyword getCommaKeyword_13_3_0() { return cCommaKeyword_13_3_0; }
-		
-		//effectPipeline+=EffectPipeline
-		public Assignment getEffectPipelineAssignment_13_3_1() { return cEffectPipelineAssignment_13_3_1; }
-		
-		//EffectPipeline
-		public RuleCall getEffectPipelineEffectPipelineParserRuleCall_13_3_1_0() { return cEffectPipelineEffectPipelineParserRuleCall_13_3_1_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_13_4() { return cRightCurlyBracketKeyword_13_4; }
+		public RuleCall getEffectPipelineEffectPipelineParserRuleCall_13_1_0() { return cEffectPipelineEffectPipelineParserRuleCall_13_1_0; }
 		
 		//'tileplacement'
 		public Keyword getTileplacementKeyword_14() { return cTileplacementKeyword_14; }
@@ -478,47 +430,6 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
-	}
-	public class TurnPolicyElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.TurnPolicy");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cTurnPolicyKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cTypeKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cTypeTurnTypeEnumRuleCall_3_0 = (RuleCall)cTypeAssignment_3.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		
-		//TurnPolicy returns TurnPolicy:
-		//    'TurnPolicy'
-		//    '{'
-		//        'type' type=TurnType
-		//    '}';
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'TurnPolicy'
-		//'{'
-		//    'type' type=TurnType
-		//'}'
-		public Group getGroup() { return cGroup; }
-		
-		//'TurnPolicy'
-		public Keyword getTurnPolicyKeyword_0() { return cTurnPolicyKeyword_0; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
-		
-		//'type'
-		public Keyword getTypeKeyword_2() { return cTypeKeyword_2; }
-		
-		//type=TurnType
-		public Assignment getTypeAssignment_3() { return cTypeAssignment_3; }
-		
-		//TurnType
-		public RuleCall getTypeTurnTypeEnumRuleCall_3_0() { return cTypeTurnTypeEnumRuleCall_3_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 	public class EIntElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.EInt");
@@ -1476,7 +1387,6 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final BoardElements pBoard;
 	private final EStringElements pEString;
 	private final PlayerElements pPlayer;
-	private final TurnPolicyElements pTurnPolicy;
 	private final EIntElements pEInt;
 	private final TileElements pTile;
 	private final LegalMovesPipelineElements pLegalMovesPipeline;
@@ -1505,7 +1415,6 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pBoard = new BoardElements();
 		this.pEString = new EStringElements();
 		this.pPlayer = new PlayerElements();
-		this.pTurnPolicy = new TurnPolicyElements();
 		this.pEInt = new EIntElements();
 		this.pTile = new TileElements();
 		this.pLegalMovesPipeline = new LegalMovesPipelineElements();
@@ -1555,7 +1464,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//        ('initialPlayer' initialPlayer=[Player|EString])?
 	//        'board' board=Board
 	//        ('players' '{' players+=Player ( "," players+=Player)* '}' )?
-	//        'turnPolicy' turnPolicy=TurnPolicy
+	//        'turnPolicy' turnPolicy=TurnType
 	//    '}';
 	public GameElements getGameAccess() {
 		return pGame;
@@ -1582,8 +1491,8 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//        'width' width=EInt
 	//        'height' height=EInt
 	//        'tiles' '{' tiles+=Tile ( "," tiles+=Tile)* '}'
-	//        ('legalMovesPipeline' '{' legalMovesPipeline+=LegalMovesPipeline ( "," legalMovesPipeline+=LegalMovesPipeline)* '}' )?
-	//        ('effectPipeline' '{' effectPipeline+=EffectPipeline ( "," effectPipeline+=EffectPipeline)* '}' )?
+	//        ('legalMovesPipeline' legalMovesPipeline=LegalMovesPipeline)?
+	//        ('effectPipeline'effectPipeline=EffectPipeline)?
 	//        'tileplacement' '{' tileplacement+=TilePlacement ( "," tileplacement+=TilePlacement)* '}'
 	//    '}';
 	public BoardElements getBoardAccess() {
@@ -1617,19 +1526,6 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getPlayerRule() {
 		return getPlayerAccess().getRule();
-	}
-	
-	//TurnPolicy returns TurnPolicy:
-	//    'TurnPolicy'
-	//    '{'
-	//        'type' type=TurnType
-	//    '}';
-	public TurnPolicyElements getTurnPolicyAccess() {
-		return pTurnPolicy;
-	}
-	
-	public ParserRule getTurnPolicyRule() {
-		return getTurnPolicyAccess().getRule();
 	}
 	
 	//EInt returns ecore::EInt:

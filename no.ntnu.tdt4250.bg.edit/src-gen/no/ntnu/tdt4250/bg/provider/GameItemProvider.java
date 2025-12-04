@@ -59,6 +59,7 @@ public class GameItemProvider extends ItemProviderAdapter implements IEditingDom
 			addNamePropertyDescriptor(object);
 			addInitialPlayerPropertyDescriptor(object);
 			addActivePlayerPropertyDescriptor(object);
+			addTurnPolicyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -109,6 +110,21 @@ public class GameItemProvider extends ItemProviderAdapter implements IEditingDom
 	}
 
 	/**
+	 * This adds a property descriptor for the Turn Policy feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTurnPolicyPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Game_turnPolicy_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Game_turnPolicy_feature", "_UI_Game_type"),
+						BgPackage.Literals.GAME__TURN_POLICY, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -122,7 +138,6 @@ public class GameItemProvider extends ItemProviderAdapter implements IEditingDom
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(BgPackage.Literals.GAME__BOARD);
 			childrenFeatures.add(BgPackage.Literals.GAME__PLAYERS);
-			childrenFeatures.add(BgPackage.Literals.GAME__TURN_POLICY);
 		}
 		return childrenFeatures;
 	}
@@ -187,11 +202,11 @@ public class GameItemProvider extends ItemProviderAdapter implements IEditingDom
 
 		switch (notification.getFeatureID(Game.class)) {
 		case BgPackage.GAME__NAME:
+		case BgPackage.GAME__TURN_POLICY:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case BgPackage.GAME__BOARD:
 		case BgPackage.GAME__PLAYERS:
-		case BgPackage.GAME__TURN_POLICY:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -214,9 +229,6 @@ public class GameItemProvider extends ItemProviderAdapter implements IEditingDom
 
 		newChildDescriptors
 				.add(createChildParameter(BgPackage.Literals.GAME__PLAYERS, BgFactory.eINSTANCE.createPlayer()));
-
-		newChildDescriptors.add(
-				createChildParameter(BgPackage.Literals.GAME__TURN_POLICY, BgFactory.eINSTANCE.createTurnPolicy()));
 	}
 
 	/**

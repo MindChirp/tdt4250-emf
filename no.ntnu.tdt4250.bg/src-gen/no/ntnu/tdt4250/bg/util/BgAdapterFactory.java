@@ -82,11 +82,6 @@ public class BgAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseTurnPolicy(TurnPolicy object) {
-			return createTurnPolicyAdapter();
-		}
-
-		@Override
 		public Adapter caseLegalMovesPipeline(LegalMovesPipeline object) {
 			return createLegalMovesPipelineAdapter();
 		}
@@ -194,20 +189,6 @@ public class BgAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPlayerAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link no.ntnu.tdt4250.bg.TurnPolicy <em>Turn Policy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see no.ntnu.tdt4250.bg.TurnPolicy
-	 * @generated
-	 */
-	public Adapter createTurnPolicyAdapter() {
 		return null;
 	}
 

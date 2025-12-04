@@ -142,29 +142,6 @@ public class BgItemProviderAdapterFactory extends BgAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link no.ntnu.tdt4250.bg.TurnPolicy} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TurnPolicyItemProvider turnPolicyItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link no.ntnu.tdt4250.bg.TurnPolicy}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTurnPolicyAdapter() {
-		if (turnPolicyItemProvider == null) {
-			turnPolicyItemProvider = new TurnPolicyItemProvider(this);
-		}
-
-		return turnPolicyItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link no.ntnu.tdt4250.bg.LegalMovesPipeline} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -482,8 +459,6 @@ public class BgItemProviderAdapterFactory extends BgAdapterFactory
 			boardItemProvider.dispose();
 		if (playerItemProvider != null)
 			playerItemProvider.dispose();
-		if (turnPolicyItemProvider != null)
-			turnPolicyItemProvider.dispose();
 		if (legalMovesPipelineItemProvider != null)
 			legalMovesPipelineItemProvider.dispose();
 		if (effectPipelineItemProvider != null)

@@ -6,13 +6,11 @@ package no.ntnu.tdt4250.bg.bgdsl.formatting2;
 import com.google.inject.Inject;
 import java.util.Arrays;
 import no.ntnu.tdt4250.bg.Board;
-import no.ntnu.tdt4250.bg.EffectPipeline;
 import no.ntnu.tdt4250.bg.Game;
-import no.ntnu.tdt4250.bg.LegalMovesPipeline;
 import no.ntnu.tdt4250.bg.Player;
 import no.ntnu.tdt4250.bg.Tile;
 import no.ntnu.tdt4250.bg.TilePlacement;
-import no.ntnu.tdt4250.bg.TurnPolicy;
+import no.ntnu.tdt4250.bg.TurnType;
 import no.ntnu.tdt4250.bg.bgdsl.services.BgDslGrammarAccess;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -34,24 +32,13 @@ public class BgDslFormatter extends AbstractFormatter2 {
     for (final Player player : _players) {
       document.<Player>format(player);
     }
-    EList<TurnPolicy> _turnPolicy = game.getTurnPolicy();
-    for (final TurnPolicy turnPolicy : _turnPolicy) {
-      document.<TurnPolicy>format(turnPolicy);
-    }
+    document.<TurnType>format(game.getTurnPolicy());
   }
 
   protected void _format(final Board board, @Extension final IFormattableDocument document) {
     EList<Tile> _tiles = board.getTiles();
     for (final Tile tile : _tiles) {
       document.<Tile>format(tile);
-    }
-    EList<LegalMovesPipeline> _legalMovesPipeline = board.getLegalMovesPipeline();
-    for (final LegalMovesPipeline legalMovesPipeline : _legalMovesPipeline) {
-      document.<LegalMovesPipeline>format(legalMovesPipeline);
-    }
-    EList<EffectPipeline> _effectPipeline = board.getEffectPipeline();
-    for (final EffectPipeline effectPipeline : _effectPipeline) {
-      document.<EffectPipeline>format(effectPipeline);
     }
     EList<TilePlacement> _tileplacement = board.getTileplacement();
     for (final TilePlacement tilePlacement : _tileplacement) {

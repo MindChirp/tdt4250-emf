@@ -8,8 +8,7 @@ import no.ntnu.tdt4250.bg.BgPackage;
 import no.ntnu.tdt4250.bg.Board;
 import no.ntnu.tdt4250.bg.Game;
 import no.ntnu.tdt4250.bg.Player;
-import no.ntnu.tdt4250.bg.TurnPolicy;
-
+import no.ntnu.tdt4250.bg.TurnType;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -35,9 +34,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.ntnu.tdt4250.bg.impl.GameImpl#getBoard <em>Board</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.GameImpl#getName <em>Name</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.GameImpl#getPlayers <em>Players</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.impl.GameImpl#getTurnPolicy <em>Turn Policy</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.GameImpl#getInitialPlayer <em>Initial Player</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.GameImpl#getActivePlayer <em>Active Player</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.impl.GameImpl#getTurnPolicy <em>Turn Policy</em>}</li>
  * </ul>
  *
  * @generated
@@ -84,16 +83,6 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 	protected EList<Player> players;
 
 	/**
-	 * The cached value of the '{@link #getTurnPolicy() <em>Turn Policy</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTurnPolicy()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TurnPolicy> turnPolicy;
-
-	/**
 	 * The cached value of the '{@link #getInitialPlayer() <em>Initial Player</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -102,6 +91,26 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 	 * @ordered
 	 */
 	protected Player initialPlayer;
+
+	/**
+	 * The default value of the '{@link #getTurnPolicy() <em>Turn Policy</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTurnPolicy()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final TurnType TURN_POLICY_EDEFAULT = TurnType.TURN_BASED;
+
+	/**
+	 * The cached value of the '{@link #getTurnPolicy() <em>Turn Policy</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTurnPolicy()
+	 * @generated
+	 * @ordered
+	 */
+	protected TurnType turnPolicy = TURN_POLICY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -215,19 +224,6 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 	 * @generated
 	 */
 	@Override
-	public EList<TurnPolicy> getTurnPolicy() {
-		if (turnPolicy == null) {
-			turnPolicy = new EObjectContainmentEList<TurnPolicy>(TurnPolicy.class, this, BgPackage.GAME__TURN_POLICY);
-		}
-		return turnPolicy;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Player getInitialPlayer() {
 		if (initialPlayer != null && initialPlayer.eIsProxy()) {
 			InternalEObject oldInitialPlayer = (InternalEObject) initialPlayer;
@@ -306,14 +302,36 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 	 * @generated
 	 */
 	@Override
+	public TurnType getTurnPolicy() {
+		return turnPolicy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTurnPolicy(TurnType newTurnPolicy) {
+		TurnType oldTurnPolicy = turnPolicy;
+		turnPolicy = newTurnPolicy == null ? TURN_POLICY_EDEFAULT : newTurnPolicy;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.GAME__TURN_POLICY, oldTurnPolicy,
+					turnPolicy));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case BgPackage.GAME__BOARD:
 			return basicSetBoard(null, msgs);
 		case BgPackage.GAME__PLAYERS:
 			return ((InternalEList<?>) getPlayers()).basicRemove(otherEnd, msgs);
-		case BgPackage.GAME__TURN_POLICY:
-			return ((InternalEList<?>) getTurnPolicy()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -332,8 +350,6 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 			return getName();
 		case BgPackage.GAME__PLAYERS:
 			return getPlayers();
-		case BgPackage.GAME__TURN_POLICY:
-			return getTurnPolicy();
 		case BgPackage.GAME__INITIAL_PLAYER:
 			if (resolve)
 				return getInitialPlayer();
@@ -342,6 +358,8 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 			if (resolve)
 				return getActivePlayer();
 			return basicGetActivePlayer();
+		case BgPackage.GAME__TURN_POLICY:
+			return getTurnPolicy();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -365,15 +383,14 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 			getPlayers().clear();
 			getPlayers().addAll((Collection<? extends Player>) newValue);
 			return;
-		case BgPackage.GAME__TURN_POLICY:
-			getTurnPolicy().clear();
-			getTurnPolicy().addAll((Collection<? extends TurnPolicy>) newValue);
-			return;
 		case BgPackage.GAME__INITIAL_PLAYER:
 			setInitialPlayer((Player) newValue);
 			return;
 		case BgPackage.GAME__ACTIVE_PLAYER:
 			setActivePlayer((Player) newValue);
+			return;
+		case BgPackage.GAME__TURN_POLICY:
+			setTurnPolicy((TurnType) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -396,14 +413,14 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 		case BgPackage.GAME__PLAYERS:
 			getPlayers().clear();
 			return;
-		case BgPackage.GAME__TURN_POLICY:
-			getTurnPolicy().clear();
-			return;
 		case BgPackage.GAME__INITIAL_PLAYER:
 			setInitialPlayer((Player) null);
 			return;
 		case BgPackage.GAME__ACTIVE_PLAYER:
 			setActivePlayer((Player) null);
+			return;
+		case BgPackage.GAME__TURN_POLICY:
+			setTurnPolicy(TURN_POLICY_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -423,12 +440,12 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case BgPackage.GAME__PLAYERS:
 			return players != null && !players.isEmpty();
-		case BgPackage.GAME__TURN_POLICY:
-			return turnPolicy != null && !turnPolicy.isEmpty();
 		case BgPackage.GAME__INITIAL_PLAYER:
 			return initialPlayer != null;
 		case BgPackage.GAME__ACTIVE_PLAYER:
 			return basicGetActivePlayer() != null;
+		case BgPackage.GAME__TURN_POLICY:
+			return turnPolicy != TURN_POLICY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -446,6 +463,8 @@ public class GameImpl extends MinimalEObjectImpl.Container implements Game {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
+		result.append(", turnPolicy: ");
+		result.append(turnPolicy);
 		result.append(')');
 		return result.toString();
 	}

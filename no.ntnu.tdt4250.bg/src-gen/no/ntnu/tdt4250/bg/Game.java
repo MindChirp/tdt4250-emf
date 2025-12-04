@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.ntnu.tdt4250.bg.Game#getBoard <em>Board</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Game#getName <em>Name</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Game#getPlayers <em>Players</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.Game#getTurnPolicy <em>Turn Policy</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Game#getInitialPlayer <em>Initial Player</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Game#getActivePlayer <em>Active Player</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.Game#getTurnPolicy <em>Turn Policy</em>}</li>
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getGame()
@@ -79,22 +79,10 @@ public interface Game extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Players</em>' containment reference list.
 	 * @see no.ntnu.tdt4250.bg.BgPackage#getGame_Players()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	EList<Player> getPlayers();
-
-	/**
-	 * Returns the value of the '<em><b>Turn Policy</b></em>' containment reference list.
-	 * The list contents are of type {@link no.ntnu.tdt4250.bg.TurnPolicy}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Turn Policy</em>' containment reference list.
-	 * @see no.ntnu.tdt4250.bg.BgPackage#getGame_TurnPolicy()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<TurnPolicy> getTurnPolicy();
 
 	/**
 	 * Returns the value of the '<em><b>Initial Player</b></em>' reference.
@@ -103,7 +91,7 @@ public interface Game extends EObject {
 	 * @return the value of the '<em>Initial Player</em>' reference.
 	 * @see #setInitialPlayer(Player)
 	 * @see no.ntnu.tdt4250.bg.BgPackage#getGame_InitialPlayer()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	Player getInitialPlayer();
@@ -139,5 +127,30 @@ public interface Game extends EObject {
 	 * @generated
 	 */
 	void setActivePlayer(Player value);
+
+	/**
+	 * Returns the value of the '<em><b>Turn Policy</b></em>' attribute.
+	 * The literals are from the enumeration {@link no.ntnu.tdt4250.bg.TurnType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Turn Policy</em>' attribute.
+	 * @see no.ntnu.tdt4250.bg.TurnType
+	 * @see #setTurnPolicy(TurnType)
+	 * @see no.ntnu.tdt4250.bg.BgPackage#getGame_TurnPolicy()
+	 * @model required="true"
+	 * @generated
+	 */
+	TurnType getTurnPolicy();
+
+	/**
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Game#getTurnPolicy <em>Turn Policy</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Turn Policy</em>' attribute.
+	 * @see no.ntnu.tdt4250.bg.TurnType
+	 * @see #getTurnPolicy()
+	 * @generated
+	 */
+	void setTurnPolicy(TurnType value);
 
 } // Game

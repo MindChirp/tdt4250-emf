@@ -77,24 +77,24 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 	protected EList<Tile> tiles;
 
 	/**
-	 * The cached value of the '{@link #getLegalMovesPipeline() <em>Legal Moves Pipeline</em>}' containment reference list.
+	 * The cached value of the '{@link #getLegalMovesPipeline() <em>Legal Moves Pipeline</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLegalMovesPipeline()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LegalMovesPipeline> legalMovesPipeline;
+	protected LegalMovesPipeline legalMovesPipeline;
 
 	/**
-	 * The cached value of the '{@link #getEffectPipeline() <em>Effect Pipeline</em>}' containment reference list.
+	 * The cached value of the '{@link #getEffectPipeline() <em>Effect Pipeline</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getEffectPipeline()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<EffectPipeline> effectPipeline;
+	protected EffectPipeline effectPipeline;
 
 	/**
 	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
@@ -217,11 +217,7 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 	 * @generated
 	 */
 	@Override
-	public EList<LegalMovesPipeline> getLegalMovesPipeline() {
-		if (legalMovesPipeline == null) {
-			legalMovesPipeline = new EObjectContainmentEList<LegalMovesPipeline>(LegalMovesPipeline.class, this,
-					BgPackage.BOARD__LEGAL_MOVES_PIPELINE);
-		}
+	public LegalMovesPipeline getLegalMovesPipeline() {
 		return legalMovesPipeline;
 	}
 
@@ -230,13 +226,94 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EList<EffectPipeline> getEffectPipeline() {
-		if (effectPipeline == null) {
-			effectPipeline = new EObjectContainmentEList<EffectPipeline>(EffectPipeline.class, this,
-					BgPackage.BOARD__EFFECT_PIPELINE);
+	public NotificationChain basicSetLegalMovesPipeline(LegalMovesPipeline newLegalMovesPipeline,
+			NotificationChain msgs) {
+		LegalMovesPipeline oldLegalMovesPipeline = legalMovesPipeline;
+		legalMovesPipeline = newLegalMovesPipeline;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					BgPackage.BOARD__LEGAL_MOVES_PIPELINE, oldLegalMovesPipeline, newLegalMovesPipeline);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setLegalMovesPipeline(LegalMovesPipeline newLegalMovesPipeline) {
+		if (newLegalMovesPipeline != legalMovesPipeline) {
+			NotificationChain msgs = null;
+			if (legalMovesPipeline != null)
+				msgs = ((InternalEObject) legalMovesPipeline).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - BgPackage.BOARD__LEGAL_MOVES_PIPELINE, null, msgs);
+			if (newLegalMovesPipeline != null)
+				msgs = ((InternalEObject) newLegalMovesPipeline).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - BgPackage.BOARD__LEGAL_MOVES_PIPELINE, null, msgs);
+			msgs = basicSetLegalMovesPipeline(newLegalMovesPipeline, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.BOARD__LEGAL_MOVES_PIPELINE,
+					newLegalMovesPipeline, newLegalMovesPipeline));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EffectPipeline getEffectPipeline() {
 		return effectPipeline;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetEffectPipeline(EffectPipeline newEffectPipeline, NotificationChain msgs) {
+		EffectPipeline oldEffectPipeline = effectPipeline;
+		effectPipeline = newEffectPipeline;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					BgPackage.BOARD__EFFECT_PIPELINE, oldEffectPipeline, newEffectPipeline);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setEffectPipeline(EffectPipeline newEffectPipeline) {
+		if (newEffectPipeline != effectPipeline) {
+			NotificationChain msgs = null;
+			if (effectPipeline != null)
+				msgs = ((InternalEObject) effectPipeline).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - BgPackage.BOARD__EFFECT_PIPELINE, null, msgs);
+			if (newEffectPipeline != null)
+				msgs = ((InternalEObject) newEffectPipeline).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - BgPackage.BOARD__EFFECT_PIPELINE, null, msgs);
+			msgs = basicSetEffectPipeline(newEffectPipeline, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.BOARD__EFFECT_PIPELINE, newEffectPipeline,
+					newEffectPipeline));
 	}
 
 	/**
@@ -320,9 +397,9 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 		case BgPackage.BOARD__TILES:
 			return ((InternalEList<?>) getTiles()).basicRemove(otherEnd, msgs);
 		case BgPackage.BOARD__LEGAL_MOVES_PIPELINE:
-			return ((InternalEList<?>) getLegalMovesPipeline()).basicRemove(otherEnd, msgs);
+			return basicSetLegalMovesPipeline(null, msgs);
 		case BgPackage.BOARD__EFFECT_PIPELINE:
-			return ((InternalEList<?>) getEffectPipeline()).basicRemove(otherEnd, msgs);
+			return basicSetEffectPipeline(null, msgs);
 		case BgPackage.BOARD__TILEPLACEMENT:
 			return ((InternalEList<?>) getTileplacement()).basicRemove(otherEnd, msgs);
 		}
@@ -374,12 +451,10 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 			getTiles().addAll((Collection<? extends Tile>) newValue);
 			return;
 		case BgPackage.BOARD__LEGAL_MOVES_PIPELINE:
-			getLegalMovesPipeline().clear();
-			getLegalMovesPipeline().addAll((Collection<? extends LegalMovesPipeline>) newValue);
+			setLegalMovesPipeline((LegalMovesPipeline) newValue);
 			return;
 		case BgPackage.BOARD__EFFECT_PIPELINE:
-			getEffectPipeline().clear();
-			getEffectPipeline().addAll((Collection<? extends EffectPipeline>) newValue);
+			setEffectPipeline((EffectPipeline) newValue);
 			return;
 		case BgPackage.BOARD__HEIGHT:
 			setHeight((Integer) newValue);
@@ -410,10 +485,10 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 			getTiles().clear();
 			return;
 		case BgPackage.BOARD__LEGAL_MOVES_PIPELINE:
-			getLegalMovesPipeline().clear();
+			setLegalMovesPipeline((LegalMovesPipeline) null);
 			return;
 		case BgPackage.BOARD__EFFECT_PIPELINE:
-			getEffectPipeline().clear();
+			setEffectPipeline((EffectPipeline) null);
 			return;
 		case BgPackage.BOARD__HEIGHT:
 			setHeight(HEIGHT_EDEFAULT);
@@ -441,9 +516,9 @@ public class BoardImpl extends MinimalEObjectImpl.Container implements Board {
 		case BgPackage.BOARD__TILES:
 			return tiles != null && !tiles.isEmpty();
 		case BgPackage.BOARD__LEGAL_MOVES_PIPELINE:
-			return legalMovesPipeline != null && !legalMovesPipeline.isEmpty();
+			return legalMovesPipeline != null;
 		case BgPackage.BOARD__EFFECT_PIPELINE:
-			return effectPipeline != null && !effectPipeline.isEmpty();
+			return effectPipeline != null;
 		case BgPackage.BOARD__HEIGHT:
 			return height != HEIGHT_EDEFAULT;
 		case BgPackage.BOARD__CHECKERED:

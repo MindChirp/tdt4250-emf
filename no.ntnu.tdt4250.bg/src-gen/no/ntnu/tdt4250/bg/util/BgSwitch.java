@@ -87,13 +87,6 @@ public class BgSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case BgPackage.TURN_POLICY: {
-			TurnPolicy turnPolicy = (TurnPolicy) theEObject;
-			T result = caseTurnPolicy(turnPolicy);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case BgPackage.LEGAL_MOVES_PIPELINE: {
 			LegalMovesPipeline legalMovesPipeline = (LegalMovesPipeline) theEObject;
 			T result = caseLegalMovesPipeline(legalMovesPipeline);
@@ -213,21 +206,6 @@ public class BgSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePlayer(Player object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Turn Policy</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Turn Policy</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTurnPolicy(TurnPolicy object) {
 		return null;
 	}
 
