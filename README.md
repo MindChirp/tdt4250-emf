@@ -499,9 +499,6 @@ This pipeline-based model enables expressive rule definitions across many types 
   Determines whether the tile position should be visually rendered as a dark-colored square on checkered boards.  
   Computed using `(row + column) % 2 == 1` when `Board.checkered` is enabled.
 
-- **`/coordinate`**  
-  Provides a human-readable coordinate for the tile placement in the format: `(row, column)`.  
-
 ---
 
 ### Game Logic Flow Deep Dive
