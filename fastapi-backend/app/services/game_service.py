@@ -2,6 +2,7 @@ from ast import List
 from typing import Tuple
 
 from app.generated.tictactoe import game, TilePlacement, Player, Tile
+from app.util.pipelines.legal_moves import calculateLegalMoves
 from app.models.game_state_response import GameStateResponse, TileResponse
 from app.models.move_request import MoveRequest
 
@@ -48,15 +49,30 @@ class GameService:
 
         # TODO: Replace placeholder once legal moves pipeline is implemented
         # board.legal_moves = []
-        legal_moves: List[TileResponse] = []
+        legal_moves: List[Tile] = calculateLegalMoves(game.board)
+        game.board.legalMoves.clear()
+        game.board.legalMoves.extend(legal_moves)
+        print(f"Legal moves: {[f'({tile.row}, {tile.column})' for tile in game.board.legalMoves]}")
 
+        legal_moves_mapped = [
+            TileResponse(
+                name=tile.name,
+                tileType=tile.tileType,
+                row=tile.row,
+                column=tile.column,
+                defaultHexColor=tile.hexColor,
+                currentState=tile.activeState.name,
+                currentStateColor=tile.activeState.hexColor,
+            )
+            for tile in game.board.legalMoves
+        ]
         
         # 2 Return entire game state
-
-
         actual_tiles: List[TileResponse] = [
             TileResponse(name=tile.name, tileType=tile.tileType, row=tile.row, column=tile.column, defaultHexColor=tile.hexColor, currentState=tile.activeState.name, currentStateColor=tile.activeState.hexColor) for tile in tiles
         ]
+
+        print(f"Length of legal moves{len(legal_moves_mapped)}")
         
 
         return GameStateResponse(
@@ -66,7 +82,7 @@ class GameService:
             boardWidth=board.width,
             boardHeight=board.height,
             tiles=actual_tiles,
-            legalMoves=legal_moves,
+            legalMoves=legal_moves_mapped,
         )
 
     def make_move(self, move: MoveRequest) -> GameStateResponse:
@@ -76,16 +92,23 @@ class GameService:
             raise NotPlayersTurnError(active_player)
 
         placement = self._find_tile_placement(move.row, move.column)
+       
+        legal_moves = game.board.legalMoves
 
-        
-        # Check if move is legal
-        # if placement.tile not in game.board.legal_moves:
-        #     raise IllegalMoveError((move.row, move.column)) 
+        # Check if a tile in legal_moves has the same row and column as the current placement
+        is_legal = False
+        for tile in legal_moves:
+            if tile.row == placement.row and tile.column == placement.column:
+                is_legal = True
+                break
 
+        if not is_legal:
+            raise IllegalMoveError((move.row, move.column))
 
         # Next state is calculated by effect pipeline
         # next_state = self._compute_next_state(placement, active_player)
         tile_effects: List[Tuple[Tile, str]] = [(placement, "XPlayed" if game.activePlayer.name == "Player1" else "OPlayed")]
+        
 
         # Update active player
         self._advance_turn()
@@ -93,7 +116,7 @@ class GameService:
 
 
 
-        if tile_effects.count == 0:
+        if len(tile_effects) == 0:
             return self.get_game_state()
 
             

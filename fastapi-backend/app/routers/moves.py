@@ -26,5 +26,6 @@ def make_move(move: MoveRequest):
         print(exc)
         raise HTTPException(400, str(exc))
     except Exception as e:
+        print(e)
         # Avoid leaking internals; log properly once logging is added
         raise HTTPException(500, "Unexpected error while processing move")

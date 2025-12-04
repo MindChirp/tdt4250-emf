@@ -12,6 +12,7 @@ class Board(BaseModel):
     height: "int"
     checkered: "bool"
     size: "int"
+    legalMoves: List["Tile"] = []
     
 
 class Tile(BaseModel):
@@ -86,13 +87,12 @@ class Player(BaseModel):
 	associatedState: "str"
 
 class Game(BaseModel):
-	board: "Board"
-	name: "str"
-	players: List["Player"] = []
-	initialPlayer: "Player"
-	activePlayer: "Player"
-	turnPolicy: "str"
-
+    board: "Board"
+    name: "str"
+    players: List["Player"] = []
+    initialPlayer: "Player"
+    activePlayer: "Player"
+    turnPolicy: "str"
 
 Board.model_rebuild()
 Tile.model_rebuild()
@@ -204,7 +204,6 @@ players = [
 ]
 
 
-
 board = Board(
     width=3,
     height=3,
@@ -214,20 +213,23 @@ board = Board(
     legalMovesPipeline=LegalMovesPipeline(filter=PatternFilter(
             name="MustBeEmptyPlace",
             patterns=[Pattern(
-                    name="CurrentTileMustBeEmpty",
+                    name="CurrentTileAndRightTileMustBeEmpty",
                     stateSelection="StateBased",
                     matchState="InitialEmpty",
-                    relativeCoordinates=[RelativeCoordinate(x=0, y=0)]
-                )])),
+                    relativecoordinates=[RelativeCoordinate(x=0, y=0)]
+                ), Pattern(
+                    name="TileAboveMustBeOfOwnType",
+                    stateSelection="OwnTiles",
+                    relativecoordinates=[RelativeCoordinate(x=0, y=-1)]
+                    )])),
     effectPipeline=EffectPipeline(filter=PatternFilter(
             name="PlaceCurrentTile",
             patterns=[Pattern(
                     name="SelectCurrentTile",
                     stateSelection="StateBased",
                     matchState="InitialEmpty",
-                    relativeCoordinates=[RelativeCoordinate(x=0, y=0)]
+                    relativecoordinates=[RelativeCoordinate(x=0, y=0)]
                 )])),
-    legalMoves=[]
 )
 
 
