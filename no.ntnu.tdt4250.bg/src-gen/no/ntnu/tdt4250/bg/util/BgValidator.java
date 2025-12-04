@@ -450,7 +450,6 @@ public class BgValidator extends EObjectValidator {
 				break;
 			}
 		}
-		
 
 		if (!isValidChains) {
 			if (diagnostics != null) {
@@ -525,7 +524,7 @@ public class BgValidator extends EObjectValidator {
 	 */
 	public boolean validateEffectPipeline_effectPipelineFiltersMustFormValidChain(EffectPipeline effectPipeline,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		
+
 		EList<Filter> filters = effectPipeline.getFilters();
 		boolean isValidChains = true;
 		for (Filter filter : filters) {
@@ -1242,7 +1241,39 @@ public class BgValidator extends EObjectValidator {
 			result &= validate_EveryMapEntryUnique(stateEffectFilter, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateFilter_filterMustBelongToGame(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateStateEffectFilter_matchStateDefined(stateEffectFilter, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * Validates the matchStateDefined constraint of '<em>State Effect Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStateEffectFilter_matchStateDefined(StateEffectFilter stateEffectFilter,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		boolean isLegal = true;
+
+		if (stateEffectFilter.getStateSelection().getLiteral() == (StateSelection.STATE_BASED).getLiteral()) {
+			isLegal = (stateEffectFilter.getTargetState() != null);
+		}
+		
+		if (!isLegal) {
+			if (diagnostics != null) {
+				diagnostics.add(
+						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
+								new Object[] { "matchStateDefined", getObjectLabel(stateEffectFilter, context) },
+								new Object[] { stateEffectFilter }, context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
