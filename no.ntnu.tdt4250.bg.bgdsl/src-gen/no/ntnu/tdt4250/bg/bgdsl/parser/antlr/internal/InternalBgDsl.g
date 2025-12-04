@@ -956,33 +956,66 @@ ruleLegalMovesPipeline returns [EObject current=null]
 			newLeafNode(otherlv_2, grammarAccess.getLegalMovesPipelineAccess().getLeftCurlyBracketKeyword_2());
 		}
 		(
-			otherlv_3='filter'
+			otherlv_3='filters'
 			{
-				newLeafNode(otherlv_3, grammarAccess.getLegalMovesPipelineAccess().getFilterKeyword_3_0());
+				newLeafNode(otherlv_3, grammarAccess.getLegalMovesPipelineAccess().getFiltersKeyword_3_0());
+			}
+			otherlv_4='{'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getLegalMovesPipelineAccess().getLeftCurlyBracketKeyword_3_1());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getLegalMovesPipelineAccess().getFilterFilterParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getLegalMovesPipelineAccess().getFiltersFilterParserRuleCall_3_2_0());
 					}
-					lv_filter_4_0=ruleFilter
+					lv_filters_5_0=ruleFilter
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getLegalMovesPipelineRule());
 						}
-						set(
+						add(
 							$current,
-							"filter",
-							lv_filter_4_0,
+							"filters",
+							lv_filters_5_0,
 							"no.ntnu.tdt4250.bg.bgdsl.BgDsl.Filter");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
+			(
+				otherlv_6=','
+				{
+					newLeafNode(otherlv_6, grammarAccess.getLegalMovesPipelineAccess().getCommaKeyword_3_3_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getLegalMovesPipelineAccess().getFiltersFilterParserRuleCall_3_3_1_0());
+						}
+						lv_filters_7_0=ruleFilter
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getLegalMovesPipelineRule());
+							}
+							add(
+								$current,
+								"filters",
+								lv_filters_7_0,
+								"no.ntnu.tdt4250.bg.bgdsl.BgDsl.Filter");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)*
+			otherlv_8='}'
+			{
+				newLeafNode(otherlv_8, grammarAccess.getLegalMovesPipelineAccess().getRightCurlyBracketKeyword_3_4());
+			}
 		)?
-		otherlv_5='}'
+		otherlv_9='}'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getLegalMovesPipelineAccess().getRightCurlyBracketKeyword_4());
+			newLeafNode(otherlv_9, grammarAccess.getLegalMovesPipelineAccess().getRightCurlyBracketKeyword_4());
 		}
 	)
 ;
@@ -1019,33 +1052,66 @@ ruleEffectPipeline returns [EObject current=null]
 			newLeafNode(otherlv_2, grammarAccess.getEffectPipelineAccess().getLeftCurlyBracketKeyword_2());
 		}
 		(
-			otherlv_3='filter'
+			otherlv_3='filters'
 			{
-				newLeafNode(otherlv_3, grammarAccess.getEffectPipelineAccess().getFilterKeyword_3_0());
+				newLeafNode(otherlv_3, grammarAccess.getEffectPipelineAccess().getFiltersKeyword_3_0());
+			}
+			otherlv_4='{'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getEffectPipelineAccess().getLeftCurlyBracketKeyword_3_1());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getEffectPipelineAccess().getFilterFilterParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getEffectPipelineAccess().getFiltersFilterParserRuleCall_3_2_0());
 					}
-					lv_filter_4_0=ruleFilter
+					lv_filters_5_0=ruleFilter
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getEffectPipelineRule());
 						}
-						set(
+						add(
 							$current,
-							"filter",
-							lv_filter_4_0,
+							"filters",
+							lv_filters_5_0,
 							"no.ntnu.tdt4250.bg.bgdsl.BgDsl.Filter");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
+			(
+				otherlv_6=','
+				{
+					newLeafNode(otherlv_6, grammarAccess.getEffectPipelineAccess().getCommaKeyword_3_3_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getEffectPipelineAccess().getFiltersFilterParserRuleCall_3_3_1_0());
+						}
+						lv_filters_7_0=ruleFilter
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getEffectPipelineRule());
+							}
+							add(
+								$current,
+								"filters",
+								lv_filters_7_0,
+								"no.ntnu.tdt4250.bg.bgdsl.BgDsl.Filter");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)*
+			otherlv_8='}'
+			{
+				newLeafNode(otherlv_8, grammarAccess.getEffectPipelineAccess().getRightCurlyBracketKeyword_3_4());
+			}
 		)?
-		otherlv_5='}'
+		otherlv_9='}'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getEffectPipelineAccess().getRightCurlyBracketKeyword_4());
+			newLeafNode(otherlv_9, grammarAccess.getEffectPipelineAccess().getRightCurlyBracketKeyword_4());
 		}
 	)
 ;

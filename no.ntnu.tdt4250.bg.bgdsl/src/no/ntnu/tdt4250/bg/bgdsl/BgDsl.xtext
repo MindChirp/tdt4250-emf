@@ -3,7 +3,6 @@ grammar no.ntnu.tdt4250.bg.bgdsl.BgDsl with org.eclipse.xtext.common.Terminals
 
 import "http://www.example.org/bg" 
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
-
 Game returns Game:
 	'Game'
 	name=EString
@@ -11,7 +10,7 @@ Game returns Game:
 		'turnPolicy' turnPolicy=TurnType
 		'initialPlayer' initialPlayer=[Player|EString]
 		'board' board=Board
-		'players' '{' players+=Player ( "," players+=Player)? '}' 
+		'players' '{' players+=Player ( "," players+=Player)* '}' 
 	'}';
 
 
@@ -71,14 +70,14 @@ LegalMovesPipeline returns LegalMovesPipeline:
 	{LegalMovesPipeline}
 	'LegalMovesPipeline'
 	'{'
-		('filter' filters+=Filter)?
+		('filters' '{' filters+=Filter ( "," filters+=Filter)* '}' )?
 	'}';
 
 EffectPipeline returns EffectPipeline:
 	{EffectPipeline}
 	'EffectPipeline'
 	'{'
-		('filter' filters+=Filter)?
+		('filters' '{' filters+=Filter ( "," filters+=Filter)* '}' )?
 	'}';
 
 EBoolean returns ecore::EBoolean:

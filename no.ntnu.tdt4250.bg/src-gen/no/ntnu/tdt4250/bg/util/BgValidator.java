@@ -450,7 +450,6 @@ public class BgValidator extends EObjectValidator {
 				break;
 			}
 		}
-		
 
 		if (!isValidChains) {
 			if (diagnostics != null) {
@@ -525,7 +524,7 @@ public class BgValidator extends EObjectValidator {
 	 */
 	public boolean validateEffectPipeline_effectPipelineFiltersMustFormValidChain(EffectPipeline effectPipeline,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		
+
 		EList<Filter> filters = effectPipeline.getFilters();
 		boolean isValidChains = true;
 		for (Filter filter : filters) {

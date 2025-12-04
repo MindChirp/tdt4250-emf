@@ -122,7 +122,7 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     EffectPipeline returns EffectPipeline
 	 *
 	 * Constraint:
-	 *     filter=Filter?
+	 *     (filters+=Filter filters+=Filter*)?
 	 * </pre>
 	 */
 	protected void sequence_EffectPipeline(ISerializationContext context, EffectPipeline semanticObject) {
@@ -172,7 +172,7 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     LegalMovesPipeline returns LegalMovesPipeline
 	 *
 	 * Constraint:
-	 *     filter=Filter?
+	 *     (filters+=Filter filters+=Filter*)?
 	 * </pre>
 	 */
 	protected void sequence_LegalMovesPipeline(ISerializationContext context, LegalMovesPipeline semanticObject) {

@@ -620,23 +620,29 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cLegalMovesPipelineKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cFilterKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cFilterAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cFilterFilterParserRuleCall_3_1_0 = (RuleCall)cFilterAssignment_3_1.eContents().get(0);
+		private final Keyword cFiltersKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Assignment cFiltersAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
+		private final RuleCall cFiltersFilterParserRuleCall_3_2_0 = (RuleCall)cFiltersAssignment_3_2.eContents().get(0);
+		private final Group cGroup_3_3 = (Group)cGroup_3.eContents().get(3);
+		private final Keyword cCommaKeyword_3_3_0 = (Keyword)cGroup_3_3.eContents().get(0);
+		private final Assignment cFiltersAssignment_3_3_1 = (Assignment)cGroup_3_3.eContents().get(1);
+		private final RuleCall cFiltersFilterParserRuleCall_3_3_1_0 = (RuleCall)cFiltersAssignment_3_3_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_3_4 = (Keyword)cGroup_3.eContents().get(4);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//LegalMovesPipeline returns LegalMovesPipeline:
 		//    {LegalMovesPipeline}
 		//    'LegalMovesPipeline'
 		//    '{'
-		//        ('filter' filter=Filter)?
+		//        ('filters' '{' filters+=Filter ( "," filters+=Filter)* '}' )?
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{LegalMovesPipeline}
 		//'LegalMovesPipeline'
 		//'{'
-		//    ('filter' filter=Filter)?
+		//    ('filters' '{' filters+=Filter ( "," filters+=Filter)* '}' )?
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
@@ -649,17 +655,35 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//('filter' filter=Filter)?
+		//('filters' '{' filters+=Filter ( "," filters+=Filter)* '}' )?
 		public Group getGroup_3() { return cGroup_3; }
 		
-		//'filter'
-		public Keyword getFilterKeyword_3_0() { return cFilterKeyword_3_0; }
+		//'filters'
+		public Keyword getFiltersKeyword_3_0() { return cFiltersKeyword_3_0; }
 		
-		//filter=Filter
-		public Assignment getFilterAssignment_3_1() { return cFilterAssignment_3_1; }
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_3_1() { return cLeftCurlyBracketKeyword_3_1; }
+		
+		//filters+=Filter
+		public Assignment getFiltersAssignment_3_2() { return cFiltersAssignment_3_2; }
 		
 		//Filter
-		public RuleCall getFilterFilterParserRuleCall_3_1_0() { return cFilterFilterParserRuleCall_3_1_0; }
+		public RuleCall getFiltersFilterParserRuleCall_3_2_0() { return cFiltersFilterParserRuleCall_3_2_0; }
+		
+		//( "," filters+=Filter)*
+		public Group getGroup_3_3() { return cGroup_3_3; }
+		
+		//","
+		public Keyword getCommaKeyword_3_3_0() { return cCommaKeyword_3_3_0; }
+		
+		//filters+=Filter
+		public Assignment getFiltersAssignment_3_3_1() { return cFiltersAssignment_3_3_1; }
+		
+		//Filter
+		public RuleCall getFiltersFilterParserRuleCall_3_3_1_0() { return cFiltersFilterParserRuleCall_3_3_1_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_3_4() { return cRightCurlyBracketKeyword_3_4; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
@@ -671,23 +695,29 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cEffectPipelineKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cFilterKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cFilterAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cFilterFilterParserRuleCall_3_1_0 = (RuleCall)cFilterAssignment_3_1.eContents().get(0);
+		private final Keyword cFiltersKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Assignment cFiltersAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
+		private final RuleCall cFiltersFilterParserRuleCall_3_2_0 = (RuleCall)cFiltersAssignment_3_2.eContents().get(0);
+		private final Group cGroup_3_3 = (Group)cGroup_3.eContents().get(3);
+		private final Keyword cCommaKeyword_3_3_0 = (Keyword)cGroup_3_3.eContents().get(0);
+		private final Assignment cFiltersAssignment_3_3_1 = (Assignment)cGroup_3_3.eContents().get(1);
+		private final RuleCall cFiltersFilterParserRuleCall_3_3_1_0 = (RuleCall)cFiltersAssignment_3_3_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_3_4 = (Keyword)cGroup_3.eContents().get(4);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//EffectPipeline returns EffectPipeline:
 		//    {EffectPipeline}
 		//    'EffectPipeline'
 		//    '{'
-		//        ('filter' filter=Filter)?
+		//        ('filters' '{' filters+=Filter ( "," filters+=Filter)* '}' )?
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{EffectPipeline}
 		//'EffectPipeline'
 		//'{'
-		//    ('filter' filter=Filter)?
+		//    ('filters' '{' filters+=Filter ( "," filters+=Filter)* '}' )?
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
@@ -700,17 +730,35 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//('filter' filter=Filter)?
+		//('filters' '{' filters+=Filter ( "," filters+=Filter)* '}' )?
 		public Group getGroup_3() { return cGroup_3; }
 		
-		//'filter'
-		public Keyword getFilterKeyword_3_0() { return cFilterKeyword_3_0; }
+		//'filters'
+		public Keyword getFiltersKeyword_3_0() { return cFiltersKeyword_3_0; }
 		
-		//filter=Filter
-		public Assignment getFilterAssignment_3_1() { return cFilterAssignment_3_1; }
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_3_1() { return cLeftCurlyBracketKeyword_3_1; }
+		
+		//filters+=Filter
+		public Assignment getFiltersAssignment_3_2() { return cFiltersAssignment_3_2; }
 		
 		//Filter
-		public RuleCall getFilterFilterParserRuleCall_3_1_0() { return cFilterFilterParserRuleCall_3_1_0; }
+		public RuleCall getFiltersFilterParserRuleCall_3_2_0() { return cFiltersFilterParserRuleCall_3_2_0; }
+		
+		//( "," filters+=Filter)*
+		public Group getGroup_3_3() { return cGroup_3_3; }
+		
+		//","
+		public Keyword getCommaKeyword_3_3_0() { return cCommaKeyword_3_3_0; }
+		
+		//filters+=Filter
+		public Assignment getFiltersAssignment_3_3_1() { return cFiltersAssignment_3_3_1; }
+		
+		//Filter
+		public RuleCall getFiltersFilterParserRuleCall_3_3_1_0() { return cFiltersFilterParserRuleCall_3_3_1_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_3_4() { return cRightCurlyBracketKeyword_3_4; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
@@ -1766,7 +1814,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    {LegalMovesPipeline}
 	//    'LegalMovesPipeline'
 	//    '{'
-	//        ('filter' filter=Filter)?
+	//        ('filters' '{' filters+=Filter ( "," filters+=Filter)* '}' )?
 	//    '}';
 	public LegalMovesPipelineElements getLegalMovesPipelineAccess() {
 		return pLegalMovesPipeline;
@@ -1780,7 +1828,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    {EffectPipeline}
 	//    'EffectPipeline'
 	//    '{'
-	//        ('filter' filter=Filter)?
+	//        ('filters' '{' filters+=Filter ( "," filters+=Filter)* '}' )?
 	//    '}';
 	public EffectPipelineElements getEffectPipelineAccess() {
 		return pEffectPipeline;

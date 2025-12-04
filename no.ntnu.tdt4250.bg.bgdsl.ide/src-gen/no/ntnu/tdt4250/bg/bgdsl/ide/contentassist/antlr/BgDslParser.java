@@ -51,8 +51,10 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTileAccess().getGroup_12_3(), "rule__Tile__Group_12_3__0");
 			builder.put(grammarAccess.getLegalMovesPipelineAccess().getGroup(), "rule__LegalMovesPipeline__Group__0");
 			builder.put(grammarAccess.getLegalMovesPipelineAccess().getGroup_3(), "rule__LegalMovesPipeline__Group_3__0");
+			builder.put(grammarAccess.getLegalMovesPipelineAccess().getGroup_3_3(), "rule__LegalMovesPipeline__Group_3_3__0");
 			builder.put(grammarAccess.getEffectPipelineAccess().getGroup(), "rule__EffectPipeline__Group__0");
 			builder.put(grammarAccess.getEffectPipelineAccess().getGroup_3(), "rule__EffectPipeline__Group_3__0");
+			builder.put(grammarAccess.getEffectPipelineAccess().getGroup_3_3(), "rule__EffectPipeline__Group_3_3__0");
 			builder.put(grammarAccess.getTilePlacementAccess().getGroup(), "rule__TilePlacement__Group__0");
 			builder.put(grammarAccess.getStateAccess().getGroup(), "rule__State__Group__0");
 			builder.put(grammarAccess.getStateAccess().getGroup_5(), "rule__State__Group_5__0");
@@ -100,8 +102,10 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTileAccess().getTransitionsAssignment_12_2(), "rule__Tile__TransitionsAssignment_12_2");
 			builder.put(grammarAccess.getTileAccess().getTransitionsAssignment_12_3_1(), "rule__Tile__TransitionsAssignment_12_3_1");
 			builder.put(grammarAccess.getTileAccess().getInitialStateAssignment_14(), "rule__Tile__InitialStateAssignment_14");
-			builder.put(grammarAccess.getLegalMovesPipelineAccess().getFilterAssignment_3_1(), "rule__LegalMovesPipeline__FilterAssignment_3_1");
-			builder.put(grammarAccess.getEffectPipelineAccess().getFilterAssignment_3_1(), "rule__EffectPipeline__FilterAssignment_3_1");
+			builder.put(grammarAccess.getLegalMovesPipelineAccess().getFiltersAssignment_3_2(), "rule__LegalMovesPipeline__FiltersAssignment_3_2");
+			builder.put(grammarAccess.getLegalMovesPipelineAccess().getFiltersAssignment_3_3_1(), "rule__LegalMovesPipeline__FiltersAssignment_3_3_1");
+			builder.put(grammarAccess.getEffectPipelineAccess().getFiltersAssignment_3_2(), "rule__EffectPipeline__FiltersAssignment_3_2");
+			builder.put(grammarAccess.getEffectPipelineAccess().getFiltersAssignment_3_3_1(), "rule__EffectPipeline__FiltersAssignment_3_3_1");
 			builder.put(grammarAccess.getTilePlacementAccess().getRowAssignment_3(), "rule__TilePlacement__RowAssignment_3");
 			builder.put(grammarAccess.getTilePlacementAccess().getColumnAssignment_5(), "rule__TilePlacement__ColumnAssignment_5");
 			builder.put(grammarAccess.getTilePlacementAccess().getTileAssignment_7(), "rule__TilePlacement__TileAssignment_7");
