@@ -20,6 +20,7 @@ import no.ntnu.tdt4250.bg.StateEffectFilter;
 import no.ntnu.tdt4250.bg.Tile;
 import no.ntnu.tdt4250.bg.TilePlacement;
 import no.ntnu.tdt4250.bg.Transition;
+import no.ntnu.tdt4250.bg.WinConditionFilter;
 import no.ntnu.tdt4250.bg.bgdsl.services.BgDslGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -86,6 +87,9 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case BgPackage.TRANSITION:
 				sequence_Transition(context, (Transition) semanticObject); 
+				return; 
+			case BgPackage.WIN_CONDITION_FILTER:
+				sequence_WinConditionFilter(context, (WinConditionFilter) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -356,6 +360,21 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * </pre>
 	 */
 	protected void sequence_Transition(ISerializationContext context, Transition semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Filter returns WinConditionFilter
+	 *     WinConditionFilter returns WinConditionFilter
+	 *
+	 * Constraint:
+	 *     (name=EString nextFilter=Filter? patternfilter+=PatternFilter patternfilter+=PatternFilter*)
+	 * </pre>
+	 */
+	protected void sequence_WinConditionFilter(ISerializationContext context, WinConditionFilter semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

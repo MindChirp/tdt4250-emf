@@ -84,6 +84,8 @@ public class BgFactoryImpl extends EFactoryImpl implements BgFactory {
 			return createIterativeFilter();
 		case BgPackage.STATE_EFFECT_FILTER:
 			return createStateEffectFilter();
+		case BgPackage.WIN_CONDITION_FILTER:
+			return createWinConditionFilter();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -275,6 +277,17 @@ public class BgFactoryImpl extends EFactoryImpl implements BgFactory {
 	public StateEffectFilter createStateEffectFilter() {
 		StateEffectFilterImpl stateEffectFilter = new StateEffectFilterImpl();
 		return stateEffectFilter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public WinConditionFilter createWinConditionFilter() {
+		WinConditionFilterImpl winConditionFilter = new WinConditionFilterImpl();
+		return winConditionFilter;
 	}
 
 	/**

@@ -164,6 +164,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WinConditionFilter" eSuperTypes="#//Filter">
     <eStructuralFeatures xsi:type="ecore:EReference" name="patternfilter" lowerBound="1"
-        upperBound="-1" eType="#//PatternFilter"/>
+        upperBound="-1" eType="#//PatternFilter" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

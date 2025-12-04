@@ -122,6 +122,8 @@ public class BgValidator extends EObjectValidator {
 			return validateIterativeFilter((IterativeFilter) value, diagnostics, context);
 		case BgPackage.STATE_EFFECT_FILTER:
 			return validateStateEffectFilter((StateEffectFilter) value, diagnostics, context);
+		case BgPackage.WIN_CONDITION_FILTER:
+			return validateWinConditionFilter((WinConditionFilter) value, diagnostics, context);
 		case BgPackage.TURN_TYPE:
 			return validateTurnType((TurnType) value, diagnostics, context);
 		case BgPackage.STATE_SELECTION:
@@ -1268,6 +1270,35 @@ public class BgValidator extends EObjectValidator {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateWinConditionFilter(WinConditionFilter winConditionFilter, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(winConditionFilter, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(winConditionFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(winConditionFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(winConditionFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(winConditionFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(winConditionFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(winConditionFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(winConditionFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(winConditionFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateFilter_filterMustBelongToGame(winConditionFilter, diagnostics, context);
+		return result;
 	}
 
 	/**

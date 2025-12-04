@@ -181,6 +181,9 @@ public class FilterItemProvider extends ItemProviderAdapter implements IEditingD
 
 		newChildDescriptors.add(createChildParameter(BgPackage.Literals.FILTER__NEXT_FILTER,
 				BgFactory.eINSTANCE.createStateEffectFilter()));
+
+		newChildDescriptors.add(createChildParameter(BgPackage.Literals.FILTER__NEXT_FILTER,
+				BgFactory.eINSTANCE.createWinConditionFilter()));
 	}
 
 	/**

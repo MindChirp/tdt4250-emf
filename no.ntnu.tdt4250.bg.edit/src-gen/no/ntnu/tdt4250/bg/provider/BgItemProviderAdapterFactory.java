@@ -395,6 +395,29 @@ public class BgItemProviderAdapterFactory extends BgAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link no.ntnu.tdt4250.bg.WinConditionFilter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WinConditionFilterItemProvider winConditionFilterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link no.ntnu.tdt4250.bg.WinConditionFilter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWinConditionFilterAdapter() {
+		if (winConditionFilterItemProvider == null) {
+			winConditionFilterItemProvider = new WinConditionFilterItemProvider(this);
+		}
+
+		return winConditionFilterItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -527,6 +550,8 @@ public class BgItemProviderAdapterFactory extends BgAdapterFactory
 			iterativeFilterItemProvider.dispose();
 		if (stateEffectFilterItemProvider != null)
 			stateEffectFilterItemProvider.dispose();
+		if (winConditionFilterItemProvider != null)
+			winConditionFilterItemProvider.dispose();
 	}
 
 }

@@ -174,6 +174,9 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 
 		newChildDescriptors.add(createChildParameter(BgPackage.Literals.LEGAL_MOVES_PIPELINE__FILTERS,
 				BgFactory.eINSTANCE.createStateEffectFilter()));
+
+		newChildDescriptors.add(createChildParameter(BgPackage.Literals.LEGAL_MOVES_PIPELINE__FILTERS,
+				BgFactory.eINSTANCE.createWinConditionFilter()));
 	}
 
 	/**

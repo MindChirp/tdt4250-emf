@@ -22,7 +22,8 @@ Game returns Game:
 
 
 Filter returns Filter:
-	PatternFilter | IterativeFilter | StateEffectFilter;
+	PatternFilter | IterativeFilter | StateEffectFilter | WinConditionFilter;
+
 
 
 
@@ -133,6 +134,14 @@ StateEffectFilter returns StateEffectFilter:
 		'stateSelection' stateSelection=StateSelection
 		('targetState' targetState=[State|EString])?
 		('nextFilter' nextFilter=Filter)?
+	'}';
+
+WinConditionFilter returns WinConditionFilter:
+	'WinConditionFilter'
+	name=EString
+	'{'
+		('nextFilter' nextFilter=Filter)?
+		'patternfilter' '{' patternfilter+=PatternFilter ( "," patternfilter+=PatternFilter)* '}' 
 	'}';
 
 Pattern returns Pattern:

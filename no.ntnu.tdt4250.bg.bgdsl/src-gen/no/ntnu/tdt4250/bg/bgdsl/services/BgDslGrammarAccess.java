@@ -153,12 +153,13 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cPatternFilterParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cIterativeFilterParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cStateEffectFilterParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cWinConditionFilterParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//Filter returns Filter:
-		//    PatternFilter | IterativeFilter | StateEffectFilter;
+		//    PatternFilter | IterativeFilter | StateEffectFilter | WinConditionFilter;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//PatternFilter | IterativeFilter | StateEffectFilter
+		//PatternFilter | IterativeFilter | StateEffectFilter | WinConditionFilter
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//PatternFilter
@@ -169,6 +170,9 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//StateEffectFilter
 		public RuleCall getStateEffectFilterParserRuleCall_2() { return cStateEffectFilterParserRuleCall_2; }
+		
+		//WinConditionFilter
+		public RuleCall getWinConditionFilterParserRuleCall_3() { return cWinConditionFilterParserRuleCall_3; }
 	}
 	public class BoardElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.Board");
@@ -1388,6 +1392,99 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
 	}
+	public class WinConditionFilterElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.WinConditionFilter");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cWinConditionFilterKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameEStringParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cNextFilterKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cNextFilterAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cNextFilterFilterParserRuleCall_3_1_0 = (RuleCall)cNextFilterAssignment_3_1.eContents().get(0);
+		private final Keyword cPatternfilterKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cPatternfilterAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cPatternfilterPatternFilterParserRuleCall_6_0 = (RuleCall)cPatternfilterAssignment_6.eContents().get(0);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final Keyword cCommaKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Assignment cPatternfilterAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cPatternfilterPatternFilterParserRuleCall_7_1_0 = (RuleCall)cPatternfilterAssignment_7_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		
+		//WinConditionFilter returns WinConditionFilter:
+		//    'WinConditionFilter'
+		//    name=EString
+		//    '{'
+		//        ('nextFilter' nextFilter=Filter)?
+		//        'patternfilter' '{' patternfilter+=PatternFilter ( "," patternfilter+=PatternFilter)* '}'
+		//    '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'WinConditionFilter'
+		//name=EString
+		//'{'
+		//    ('nextFilter' nextFilter=Filter)?
+		//    'patternfilter' '{' patternfilter+=PatternFilter ( "," patternfilter+=PatternFilter)* '}'
+		//'}'
+		public Group getGroup() { return cGroup; }
+		
+		//'WinConditionFilter'
+		public Keyword getWinConditionFilterKeyword_0() { return cWinConditionFilterKeyword_0; }
+		
+		//name=EString
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//EString
+		public RuleCall getNameEStringParserRuleCall_1_0() { return cNameEStringParserRuleCall_1_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		
+		//('nextFilter' nextFilter=Filter)?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//'nextFilter'
+		public Keyword getNextFilterKeyword_3_0() { return cNextFilterKeyword_3_0; }
+		
+		//nextFilter=Filter
+		public Assignment getNextFilterAssignment_3_1() { return cNextFilterAssignment_3_1; }
+		
+		//Filter
+		public RuleCall getNextFilterFilterParserRuleCall_3_1_0() { return cNextFilterFilterParserRuleCall_3_1_0; }
+		
+		//'patternfilter'
+		public Keyword getPatternfilterKeyword_4() { return cPatternfilterKeyword_4; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
+		
+		//patternfilter+=PatternFilter
+		public Assignment getPatternfilterAssignment_6() { return cPatternfilterAssignment_6; }
+		
+		//PatternFilter
+		public RuleCall getPatternfilterPatternFilterParserRuleCall_6_0() { return cPatternfilterPatternFilterParserRuleCall_6_0; }
+		
+		//( "," patternfilter+=PatternFilter)*
+		public Group getGroup_7() { return cGroup_7; }
+		
+		//","
+		public Keyword getCommaKeyword_7_0() { return cCommaKeyword_7_0; }
+		
+		//patternfilter+=PatternFilter
+		public Assignment getPatternfilterAssignment_7_1() { return cPatternfilterAssignment_7_1; }
+		
+		//PatternFilter
+		public RuleCall getPatternfilterPatternFilterParserRuleCall_7_1_0() { return cPatternfilterPatternFilterParserRuleCall_7_1_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
+	}
 	public class PatternElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.Pattern");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1639,6 +1736,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final PatternFilterElements pPatternFilter;
 	private final IterativeFilterElements pIterativeFilter;
 	private final StateEffectFilterElements pStateEffectFilter;
+	private final WinConditionFilterElements pWinConditionFilter;
 	private final PatternElements pPattern;
 	private final RelativeCoordinateElements pRelativeCoordinate;
 	private final StateSelectionElements eStateSelection;
@@ -1669,6 +1767,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pPatternFilter = new PatternFilterElements();
 		this.pIterativeFilter = new IterativeFilterElements();
 		this.pStateEffectFilter = new StateEffectFilterElements();
+		this.pWinConditionFilter = new WinConditionFilterElements();
 		this.pPattern = new PatternElements();
 		this.pRelativeCoordinate = new RelativeCoordinateElements();
 		this.eStateSelection = new StateSelectionElements();
@@ -1719,7 +1818,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//Filter returns Filter:
-	//    PatternFilter | IterativeFilter | StateEffectFilter;
+	//    PatternFilter | IterativeFilter | StateEffectFilter | WinConditionFilter;
 	public FilterElements getFilterAccess() {
 		return pFilter;
 	}
@@ -1940,6 +2039,21 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getStateEffectFilterRule() {
 		return getStateEffectFilterAccess().getRule();
+	}
+	
+	//WinConditionFilter returns WinConditionFilter:
+	//    'WinConditionFilter'
+	//    name=EString
+	//    '{'
+	//        ('nextFilter' nextFilter=Filter)?
+	//        'patternfilter' '{' patternfilter+=PatternFilter ( "," patternfilter+=PatternFilter)* '}'
+	//    '}';
+	public WinConditionFilterElements getWinConditionFilterAccess() {
+		return pWinConditionFilter;
+	}
+	
+	public ParserRule getWinConditionFilterRule() {
+		return getWinConditionFilterAccess().getRule();
 	}
 	
 	//Pattern returns Pattern:

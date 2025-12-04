@@ -275,6 +275,15 @@ ruleFilter returns [EObject current=null]
 			$current = $this_StateEffectFilter_2.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getFilterAccess().getWinConditionFilterParserRuleCall_3());
+		}
+		this_WinConditionFilter_3=ruleWinConditionFilter
+		{
+			$current = $this_WinConditionFilter_3.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -1901,6 +1910,137 @@ ruleStateEffectFilter returns [EObject current=null]
 		otherlv_9='}'
 		{
 			newLeafNode(otherlv_9, grammarAccess.getStateEffectFilterAccess().getRightCurlyBracketKeyword_7());
+		}
+	)
+;
+
+// Entry rule entryRuleWinConditionFilter
+entryRuleWinConditionFilter returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getWinConditionFilterRule()); }
+	iv_ruleWinConditionFilter=ruleWinConditionFilter
+	{ $current=$iv_ruleWinConditionFilter.current; }
+	EOF;
+
+// Rule WinConditionFilter
+ruleWinConditionFilter returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='WinConditionFilter'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getWinConditionFilterAccess().getWinConditionFilterKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getWinConditionFilterAccess().getNameEStringParserRuleCall_1_0());
+				}
+				lv_name_1_0=ruleEString
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getWinConditionFilterRule());
+					}
+					set(
+						$current,
+						"name",
+						lv_name_1_0,
+						"no.ntnu.tdt4250.bg.bgdsl.BgDsl.EString");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_2='{'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getWinConditionFilterAccess().getLeftCurlyBracketKeyword_2());
+		}
+		(
+			otherlv_3='nextFilter'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getWinConditionFilterAccess().getNextFilterKeyword_3_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getWinConditionFilterAccess().getNextFilterFilterParserRuleCall_3_1_0());
+					}
+					lv_nextFilter_4_0=ruleFilter
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getWinConditionFilterRule());
+						}
+						set(
+							$current,
+							"nextFilter",
+							lv_nextFilter_4_0,
+							"no.ntnu.tdt4250.bg.bgdsl.BgDsl.Filter");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		otherlv_5='patternfilter'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getWinConditionFilterAccess().getPatternfilterKeyword_4());
+		}
+		otherlv_6='{'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getWinConditionFilterAccess().getLeftCurlyBracketKeyword_5());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getWinConditionFilterAccess().getPatternfilterPatternFilterParserRuleCall_6_0());
+				}
+				lv_patternfilter_7_0=rulePatternFilter
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getWinConditionFilterRule());
+					}
+					add(
+						$current,
+						"patternfilter",
+						lv_patternfilter_7_0,
+						"no.ntnu.tdt4250.bg.bgdsl.BgDsl.PatternFilter");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			otherlv_8=','
+			{
+				newLeafNode(otherlv_8, grammarAccess.getWinConditionFilterAccess().getCommaKeyword_7_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getWinConditionFilterAccess().getPatternfilterPatternFilterParserRuleCall_7_1_0());
+					}
+					lv_patternfilter_9_0=rulePatternFilter
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getWinConditionFilterRule());
+						}
+						add(
+							$current,
+							"patternfilter",
+							lv_patternfilter_9_0,
+							"no.ntnu.tdt4250.bg.bgdsl.BgDsl.PatternFilter");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+		otherlv_10='}'
+		{
+			newLeafNode(otherlv_10, grammarAccess.getWinConditionFilterAccess().getRightCurlyBracketKeyword_8());
+		}
+		otherlv_11='}'
+		{
+			newLeafNode(otherlv_11, grammarAccess.getWinConditionFilterAccess().getRightCurlyBracketKeyword_9());
 		}
 	)
 ;

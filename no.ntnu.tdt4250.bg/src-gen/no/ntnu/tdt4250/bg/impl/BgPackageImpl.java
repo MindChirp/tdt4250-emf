@@ -22,6 +22,7 @@ import no.ntnu.tdt4250.bg.TilePlacement;
 import no.ntnu.tdt4250.bg.Transition;
 import no.ntnu.tdt4250.bg.TurnType;
 
+import no.ntnu.tdt4250.bg.WinConditionFilter;
 import no.ntnu.tdt4250.bg.util.BgValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -143,6 +144,13 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	private EClass stateEffectFilterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass winConditionFilterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -885,6 +893,26 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getWinConditionFilter() {
+		return winConditionFilterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getWinConditionFilter_Patternfilter() {
+		return (EReference) winConditionFilterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getTurnType() {
 		return turnTypeEEnum;
 	}
@@ -1009,6 +1037,9 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEReference(stateEffectFilterEClass, STATE_EFFECT_FILTER__TARGET_STATE);
 		createEAttribute(stateEffectFilterEClass, STATE_EFFECT_FILTER__STATE_SELECTION);
 
+		winConditionFilterEClass = createEClass(WIN_CONDITION_FILTER);
+		createEReference(winConditionFilterEClass, WIN_CONDITION_FILTER__PATTERNFILTER);
+
 		// Create enums
 		turnTypeEEnum = createEEnum(TURN_TYPE);
 		stateSelectionEEnum = createEEnum(STATE_SELECTION);
@@ -1046,6 +1077,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		patternFilterEClass.getESuperTypes().add(this.getFilter());
 		iterativeFilterEClass.getESuperTypes().add(this.getFilter());
 		stateEffectFilterEClass.getESuperTypes().add(this.getFilter());
+		winConditionFilterEClass.getESuperTypes().add(this.getFilter());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(gameEClass, Game.class, "Game", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1214,6 +1246,12 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		initEAttribute(getStateEffectFilter_StateSelection(), this.getStateSelection(), "stateSelection", null, 1, 1,
 				StateEffectFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(winConditionFilterEClass, WinConditionFilter.class, "WinConditionFilter", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWinConditionFilter_Patternfilter(), this.getPatternFilter(), null, "patternfilter", null, 1,
+				-1, WinConditionFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(turnTypeEEnum, TurnType.class, "TurnType");

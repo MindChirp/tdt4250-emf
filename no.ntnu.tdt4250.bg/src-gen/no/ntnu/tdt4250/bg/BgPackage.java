@@ -982,6 +982,61 @@ public interface BgPackage extends EPackage {
 	int STATE_EFFECT_FILTER_OPERATION_COUNT = FILTER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.impl.WinConditionFilterImpl <em>Win Condition Filter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.ntnu.tdt4250.bg.impl.WinConditionFilterImpl
+	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getWinConditionFilter()
+	 * @generated
+	 */
+	int WIN_CONDITION_FILTER = 15;
+
+	/**
+	 * The feature id for the '<em><b>Next Filter</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIN_CONDITION_FILTER__NEXT_FILTER = FILTER__NEXT_FILTER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIN_CONDITION_FILTER__NAME = FILTER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Patternfilter</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIN_CONDITION_FILTER__PATTERNFILTER = FILTER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Win Condition Filter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIN_CONDITION_FILTER_FEATURE_COUNT = FILTER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Win Condition Filter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIN_CONDITION_FILTER_OPERATION_COUNT = FILTER_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -989,7 +1044,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getTurnType()
 	 * @generated
 	 */
-	int TURN_TYPE = 15;
+	int TURN_TYPE = 16;
 
 	/**
 	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.StateSelection <em>State Selection</em>}' enum.
@@ -999,7 +1054,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getStateSelection()
 	 * @generated
 	 */
-	int STATE_SELECTION = 16;
+	int STATE_SELECTION = 17;
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Game <em>Game</em>}'.
@@ -1702,6 +1757,27 @@ public interface BgPackage extends EPackage {
 	EAttribute getStateEffectFilter_StateSelection();
 
 	/**
+	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.WinConditionFilter <em>Win Condition Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Win Condition Filter</em>'.
+	 * @see no.ntnu.tdt4250.bg.WinConditionFilter
+	 * @generated
+	 */
+	EClass getWinConditionFilter();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link no.ntnu.tdt4250.bg.WinConditionFilter#getPatternfilter <em>Patternfilter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Patternfilter</em>'.
+	 * @see no.ntnu.tdt4250.bg.WinConditionFilter#getPatternfilter()
+	 * @see #getWinConditionFilter()
+	 * @generated
+	 */
+	EReference getWinConditionFilter_Patternfilter();
+
+	/**
 	 * Returns the meta object for enum '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2293,6 +2369,24 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STATE_EFFECT_FILTER__STATE_SELECTION = eINSTANCE.getStateEffectFilter_StateSelection();
+
+		/**
+		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.WinConditionFilterImpl <em>Win Condition Filter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.ntnu.tdt4250.bg.impl.WinConditionFilterImpl
+		 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getWinConditionFilter()
+		 * @generated
+		 */
+		EClass WIN_CONDITION_FILTER = eINSTANCE.getWinConditionFilter();
+
+		/**
+		 * The meta object literal for the '<em><b>Patternfilter</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WIN_CONDITION_FILTER__PATTERNFILTER = eINSTANCE.getWinConditionFilter_Patternfilter();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}' enum.

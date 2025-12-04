@@ -148,6 +148,15 @@ public interface BgFactory extends EFactory {
 	StateEffectFilter createStateEffectFilter();
 
 	/**
+	 * Returns a new object of class '<em>Win Condition Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Win Condition Filter</em>'.
+	 * @generated
+	 */
+	WinConditionFilter createWinConditionFilter();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
