@@ -1443,14 +1443,14 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cCurrentPlayerCurrentPlayerKeyword_0_0 = (Keyword)cCurrentPlayerEnumLiteralDeclaration_0.eContents().get(0);
 		private final EnumLiteralDeclaration cOtherPlayerEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
 		private final Keyword cOtherPlayerOtherPlayerKeyword_1_0 = (Keyword)cOtherPlayerEnumLiteralDeclaration_1.eContents().get(0);
-		private final EnumLiteralDeclaration cStateEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
-		private final Keyword cStateStateKeyword_2_0 = (Keyword)cStateEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cStateBasedEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cStateBasedStateBasedKeyword_2_0 = (Keyword)cStateBasedEnumLiteralDeclaration_2.eContents().get(0);
 		
 		//enum StateSelection returns StateSelection:
-		//                CurrentPlayer = 'CurrentPlayer' | OtherPlayer = 'OtherPlayer' | State = 'State';
+		//                CurrentPlayer = 'CurrentPlayer' | OtherPlayer = 'OtherPlayer' | StateBased = 'StateBased';
 		public EnumRule getRule() { return rule; }
 		
-		//CurrentPlayer = 'CurrentPlayer' | OtherPlayer = 'OtherPlayer' | State = 'State'
+		//CurrentPlayer = 'CurrentPlayer' | OtherPlayer = 'OtherPlayer' | StateBased = 'StateBased'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//CurrentPlayer = 'CurrentPlayer'
@@ -1465,11 +1465,11 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'OtherPlayer'
 		public Keyword getOtherPlayerOtherPlayerKeyword_1_0() { return cOtherPlayerOtherPlayerKeyword_1_0; }
 		
-		//State = 'State'
-		public EnumLiteralDeclaration getStateEnumLiteralDeclaration_2() { return cStateEnumLiteralDeclaration_2; }
+		//StateBased = 'StateBased'
+		public EnumLiteralDeclaration getStateBasedEnumLiteralDeclaration_2() { return cStateBasedEnumLiteralDeclaration_2; }
 		
-		//'State'
-		public Keyword getStateStateKeyword_2_0() { return cStateStateKeyword_2_0; }
+		//'StateBased'
+		public Keyword getStateBasedStateBasedKeyword_2_0() { return cStateBasedStateBasedKeyword_2_0; }
 	}
 	public class TurnTypeElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.TurnType");
@@ -1818,7 +1818,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//enum StateSelection returns StateSelection:
-	//                CurrentPlayer = 'CurrentPlayer' | OtherPlayer = 'OtherPlayer' | State = 'State';
+	//                CurrentPlayer = 'CurrentPlayer' | OtherPlayer = 'OtherPlayer' | StateBased = 'StateBased';
 	public StateSelectionElements getStateSelectionAccess() {
 		return eStateSelection;
 	}

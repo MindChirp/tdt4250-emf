@@ -10,7 +10,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="players" upperBound="-1"
         eType="#//Player" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="turnPolicy" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="turnPolicy" lowerBound="1"
         eType="#//TurnPolicy" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialPlayer" eType="#//Player"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activePlayer" lowerBound="1"
@@ -149,6 +149,6 @@
   <eClassifiers xsi:type="ecore:EEnum" name="StateSelection">
     <eLiterals name="CurrentPlayer"/>
     <eLiterals name="OtherPlayer" value="1"/>
-    <eLiterals name="State" value="2"/>
+    <eLiterals name="StateBased" value="2"/>
   </eClassifiers>
 </ecore:EPackage>

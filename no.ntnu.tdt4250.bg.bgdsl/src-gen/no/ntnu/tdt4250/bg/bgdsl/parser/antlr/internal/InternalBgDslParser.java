@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalBgDslParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Game'", "'{'", "'initialPlayer'", "'board'", "'players'", "','", "'}'", "'turnPolicy'", "'checkered'", "'Board'", "'width'", "'height'", "'tiles'", "'legalMovesPipeline'", "'effectPipeline'", "'tileplacement'", "'Player'", "'hexColor'", "'associatedState'", "'TurnPolicy'", "'type'", "'-'", "'Tile'", "'name'", "'states'", "'transitions'", "'initialState'", "'LegalMovesPipeline'", "'filter'", "'EffectPipeline'", "'TilePlacement'", "'row'", "'column'", "'tile'", "'State'", "'outbound'", "'('", "')'", "'inbound'", "'Transition'", "'source'", "'target'", "'PatternFilter'", "'nextFilter'", "'patterns'", "'Pattern'", "'stateSelection'", "'matchState'", "'relativecoordinates'", "'RelativeCoordinate'", "'x'", "'y'", "'CurrentPlayer'", "'OtherPlayer'", "'TurnBased'", "'Simultaneous'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Game'", "'{'", "'initialPlayer'", "'board'", "'players'", "','", "'}'", "'turnPolicy'", "'checkered'", "'Board'", "'width'", "'height'", "'tiles'", "'legalMovesPipeline'", "'effectPipeline'", "'tileplacement'", "'Player'", "'hexColor'", "'associatedState'", "'TurnPolicy'", "'type'", "'-'", "'Tile'", "'name'", "'states'", "'transitions'", "'initialState'", "'LegalMovesPipeline'", "'filter'", "'EffectPipeline'", "'TilePlacement'", "'row'", "'column'", "'tile'", "'State'", "'outbound'", "'('", "')'", "'inbound'", "'Transition'", "'source'", "'target'", "'PatternFilter'", "'nextFilter'", "'patterns'", "'Pattern'", "'stateSelection'", "'matchState'", "'relativecoordinates'", "'RelativeCoordinate'", "'x'", "'y'", "'CurrentPlayer'", "'OtherPlayer'", "'StateBased'", "'TurnBased'", "'Simultaneous'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -55,6 +55,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
     public static final int T__66=66;
     public static final int RULE_ML_COMMENT=7;
     public static final int T__23=23;
+    public static final int T__67=67;
     public static final int T__24=24;
     public static final int T__25=25;
     public static final int T__62=62;
@@ -4297,7 +4298,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStateSelection"
-    // InternalBgDsl.g:1948:1: ruleStateSelection returns [Enumerator current=null] : ( (enumLiteral_0= 'CurrentPlayer' ) | (enumLiteral_1= 'OtherPlayer' ) | (enumLiteral_2= 'State' ) ) ;
+    // InternalBgDsl.g:1948:1: ruleStateSelection returns [Enumerator current=null] : ( (enumLiteral_0= 'CurrentPlayer' ) | (enumLiteral_1= 'OtherPlayer' ) | (enumLiteral_2= 'StateBased' ) ) ;
     public final Enumerator ruleStateSelection() throws RecognitionException {
         Enumerator current = null;
 
@@ -4309,10 +4310,10 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBgDsl.g:1954:2: ( ( (enumLiteral_0= 'CurrentPlayer' ) | (enumLiteral_1= 'OtherPlayer' ) | (enumLiteral_2= 'State' ) ) )
-            // InternalBgDsl.g:1955:2: ( (enumLiteral_0= 'CurrentPlayer' ) | (enumLiteral_1= 'OtherPlayer' ) | (enumLiteral_2= 'State' ) )
+            // InternalBgDsl.g:1954:2: ( ( (enumLiteral_0= 'CurrentPlayer' ) | (enumLiteral_1= 'OtherPlayer' ) | (enumLiteral_2= 'StateBased' ) ) )
+            // InternalBgDsl.g:1955:2: ( (enumLiteral_0= 'CurrentPlayer' ) | (enumLiteral_1= 'OtherPlayer' ) | (enumLiteral_2= 'StateBased' ) )
             {
-            // InternalBgDsl.g:1955:2: ( (enumLiteral_0= 'CurrentPlayer' ) | (enumLiteral_1= 'OtherPlayer' ) | (enumLiteral_2= 'State' ) )
+            // InternalBgDsl.g:1955:2: ( (enumLiteral_0= 'CurrentPlayer' ) | (enumLiteral_1= 'OtherPlayer' ) | (enumLiteral_2= 'StateBased' ) )
             int alt29=3;
             switch ( input.LA(1) ) {
             case 63:
@@ -4325,7 +4326,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
                 alt29=2;
                 }
                 break;
-            case 45:
+            case 65:
                 {
                 alt29=3;
                 }
@@ -4373,15 +4374,15 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalBgDsl.g:1972:3: (enumLiteral_2= 'State' )
+                    // InternalBgDsl.g:1972:3: (enumLiteral_2= 'StateBased' )
                     {
-                    // InternalBgDsl.g:1972:3: (enumLiteral_2= 'State' )
-                    // InternalBgDsl.g:1973:4: enumLiteral_2= 'State'
+                    // InternalBgDsl.g:1972:3: (enumLiteral_2= 'StateBased' )
+                    // InternalBgDsl.g:1973:4: enumLiteral_2= 'StateBased'
                     {
-                    enumLiteral_2=(Token)match(input,45,FOLLOW_2); 
+                    enumLiteral_2=(Token)match(input,65,FOLLOW_2); 
 
-                    				current = grammarAccess.getStateSelectionAccess().getStateEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-                    				newLeafNode(enumLiteral_2, grammarAccess.getStateSelectionAccess().getStateEnumLiteralDeclaration_2());
+                    				current = grammarAccess.getStateSelectionAccess().getStateBasedEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+                    				newLeafNode(enumLiteral_2, grammarAccess.getStateSelectionAccess().getStateBasedEnumLiteralDeclaration_2());
                     			
 
                     }
@@ -4430,10 +4431,10 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
             int alt30=2;
             int LA30_0 = input.LA(1);
 
-            if ( (LA30_0==65) ) {
+            if ( (LA30_0==66) ) {
                 alt30=1;
             }
-            else if ( (LA30_0==66) ) {
+            else if ( (LA30_0==67) ) {
                 alt30=2;
             }
             else {
@@ -4449,7 +4450,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
                     // InternalBgDsl.g:1991:3: (enumLiteral_0= 'TurnBased' )
                     // InternalBgDsl.g:1992:4: enumLiteral_0= 'TurnBased'
                     {
-                    enumLiteral_0=(Token)match(input,65,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,66,FOLLOW_2); 
 
                     				current = grammarAccess.getTurnTypeAccess().getTurnBasedEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_0, grammarAccess.getTurnTypeAccess().getTurnBasedEnumLiteralDeclaration_0());
@@ -4466,7 +4467,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
                     // InternalBgDsl.g:1999:3: (enumLiteral_1= 'Simultaneous' )
                     // InternalBgDsl.g:2000:4: enumLiteral_1= 'Simultaneous'
                     {
-                    enumLiteral_1=(Token)match(input,66,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,67,FOLLOW_2); 
 
                     				current = grammarAccess.getTurnTypeAccess().getSimultaneousEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_1, grammarAccess.getTurnTypeAccess().getSimultaneousEnumLiteralDeclaration_1());
@@ -4531,7 +4532,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000010000000L});
     public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000020000000L});
     public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000006L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000000000000L,0x000000000000000CL});
     public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000400000000L});
     public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000800000000L});
@@ -4554,7 +4555,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0080000000000000L});
     public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x0100000000000000L});
     public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0E00000000000000L});
-    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x8000200000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x8000000000000000L,0x0000000000000003L});
     public static final BitSet FOLLOW_53 = new BitSet(new long[]{0x0C00000000000000L});
     public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x0800000000000000L});
     public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x1000000000000000L});

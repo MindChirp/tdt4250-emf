@@ -17,7 +17,7 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="bg.ecore#//StateSelection">
       <genEnumLiterals ecoreEnumLiteral="bg.ecore#//StateSelection/CurrentPlayer"/>
       <genEnumLiterals ecoreEnumLiteral="bg.ecore#//StateSelection/OtherPlayer"/>
-      <genEnumLiterals ecoreEnumLiteral="bg.ecore#//StateSelection/State"/>
+      <genEnumLiterals ecoreEnumLiteral="bg.ecore#//StateSelection/StateBased"/>
     </genEnums>
     <genClasses ecoreClass="bg.ecore#//Game">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Game/board"/>

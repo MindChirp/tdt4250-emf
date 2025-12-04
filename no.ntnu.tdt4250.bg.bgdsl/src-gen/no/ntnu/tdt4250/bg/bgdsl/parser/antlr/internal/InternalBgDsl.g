@@ -1970,10 +1970,10 @@ ruleStateSelection returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_2='State'
+			enumLiteral_2='StateBased'
 			{
-				$current = grammarAccess.getStateSelectionAccess().getStateEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_2, grammarAccess.getStateSelectionAccess().getStateEnumLiteralDeclaration_2());
+				$current = grammarAccess.getStateSelectionAccess().getStateBasedEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_2, grammarAccess.getStateSelectionAccess().getStateBasedEnumLiteralDeclaration_2());
 			}
 		)
 	)
