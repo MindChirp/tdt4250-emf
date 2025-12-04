@@ -10,7 +10,6 @@ import no.ntnu.tdt4250.bg.Game;
 import no.ntnu.tdt4250.bg.Player;
 import no.ntnu.tdt4250.bg.Tile;
 import no.ntnu.tdt4250.bg.TilePlacement;
-import no.ntnu.tdt4250.bg.TurnType;
 import no.ntnu.tdt4250.bg.bgdsl.services.BgDslGrammarAccess;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -32,7 +31,6 @@ public class BgDslFormatter extends AbstractFormatter2 {
     for (final Player player : _players) {
       document.<Player>format(player);
     }
-    document.<TurnType>format(game.getTurnPolicy());
   }
 
   protected void _format(final Board board, @Extension final IFormattableDocument document) {
