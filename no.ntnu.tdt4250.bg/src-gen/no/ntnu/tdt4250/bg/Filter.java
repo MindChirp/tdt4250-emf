@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link no.ntnu.tdt4250.bg.Filter#getNextFilter <em>Next Filter</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.Filter#getName <em>Name</em>}</li>
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getFilter()
@@ -43,5 +44,27 @@ public interface Filter extends EObject {
 	 * @generated
 	 */
 	void setNextFilter(Filter value);
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see no.ntnu.tdt4250.bg.BgPackage#getFilter_Name()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Filter#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
 
 } // Filter

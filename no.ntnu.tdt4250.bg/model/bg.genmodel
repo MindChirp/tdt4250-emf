@@ -43,10 +43,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//Player/associatedState"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//LegalMovesPipeline">
-      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//LegalMovesPipeline/filter"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//LegalMovesPipeline/filters"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//EffectPipeline">
-      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//EffectPipeline/filter"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//EffectPipeline/filters"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//Filter">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Filter/nextFilter"/>
@@ -98,6 +98,7 @@
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//StateEffectFilter">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//StateEffectFilter/targetState"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//StateEffectFilter/stateSelection"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

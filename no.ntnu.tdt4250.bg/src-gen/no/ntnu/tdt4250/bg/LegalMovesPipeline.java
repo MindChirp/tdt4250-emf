@@ -2,6 +2,7 @@
  */
 package no.ntnu.tdt4250.bg;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -13,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link no.ntnu.tdt4250.bg.LegalMovesPipeline#getFilter <em>Filter</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.LegalMovesPipeline#getFilters <em>Filters</em>}</li>
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getLegalMovesPipeline()
@@ -22,25 +23,15 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface LegalMovesPipeline extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Filter</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Filters</b></em>' containment reference list.
+	 * The list contents are of type {@link no.ntnu.tdt4250.bg.Filter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Filter</em>' containment reference.
-	 * @see #setFilter(Filter)
-	 * @see no.ntnu.tdt4250.bg.BgPackage#getLegalMovesPipeline_Filter()
+	 * @return the value of the '<em>Filters</em>' containment reference list.
+	 * @see no.ntnu.tdt4250.bg.BgPackage#getLegalMovesPipeline_Filters()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Filter getFilter();
-
-	/**
-	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.LegalMovesPipeline#getFilter <em>Filter</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Filter</em>' containment reference.
-	 * @see #getFilter()
-	 * @generated
-	 */
-	void setFilter(Filter value);
+	EList<Filter> getFilters();
 
 } // LegalMovesPipeline

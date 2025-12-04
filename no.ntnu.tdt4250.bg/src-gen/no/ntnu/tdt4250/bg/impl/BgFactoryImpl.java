@@ -80,6 +80,10 @@ public class BgFactoryImpl extends EFactoryImpl implements BgFactory {
 			return createPattern();
 		case BgPackage.RELATIVE_COORDINATE:
 			return createRelativeCoordinate();
+		case BgPackage.ITERATIVE_FILTER:
+			return createIterativeFilter();
+		case BgPackage.STATE_EFFECT_FILTER:
+			return createStateEffectFilter();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -249,6 +253,28 @@ public class BgFactoryImpl extends EFactoryImpl implements BgFactory {
 	public RelativeCoordinate createRelativeCoordinate() {
 		RelativeCoordinateImpl relativeCoordinate = new RelativeCoordinateImpl();
 		return relativeCoordinate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IterativeFilter createIterativeFilter() {
+		IterativeFilterImpl iterativeFilter = new IterativeFilterImpl();
+		return iterativeFilter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StateEffectFilter createStateEffectFilter() {
+		StateEffectFilterImpl stateEffectFilter = new StateEffectFilterImpl();
+		return stateEffectFilter;
 	}
 
 	/**

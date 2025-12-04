@@ -54,24 +54,24 @@ public class EffectPipelineItemProvider extends ItemProviderAdapter implements I
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addFilterPropertyDescriptor(object);
+			addFiltersPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Filter feature.
+	 * This adds a property descriptor for the Filters feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFilterPropertyDescriptor(Object object) {
+	protected void addFiltersPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_EffectPipeline_filter_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_EffectPipeline_filter_feature",
+						getResourceLocator(), getString("_UI_EffectPipeline_filters_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_EffectPipeline_filters_feature",
 								"_UI_EffectPipeline_type"),
-						BgPackage.Literals.EFFECT_PIPELINE__FILTER, true, false, true, null, null, null));
+						BgPackage.Literals.EFFECT_PIPELINE__FILTERS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class EffectPipelineItemProvider extends ItemProviderAdapter implements I
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(BgPackage.Literals.EFFECT_PIPELINE__FILTER);
+			childrenFeatures.add(BgPackage.Literals.EFFECT_PIPELINE__FILTERS);
 		}
 		return childrenFeatures;
 	}
@@ -148,7 +148,7 @@ public class EffectPipelineItemProvider extends ItemProviderAdapter implements I
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(EffectPipeline.class)) {
-		case BgPackage.EFFECT_PIPELINE__FILTER:
+		case BgPackage.EFFECT_PIPELINE__FILTERS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -166,8 +166,14 @@ public class EffectPipelineItemProvider extends ItemProviderAdapter implements I
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(BgPackage.Literals.EFFECT_PIPELINE__FILTER,
+		newChildDescriptors.add(createChildParameter(BgPackage.Literals.EFFECT_PIPELINE__FILTERS,
 				BgFactory.eINSTANCE.createPatternFilter()));
+
+		newChildDescriptors.add(createChildParameter(BgPackage.Literals.EFFECT_PIPELINE__FILTERS,
+				BgFactory.eINSTANCE.createIterativeFilter()));
+
+		newChildDescriptors.add(createChildParameter(BgPackage.Literals.EFFECT_PIPELINE__FILTERS,
+				BgFactory.eINSTANCE.createStateEffectFilter()));
 	}
 
 	/**

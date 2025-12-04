@@ -8,12 +8,14 @@ import no.ntnu.tdt4250.bg.Board;
 import no.ntnu.tdt4250.bg.EffectPipeline;
 import no.ntnu.tdt4250.bg.Filter;
 import no.ntnu.tdt4250.bg.Game;
+import no.ntnu.tdt4250.bg.IterativeFilter;
 import no.ntnu.tdt4250.bg.LegalMovesPipeline;
 import no.ntnu.tdt4250.bg.Pattern;
 import no.ntnu.tdt4250.bg.PatternFilter;
 import no.ntnu.tdt4250.bg.Player;
 import no.ntnu.tdt4250.bg.RelativeCoordinate;
 import no.ntnu.tdt4250.bg.State;
+import no.ntnu.tdt4250.bg.StateEffectFilter;
 import no.ntnu.tdt4250.bg.StateSelection;
 import no.ntnu.tdt4250.bg.Tile;
 import no.ntnu.tdt4250.bg.TilePlacement;
@@ -127,6 +129,20 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	private EClass relativeCoordinateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iterativeFilterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stateEffectFilterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -429,7 +445,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getLegalMovesPipeline_Filter() {
+	public EReference getLegalMovesPipeline_Filters() {
 		return (EReference) legalMovesPipelineEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -449,7 +465,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getEffectPipeline_Filter() {
+	public EReference getEffectPipeline_Filters() {
 		return (EReference) effectPipelineEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -479,6 +495,16 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getFilter_Name() {
+		return (EAttribute) filterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getPatternFilter() {
 		return patternFilterEClass;
 	}
@@ -491,16 +517,6 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	@Override
 	public EReference getPatternFilter_Patterns() {
 		return (EReference) patternFilterEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getPatternFilter_Name() {
-		return (EAttribute) patternFilterEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -809,6 +825,76 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getIterativeFilter() {
+		return iterativeFilterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIterativeFilter_DirectionVector() {
+		return (EReference) iterativeFilterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIterativeFilter_MatchRule() {
+		return (EReference) iterativeFilterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIterativeFilter_EndRule() {
+		return (EReference) iterativeFilterEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getStateEffectFilter() {
+		return stateEffectFilterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getStateEffectFilter_TargetState() {
+		return (EReference) stateEffectFilterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getStateEffectFilter_StateSelection() {
+		return (EAttribute) stateEffectFilterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getTurnType() {
 		return turnTypeEEnum;
 	}
@@ -877,17 +963,17 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEReference(playerEClass, PLAYER__ASSOCIATED_STATE);
 
 		legalMovesPipelineEClass = createEClass(LEGAL_MOVES_PIPELINE);
-		createEReference(legalMovesPipelineEClass, LEGAL_MOVES_PIPELINE__FILTER);
+		createEReference(legalMovesPipelineEClass, LEGAL_MOVES_PIPELINE__FILTERS);
 
 		effectPipelineEClass = createEClass(EFFECT_PIPELINE);
-		createEReference(effectPipelineEClass, EFFECT_PIPELINE__FILTER);
+		createEReference(effectPipelineEClass, EFFECT_PIPELINE__FILTERS);
 
 		filterEClass = createEClass(FILTER);
 		createEReference(filterEClass, FILTER__NEXT_FILTER);
+		createEAttribute(filterEClass, FILTER__NAME);
 
 		patternFilterEClass = createEClass(PATTERN_FILTER);
 		createEReference(patternFilterEClass, PATTERN_FILTER__PATTERNS);
-		createEAttribute(patternFilterEClass, PATTERN_FILTER__NAME);
 
 		tileEClass = createEClass(TILE);
 		createEReference(tileEClass, TILE__STATES);
@@ -925,6 +1011,15 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEAttribute(relativeCoordinateEClass, RELATIVE_COORDINATE__X);
 		createEAttribute(relativeCoordinateEClass, RELATIVE_COORDINATE__Y);
 
+		iterativeFilterEClass = createEClass(ITERATIVE_FILTER);
+		createEReference(iterativeFilterEClass, ITERATIVE_FILTER__DIRECTION_VECTOR);
+		createEReference(iterativeFilterEClass, ITERATIVE_FILTER__MATCH_RULE);
+		createEReference(iterativeFilterEClass, ITERATIVE_FILTER__END_RULE);
+
+		stateEffectFilterEClass = createEClass(STATE_EFFECT_FILTER);
+		createEReference(stateEffectFilterEClass, STATE_EFFECT_FILTER__TARGET_STATE);
+		createEAttribute(stateEffectFilterEClass, STATE_EFFECT_FILTER__STATE_SELECTION);
+
 		// Create enums
 		turnTypeEEnum = createEEnum(TURN_TYPE);
 		stateSelectionEEnum = createEEnum(STATE_SELECTION);
@@ -960,6 +1055,8 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 
 		// Add supertypes to classes
 		patternFilterEClass.getESuperTypes().add(this.getFilter());
+		iterativeFilterEClass.getESuperTypes().add(this.getFilter());
+		stateEffectFilterEClass.getESuperTypes().add(this.getFilter());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(gameEClass, Game.class, "Game", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -968,7 +1065,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				IS_ORDERED);
 		initEAttribute(getGame_Name(), ecorePackage.getEString(), "name", null, 1, 1, Game.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGame_Players(), this.getPlayer(), null, "players", null, 1, -1, Game.class, !IS_TRANSIENT,
+		initEReference(getGame_Players(), this.getPlayer(), null, "players", null, 1, 2, Game.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEReference(getGame_InitialPlayer(), this.getPlayer(), null, "initialPlayer", null, 1, 1, Game.class,
@@ -1013,28 +1110,28 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 
 		initEClass(legalMovesPipelineEClass, LegalMovesPipeline.class, "LegalMovesPipeline", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLegalMovesPipeline_Filter(), this.getFilter(), null, "filter", null, 0, 1,
+		initEReference(getLegalMovesPipeline_Filters(), this.getFilter(), null, "filters", null, 0, -1,
 				LegalMovesPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(effectPipelineEClass, EffectPipeline.class, "EffectPipeline", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEffectPipeline_Filter(), this.getFilter(), null, "filter", null, 0, 1, EffectPipeline.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEffectPipeline_Filters(), this.getFilter(), null, "filters", null, 0, -1,
+				EffectPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(filterEClass, Filter.class, "Filter", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFilter_NextFilter(), this.getFilter(), null, "nextFilter", null, 0, 1, Filter.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFilter_Name(), ecorePackage.getEString(), "name", null, 1, 1, Filter.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(patternFilterEClass, PatternFilter.class, "PatternFilter", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPatternFilter_Patterns(), this.getPattern(), null, "patterns", null, 1, -1,
 				PatternFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPatternFilter_Name(), ecorePackage.getEString(), "name", null, 1, 1, PatternFilter.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tileEClass, Tile.class, "Tile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTile_States(), this.getState(), null, "states", null, 1, -1, Tile.class, !IS_TRANSIENT,
@@ -1110,6 +1207,27 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRelativeCoordinate_Y(), ecorePackage.getEInt(), "y", null, 1, 1, RelativeCoordinate.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iterativeFilterEClass, IterativeFilter.class, "IterativeFilter", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIterativeFilter_DirectionVector(), this.getRelativeCoordinate(), null, "directionVector",
+				null, 1, 1, IterativeFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIterativeFilter_MatchRule(), this.getPattern(), null, "matchRule", null, 1, 1,
+				IterativeFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIterativeFilter_EndRule(), this.getPattern(), null, "endRule", null, 1, 1,
+				IterativeFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stateEffectFilterEClass, StateEffectFilter.class, "StateEffectFilter", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStateEffectFilter_TargetState(), this.getState(), null, "targetState", null, 0, 1,
+				StateEffectFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStateEffectFilter_StateSelection(), this.getStateSelection(), "stateSelection", null, 1, 1,
+				StateEffectFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(turnTypeEEnum, TurnType.class, "TurnType");

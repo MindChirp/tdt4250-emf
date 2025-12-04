@@ -118,6 +118,10 @@ public class BgValidator extends EObjectValidator {
 			return validatePattern((Pattern) value, diagnostics, context);
 		case BgPackage.RELATIVE_COORDINATE:
 			return validateRelativeCoordinate((RelativeCoordinate) value, diagnostics, context);
+		case BgPackage.ITERATIVE_FILTER:
+			return validateIterativeFilter((IterativeFilter) value, diagnostics, context);
+		case BgPackage.STATE_EFFECT_FILTER:
+			return validateStateEffectFilter((StateEffectFilter) value, diagnostics, context);
 		case BgPackage.TURN_TYPE:
 			return validateTurnType((TurnType) value, diagnostics, context);
 		case BgPackage.STATE_SELECTION:
@@ -514,7 +518,7 @@ public class BgValidator extends EObjectValidator {
 	 */
 	public boolean validateEffectPipeline_effectPipelineFiltersMustFormValidChain(EffectPipeline effectPipeline,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		Filter startFilter = effectPipeline.getFilter();
+		Filter startFilter = effectPipeline.getFilters();
 		boolean isValidChain = isValidFilterChain(startFilter);
 
 		if (!isValidChain) {
@@ -1167,6 +1171,64 @@ public class BgValidator extends EObjectValidator {
 	public boolean validateRelativeCoordinate(RelativeCoordinate relativeCoordinate, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(relativeCoordinate, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateIterativeFilter(IterativeFilter iterativeFilter, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(iterativeFilter, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(iterativeFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(iterativeFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(iterativeFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(iterativeFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(iterativeFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(iterativeFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(iterativeFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(iterativeFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateFilter_filterMustBelongToGame(iterativeFilter, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStateEffectFilter(StateEffectFilter stateEffectFilter, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(stateEffectFilter, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateFilter_filterMustBelongToGame(stateEffectFilter, diagnostics, context);
+		return result;
 	}
 
 	/**

@@ -79,7 +79,7 @@ public interface Game extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Players</em>' containment reference list.
 	 * @see no.ntnu.tdt4250.bg.BgPackage#getGame_Players()
-	 * @model containment="true" required="true"
+	 * @model containment="true" required="true" upper="2"
 	 * @generated
 	 */
 	EList<Player> getPlayers();
