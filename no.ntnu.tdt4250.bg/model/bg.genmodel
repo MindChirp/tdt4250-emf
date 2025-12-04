@@ -50,10 +50,10 @@
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//Filter">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Filter/nextFilter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Filter/name"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//PatternFilter">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//PatternFilter/patterns"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//PatternFilter/name"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//Tile">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Tile/states"/>
@@ -90,6 +90,14 @@
     <genClasses ecoreClass="bg.ecore#//RelativeCoordinate">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//RelativeCoordinate/x"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//RelativeCoordinate/y"/>
+    </genClasses>
+    <genClasses ecoreClass="bg.ecore#//IterativeFilter">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//IterativeFilter/directionVector"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//IterativeFilter/matchRule"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//IterativeFilter/endRule"/>
+    </genClasses>
+    <genClasses ecoreClass="bg.ecore#//StateEffectFilter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//StateEffectFilter/targetState"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -71,11 +71,11 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nextFilter" eType="#//Filter"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternFilter" eSuperTypes="#//Filter">
     <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" lowerBound="1"
         upperBound="-1" eType="#//Pattern" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Tile">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -148,5 +148,17 @@
     <eLiterals name="CurrentPlayer"/>
     <eLiterals name="OtherPlayer" value="1"/>
     <eLiterals name="StateBased" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IterativeFilter" eSuperTypes="#//Filter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="directionVector" lowerBound="1"
+        eType="#//RelativeCoordinate" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="matchRule" lowerBound="1"
+        eType="#//Pattern" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endRule" lowerBound="1"
+        eType="#//Pattern" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StateEffectFilter" eSuperTypes="#//Filter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetState" lowerBound="1"
+        eType="#//State"/>
   </eClassifiers>
 </ecore:EPackage>
