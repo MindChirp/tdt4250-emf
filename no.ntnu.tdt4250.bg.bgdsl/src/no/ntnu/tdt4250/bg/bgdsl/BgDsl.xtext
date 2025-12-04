@@ -131,7 +131,7 @@ RelativeCoordinate returns RelativeCoordinate:
 	'}';
 
 enum StateSelection returns StateSelection:
-				CurrentPlayer = 'CurrentPlayer' | OtherPlayer = 'OtherPlayer' | State = 'State';
+				CurrentPlayer = 'CurrentPlayer' | OtherPlayer = 'OtherPlayer' | StateBased = 'StateBased';
 
 enum TurnType returns TurnType:
 				TurnBased = 'TurnBased' | Simultaneous = 'Simultaneous';

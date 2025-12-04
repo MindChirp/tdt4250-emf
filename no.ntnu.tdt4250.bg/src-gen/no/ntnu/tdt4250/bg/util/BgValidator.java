@@ -1153,13 +1153,11 @@ public class BgValidator extends EObjectValidator {
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
 		boolean isLegal = true;
-		
-		
-		if (pattern.getStateSelection().getLiteral() == (StateSelection.STATE).getLiteral()) {
+
+		if (pattern.getStateSelection().getLiteral() == (StateSelection.STATE_BASED).getLiteral()) {
 			isLegal = (pattern.getMatchState() != null);
 		}
-		
-		
+
 		if (!isLegal) {
 			if (diagnostics != null) {
 				diagnostics.add(

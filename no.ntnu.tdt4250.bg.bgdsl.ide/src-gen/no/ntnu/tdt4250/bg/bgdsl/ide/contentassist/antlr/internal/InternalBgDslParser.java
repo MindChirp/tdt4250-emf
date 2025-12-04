@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalBgDslParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'CurrentPlayer'", "'OtherPlayer'", "'State'", "'TurnBased'", "'Simultaneous'", "'Game'", "'{'", "'board'", "'}'", "'initialPlayer'", "'players'", "','", "'turnPolicy'", "'Board'", "'width'", "'height'", "'tiles'", "'tileplacement'", "'legalMovesPipeline'", "'effectPipeline'", "'Player'", "'hexColor'", "'associatedState'", "'TurnPolicy'", "'type'", "'-'", "'Tile'", "'name'", "'states'", "'initialState'", "'transitions'", "'LegalMovesPipeline'", "'filter'", "'EffectPipeline'", "'TilePlacement'", "'row'", "'column'", "'tile'", "'outbound'", "'('", "')'", "'inbound'", "'Transition'", "'source'", "'target'", "'PatternFilter'", "'patterns'", "'nextFilter'", "'Pattern'", "'relativecoordinates'", "'stateSelection'", "'matchState'", "'RelativeCoordinate'", "'x'", "'y'", "'checkered'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'CurrentPlayer'", "'OtherPlayer'", "'StateBased'", "'TurnBased'", "'Simultaneous'", "'Game'", "'{'", "'board'", "'}'", "'initialPlayer'", "'players'", "','", "'turnPolicy'", "'Board'", "'width'", "'height'", "'tiles'", "'tileplacement'", "'legalMovesPipeline'", "'effectPipeline'", "'Player'", "'hexColor'", "'associatedState'", "'TurnPolicy'", "'type'", "'-'", "'Tile'", "'name'", "'states'", "'initialState'", "'transitions'", "'LegalMovesPipeline'", "'filter'", "'EffectPipeline'", "'TilePlacement'", "'row'", "'column'", "'tile'", "'State'", "'outbound'", "'('", "')'", "'inbound'", "'Transition'", "'source'", "'target'", "'PatternFilter'", "'patterns'", "'nextFilter'", "'Pattern'", "'relativecoordinates'", "'stateSelection'", "'matchState'", "'RelativeCoordinate'", "'x'", "'y'", "'checkered'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -55,6 +55,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
     public static final int T__66=66;
     public static final int RULE_ML_COMMENT=7;
     public static final int T__23=23;
+    public static final int T__67=67;
     public static final int T__24=24;
     public static final int T__25=25;
     public static final int T__62=62;
@@ -1516,13 +1517,13 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StateSelection__Alternatives"
-    // InternalBgDsl.g:505:1: rule__StateSelection__Alternatives : ( ( ( 'CurrentPlayer' ) ) | ( ( 'OtherPlayer' ) ) | ( ( 'State' ) ) );
+    // InternalBgDsl.g:505:1: rule__StateSelection__Alternatives : ( ( ( 'CurrentPlayer' ) ) | ( ( 'OtherPlayer' ) ) | ( ( 'StateBased' ) ) );
     public final void rule__StateSelection__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBgDsl.g:509:1: ( ( ( 'CurrentPlayer' ) ) | ( ( 'OtherPlayer' ) ) | ( ( 'State' ) ) )
+            // InternalBgDsl.g:509:1: ( ( ( 'CurrentPlayer' ) ) | ( ( 'OtherPlayer' ) ) | ( ( 'StateBased' ) ) )
             int alt2=3;
             switch ( input.LA(1) ) {
             case 11:
@@ -1591,20 +1592,20 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // InternalBgDsl.g:522:2: ( ( 'State' ) )
+                    // InternalBgDsl.g:522:2: ( ( 'StateBased' ) )
                     {
-                    // InternalBgDsl.g:522:2: ( ( 'State' ) )
-                    // InternalBgDsl.g:523:3: ( 'State' )
+                    // InternalBgDsl.g:522:2: ( ( 'StateBased' ) )
+                    // InternalBgDsl.g:523:3: ( 'StateBased' )
                     {
-                     before(grammarAccess.getStateSelectionAccess().getStateEnumLiteralDeclaration_2()); 
-                    // InternalBgDsl.g:524:3: ( 'State' )
-                    // InternalBgDsl.g:524:4: 'State'
+                     before(grammarAccess.getStateSelectionAccess().getStateBasedEnumLiteralDeclaration_2()); 
+                    // InternalBgDsl.g:524:3: ( 'StateBased' )
+                    // InternalBgDsl.g:524:4: 'StateBased'
                     {
                     match(input,13,FOLLOW_2); 
 
                     }
 
-                     after(grammarAccess.getStateSelectionAccess().getStateEnumLiteralDeclaration_2()); 
+                     after(grammarAccess.getStateSelectionAccess().getStateBasedEnumLiteralDeclaration_2()); 
 
                     }
 
@@ -11847,7 +11848,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:3973:2: 'State'
             {
              before(grammarAccess.getStateAccess().getStateKeyword_0()); 
-            match(input,13,FOLLOW_2); 
+            match(input,49,FOLLOW_2); 
              after(grammarAccess.getStateAccess().getStateKeyword_0()); 
 
             }
@@ -12246,7 +12247,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             int alt21=2;
             int LA21_0 = input.LA(1);
 
-            if ( (LA21_0==49) ) {
+            if ( (LA21_0==50) ) {
                 alt21=1;
             }
             switch (alt21) {
@@ -12342,7 +12343,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             int alt22=2;
             int LA22_0 = input.LA(1);
 
-            if ( (LA22_0==52) ) {
+            if ( (LA22_0==53) ) {
                 alt22=1;
             }
             switch (alt22) {
@@ -12504,7 +12505,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:4189:2: 'outbound'
             {
              before(grammarAccess.getStateAccess().getOutboundKeyword_5_0()); 
-            match(input,49,FOLLOW_2); 
+            match(input,50,FOLLOW_2); 
              after(grammarAccess.getStateAccess().getOutboundKeyword_5_0()); 
 
             }
@@ -12579,7 +12580,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:4216:2: '('
             {
              before(grammarAccess.getStateAccess().getLeftParenthesisKeyword_5_1()); 
-            match(input,50,FOLLOW_2); 
+            match(input,51,FOLLOW_2); 
              after(grammarAccess.getStateAccess().getLeftParenthesisKeyword_5_1()); 
 
             }
@@ -12837,7 +12838,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:4296:2: ')'
             {
              before(grammarAccess.getStateAccess().getRightParenthesisKeyword_5_4()); 
-            match(input,51,FOLLOW_2); 
+            match(input,52,FOLLOW_2); 
              after(grammarAccess.getStateAccess().getRightParenthesisKeyword_5_4()); 
 
             }
@@ -13067,7 +13068,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:4378:2: 'inbound'
             {
              before(grammarAccess.getStateAccess().getInboundKeyword_6_0()); 
-            match(input,52,FOLLOW_2); 
+            match(input,53,FOLLOW_2); 
              after(grammarAccess.getStateAccess().getInboundKeyword_6_0()); 
 
             }
@@ -13142,7 +13143,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:4405:2: '('
             {
              before(grammarAccess.getStateAccess().getLeftParenthesisKeyword_6_1()); 
-            match(input,50,FOLLOW_2); 
+            match(input,51,FOLLOW_2); 
              after(grammarAccess.getStateAccess().getLeftParenthesisKeyword_6_1()); 
 
             }
@@ -13400,7 +13401,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:4485:2: ')'
             {
              before(grammarAccess.getStateAccess().getRightParenthesisKeyword_6_4()); 
-            match(input,51,FOLLOW_2); 
+            match(input,52,FOLLOW_2); 
              after(grammarAccess.getStateAccess().getRightParenthesisKeyword_6_4()); 
 
             }
@@ -13630,7 +13631,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:4567:2: 'Transition'
             {
              before(grammarAccess.getTransitionAccess().getTransitionKeyword_0()); 
-            match(input,53,FOLLOW_2); 
+            match(input,54,FOLLOW_2); 
              after(grammarAccess.getTransitionAccess().getTransitionKeyword_0()); 
 
             }
@@ -13865,7 +13866,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:4648:2: 'source'
             {
              before(grammarAccess.getTransitionAccess().getSourceKeyword_3()); 
-            match(input,54,FOLLOW_2); 
+            match(input,55,FOLLOW_2); 
              after(grammarAccess.getTransitionAccess().getSourceKeyword_3()); 
 
             }
@@ -13940,7 +13941,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:4675:2: '('
             {
              before(grammarAccess.getTransitionAccess().getLeftParenthesisKeyword_4()); 
-            match(input,50,FOLLOW_2); 
+            match(input,51,FOLLOW_2); 
              after(grammarAccess.getTransitionAccess().getLeftParenthesisKeyword_4()); 
 
             }
@@ -14203,7 +14204,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:4756:2: ')'
             {
              before(grammarAccess.getTransitionAccess().getRightParenthesisKeyword_7()); 
-            match(input,51,FOLLOW_2); 
+            match(input,52,FOLLOW_2); 
              after(grammarAccess.getTransitionAccess().getRightParenthesisKeyword_7()); 
 
             }
@@ -14278,7 +14279,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:4783:2: 'target'
             {
              before(grammarAccess.getTransitionAccess().getTargetKeyword_8()); 
-            match(input,55,FOLLOW_2); 
+            match(input,56,FOLLOW_2); 
              after(grammarAccess.getTransitionAccess().getTargetKeyword_8()); 
 
             }
@@ -14663,7 +14664,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:4918:2: 'PatternFilter'
             {
              before(grammarAccess.getPatternFilterAccess().getPatternFilterKeyword_0()); 
-            match(input,56,FOLLOW_2); 
+            match(input,57,FOLLOW_2); 
              after(grammarAccess.getPatternFilterAccess().getPatternFilterKeyword_0()); 
 
             }
@@ -14902,7 +14903,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             int alt26=2;
             int LA26_0 = input.LA(1);
 
-            if ( (LA26_0==58) ) {
+            if ( (LA26_0==59) ) {
                 alt26=1;
             }
             switch (alt26) {
@@ -14994,7 +14995,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:5026:2: 'patterns'
             {
              before(grammarAccess.getPatternFilterAccess().getPatternsKeyword_4()); 
-            match(input,57,FOLLOW_2); 
+            match(input,58,FOLLOW_2); 
              after(grammarAccess.getPatternFilterAccess().getPatternsKeyword_4()); 
 
             }
@@ -15477,7 +15478,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:5188:2: 'nextFilter'
             {
              before(grammarAccess.getPatternFilterAccess().getNextFilterKeyword_3_0()); 
-            match(input,58,FOLLOW_2); 
+            match(input,59,FOLLOW_2); 
              after(grammarAccess.getPatternFilterAccess().getNextFilterKeyword_3_0()); 
 
             }
@@ -15787,7 +15788,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:5296:2: 'Pattern'
             {
              before(grammarAccess.getPatternAccess().getPatternKeyword_0()); 
-            match(input,59,FOLLOW_2); 
+            match(input,60,FOLLOW_2); 
              after(grammarAccess.getPatternAccess().getPatternKeyword_0()); 
 
             }
@@ -16026,7 +16027,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             int alt28=2;
             int LA28_0 = input.LA(1);
 
-            if ( (LA28_0==61) ) {
+            if ( (LA28_0==62) ) {
                 alt28=1;
             }
             switch (alt28) {
@@ -16122,7 +16123,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             int alt29=2;
             int LA29_0 = input.LA(1);
 
-            if ( (LA29_0==62) ) {
+            if ( (LA29_0==63) ) {
                 alt29=1;
             }
             switch (alt29) {
@@ -16214,7 +16215,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:5431:2: 'relativecoordinates'
             {
              before(grammarAccess.getPatternAccess().getRelativecoordinatesKeyword_5()); 
-            match(input,60,FOLLOW_2); 
+            match(input,61,FOLLOW_2); 
              after(grammarAccess.getPatternAccess().getRelativecoordinatesKeyword_5()); 
 
             }
@@ -16697,7 +16698,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:5593:2: 'stateSelection'
             {
              before(grammarAccess.getPatternAccess().getStateSelectionKeyword_3_0()); 
-            match(input,61,FOLLOW_2); 
+            match(input,62,FOLLOW_2); 
              after(grammarAccess.getPatternAccess().getStateSelectionKeyword_3_0()); 
 
             }
@@ -16852,7 +16853,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:5647:2: 'matchState'
             {
              before(grammarAccess.getPatternAccess().getMatchStateKeyword_4_0()); 
-            match(input,62,FOLLOW_2); 
+            match(input,63,FOLLOW_2); 
              after(grammarAccess.getPatternAccess().getMatchStateKeyword_4_0()); 
 
             }
@@ -17162,7 +17163,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:5755:2: 'RelativeCoordinate'
             {
              before(grammarAccess.getRelativeCoordinateAccess().getRelativeCoordinateKeyword_0()); 
-            match(input,63,FOLLOW_2); 
+            match(input,64,FOLLOW_2); 
              after(grammarAccess.getRelativeCoordinateAccess().getRelativeCoordinateKeyword_0()); 
 
             }
@@ -17312,7 +17313,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:5809:2: 'x'
             {
              before(grammarAccess.getRelativeCoordinateAccess().getXKeyword_2()); 
-            match(input,64,FOLLOW_2); 
+            match(input,65,FOLLOW_2); 
              after(grammarAccess.getRelativeCoordinateAccess().getXKeyword_2()); 
 
             }
@@ -17472,7 +17473,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:5863:2: 'y'
             {
              before(grammarAccess.getRelativeCoordinateAccess().getYKeyword_4()); 
-            match(input,65,FOLLOW_2); 
+            match(input,66,FOLLOW_2); 
              after(grammarAccess.getRelativeCoordinateAccess().getYKeyword_4()); 
 
             }
@@ -17963,7 +17964,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:6043:4: 'checkered'
             {
              before(grammarAccess.getBoardAccess().getCheckeredCheckeredKeyword_0_0()); 
-            match(input,66,FOLLOW_2); 
+            match(input,67,FOLLOW_2); 
              after(grammarAccess.getBoardAccess().getCheckeredCheckeredKeyword_0_0()); 
 
             }
@@ -20047,7 +20048,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000000030L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000140000L});
-    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
     public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000A80000L});
     public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000080000000L});
     public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000480000L});
@@ -20070,25 +20071,25 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x000000000000C000L});
     public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000004000000000L});
     public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0002000000000000L});
     public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000030000000000L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0020000000000000L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0040000000000000L});
     public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000080000080000L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0200000000000000L});
     public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000400000000000L});
     public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000800000000000L});
     public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0012000000080000L});
-    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0008000000400000L});
-    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0080000000000000L});
-    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0600000000000000L});
-    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0800000000000000L});
-    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x7000000000000000L});
-    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x8000000000000000L});
+    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0024000000080000L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0010000000400000L});
+    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0C00000000000000L});
+    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0xE000000000000000L});
+    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
     public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0000000000003800L});
-    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
 
 }

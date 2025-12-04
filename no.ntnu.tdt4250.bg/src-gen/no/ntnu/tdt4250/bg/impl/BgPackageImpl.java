@@ -1156,7 +1156,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		initEEnum(stateSelectionEEnum, StateSelection.class, "StateSelection");
 		addEEnumLiteral(stateSelectionEEnum, StateSelection.CURRENT_PLAYER);
 		addEEnumLiteral(stateSelectionEEnum, StateSelection.OTHER_PLAYER);
-		addEEnumLiteral(stateSelectionEEnum, StateSelection.STATE);
+		addEEnumLiteral(stateSelectionEEnum, StateSelection.STATE_BASED);
 
 		// Create resource
 		createResource(eNS_URI);

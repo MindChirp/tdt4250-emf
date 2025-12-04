@@ -520,9 +520,9 @@ rule__StateSelection__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getStateSelectionAccess().getStateEnumLiteralDeclaration_2()); }
-		('State')
-		{ after(grammarAccess.getStateSelectionAccess().getStateEnumLiteralDeclaration_2()); }
+		{ before(grammarAccess.getStateSelectionAccess().getStateBasedEnumLiteralDeclaration_2()); }
+		('StateBased')
+		{ after(grammarAccess.getStateSelectionAccess().getStateBasedEnumLiteralDeclaration_2()); }
 	)
 ;
 finally {
