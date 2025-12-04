@@ -1,5 +1,5 @@
 from typing import List
-from app.generated.tictactoe import Board, Filter, Pattern, Tile, game
+from app.generated.tictactoe import Board, Filter, Pattern, Tile, State, game
 
 
 def get_relative_tile(anchorTile: Tile, rel_x: int, rel_y: int) -> Tile | None:
@@ -49,6 +49,7 @@ def pattern_filter(anchorTile: Tile, nextFilter: Filter, patterns: List[Pattern]
         all_match = False
         break
     
+    #burde if next filter loopen være en egen helper metode, hvis den gjenbrukes i alle filters?
     if all_match:
       if nextFilter:
         method = method_dict.get(nextFilter.__class__.__name__)
@@ -64,7 +65,7 @@ def pattern_filter(anchorTile: Tile, nextFilter: Filter, patterns: List[Pattern]
 
 
 method_dict = {
-  "PatternFilter": pattern_filter
+  "PatternFilter": pattern_filter,
 }
 
 def calculateLegalMoves(board: Board):
