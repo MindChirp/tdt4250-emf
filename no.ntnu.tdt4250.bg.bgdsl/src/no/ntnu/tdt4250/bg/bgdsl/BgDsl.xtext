@@ -3,21 +3,26 @@ grammar no.ntnu.tdt4250.bg.bgdsl.BgDsl with org.eclipse.xtext.common.Terminals
 
 import "http://www.example.org/bg" 
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
-
 Game returns Game:
 	'Game'
 	name=EString
 	'{'
-		('initialPlayer' initialPlayer=[Player|EString])?
-		'board' board=Board
-		('players' '{' players+=Player ( "," players+=Player)* '}' )?
 		'turnPolicy' turnPolicy=TurnType
+		'initialPlayer' initialPlayer=[Player|EString]
+		'board' board=Board
+		'players' '{' players+=Player ( "," players+=Player)* '}' 
 	'}';
 
 
 
+
+
+
+
+
+
 Filter returns Filter:
-	PatternFilter;
+	PatternFilter | IterativeFilter | StateEffectFilter;
 
 
 
@@ -29,7 +34,7 @@ Board returns Board:
 		'height' height=EInt
 		'tiles' '{' tiles+=Tile ( "," tiles+=Tile)* '}' 
 		('legalMovesPipeline' legalMovesPipeline=LegalMovesPipeline)?
-		('effectPipeline'effectPipeline=EffectPipeline)?
+		('effectPipeline' effectPipeline=EffectPipeline)?
 		'tileplacement' '{' tileplacement+=TilePlacement ( "," tileplacement+=TilePlacement)* '}' 
 	'}';
 
@@ -43,6 +48,9 @@ Player returns Player:
 		'hexColor' hexColor=EString
 		'associatedState' associatedState=[State|EString]
 	'}';
+
+enum TurnType returns TurnType:
+				TurnBased = 'TurnBased' | Simultaneous = 'Simultaneous';
 
 EInt returns ecore::EInt:
 	'-'? INT;
@@ -62,14 +70,14 @@ LegalMovesPipeline returns LegalMovesPipeline:
 	{LegalMovesPipeline}
 	'LegalMovesPipeline'
 	'{'
-		('filter' filter=Filter)?
+		('filters' '{' filters+=Filter ( "," filters+=Filter)* '}' )?
 	'}';
 
 EffectPipeline returns EffectPipeline:
 	{EffectPipeline}
 	'EffectPipeline'
 	'{'
-		('filter' filter=Filter)?
+		('filters' '{' filters+=Filter ( "," filters+=Filter)* '}' )?
 	'}';
 
 EBoolean returns ecore::EBoolean:
@@ -108,6 +116,25 @@ PatternFilter returns PatternFilter:
 		'patterns' '{' patterns+=Pattern ( "," patterns+=Pattern)* '}' 
 	'}';
 
+IterativeFilter returns IterativeFilter:
+	'IterativeFilter'
+	name=EString
+	'{'
+		('nextFilter' nextFilter=Filter)?
+		'directionVector' directionVector=RelativeCoordinate
+		'matchRule' matchRule=Pattern
+		'endRule' endRule=Pattern
+	'}';
+
+StateEffectFilter returns StateEffectFilter:
+	'StateEffectFilter'
+	name=EString
+	'{'
+		'stateSelection' stateSelection=StateSelection
+		('targetState' targetState=[State|EString])?
+		('nextFilter' nextFilter=Filter)?
+	'}';
+
 Pattern returns Pattern:
 	'Pattern'
 	name=EString
@@ -126,6 +153,3 @@ RelativeCoordinate returns RelativeCoordinate:
 
 enum StateSelection returns StateSelection:
 				CurrentPlayer = 'CurrentPlayer' | OtherPlayer = 'OtherPlayer' | StateBased = 'StateBased';
-
-enum TurnType returns TurnType:
-				TurnBased = 'TurnBased' | Simultaneous = 'Simultaneous';

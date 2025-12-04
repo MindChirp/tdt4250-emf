@@ -349,6 +349,52 @@ public class BgItemProviderAdapterFactory extends BgAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link no.ntnu.tdt4250.bg.IterativeFilter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IterativeFilterItemProvider iterativeFilterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link no.ntnu.tdt4250.bg.IterativeFilter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIterativeFilterAdapter() {
+		if (iterativeFilterItemProvider == null) {
+			iterativeFilterItemProvider = new IterativeFilterItemProvider(this);
+		}
+
+		return iterativeFilterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link no.ntnu.tdt4250.bg.StateEffectFilter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StateEffectFilterItemProvider stateEffectFilterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link no.ntnu.tdt4250.bg.StateEffectFilter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateEffectFilterAdapter() {
+		if (stateEffectFilterItemProvider == null) {
+			stateEffectFilterItemProvider = new StateEffectFilterItemProvider(this);
+		}
+
+		return stateEffectFilterItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -477,6 +523,10 @@ public class BgItemProviderAdapterFactory extends BgAdapterFactory
 			patternItemProvider.dispose();
 		if (relativeCoordinateItemProvider != null)
 			relativeCoordinateItemProvider.dispose();
+		if (iterativeFilterItemProvider != null)
+			iterativeFilterItemProvider.dispose();
+		if (stateEffectFilterItemProvider != null)
+			stateEffectFilterItemProvider.dispose();
 	}
 
 }

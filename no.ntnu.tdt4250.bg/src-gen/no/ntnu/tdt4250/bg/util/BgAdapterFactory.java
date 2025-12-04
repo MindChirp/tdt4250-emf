@@ -132,6 +132,16 @@ public class BgAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseIterativeFilter(IterativeFilter object) {
+			return createIterativeFilterAdapter();
+		}
+
+		@Override
+		public Adapter caseStateEffectFilter(StateEffectFilter object) {
+			return createStateEffectFilterAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -329,6 +339,34 @@ public class BgAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRelativeCoordinateAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.ntnu.tdt4250.bg.IterativeFilter <em>Iterative Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.ntnu.tdt4250.bg.IterativeFilter
+	 * @generated
+	 */
+	public Adapter createIterativeFilterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.ntnu.tdt4250.bg.StateEffectFilter <em>State Effect Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.ntnu.tdt4250.bg.StateEffectFilter
+	 * @generated
+	 */
+	public Adapter createStateEffectFilterAdapter() {
 		return null;
 	}
 

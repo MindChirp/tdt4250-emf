@@ -130,6 +130,24 @@ public interface BgFactory extends EFactory {
 	RelativeCoordinate createRelativeCoordinate();
 
 	/**
+	 * Returns a new object of class '<em>Iterative Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Iterative Filter</em>'.
+	 * @generated
+	 */
+	IterativeFilter createIterativeFilter();
+
+	/**
+	 * Returns a new object of class '<em>State Effect Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Effect Filter</em>'.
+	 * @generated
+	 */
+	StateEffectFilter createStateEffectFilter();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

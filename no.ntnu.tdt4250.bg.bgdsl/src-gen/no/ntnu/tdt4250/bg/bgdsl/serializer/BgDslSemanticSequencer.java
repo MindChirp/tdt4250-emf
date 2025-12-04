@@ -9,12 +9,14 @@ import no.ntnu.tdt4250.bg.BgPackage;
 import no.ntnu.tdt4250.bg.Board;
 import no.ntnu.tdt4250.bg.EffectPipeline;
 import no.ntnu.tdt4250.bg.Game;
+import no.ntnu.tdt4250.bg.IterativeFilter;
 import no.ntnu.tdt4250.bg.LegalMovesPipeline;
 import no.ntnu.tdt4250.bg.Pattern;
 import no.ntnu.tdt4250.bg.PatternFilter;
 import no.ntnu.tdt4250.bg.Player;
 import no.ntnu.tdt4250.bg.RelativeCoordinate;
 import no.ntnu.tdt4250.bg.State;
+import no.ntnu.tdt4250.bg.StateEffectFilter;
 import no.ntnu.tdt4250.bg.Tile;
 import no.ntnu.tdt4250.bg.TilePlacement;
 import no.ntnu.tdt4250.bg.Transition;
@@ -52,6 +54,9 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case BgPackage.GAME:
 				sequence_Game(context, (Game) semanticObject); 
 				return; 
+			case BgPackage.ITERATIVE_FILTER:
+				sequence_IterativeFilter(context, (IterativeFilter) semanticObject); 
+				return; 
 			case BgPackage.LEGAL_MOVES_PIPELINE:
 				sequence_LegalMovesPipeline(context, (LegalMovesPipeline) semanticObject); 
 				return; 
@@ -69,6 +74,9 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case BgPackage.STATE:
 				sequence_State(context, (State) semanticObject); 
+				return; 
+			case BgPackage.STATE_EFFECT_FILTER:
+				sequence_StateEffectFilter(context, (StateEffectFilter) semanticObject); 
 				return; 
 			case BgPackage.TILE:
 				sequence_Tile(context, (Tile) semanticObject); 
@@ -114,7 +122,7 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     EffectPipeline returns EffectPipeline
 	 *
 	 * Constraint:
-	 *     filter=Filter?
+	 *     (filters+=Filter filters+=Filter*)?
 	 * </pre>
 	 */
 	protected void sequence_EffectPipeline(ISerializationContext context, EffectPipeline semanticObject) {
@@ -128,7 +136,14 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Game returns Game
 	 *
 	 * Constraint:
-	 *     (name=EString initialPlayer=[Player|EString]? board=Board (players+=Player players+=Player*)? turnPolicy=TurnType)
+	 *     (
+	 *         name=EString 
+	 *         turnPolicy=TurnType 
+	 *         initialPlayer=[Player|EString] 
+	 *         board=Board 
+	 *         players+=Player 
+	 *         players+=Player*
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_Game(ISerializationContext context, Game semanticObject) {
@@ -139,10 +154,25 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     Filter returns IterativeFilter
+	 *     IterativeFilter returns IterativeFilter
+	 *
+	 * Constraint:
+	 *     (name=EString nextFilter=Filter? directionVector=RelativeCoordinate matchRule=Pattern endRule=Pattern)
+	 * </pre>
+	 */
+	protected void sequence_IterativeFilter(ISerializationContext context, IterativeFilter semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     LegalMovesPipeline returns LegalMovesPipeline
 	 *
 	 * Constraint:
-	 *     filter=Filter?
+	 *     (filters+=Filter filters+=Filter*)?
 	 * </pre>
 	 */
 	protected void sequence_LegalMovesPipeline(ISerializationContext context, LegalMovesPipeline semanticObject) {
@@ -231,6 +261,21 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		feeder.accept(grammarAccess.getRelativeCoordinateAccess().getXEIntParserRuleCall_3_0(), semanticObject.getX());
 		feeder.accept(grammarAccess.getRelativeCoordinateAccess().getYEIntParserRuleCall_5_0(), semanticObject.getY());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Filter returns StateEffectFilter
+	 *     StateEffectFilter returns StateEffectFilter
+	 *
+	 * Constraint:
+	 *     (name=EString stateSelection=StateSelection targetState=[State|EString]? nextFilter=Filter?)
+	 * </pre>
+	 */
+	protected void sequence_StateEffectFilter(ISerializationContext context, StateEffectFilter semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

@@ -7,39 +7,31 @@ import java.util.List;
 
 import no.ntnu.tdt4250.bg.BgFactory;
 import no.ntnu.tdt4250.bg.BgPackage;
+import no.ntnu.tdt4250.bg.IterativeFilter;
 
-import no.ntnu.tdt4250.bg.LegalMovesPipeline;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link no.ntnu.tdt4250.bg.LegalMovesPipeline} object.
+ * This is the item provider adapter for a {@link no.ntnu.tdt4250.bg.IterativeFilter} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class IterativeFilterItemProvider extends FilterItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LegalMovesPipelineItemProvider(AdapterFactory adapterFactory) {
+	public IterativeFilterItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -54,24 +46,40 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addFiltersPropertyDescriptor(object);
+			addDirectionVectorPropertyDescriptor(object);
+			addMatchRulePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Filters feature.
+	 * This adds a property descriptor for the Direction Vector feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFiltersPropertyDescriptor(Object object) {
+	protected void addDirectionVectorPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LegalMovesPipeline_filters_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LegalMovesPipeline_filters_feature",
-								"_UI_LegalMovesPipeline_type"),
-						BgPackage.Literals.LEGAL_MOVES_PIPELINE__FILTERS, true, false, true, null, null, null));
+						getResourceLocator(), getString("_UI_IterativeFilter_directionVector_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_IterativeFilter_directionVector_feature",
+								"_UI_IterativeFilter_type"),
+						BgPackage.Literals.ITERATIVE_FILTER__DIRECTION_VECTOR, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Match Rule feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMatchRulePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_IterativeFilter_matchRule_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_IterativeFilter_matchRule_feature",
+								"_UI_IterativeFilter_type"),
+						BgPackage.Literals.ITERATIVE_FILTER__MATCH_RULE, true, false, true, null, null, null));
 	}
 
 	/**
@@ -86,7 +94,9 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(BgPackage.Literals.LEGAL_MOVES_PIPELINE__FILTERS);
+			childrenFeatures.add(BgPackage.Literals.ITERATIVE_FILTER__DIRECTION_VECTOR);
+			childrenFeatures.add(BgPackage.Literals.ITERATIVE_FILTER__MATCH_RULE);
+			childrenFeatures.add(BgPackage.Literals.ITERATIVE_FILTER__END_RULE);
 		}
 		return childrenFeatures;
 	}
@@ -105,14 +115,14 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	}
 
 	/**
-	 * This returns LegalMovesPipeline.gif.
+	 * This returns IterativeFilter.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/LegalMovesPipeline"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/IterativeFilter"));
 	}
 
 	/**
@@ -133,7 +143,9 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_LegalMovesPipeline_type");
+		String label = ((IterativeFilter) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_IterativeFilter_type")
+				: getString("_UI_IterativeFilter_type") + " " + label;
 	}
 
 	/**
@@ -147,8 +159,10 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LegalMovesPipeline.class)) {
-		case BgPackage.LEGAL_MOVES_PIPELINE__FILTERS:
+		switch (notification.getFeatureID(IterativeFilter.class)) {
+		case BgPackage.ITERATIVE_FILTER__DIRECTION_VECTOR:
+		case BgPackage.ITERATIVE_FILTER__MATCH_RULE:
+		case BgPackage.ITERATIVE_FILTER__END_RULE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -166,25 +180,35 @@ public class LegalMovesPipelineItemProvider extends ItemProviderAdapter implemen
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(BgPackage.Literals.LEGAL_MOVES_PIPELINE__FILTERS,
-				BgFactory.eINSTANCE.createPatternFilter()));
+		newChildDescriptors.add(createChildParameter(BgPackage.Literals.ITERATIVE_FILTER__DIRECTION_VECTOR,
+				BgFactory.eINSTANCE.createRelativeCoordinate()));
 
-		newChildDescriptors.add(createChildParameter(BgPackage.Literals.LEGAL_MOVES_PIPELINE__FILTERS,
-				BgFactory.eINSTANCE.createIterativeFilter()));
+		newChildDescriptors.add(createChildParameter(BgPackage.Literals.ITERATIVE_FILTER__MATCH_RULE,
+				BgFactory.eINSTANCE.createPattern()));
 
-		newChildDescriptors.add(createChildParameter(BgPackage.Literals.LEGAL_MOVES_PIPELINE__FILTERS,
-				BgFactory.eINSTANCE.createStateEffectFilter()));
+		newChildDescriptors.add(createChildParameter(BgPackage.Literals.ITERATIVE_FILTER__END_RULE,
+				BgFactory.eINSTANCE.createPattern()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getResourceLocator() {
-		return BgEditPlugin.INSTANCE;
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify = childFeature == BgPackage.Literals.ITERATIVE_FILTER__MATCH_RULE
+				|| childFeature == BgPackage.Literals.ITERATIVE_FILTER__END_RULE;
+
+		if (qualify) {
+			return getString("_UI_CreateChild_text2",
+					new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

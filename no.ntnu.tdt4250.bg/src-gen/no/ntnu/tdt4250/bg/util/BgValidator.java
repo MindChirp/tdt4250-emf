@@ -118,6 +118,10 @@ public class BgValidator extends EObjectValidator {
 			return validatePattern((Pattern) value, diagnostics, context);
 		case BgPackage.RELATIVE_COORDINATE:
 			return validateRelativeCoordinate((RelativeCoordinate) value, diagnostics, context);
+		case BgPackage.ITERATIVE_FILTER:
+			return validateIterativeFilter((IterativeFilter) value, diagnostics, context);
+		case BgPackage.STATE_EFFECT_FILTER:
+			return validateStateEffectFilter((StateEffectFilter) value, diagnostics, context);
 		case BgPackage.TURN_TYPE:
 			return validateTurnType((TurnType) value, diagnostics, context);
 		case BgPackage.STATE_SELECTION:
@@ -438,10 +442,16 @@ public class BgValidator extends EObjectValidator {
 	public boolean validateLegalMovesPipeline_legalMovesPipelineFiltersMustFormValidChain(
 			LegalMovesPipeline legalMovesPipeline, DiagnosticChain diagnostics, Map<Object, Object> context) {
 
-		Filter startFilter = legalMovesPipeline.getFilter();
-		boolean isValidChain = isValidFilterChain(startFilter);
+		EList<Filter> filters = legalMovesPipeline.getFilters();
+		boolean isValidChains = true;
+		for (Filter filter : filters) {
+			if (!isValidFilterChain(filter)) {
+				isValidChains = false;
+				break;
+			}
+		}
 
-		if (!isValidChain) {
+		if (!isValidChains) {
 			if (diagnostics != null) {
 				diagnostics.add(
 						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
@@ -514,10 +524,17 @@ public class BgValidator extends EObjectValidator {
 	 */
 	public boolean validateEffectPipeline_effectPipelineFiltersMustFormValidChain(EffectPipeline effectPipeline,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		Filter startFilter = effectPipeline.getFilter();
-		boolean isValidChain = isValidFilterChain(startFilter);
 
-		if (!isValidChain) {
+		EList<Filter> filters = effectPipeline.getFilters();
+		boolean isValidChains = true;
+		for (Filter filter : filters) {
+			if (!isValidFilterChain(filter)) {
+				isValidChains = false;
+				break;
+			}
+		}
+
+		if (!isValidChains) {
 			if (diagnostics != null) {
 				diagnostics.add(createDiagnostic(
 						Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", new Object[] {
@@ -1167,6 +1184,96 @@ public class BgValidator extends EObjectValidator {
 	public boolean validateRelativeCoordinate(RelativeCoordinate relativeCoordinate, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(relativeCoordinate, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateIterativeFilter(IterativeFilter iterativeFilter, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(iterativeFilter, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(iterativeFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(iterativeFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(iterativeFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(iterativeFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(iterativeFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(iterativeFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(iterativeFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(iterativeFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateFilter_filterMustBelongToGame(iterativeFilter, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStateEffectFilter(StateEffectFilter stateEffectFilter, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(stateEffectFilter, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateFilter_filterMustBelongToGame(stateEffectFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateStateEffectFilter_matchStateDefined(stateEffectFilter, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the matchStateDefined constraint of '<em>State Effect Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStateEffectFilter_matchStateDefined(StateEffectFilter stateEffectFilter,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		boolean isLegal = true;
+
+		if (stateEffectFilter.getStateSelection().getLiteral() == (StateSelection.STATE_BASED).getLiteral()) {
+			isLegal = (stateEffectFilter.getTargetState() != null);
+		}
+		
+		if (!isLegal) {
+			if (diagnostics != null) {
+				diagnostics.add(
+						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
+								new Object[] { "matchStateDefined", getObjectLabel(stateEffectFilter, context) },
+								new Object[] { stateEffectFilter }, context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**

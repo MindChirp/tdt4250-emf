@@ -2,19 +2,19 @@ from typing import List
 from app.generated.tictactoe import Board, Filter, Pattern, Tile, game
 
 
-def get_relative_tile(board: Board, anchorTile: Tile, rel_x: int, rel_y: int) -> Tile | None:
+def get_relative_tile(anchorTile: Tile, rel_x: int, rel_y: int) -> Tile | None:
   target_row = anchorTile.row + rel_y
   target_col = anchorTile.column + rel_x
 
   # Check if target tile is within board bounds
-  if target_row < 0 or target_row >= board.height or target_col < 0 or target_col >= board.width:
+  if target_row < 0 or target_row >= game.board.height or target_col < 0 or target_col >= game.board.width:
     return None
 
-  return next((t for t in board.tiles if t.row == target_row and t.column == target_col), None)
+  return next((t for t in game.board.tiles if t.row == target_row and t.column == target_col), None)
 
 
 
-def pattern_filter(board: Board, anchorTile: Tile, nextFilter: Filter, patterns: List[Pattern]):
+def pattern_filter(anchorTile: Tile, nextFilter: Filter, patterns: List[Pattern]):
   all_pattern_match = True
   for pattern in patterns:
     rel_coords = pattern.relativecoordinates 
@@ -38,11 +38,11 @@ def pattern_filter(board: Board, anchorTile: Tile, nextFilter: Filter, patterns:
 
 
       # Check if target coordinates are within board bounds
-      if target_row < 0 or target_row >= board.height or target_col < 0 or target_col >= board.width:
+      if target_row < 0 or target_row >= game.board.height or target_col < 0 or target_col >= game.board.width:
         all_match = False
         break
 
-      target_tile = get_relative_tile(board, anchorTile, rel_coord.x, rel_coord.y)
+      target_tile = get_relative_tile(anchorTile, rel_coord.x, rel_coord.y)
       print(f"Checking tile at ({target_col}, {target_row}): activeState {target_tile.activeState.name if target_tile else 'N/A'} against match states {match_state}")
       if not target_tile or target_tile.activeState.name not in match_state:
         print(f"Tile at ({target_col}, {target_row}) with state {target_tile.activeState.name if target_tile else 'N/A'} did not match any of {match_state}")
@@ -53,7 +53,7 @@ def pattern_filter(board: Board, anchorTile: Tile, nextFilter: Filter, patterns:
       if nextFilter:
         method = method_dict.get(nextFilter.__class__.__name__)
         if method:
-          return method(board, anchorTile, nextFilter.nextFilter, nextFilter.patterns)
+          return method(anchorTile, nextFilter.nextFilter, nextFilter.patterns)
         else:
           return True
       else:
@@ -77,7 +77,7 @@ def calculateLegalMoves(board: Board):
   if method:
     # Loop through all tiles, add the tile to the legal move list if the filter returns true
     for tile in board.tiles:
-      if method(board, tile, first_filter.nextFilter, first_filter.patterns):
+      if method(tile, first_filter.nextFilter, first_filter.patterns):
         legal_moves.append(tile)
   
   

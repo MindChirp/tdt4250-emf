@@ -305,13 +305,13 @@ public interface BgPackage extends EPackage {
 	int LEGAL_MOVES_PIPELINE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Filter</b></em>' containment reference.
+	 * The feature id for the '<em><b>Filters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGAL_MOVES_PIPELINE__FILTER = 0;
+	int LEGAL_MOVES_PIPELINE__FILTERS = 0;
 
 	/**
 	 * The number of structural features of the '<em>Legal Moves Pipeline</em>' class.
@@ -342,13 +342,13 @@ public interface BgPackage extends EPackage {
 	int EFFECT_PIPELINE = 4;
 
 	/**
-	 * The feature id for the '<em><b>Filter</b></em>' containment reference.
+	 * The feature id for the '<em><b>Filters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EFFECT_PIPELINE__FILTER = 0;
+	int EFFECT_PIPELINE__FILTERS = 0;
 
 	/**
 	 * The number of structural features of the '<em>Effect Pipeline</em>' class.
@@ -388,13 +388,22 @@ public interface BgPackage extends EPackage {
 	int FILTER__NEXT_FILTER = 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTER__NAME = 1;
+
+	/**
 	 * The number of structural features of the '<em>Filter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILTER_FEATURE_COUNT = 1;
+	int FILTER_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Filter</em>' class.
@@ -425,6 +434,15 @@ public interface BgPackage extends EPackage {
 	int PATTERN_FILTER__NEXT_FILTER = FILTER__NEXT_FILTER;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN_FILTER__NAME = FILTER__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -434,22 +452,13 @@ public interface BgPackage extends EPackage {
 	int PATTERN_FILTER__PATTERNS = FILTER_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATTERN_FILTER__NAME = FILTER_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Pattern Filter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_FILTER_FEATURE_COUNT = FILTER_FEATURE_COUNT + 2;
+	int PATTERN_FILTER_FEATURE_COUNT = FILTER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Pattern Filter</em>' class.
@@ -836,6 +845,143 @@ public interface BgPackage extends EPackage {
 	int RELATIVE_COORDINATE_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.impl.IterativeFilterImpl <em>Iterative Filter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.ntnu.tdt4250.bg.impl.IterativeFilterImpl
+	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getIterativeFilter()
+	 * @generated
+	 */
+	int ITERATIVE_FILTER = 13;
+
+	/**
+	 * The feature id for the '<em><b>Next Filter</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATIVE_FILTER__NEXT_FILTER = FILTER__NEXT_FILTER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATIVE_FILTER__NAME = FILTER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Direction Vector</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATIVE_FILTER__DIRECTION_VECTOR = FILTER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Match Rule</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATIVE_FILTER__MATCH_RULE = FILTER_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>End Rule</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATIVE_FILTER__END_RULE = FILTER_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Iterative Filter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATIVE_FILTER_FEATURE_COUNT = FILTER_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Iterative Filter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATIVE_FILTER_OPERATION_COUNT = FILTER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.impl.StateEffectFilterImpl <em>State Effect Filter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.ntnu.tdt4250.bg.impl.StateEffectFilterImpl
+	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getStateEffectFilter()
+	 * @generated
+	 */
+	int STATE_EFFECT_FILTER = 14;
+
+	/**
+	 * The feature id for the '<em><b>Next Filter</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EFFECT_FILTER__NEXT_FILTER = FILTER__NEXT_FILTER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EFFECT_FILTER__NAME = FILTER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Target State</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EFFECT_FILTER__TARGET_STATE = FILTER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>State Selection</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EFFECT_FILTER__STATE_SELECTION = FILTER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>State Effect Filter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EFFECT_FILTER_FEATURE_COUNT = FILTER_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>State Effect Filter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EFFECT_FILTER_OPERATION_COUNT = FILTER_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -843,7 +989,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getTurnType()
 	 * @generated
 	 */
-	int TURN_TYPE = 13;
+	int TURN_TYPE = 15;
 
 	/**
 	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.StateSelection <em>State Selection</em>}' enum.
@@ -853,7 +999,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getStateSelection()
 	 * @generated
 	 */
-	int STATE_SELECTION = 14;
+	int STATE_SELECTION = 16;
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Game <em>Game</em>}'.
@@ -1083,15 +1229,15 @@ public interface BgPackage extends EPackage {
 	EClass getLegalMovesPipeline();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link no.ntnu.tdt4250.bg.LegalMovesPipeline#getFilter <em>Filter</em>}'.
+	 * Returns the meta object for the containment reference list '{@link no.ntnu.tdt4250.bg.LegalMovesPipeline#getFilters <em>Filters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Filter</em>'.
-	 * @see no.ntnu.tdt4250.bg.LegalMovesPipeline#getFilter()
+	 * @return the meta object for the containment reference list '<em>Filters</em>'.
+	 * @see no.ntnu.tdt4250.bg.LegalMovesPipeline#getFilters()
 	 * @see #getLegalMovesPipeline()
 	 * @generated
 	 */
-	EReference getLegalMovesPipeline_Filter();
+	EReference getLegalMovesPipeline_Filters();
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.EffectPipeline <em>Effect Pipeline</em>}'.
@@ -1104,15 +1250,15 @@ public interface BgPackage extends EPackage {
 	EClass getEffectPipeline();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link no.ntnu.tdt4250.bg.EffectPipeline#getFilter <em>Filter</em>}'.
+	 * Returns the meta object for the containment reference list '{@link no.ntnu.tdt4250.bg.EffectPipeline#getFilters <em>Filters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Filter</em>'.
-	 * @see no.ntnu.tdt4250.bg.EffectPipeline#getFilter()
+	 * @return the meta object for the containment reference list '<em>Filters</em>'.
+	 * @see no.ntnu.tdt4250.bg.EffectPipeline#getFilters()
 	 * @see #getEffectPipeline()
 	 * @generated
 	 */
-	EReference getEffectPipeline_Filter();
+	EReference getEffectPipeline_Filters();
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Filter <em>Filter</em>}'.
@@ -1136,6 +1282,17 @@ public interface BgPackage extends EPackage {
 	EReference getFilter_NextFilter();
 
 	/**
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Filter#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see no.ntnu.tdt4250.bg.Filter#getName()
+	 * @see #getFilter()
+	 * @generated
+	 */
+	EAttribute getFilter_Name();
+
+	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.PatternFilter <em>Pattern Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1155,17 +1312,6 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPatternFilter_Patterns();
-
-	/**
-	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.PatternFilter#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see no.ntnu.tdt4250.bg.PatternFilter#getName()
-	 * @see #getPatternFilter()
-	 * @generated
-	 */
-	EAttribute getPatternFilter_Name();
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Tile <em>Tile</em>}'.
@@ -1481,6 +1627,81 @@ public interface BgPackage extends EPackage {
 	EAttribute getRelativeCoordinate_Y();
 
 	/**
+	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.IterativeFilter <em>Iterative Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Iterative Filter</em>'.
+	 * @see no.ntnu.tdt4250.bg.IterativeFilter
+	 * @generated
+	 */
+	EClass getIterativeFilter();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link no.ntnu.tdt4250.bg.IterativeFilter#getDirectionVector <em>Direction Vector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Direction Vector</em>'.
+	 * @see no.ntnu.tdt4250.bg.IterativeFilter#getDirectionVector()
+	 * @see #getIterativeFilter()
+	 * @generated
+	 */
+	EReference getIterativeFilter_DirectionVector();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link no.ntnu.tdt4250.bg.IterativeFilter#getMatchRule <em>Match Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Match Rule</em>'.
+	 * @see no.ntnu.tdt4250.bg.IterativeFilter#getMatchRule()
+	 * @see #getIterativeFilter()
+	 * @generated
+	 */
+	EReference getIterativeFilter_MatchRule();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link no.ntnu.tdt4250.bg.IterativeFilter#getEndRule <em>End Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>End Rule</em>'.
+	 * @see no.ntnu.tdt4250.bg.IterativeFilter#getEndRule()
+	 * @see #getIterativeFilter()
+	 * @generated
+	 */
+	EReference getIterativeFilter_EndRule();
+
+	/**
+	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.StateEffectFilter <em>State Effect Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>State Effect Filter</em>'.
+	 * @see no.ntnu.tdt4250.bg.StateEffectFilter
+	 * @generated
+	 */
+	EClass getStateEffectFilter();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.ntnu.tdt4250.bg.StateEffectFilter#getTargetState <em>Target State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target State</em>'.
+	 * @see no.ntnu.tdt4250.bg.StateEffectFilter#getTargetState()
+	 * @see #getStateEffectFilter()
+	 * @generated
+	 */
+	EReference getStateEffectFilter_TargetState();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.StateEffectFilter#getStateSelection <em>State Selection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>State Selection</em>'.
+	 * @see no.ntnu.tdt4250.bg.StateEffectFilter#getStateSelection()
+	 * @see #getStateEffectFilter()
+	 * @generated
+	 */
+	EAttribute getStateEffectFilter_StateSelection();
+
+	/**
 	 * Returns the meta object for enum '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1700,12 +1921,12 @@ public interface BgPackage extends EPackage {
 		EClass LEGAL_MOVES_PIPELINE = eINSTANCE.getLegalMovesPipeline();
 
 		/**
-		 * The meta object literal for the '<em><b>Filter</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Filters</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LEGAL_MOVES_PIPELINE__FILTER = eINSTANCE.getLegalMovesPipeline_Filter();
+		EReference LEGAL_MOVES_PIPELINE__FILTERS = eINSTANCE.getLegalMovesPipeline_Filters();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.EffectPipelineImpl <em>Effect Pipeline</em>}' class.
@@ -1718,12 +1939,12 @@ public interface BgPackage extends EPackage {
 		EClass EFFECT_PIPELINE = eINSTANCE.getEffectPipeline();
 
 		/**
-		 * The meta object literal for the '<em><b>Filter</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Filters</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EFFECT_PIPELINE__FILTER = eINSTANCE.getEffectPipeline_Filter();
+		EReference EFFECT_PIPELINE__FILTERS = eINSTANCE.getEffectPipeline_Filters();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.FilterImpl <em>Filter</em>}' class.
@@ -1744,6 +1965,14 @@ public interface BgPackage extends EPackage {
 		EReference FILTER__NEXT_FILTER = eINSTANCE.getFilter_NextFilter();
 
 		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FILTER__NAME = eINSTANCE.getFilter_Name();
+
+		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.PatternFilterImpl <em>Pattern Filter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1760,14 +1989,6 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PATTERN_FILTER__PATTERNS = eINSTANCE.getPatternFilter_Patterns();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PATTERN_FILTER__NAME = eINSTANCE.getPatternFilter_Name();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.TileImpl <em>Tile</em>}' class.
@@ -2012,6 +2233,66 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute RELATIVE_COORDINATE__Y = eINSTANCE.getRelativeCoordinate_Y();
+
+		/**
+		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.IterativeFilterImpl <em>Iterative Filter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.ntnu.tdt4250.bg.impl.IterativeFilterImpl
+		 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getIterativeFilter()
+		 * @generated
+		 */
+		EClass ITERATIVE_FILTER = eINSTANCE.getIterativeFilter();
+
+		/**
+		 * The meta object literal for the '<em><b>Direction Vector</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ITERATIVE_FILTER__DIRECTION_VECTOR = eINSTANCE.getIterativeFilter_DirectionVector();
+
+		/**
+		 * The meta object literal for the '<em><b>Match Rule</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ITERATIVE_FILTER__MATCH_RULE = eINSTANCE.getIterativeFilter_MatchRule();
+
+		/**
+		 * The meta object literal for the '<em><b>End Rule</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ITERATIVE_FILTER__END_RULE = eINSTANCE.getIterativeFilter_EndRule();
+
+		/**
+		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.StateEffectFilterImpl <em>State Effect Filter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.ntnu.tdt4250.bg.impl.StateEffectFilterImpl
+		 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getStateEffectFilter()
+		 * @generated
+		 */
+		EClass STATE_EFFECT_FILTER = eINSTANCE.getStateEffectFilter();
+
+		/**
+		 * The meta object literal for the '<em><b>Target State</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_EFFECT_FILTER__TARGET_STATE = eINSTANCE.getStateEffectFilter_TargetState();
+
+		/**
+		 * The meta object literal for the '<em><b>State Selection</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATE_EFFECT_FILTER__STATE_SELECTION = eINSTANCE.getStateEffectFilter_StateSelection();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}' enum.

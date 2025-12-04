@@ -159,6 +159,24 @@ public class BgSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case BgPackage.ITERATIVE_FILTER: {
+			IterativeFilter iterativeFilter = (IterativeFilter) theEObject;
+			T result = caseIterativeFilter(iterativeFilter);
+			if (result == null)
+				result = caseFilter(iterativeFilter);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case BgPackage.STATE_EFFECT_FILTER: {
+			StateEffectFilter stateEffectFilter = (StateEffectFilter) theEObject;
+			T result = caseStateEffectFilter(stateEffectFilter);
+			if (result == null)
+				result = caseFilter(stateEffectFilter);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -356,6 +374,36 @@ public class BgSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRelativeCoordinate(RelativeCoordinate object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Iterative Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Iterative Filter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIterativeFilter(IterativeFilter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>State Effect Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>State Effect Filter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStateEffectFilter(StateEffectFilter object) {
 		return null;
 	}
 

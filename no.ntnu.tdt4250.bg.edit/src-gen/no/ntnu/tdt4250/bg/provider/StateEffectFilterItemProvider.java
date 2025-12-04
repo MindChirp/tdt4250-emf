@@ -5,31 +5,31 @@ package no.ntnu.tdt4250.bg.provider;
 import java.util.Collection;
 import java.util.List;
 
-import no.ntnu.tdt4250.bg.BgFactory;
 import no.ntnu.tdt4250.bg.BgPackage;
-import no.ntnu.tdt4250.bg.PatternFilter;
+import no.ntnu.tdt4250.bg.StateEffectFilter;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link no.ntnu.tdt4250.bg.PatternFilter} object.
+ * This is the item provider adapter for a {@link no.ntnu.tdt4250.bg.StateEffectFilter} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PatternFilterItemProvider extends FilterItemProvider {
+public class StateEffectFilterItemProvider extends FilterItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PatternFilterItemProvider(AdapterFactory adapterFactory) {
+	public StateEffectFilterItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -44,49 +44,52 @@ public class PatternFilterItemProvider extends FilterItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addTargetStatePropertyDescriptor(object);
+			addStateSelectionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Target State feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(BgPackage.Literals.PATTERN_FILTER__PATTERNS);
-		}
-		return childrenFeatures;
+	protected void addTargetStatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_StateEffectFilter_targetState_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_StateEffectFilter_targetState_feature",
+								"_UI_StateEffectFilter_type"),
+						BgPackage.Literals.STATE_EFFECT_FILTER__TARGET_STATE, true, false, true, null, null, null));
 	}
 
 	/**
+	 * This adds a property descriptor for the State Selection feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+	protected void addStateSelectionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_StateEffectFilter_stateSelection_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_StateEffectFilter_stateSelection_feature",
+								"_UI_StateEffectFilter_type"),
+						BgPackage.Literals.STATE_EFFECT_FILTER__STATE_SELECTION, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns PatternFilter.gif.
+	 * This returns StateEffectFilter.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PatternFilter"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/StateEffectFilter"));
 	}
 
 	/**
@@ -107,9 +110,9 @@ public class PatternFilterItemProvider extends FilterItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PatternFilter) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_PatternFilter_type")
-				: getString("_UI_PatternFilter_type") + " " + label;
+		String label = ((StateEffectFilter) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_StateEffectFilter_type")
+				: getString("_UI_StateEffectFilter_type") + " " + label;
 	}
 
 	/**
@@ -123,9 +126,9 @@ public class PatternFilterItemProvider extends FilterItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PatternFilter.class)) {
-		case BgPackage.PATTERN_FILTER__PATTERNS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+		switch (notification.getFeatureID(StateEffectFilter.class)) {
+		case BgPackage.STATE_EFFECT_FILTER__STATE_SELECTION:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -141,9 +144,6 @@ public class PatternFilterItemProvider extends FilterItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add(
-				createChildParameter(BgPackage.Literals.PATTERN_FILTER__PATTERNS, BgFactory.eINSTANCE.createPattern()));
 	}
 
 }
