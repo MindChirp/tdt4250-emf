@@ -6,3 +6,7 @@ target/
 *.xtendbin
 *._trace
 /no.ntnu.tdt4250.bg.bgdsl.tests/test-bin/
+venv/
+.venv/
+env/
+ENV/
