@@ -57,8 +57,9 @@ public class BgDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("class Filter(BaseModel):");
     _builder.newLine();
-    _builder.append("\t");
+    _builder.append("    ");
     _builder.append("pass");
+    _builder.newLine();
     _builder.newLine();
     {
       for(final EClass model : models) {
@@ -82,20 +83,104 @@ public class BgDslGenerator extends AbstractGenerator {
         {
           boolean _isEmpty = model.getEAllStructuralFeatures().isEmpty();
           if (_isEmpty) {
-            _builder.append("\t");
+            _builder.append("    ");
             _builder.append("pass");
             _builder.newLine();
           } else {
             {
-              EList<EStructuralFeature> _eAllStructuralFeatures = model.getEAllStructuralFeatures();
-              for(final EStructuralFeature field : _eAllStructuralFeatures) {
-                CharSequence _pythonFieldDec = this.toPythonFieldDec(field);
-                _builder.append(_pythonFieldDec);
-                _builder.newLineIfNotEmpty();
+              String _name_3 = model.getName();
+              boolean _equals_1 = Objects.equals(_name_3, "Tile");
+              if (_equals_1) {
+                {
+                  EList<EStructuralFeature> _eAllStructuralFeatures = model.getEAllStructuralFeatures();
+                  for(final EStructuralFeature field : _eAllStructuralFeatures) {
+                    {
+                      String _name_4 = field.getName();
+                      boolean _equals_2 = Objects.equals(_name_4, "type");
+                      if (_equals_2) {
+                        _builder.append("    ");
+                        _builder.append("tile");
+                        CharSequence _pythonFieldDec = this.toPythonFieldDec(field);
+                        _builder.append(_pythonFieldDec, "    ");
+                        _builder.newLineIfNotEmpty();
+                      } else {
+                        _builder.append("    ");
+                        CharSequence _pythonFieldDec_1 = this.toPythonFieldDec(field);
+                        _builder.append(_pythonFieldDec_1, "    ");
+                        _builder.newLineIfNotEmpty();
+                      }
+                    }
+                  }
+                }
+                _builder.append("    ");
+                _builder.append("activeState: \"State\"");
+                _builder.newLine();
+                _builder.append("    ");
+                _builder.append("row: \"int\"");
+                _builder.newLine();
+                _builder.append("    ");
+                _builder.append("column: \"int\"");
+                _builder.newLine();
+                _builder.newLine();
+                _builder.append("    ");
+                _builder.append("def updateState(self, targetStateName: str):");
+                _builder.newLine();
+                _builder.append("    ");
+                _builder.append("    ");
+                _builder.append("for transition in self.transitions:");
+                _builder.newLine();
+                _builder.append("    ");
+                _builder.append("        ");
+                _builder.append("for source in transition.source:");
+                _builder.newLine();
+                _builder.append("    ");
+                _builder.append("            ");
+                _builder.append("if source.name == self.activeState.name and transition.target.name == targetStateName:");
+                _builder.newLine();
+                _builder.append("    ");
+                _builder.append("                ");
+                _builder.append("self.activeState = transition.target");
+                _builder.newLine();
+                _builder.newLine();
+              } else {
+                String _name_5 = model.getName();
+                boolean _equals_3 = Objects.equals(_name_5, "Board");
+                if (_equals_3) {
+                  _builder.append("    ");
+                  _builder.append("width: \"int\"");
+                  _builder.newLine();
+                  _builder.append("    ");
+                  _builder.append("tiles: List[\"Tile\"] = []");
+                  _builder.newLine();
+                  _builder.append("    ");
+                  _builder.append("legalMovesPipeline: Optional[\"LegalMovesPipeline\"] = None");
+                  _builder.newLine();
+                  _builder.append("    ");
+                  _builder.append("effectPipeline: Optional[\"EffectPipeline\"] = None");
+                  _builder.newLine();
+                  _builder.append("    ");
+                  _builder.append("height: \"int\"");
+                  _builder.newLine();
+                  _builder.append("    ");
+                  _builder.append("checkered: \"bool\"");
+                  _builder.newLine();
+                  _builder.append("    ");
+                  _builder.append("size: \"int\"");
+                  _builder.newLine();
+                  _builder.newLine();
+                } else {
+                  {
+                    EList<EStructuralFeature> _eAllStructuralFeatures_1 = model.getEAllStructuralFeatures();
+                    for(final EStructuralFeature field_1 : _eAllStructuralFeatures_1) {
+                      _builder.append("    ");
+                      CharSequence _pythonFieldDec_2 = this.toPythonFieldDec(field_1);
+                      _builder.append(_pythonFieldDec_2, "    ");
+                      _builder.newLineIfNotEmpty();
+                    }
+                  }
+                }
               }
             }
-            _builder.append("\t");
-            _builder.newLine();
           }
         }
       }
@@ -103,8 +188,8 @@ public class BgDslGenerator extends AbstractGenerator {
     _builder.newLine();
     {
       for(final EClass model_1 : models) {
-        String _name_3 = model_1.getName();
-        _builder.append(_name_3);
+        String _name_6 = model_1.getName();
+        _builder.append(_name_6);
         _builder.append(".model_rebuild()");
         _builder.newLineIfNotEmpty();
       }
@@ -130,21 +215,28 @@ public class BgDslGenerator extends AbstractGenerator {
       StringConcatenation _builder = new StringConcatenation();
       {
         for(final EObject tileType : tileTypes) {
+          _builder.append("    ");
           final Object tileName = tileType.eGet(tileType.eClass().getEStructuralFeature("name"));
           _builder.newLineIfNotEmpty();
+          _builder.append("    ");
           Object _eGet_4 = tileType.eGet(tileType.eClass().getEStructuralFeature("initialState"));
           final EObject initState = ((EObject) _eGet_4);
           _builder.newLineIfNotEmpty();
+          _builder.append("    ");
           final Object initName = initState.eGet(initState.eClass().getEStructuralFeature("name"));
           _builder.newLineIfNotEmpty();
+          _builder.append("    ");
           final Object initColor = initState.eGet(initState.eClass().getEStructuralFeature("hexColor"));
           _builder.newLineIfNotEmpty();
+          _builder.append("    ");
           Object _eGet_5 = tileType.eGet(tileType.eClass().getEStructuralFeature("states"));
           final EList<EObject> states = ((EList<EObject>) _eGet_5);
           _builder.newLineIfNotEmpty();
+          _builder.append("    ");
           Object _eGet_6 = tileType.eGet(tileType.eClass().getEStructuralFeature("transitions"));
           final EList<EObject> transitions = ((EList<EObject>) _eGet_6);
           _builder.newLineIfNotEmpty();
+          _builder.append("    ");
           final Object tileColor = tileType.eGet(tileType.eClass().getEStructuralFeature("hexColor"));
           _builder.newLineIfNotEmpty();
           _builder.newLine();
@@ -153,7 +245,7 @@ public class BgDslGenerator extends AbstractGenerator {
           _builder.append("(Tile):");
           _builder.newLineIfNotEmpty();
           _builder.append("    ");
-          _builder.append("def __init__(self):");
+          _builder.append("def __init__(self, row, column):");
           _builder.newLine();
           _builder.append("        ");
           _builder.append("state");
@@ -175,6 +267,13 @@ public class BgDslGenerator extends AbstractGenerator {
           _builder.newLine();
           _builder.append("        ");
           _builder.append(")");
+          _builder.newLine();
+          _builder.newLine();
+          _builder.append("        ");
+          _builder.append("row = row");
+          _builder.newLine();
+          _builder.append("        ");
+          _builder.append("column = column");
           _builder.newLine();
           _builder.newLine();
           {
@@ -224,6 +323,10 @@ public class BgDslGenerator extends AbstractGenerator {
               final Set<EObject> srcList = IterableExtensions.<EObject>toSet(rawSources);
               _builder.newLineIfNotEmpty();
               _builder.append("        ");
+              Object _eGet_8 = transition.eGet(transition.eClass().getEStructuralFeature("target"));
+              final EObject target = ((EObject) _eGet_8);
+              _builder.newLineIfNotEmpty();
+              _builder.append("        ");
               _builder.append("transition");
               _builder.append(tName, "        ");
               _builder.append(" = Transition(");
@@ -249,8 +352,8 @@ public class BgDslGenerator extends AbstractGenerator {
                   _builder.append("        ");
                   _builder.append("        ");
                   _builder.append("state");
-                  Object _eGet_8 = src.eGet(src.eClass().getEStructuralFeature("name"));
-                  _builder.append(_eGet_8, "                ");
+                  Object _eGet_9 = src.eGet(src.eClass().getEStructuralFeature("name"));
+                  _builder.append(_eGet_9, "                ");
                   _builder.newLineIfNotEmpty();
                 }
               }
@@ -258,11 +361,6 @@ public class BgDslGenerator extends AbstractGenerator {
               _builder.append("    ");
               _builder.append("],");
               _builder.newLine();
-              _builder.append("        ");
-              _builder.append("    ");
-              Object _eGet_9 = transition.eGet(transition.eClass().getEStructuralFeature("target"));
-              final EObject target = ((EObject) _eGet_9);
-              _builder.newLineIfNotEmpty();
               _builder.append("        ");
               _builder.append("    ");
               _builder.append("target=state");
@@ -366,6 +464,12 @@ public class BgDslGenerator extends AbstractGenerator {
           _builder.append(",");
           _builder.newLineIfNotEmpty();
           _builder.append("            ");
+          _builder.append("activeState=state");
+          Object _eGet_18 = initState.eGet(initState.eClass().getEStructuralFeature("name"));
+          _builder.append(_eGet_18, "            ");
+          _builder.append(",");
+          _builder.newLineIfNotEmpty();
+          _builder.append("            ");
           _builder.append("type=\"");
           _builder.append(tileName, "            ");
           _builder.append("\",");
@@ -378,15 +482,22 @@ public class BgDslGenerator extends AbstractGenerator {
           _builder.append("            ");
           _builder.append("name=\"");
           _builder.append(tileName, "            ");
-          _builder.append("\"");
+          _builder.append("\",");
           _builder.newLineIfNotEmpty();
+          _builder.append("            ");
+          _builder.append("row=row,");
+          _builder.newLine();
+          _builder.append("            ");
+          _builder.append("column=column");
+          _builder.newLine();
           _builder.append("        ");
           _builder.append(")");
+          _builder.newLine();
           _builder.newLine();
         }
       }
       _builder.newLine();
-      _builder.append("tileplacements = [");
+      _builder.append("tiles = [");
       _builder.newLine();
       {
         boolean _hasElements_3 = false;
@@ -394,68 +505,26 @@ public class BgDslGenerator extends AbstractGenerator {
           if (!_hasElements_3) {
             _hasElements_3 = true;
           } else {
-            _builder.appendImmediate(", ", "    ");
+            _builder.appendImmediate(", ", "");
           }
-          _builder.append("    ");
-          Object _eGet_18 = tilePlacement.eGet(tilePlacement.eClass().getEStructuralFeature("row"));
-          final Integer tilePlacementRow = ((Integer) _eGet_18);
+          Object _eGet_19 = tilePlacement.eGet(tilePlacement.eClass().getEStructuralFeature("tile"));
+          final EObject tile = ((EObject) _eGet_19);
           _builder.newLineIfNotEmpty();
-          _builder.append("    ");
-          Object _eGet_19 = tilePlacement.eGet(tilePlacement.eClass().getEStructuralFeature("column"));
-          final Integer tilePlacementColumn = ((Integer) _eGet_19);
+          final Object tileType_1 = tile.eGet(tile.eClass().getEStructuralFeature("name"));
           _builder.newLineIfNotEmpty();
-          _builder.append("    ");
-          Object _eGet_20 = tilePlacement.eGet(tilePlacement.eClass().getEStructuralFeature("tile"));
-          final EObject tilePlacementType = ((EObject) _eGet_20);
+          Object _eGet_20 = tilePlacement.eGet(tilePlacement.eClass().getEStructuralFeature("row"));
+          final Integer tileRow = ((Integer) _eGet_20);
           _builder.newLineIfNotEmpty();
-          _builder.append("    ");
-          Object _eGet_21 = tilePlacementType.eGet(tilePlacementType.eClass().getEStructuralFeature("name"));
-          final String tilePlacementTypeName = ((String) _eGet_21);
+          Object _eGet_21 = tilePlacement.eGet(tilePlacement.eClass().getEStructuralFeature("column"));
+          final Integer tileColumn = ((Integer) _eGet_21);
           _builder.newLineIfNotEmpty();
-          _builder.append("    ");
-          Object _eGet_22 = tilePlacement.eGet(tilePlacement.eClass().getEStructuralFeature("darker"));
-          final Boolean tilePlacementDarker = ((Boolean) _eGet_22);
-          _builder.newLineIfNotEmpty();
-          _builder.append("    ");
-          Object _eGet_23 = tilePlacement.eGet(tilePlacement.eClass().getEStructuralFeature("coordinate"));
-          final String tilePlacementCoordinate = ((String) _eGet_23);
-          _builder.newLineIfNotEmpty();
-          _builder.append("    ");
-          _builder.append("TilePlacement(");
-          _builder.newLine();
-          _builder.append("    ");
-          _builder.append("    ");
-          _builder.append("row=");
-          _builder.append(tilePlacementRow, "        ");
-          _builder.append(",");
-          _builder.newLineIfNotEmpty();
-          _builder.append("    ");
-          _builder.append("    ");
-          _builder.append("column=");
-          _builder.append(tilePlacementColumn, "        ");
-          _builder.append(",");
-          _builder.newLineIfNotEmpty();
-          _builder.append("    ");
-          _builder.append("    ");
-          _builder.append("tile=");
-          _builder.append(tilePlacementTypeName, "        ");
-          _builder.append("(),");
-          _builder.newLineIfNotEmpty();
-          _builder.append("    ");
-          _builder.append("    ");
-          _builder.append("darker=");
-          String _pyBool = this.toPyBool(tilePlacementDarker);
-          _builder.append(_pyBool, "        ");
-          _builder.append(",");
-          _builder.newLineIfNotEmpty();
-          _builder.append("    ");
-          _builder.append("    ");
-          _builder.append("coordinate=");
-          _builder.append(tilePlacementCoordinate, "        ");
-          _builder.newLineIfNotEmpty();
-          _builder.append("    ");
+          _builder.append(tileType_1);
+          _builder.append("(");
+          _builder.append(tileRow);
+          _builder.append(", ");
+          _builder.append(tileColumn);
           _builder.append(")");
-          _builder.newLine();
+          _builder.newLineIfNotEmpty();
         }
       }
       _builder.append("]");
@@ -469,43 +538,35 @@ public class BgDslGenerator extends AbstractGenerator {
           if (!_hasElements_4) {
             _hasElements_4 = true;
           } else {
-            _builder.appendImmediate(", ", "    ");
+            _builder.appendImmediate(", ", "");
           }
-          _builder.append("    ");
-          Object _eGet_24 = player.eGet(player.eClass().getEStructuralFeature("name"));
-          final String playerName = ((String) _eGet_24);
+          Object _eGet_22 = player.eGet(player.eClass().getEStructuralFeature("name"));
+          final String playerName = ((String) _eGet_22);
           _builder.newLineIfNotEmpty();
-          _builder.append("    ");
-          Object _eGet_25 = player.eGet(player.eClass().getEStructuralFeature("hexColor"));
-          final String playerColor = ((String) _eGet_25);
+          Object _eGet_23 = player.eGet(player.eClass().getEStructuralFeature("hexColor"));
+          final String playerColor = ((String) _eGet_23);
           _builder.newLineIfNotEmpty();
-          _builder.append("    ");
-          Object _eGet_26 = player.eGet(player.eClass().getEStructuralFeature("associatedState"));
-          final EObject associatedState = ((EObject) _eGet_26);
+          Object _eGet_24 = player.eGet(player.eClass().getEStructuralFeature("associatedState"));
+          final EObject associatedState = ((EObject) _eGet_24);
           _builder.newLineIfNotEmpty();
-          _builder.append("    ");
           _builder.append("Player(");
           _builder.newLine();
           _builder.append("    ");
-          _builder.append("    ");
           _builder.append("name=\"");
-          _builder.append(playerName, "        ");
+          _builder.append(playerName, "    ");
           _builder.append("\",");
           _builder.newLineIfNotEmpty();
-          _builder.append("    ");
           _builder.append("    ");
           _builder.append("hexColor=\"");
-          _builder.append(playerColor, "        ");
+          _builder.append(playerColor, "    ");
           _builder.append("\",");
           _builder.newLineIfNotEmpty();
           _builder.append("    ");
-          _builder.append("    ");
           _builder.append("associatedState=\"");
-          Object _eGet_27 = associatedState.eGet(associatedState.eClass().getEStructuralFeature("name"));
-          _builder.append(_eGet_27, "        ");
+          Object _eGet_25 = associatedState.eGet(associatedState.eClass().getEStructuralFeature("name"));
+          _builder.append(_eGet_25, "    ");
           _builder.append("\"");
           _builder.newLineIfNotEmpty();
-          _builder.append("    ");
           _builder.append(")");
           _builder.newLine();
         }
@@ -513,24 +574,24 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.append("]");
       _builder.newLine();
       _builder.newLine();
-      Object _eGet_28 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("width"));
-      final Integer boardWidth = ((Integer) _eGet_28);
+      Object _eGet_26 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("width"));
+      final Integer boardWidth = ((Integer) _eGet_26);
       _builder.newLineIfNotEmpty();
-      Object _eGet_29 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("height"));
-      final Integer boardHeight = ((Integer) _eGet_29);
+      Object _eGet_27 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("height"));
+      final Integer boardHeight = ((Integer) _eGet_27);
       _builder.newLineIfNotEmpty();
-      Object _eGet_30 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("checkered"));
-      final Boolean isCheckered = ((Boolean) _eGet_30);
+      Object _eGet_28 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("checkered"));
+      final Boolean isCheckered = ((Boolean) _eGet_28);
       _builder.newLineIfNotEmpty();
-      Object _eGet_31 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("legalMovesPipeline"));
-      final EObject legalPipelineObj = ((EObject) _eGet_31);
+      Object _eGet_29 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("legalMovesPipeline"));
+      final EObject legalPipelineObj = ((EObject) _eGet_29);
       _builder.newLineIfNotEmpty();
       String _xifexpression = null;
       if ((legalPipelineObj != null)) {
         String _xblockexpression_1 = null;
         {
-          Object _eGet_32 = legalPipelineObj.eGet(legalPipelineObj.eClass().getEStructuralFeature("filter"));
-          final EObject filter = ((EObject) _eGet_32);
+          Object _eGet_30 = legalPipelineObj.eGet(legalPipelineObj.eClass().getEStructuralFeature("filter"));
+          final EObject filter = ((EObject) _eGet_30);
           _xblockexpression_1 = this.renderFilter(filter);
         }
         _xifexpression = _xblockexpression_1;
@@ -539,16 +600,15 @@ public class BgDslGenerator extends AbstractGenerator {
       }
       final String legalMovesPipelineRendered = _xifexpression;
       _builder.newLineIfNotEmpty();
-      _builder.newLine();
-      Object _eGet_32 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("effectPipeline"));
-      final EObject effectPipelineObj = ((EObject) _eGet_32);
+      Object _eGet_30 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("effectPipeline"));
+      final EObject effectPipelineObj = ((EObject) _eGet_30);
       _builder.newLineIfNotEmpty();
       String _xifexpression_1 = null;
       if ((effectPipelineObj != null)) {
         String _xblockexpression_2 = null;
         {
-          Object _eGet_33 = effectPipelineObj.eGet(effectPipelineObj.eClass().getEStructuralFeature("filter"));
-          final EObject filter = ((EObject) _eGet_33);
+          Object _eGet_31 = effectPipelineObj.eGet(effectPipelineObj.eClass().getEStructuralFeature("filter"));
+          final EObject filter = ((EObject) _eGet_31);
           _xblockexpression_2 = this.renderFilter(filter);
         }
         _xifexpression_1 = _xblockexpression_2;
@@ -571,12 +631,12 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.append(",");
       _builder.newLineIfNotEmpty();
       _builder.append("    ");
-      _builder.append("tileplacement=tileplacements,");
+      _builder.append("tiles=tiles,");
       _builder.newLine();
       _builder.append("    ");
       _builder.append("checkered=");
-      String _pyBool_1 = this.toPyBool(isCheckered);
-      _builder.append(_pyBool_1, "    ");
+      String _pyBool = this.toPyBool(isCheckered);
+      _builder.append(_pyBool, "    ");
       _builder.append(",");
       _builder.newLineIfNotEmpty();
       _builder.append("    ");
@@ -587,9 +647,8 @@ public class BgDslGenerator extends AbstractGenerator {
       {
         boolean _notEquals = (!Objects.equals(legalMovesPipelineRendered, ""));
         if (_notEquals) {
-          _builder.append("    ");
           _builder.append("legalMovesPipeline=LegalMovesPipeline(filter=");
-          _builder.append(legalMovesPipelineRendered, "    ");
+          _builder.append(legalMovesPipelineRendered);
           _builder.append("),");
           _builder.newLineIfNotEmpty();
         }
@@ -597,26 +656,29 @@ public class BgDslGenerator extends AbstractGenerator {
       {
         boolean _notEquals_1 = (!Objects.equals(effectPipelineRendered, ""));
         if (_notEquals_1) {
-          _builder.append("    ");
           _builder.append("effectPipeline=EffectPipeline(filter=");
-          _builder.append(effectPipelineRendered, "    ");
+          _builder.append(effectPipelineRendered);
           _builder.append("),");
           _builder.newLineIfNotEmpty();
         }
       }
+      _builder.append("    ");
+      _builder.append("legalMoves=[]");
+      _builder.newLine();
       _builder.append(")");
       _builder.newLine();
       _builder.newLine();
-      Object _eGet_33 = gameInstance.eGet(gameInstance.eClass().getEStructuralFeature("initialPlayer"));
-      final EObject initialPlayer = ((EObject) _eGet_33);
+      Object _eGet_31 = gameInstance.eGet(gameInstance.eClass().getEStructuralFeature("initialPlayer"));
+      final EObject initialPlayer = ((EObject) _eGet_31);
       _builder.newLineIfNotEmpty();
       final int initialPlayerIndex = players.indexOf(initialPlayer);
       _builder.newLineIfNotEmpty();
-      Object _eGet_34 = gameInstance.eGet(gameInstance.eClass().getEStructuralFeature("name"));
-      final String gameName = ((String) _eGet_34);
+      Object _eGet_32 = gameInstance.eGet(gameInstance.eClass().getEStructuralFeature("name"));
+      final String gameName = ((String) _eGet_32);
       _builder.newLineIfNotEmpty();
       final Object turnPolicy = gameInstance.eGet(gameInstance.eClass().getEStructuralFeature("turnPolicy"));
       _builder.newLineIfNotEmpty();
+      _builder.newLine();
       _builder.append("game = Game(");
       _builder.newLine();
       _builder.append("    ");
@@ -728,338 +790,6 @@ public class BgDslGenerator extends AbstractGenerator {
     return _xblockexpression;
   }
 
-  public CharSequence generateBoard(final EObject boardInstance) {
-    CharSequence _xblockexpression = null;
-    {
-      Object _eGet = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("width"));
-      final Integer width = ((Integer) _eGet);
-      Object _eGet_1 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("height"));
-      final Integer height = ((Integer) _eGet_1);
-      Object _eGet_2 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("checkered"));
-      final Boolean checkered = ((Boolean) _eGet_2);
-      Object _eGet_3 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("size"));
-      final Integer size = ((Integer) _eGet_3);
-      Object _eGet_4 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("tiles"));
-      final EList<EObject> tiles = ((EList<EObject>) _eGet_4);
-      Object _eGet_5 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("tileplacement"));
-      final EList<EObject> tileplacement = ((EList<EObject>) _eGet_5);
-      Object _eGet_6 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("legalMovesPipeline"));
-      final EList<EObject> legalMovePipeline = ((EList<EObject>) _eGet_6);
-      Object _eGet_7 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("effectPipeline"));
-      final EList<EObject> effectPipeline = ((EList<EObject>) _eGet_7);
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Board(");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("width=");
-      _builder.append(width, "\t");
-      _builder.append(",");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t");
-      _builder.append("height=");
-      _builder.append(height, "\t");
-      _builder.append(",");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t");
-      _builder.append("checkered=");
-      _builder.append(checkered, "\t");
-      _builder.append(",");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t");
-      _builder.append("size=");
-      _builder.append(size, "\t");
-      _builder.append(",");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t");
-      _builder.append("tiles = [");
-      _builder.newLine();
-      {
-        for(final EObject tile : tiles) {
-          _builder.append("\t");
-          CharSequence _generateTile = this.generateTile(tile);
-          _builder.append(_generateTile, "\t");
-          _builder.newLineIfNotEmpty();
-        }
-      }
-      _builder.append("\t");
-      _builder.append("]");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("tileplacement = [");
-      _builder.newLine();
-      {
-        for(final EObject tile_1 : tileplacement) {
-          _builder.append("\t");
-          CharSequence _generateTileplacement = this.generateTileplacement(tile_1);
-          _builder.append(_generateTileplacement, "\t");
-          _builder.newLineIfNotEmpty();
-        }
-      }
-      _builder.append("]");
-      _builder.newLine();
-      _builder.append(")");
-      _builder.newLine();
-      _xblockexpression = _builder;
-    }
-    return _xblockexpression;
-  }
-
-  public CharSequence generateTile(final EObject tile) {
-    CharSequence _xblockexpression = null;
-    {
-      Object _eGet = tile.eGet(tile.eClass().getEStructuralFeature("name"));
-      final String name = ((String) _eGet);
-      Object _eGet_1 = tile.eGet(tile.eClass().getEStructuralFeature("type"));
-      final String type = ((String) _eGet_1);
-      Object _eGet_2 = tile.eGet(tile.eClass().getEStructuralFeature("hexColor"));
-      final String hexColor = ((String) _eGet_2);
-      Object _eGet_3 = tile.eGet(tile.eClass().getEStructuralFeature("initialState"));
-      final EObject initialState = ((EObject) _eGet_3);
-      Object _eGet_4 = tile.eGet(tile.eClass().getEStructuralFeature("states"));
-      final EList<EObject> states = ((EList<EObject>) _eGet_4);
-      Object _eGet_5 = tile.eGet(tile.eClass().getEStructuralFeature("transitions"));
-      final EList<EObject> transitions = ((EList<EObject>) _eGet_5);
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Tile(");
-      _builder.newLine();
-      _builder.append("    ");
-      _builder.append("name=\"");
-      _builder.append(name, "    ");
-      _builder.append("\",");
-      _builder.newLineIfNotEmpty();
-      _builder.append("    ");
-      _builder.append("type=\"");
-      _builder.append(type, "    ");
-      _builder.append("\",");
-      _builder.newLineIfNotEmpty();
-      _builder.append("    ");
-      _builder.append("hexColor=\"");
-      _builder.append(hexColor, "    ");
-      _builder.append("\",");
-      _builder.newLineIfNotEmpty();
-      _builder.append("    ");
-      _builder.append("initialState=");
-      {
-        if ((initialState != null)) {
-          CharSequence _generateState = this.generateState(initialState);
-          _builder.append(_generateState, "    ");
-        } else {
-          _builder.append("None");
-        }
-      }
-      _builder.append(",");
-      _builder.newLineIfNotEmpty();
-      _builder.append("    ");
-      _builder.append("states=[");
-      _builder.newLine();
-      {
-        boolean _hasElements = false;
-        for(final EObject state : states) {
-          if (!_hasElements) {
-            _hasElements = true;
-          } else {
-            _builder.appendImmediate(",", "        ");
-          }
-          _builder.append("        ");
-          CharSequence _generateState_1 = this.generateState(state);
-          _builder.append(_generateState_1, "        ");
-          _builder.newLineIfNotEmpty();
-        }
-      }
-      _builder.append("    ");
-      _builder.append("],");
-      _builder.newLine();
-      _builder.append("    ");
-      _builder.append("transitions=[");
-      _builder.newLine();
-      {
-        boolean _hasElements_1 = false;
-        for(final EObject transition : transitions) {
-          if (!_hasElements_1) {
-            _hasElements_1 = true;
-          } else {
-            _builder.appendImmediate(",", "        ");
-          }
-          _builder.append("        ");
-          CharSequence _generateTransition = this.generateTransition(transition);
-          _builder.append(_generateTransition, "        ");
-          _builder.newLineIfNotEmpty();
-        }
-      }
-      _builder.append("    ");
-      _builder.append("]");
-      _builder.newLine();
-      _builder.append(")");
-      _xblockexpression = _builder;
-    }
-    return _xblockexpression;
-  }
-
-  public CharSequence generateState(final EObject state) {
-    CharSequence _xblockexpression = null;
-    {
-      Object _eGet = state.eGet(state.eClass().getEStructuralFeature("outbound"));
-      final EList<EObject> outbound = ((EList<EObject>) _eGet);
-      Object _eGet_1 = state.eGet(state.eClass().getEStructuralFeature("inbound"));
-      final EList<EObject> inbound = ((EList<EObject>) _eGet_1);
-      Object _eGet_2 = state.eGet(state.eClass().getEStructuralFeature("name"));
-      final String name = ((String) _eGet_2);
-      Object _eGet_3 = state.eGet(state.eClass().getEStructuralFeature("hexColor"));
-      final String hexColor = ((String) _eGet_3);
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("State(");
-      _builder.newLine();
-      _builder.append("    ");
-      _builder.append("name=");
-      {
-        if ((name != null)) {
-          _builder.append("\"");
-          _builder.append(name, "    ");
-          _builder.append("\"");
-        } else {
-          _builder.append("None");
-        }
-      }
-      _builder.append(",");
-      _builder.newLineIfNotEmpty();
-      _builder.append("    ");
-      _builder.append("hexColor=\"");
-      _builder.append(hexColor, "    ");
-      _builder.append("\",");
-      _builder.newLineIfNotEmpty();
-      _builder.append("    ");
-      _builder.append("outbound=[");
-      _builder.newLine();
-      {
-        for(final EObject transition : outbound) {
-          _builder.append("        ");
-          Object _eGet_4 = transition.eGet(transition.eClass().getEStructuralFeature("name"));
-          _builder.append(_eGet_4, "        ");
-          _builder.newLineIfNotEmpty();
-        }
-      }
-      _builder.append("        ");
-      _builder.append("],");
-      _builder.newLine();
-      _builder.append("    ");
-      _builder.append("inbound=[");
-      _builder.newLine();
-      {
-        for(final EObject transition_1 : inbound) {
-          _builder.append("        ");
-          Object _eGet_5 = transition_1.eGet(transition_1.eClass().getEStructuralFeature("name"));
-          _builder.append(_eGet_5, "        ");
-          _builder.newLineIfNotEmpty();
-        }
-      }
-      _builder.append("        ");
-      _builder.append("]");
-      _builder.newLine();
-      _builder.append(")");
-      _xblockexpression = _builder;
-    }
-    return _xblockexpression;
-  }
-
-  public CharSequence generateTransition(final EObject transition) {
-    CharSequence _xblockexpression = null;
-    {
-      Object _eGet = transition.eGet(transition.eClass().getEStructuralFeature("name"));
-      final String name = ((String) _eGet);
-      Object _eGet_1 = transition.eGet(transition.eClass().getEStructuralFeature("source"));
-      final EList<EObject> source = ((EList<EObject>) _eGet_1);
-      Object _eGet_2 = transition.eGet(transition.eClass().getEStructuralFeature("target"));
-      final EObject target = ((EObject) _eGet_2);
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Transition(");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("name=");
-      {
-        if ((name != null)) {
-          _builder.append("\"");
-          _builder.append(name, "\t");
-          _builder.append("\"");
-        } else {
-          _builder.append("None");
-        }
-      }
-      _builder.append(",");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t");
-      _builder.append("source=[");
-      _builder.newLine();
-      {
-        for(final EObject state : source) {
-          _builder.append("\t    ");
-          Object _eGet_3 = state.eGet(state.eClass().getEStructuralFeature("name"));
-          _builder.append(_eGet_3, "\t    ");
-          _builder.newLineIfNotEmpty();
-        }
-      }
-      _builder.append("\t    ");
-      _builder.append("],");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("target=");
-      Object _eGet_4 = target.eGet(target.eClass().getEStructuralFeature("name"));
-      _builder.append(_eGet_4, "\t");
-      _builder.newLineIfNotEmpty();
-      _xblockexpression = _builder;
-    }
-    return _xblockexpression;
-  }
-
-  public CharSequence generateTileplacement(final EObject tileplacement) {
-    CharSequence _xblockexpression = null;
-    {
-      Object _eGet = tileplacement.eGet(tileplacement.eClass().getEStructuralFeature("tile"));
-      final EObject tile = ((EObject) _eGet);
-      Object _eGet_1 = tileplacement.eGet(tileplacement.eClass().getEStructuralFeature("row"));
-      final Integer row = ((Integer) _eGet_1);
-      Object _eGet_2 = tileplacement.eGet(tileplacement.eClass().getEStructuralFeature("column"));
-      final Integer column = ((Integer) _eGet_2);
-      Object _eGet_3 = tileplacement.eGet(tileplacement.eClass().getEStructuralFeature("darker"));
-      final Boolean darker = ((Boolean) _eGet_3);
-      Object _eGet_4 = tileplacement.eGet(tileplacement.eClass().getEStructuralFeature("coordinate"));
-      final String coordinate = ((String) _eGet_4);
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Tileplacement(");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("tile=");
-      Object _eGet_5 = tile.eGet(tile.eClass().getEStructuralFeature("name"));
-      _builder.append(((String) _eGet_5), "\t");
-      _builder.append(",,");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t");
-      _builder.append("row=");
-      _builder.append(row, "\t");
-      _builder.append(",");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t");
-      _builder.append("column=");
-      _builder.append(column, "\t");
-      _builder.append(",");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t");
-      _builder.append("darker=");
-      String _pyBool = this.toPyBool(darker);
-      _builder.append(_pyBool, "\t");
-      _builder.append(",");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t");
-      _builder.append("coordinate=\"");
-      _builder.append(coordinate, "\t");
-      _builder.append("\"");
-      _builder.newLineIfNotEmpty();
-      _builder.append(")");
-      _builder.newLine();
-      _xblockexpression = _builder;
-    }
-    return _xblockexpression;
-  }
-
   public CharSequence toPythonFieldDec(final EStructuralFeature field) {
     CharSequence _xblockexpression = null;
     {
@@ -1144,105 +874,6 @@ public class BgDslGenerator extends AbstractGenerator {
       _switchResult = "str";
     }
     return _switchResult;
-  }
-
-  public CharSequence compileStructural(final EClass c) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("class ");
-    String _name = c.getName();
-    _builder.append(_name);
-    _builder.append(":");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("def __init__(self, **kwargs):");
-    _builder.newLine();
-    {
-      EList<EStructuralFeature> _eAllStructuralFeatures = c.getEAllStructuralFeatures();
-      for(final EStructuralFeature feature : _eAllStructuralFeatures) {
-        _builder.append("\t");
-        _builder.append("self.");
-        String _name_1 = feature.getName();
-        _builder.append(_name_1, "\t");
-        _builder.append(" = kwargs.get(\"");
-        String _name_2 = feature.getName();
-        _builder.append(_name_2, "\t");
-        _builder.append("\", ");
-        String _compileInitialization = this.compileInitialization(feature);
-        _builder.append(_compileInitialization, "\t");
-        _builder.append(")");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("def __str__(self):");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("return \"Instance of ");
-    String _name_3 = c.getName();
-    _builder.append(_name_3, "\t\t");
-    _builder.append("\"");
-    _builder.newLineIfNotEmpty();
-    return _builder;
-  }
-
-  public CharSequence compileWithData(final EObject instance) {
-    CharSequence _xblockexpression = null;
-    {
-      EClass _eClass = instance.eClass();
-      final EClass eClass = ((EClass) _eClass);
-      final Function1<EStructuralFeature, Boolean> _function = (EStructuralFeature it) -> {
-        String _name = it.getName();
-        return Boolean.valueOf(Objects.equals(_name, "name"));
-      };
-      final EStructuralFeature nameFeature = IterableExtensions.<EStructuralFeature>findFirst(eClass.getEStructuralFeatures(), _function);
-      Object _eGet = instance.eGet(nameFeature);
-      final String name = ((String) _eGet);
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("class ");
-      String _name = eClass.getName();
-      _builder.append(_name);
-      _builder.append(":");
-      _builder.newLineIfNotEmpty();
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("# Data pulled directly from the textual model instance and hardcoded");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("name = ");
-      _builder.append(name, "\t");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("def __init__(self):");
-      _builder.newLine();
-      _builder.append("\t\t");
-      _builder.append("self.name = name");
-      _builder.newLine();
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("def __str__(self):");
-      _builder.newLine();
-      _builder.append("\t\t");
-      _builder.append("return \"Game with name ");
-      _builder.append(name, "\t\t");
-      _builder.append("\"");
-      _builder.newLineIfNotEmpty();
-      _xblockexpression = _builder;
-    }
-    return _xblockexpression;
-  }
-
-  public String compileInitialization(final EStructuralFeature feature) {
-    String _xifexpression = null;
-    boolean _isMany = feature.isMany();
-    if (_isMany) {
-      _xifexpression = "[]";
-    } else {
-      _xifexpression = "None";
-    }
-    return _xifexpression;
   }
 
   public String toPyBool(final Boolean b) {
