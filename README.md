@@ -1,9 +1,9 @@
 # Tile-Based Game Engine - Project Overview
 
-This repository allows you to design tile-based games such as Connect 4, Othello, TicTacToe using the graphical editor **Sirius**, generate runnable code, and execute the game **with no additional hard-coded logic**. Everything is defined in the model. 
+This repository allows you to design tile-based games such as Connect 4, Gomoku and TicTacToe using a custom DSL, generate runnable code, and execute the game **with no additional hard-coded logic**. Everything is defined in the model. 
 The project was created by *Emil Johnsen*, *Frikk Balder Ormestad*, *Andread Gjerstøe*, *Knut Johansen*.
 
-The project is built on **EMF/Ecore**, **Java**, **Xtend** and **Sirius**.
+The code generation is built on **EMF/Ecore**, **Java**, **Xtend** and **Xtext**. Generated code results in a runnable **Python** file, which can be used in our **Python** and **React** application to play a game defined according to the DSL.
 
 ---
 
@@ -29,7 +29,7 @@ The project is built on **EMF/Ecore**, **Java**, **Xtend** and **Sirius**.
 
 ## Project description
 
-The **Tile-Based Game Engine** is a model-driven framework for defining deterministic, grid-based games. All gameplay logic is defined directly inside the **Ecore model** using:
+The **Tile-Based Game Engine** is a model-driven framework for defining deterministic, grid-based games. All gameplay logic is modeled inside the **Ecore model** using:
 
 - Tile state machines  
 - Filters 
@@ -37,7 +37,7 @@ The **Tile-Based Game Engine** is a model-driven framework for defining determin
 - State transitions  
 - Constraint validation
 
-Games such as **Connect 4**, **Othello**, or other grid-based logic games can be created **without writing additional code**.
+Games such as **Connect 4**, **TicTacToe**, or other grid-based logic games can be created easily without the need of implementing code yourself.
 
 **Metamodel**: Contains classes for `Tile`, `State`, `Transition`, `Board`, `Game`, `Player`, `Pipelines`, `Filters`, etc. Constraints are implemented in Java inside the generated `Validator`.
 
@@ -71,14 +71,13 @@ All logic is declarative - you create games by assembling pipelines and transiti
 
 ---
 
-## Repository Overview (COMPLETE THIS WHEN FINISHED WITH XTEND AND SIRIUS)
+## Repository Overview (COMPLETE THIS WHEN FINISHED WITH XTEND AND XTEXT)
 
-- `model/` → Ecore metamodel  
-- `models/` → Example game instance models (Connect 4, Othello)  
-- `src/` → Generated Java code + custom code  
-- `src/.../impl` → Filter and pipeline implementations  
-- `src/.../util` → Validator + utilities  
-- `sirius/` → (Optional) Sirius diagram editor  
+- `no.ntnu.tdt4250.bg/model` → Ecore metamodel
+- `no.ntnu.tdt4250.bg/src-gen/no/ntnu/tdt4250/bg/util` → Validator
+- `no.ntnu.tdt4250.bg.bgdsl/src/no/ntnu/tdt4250/bg/bgdsl` → Xtext grammar
+- `no.ntnu.tdt4250.bg.bgdsl/src/no/ntnu/tdt4250/bg/bgdsl/generator` → Xtend Python generator file
+- cont...
 - `README.md` → This documentation file
 
 ---
@@ -94,7 +93,7 @@ The following is a detailed description of the latest version of the Tile-Based 
 The following diagram shows the complete structure of the Tile-Based Game Engine metamodel.  
 It includes the core game entities (Game, Board, Tile), tile state machines, pipelines, filters, and pattern-based match logic used to determine legal moves and apply effects during gameplay.
 
-![Metamodel Diagram](bg_ecore_model.jpg)
+![Metamodel Diagram](bg_ecore_model.jpg) TODO oppdatere?
 
 ---
 
@@ -306,15 +305,10 @@ Coordinate relative to a pattern anchor.
 #### State Machines
 
 - Each `Tile` contains its own small state machine.
-- Example transitions:
+- Example transition:
   - **Connect 4**:
     - `Empty → Red`
     - `Empty → Yellow`
-  - **Othello**:
-    - `Empty → White`
-    - `Empty → Black`
-    - `White → Black`
-    - `Black → White`
 - Transitions are used by effect filters to apply gameplay actions.
 
 #### Pipelines
