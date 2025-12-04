@@ -1,0 +1,1 @@
+#Xtext generator should create files into this folder!
