@@ -1,6 +1,6 @@
 '('=51
 ')'=52
-','=22
+','=23
 '-'=36
 'Board'=24
 'CurrentPlayer'=11
@@ -29,7 +29,7 @@
 'height'=26
 'hexColor'=32
 'inbound'=53
-'initialPlayer'=20
+'initialPlayer'=21
 'initialState'=40
 'legalMovesPipeline'=29
 'matchState'=63
@@ -37,7 +37,7 @@
 'nextFilter'=59
 'outbound'=50
 'patterns'=58
-'players'=21
+'players'=22
 'relativecoordinates'=61
 'row'=46
 'source'=55
@@ -48,13 +48,13 @@
 'tileplacement'=28
 'tiles'=27
 'transitions'=41
-'turnPolicy'=23
+'turnPolicy'=19
 'type'=35
 'width'=25
 'x'=65
 'y'=66
 '{'=17
-'}'=19
+'}'=20
 RULE_ANY_OTHER=10
 RULE_ID=5
 RULE_INT=6

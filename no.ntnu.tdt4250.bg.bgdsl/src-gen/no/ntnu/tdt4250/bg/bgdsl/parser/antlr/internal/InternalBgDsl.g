@@ -207,67 +207,32 @@ ruleGame returns [EObject current=null]
 				newLeafNode(otherlv_12, grammarAccess.getGameAccess().getRightCurlyBracketKeyword_6_4());
 			}
 		)?
-		(
-			otherlv_13='turnPolicy'
-			{
-				newLeafNode(otherlv_13, grammarAccess.getGameAccess().getTurnPolicyKeyword_7_0());
-			}
-			otherlv_14='{'
-			{
-				newLeafNode(otherlv_14, grammarAccess.getGameAccess().getLeftCurlyBracketKeyword_7_1());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getGameAccess().getTurnPolicyTurnPolicyParserRuleCall_7_2_0());
-					}
-					lv_turnPolicy_15_0=ruleTurnPolicy
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getGameRule());
-						}
-						add(
-							$current,
-							"turnPolicy",
-							lv_turnPolicy_15_0,
-							"no.ntnu.tdt4250.bg.bgdsl.BgDsl.TurnPolicy");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			(
-				otherlv_16=','
-				{
-					newLeafNode(otherlv_16, grammarAccess.getGameAccess().getCommaKeyword_7_3_0());
-				}
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getGameAccess().getTurnPolicyTurnPolicyParserRuleCall_7_3_1_0());
-						}
-						lv_turnPolicy_17_0=ruleTurnPolicy
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getGameRule());
-							}
-							add(
-								$current,
-								"turnPolicy",
-								lv_turnPolicy_17_0,
-								"no.ntnu.tdt4250.bg.bgdsl.BgDsl.TurnPolicy");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-			)*
-			otherlv_18='}'
-			{
-				newLeafNode(otherlv_18, grammarAccess.getGameAccess().getRightCurlyBracketKeyword_7_4());
-			}
-		)?
-		otherlv_19='}'
+		otherlv_13='turnPolicy'
 		{
-			newLeafNode(otherlv_19, grammarAccess.getGameAccess().getRightCurlyBracketKeyword_8());
+			newLeafNode(otherlv_13, grammarAccess.getGameAccess().getTurnPolicyKeyword_7());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getGameAccess().getTurnPolicyTurnPolicyParserRuleCall_8_0());
+				}
+				lv_turnPolicy_14_0=ruleTurnPolicy
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getGameRule());
+					}
+					set(
+						$current,
+						"turnPolicy",
+						lv_turnPolicy_14_0,
+						"no.ntnu.tdt4250.bg.bgdsl.BgDsl.TurnPolicy");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_15='}'
+		{
+			newLeafNode(otherlv_15, grammarAccess.getGameAccess().getRightCurlyBracketKeyword_9());
 		}
 	)
 ;

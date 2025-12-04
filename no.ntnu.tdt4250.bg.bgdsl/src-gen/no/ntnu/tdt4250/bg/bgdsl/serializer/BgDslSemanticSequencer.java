@@ -132,7 +132,7 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Game returns Game
 	 *
 	 * Constraint:
-	 *     (name=EString initialPlayer=[Player|EString]? board=Board (players+=Player players+=Player*)? (turnPolicy+=TurnPolicy turnPolicy+=TurnPolicy*)?)
+	 *     (name=EString initialPlayer=[Player|EString]? board=Board (players+=Player players+=Player*)? turnPolicy=TurnPolicy)
 	 * </pre>
 	 */
 	protected void sequence_Game(ISerializationContext context, Game semanticObject) {

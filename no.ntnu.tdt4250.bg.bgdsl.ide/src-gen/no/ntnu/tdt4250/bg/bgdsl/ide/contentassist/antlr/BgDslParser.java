@@ -39,8 +39,6 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getGameAccess().getGroup_3(), "rule__Game__Group_3__0");
 			builder.put(grammarAccess.getGameAccess().getGroup_6(), "rule__Game__Group_6__0");
 			builder.put(grammarAccess.getGameAccess().getGroup_6_3(), "rule__Game__Group_6_3__0");
-			builder.put(grammarAccess.getGameAccess().getGroup_7(), "rule__Game__Group_7__0");
-			builder.put(grammarAccess.getGameAccess().getGroup_7_3(), "rule__Game__Group_7_3__0");
 			builder.put(grammarAccess.getBoardAccess().getGroup(), "rule__Board__Group__0");
 			builder.put(grammarAccess.getBoardAccess().getGroup_10(), "rule__Board__Group_10__0");
 			builder.put(grammarAccess.getBoardAccess().getGroup_12(), "rule__Board__Group_12__0");
@@ -80,8 +78,7 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getGameAccess().getBoardAssignment_5(), "rule__Game__BoardAssignment_5");
 			builder.put(grammarAccess.getGameAccess().getPlayersAssignment_6_2(), "rule__Game__PlayersAssignment_6_2");
 			builder.put(grammarAccess.getGameAccess().getPlayersAssignment_6_3_1(), "rule__Game__PlayersAssignment_6_3_1");
-			builder.put(grammarAccess.getGameAccess().getTurnPolicyAssignment_7_2(), "rule__Game__TurnPolicyAssignment_7_2");
-			builder.put(grammarAccess.getGameAccess().getTurnPolicyAssignment_7_3_1(), "rule__Game__TurnPolicyAssignment_7_3_1");
+			builder.put(grammarAccess.getGameAccess().getTurnPolicyAssignment_8(), "rule__Game__TurnPolicyAssignment_8");
 			builder.put(grammarAccess.getBoardAccess().getCheckeredAssignment_0(), "rule__Board__CheckeredAssignment_0");
 			builder.put(grammarAccess.getBoardAccess().getWidthAssignment_4(), "rule__Board__WidthAssignment_4");
 			builder.put(grammarAccess.getBoardAccess().getHeightAssignment_6(), "rule__Board__HeightAssignment_6");

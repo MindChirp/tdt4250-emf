@@ -11,7 +11,7 @@ Game returns Game:
 		('initialPlayer' initialPlayer=[Player|EString])?
 		'board' board=Board
 		('players' '{' players+=Player ( "," players+=Player)* '}' )?
-		('turnPolicy' '{' turnPolicy+=TurnPolicy ( "," turnPolicy+=TurnPolicy)* '}' )?
+		'turnPolicy' turnPolicy=TurnPolicy
 	'}';
 
 

@@ -51,17 +51,10 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cPlayersAssignment_6_3_1 = (Assignment)cGroup_6_3.eContents().get(1);
 		private final RuleCall cPlayersPlayerParserRuleCall_6_3_1_0 = (RuleCall)cPlayersAssignment_6_3_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_6_4 = (Keyword)cGroup_6.eContents().get(4);
-		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
-		private final Keyword cTurnPolicyKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
-		private final Assignment cTurnPolicyAssignment_7_2 = (Assignment)cGroup_7.eContents().get(2);
-		private final RuleCall cTurnPolicyTurnPolicyParserRuleCall_7_2_0 = (RuleCall)cTurnPolicyAssignment_7_2.eContents().get(0);
-		private final Group cGroup_7_3 = (Group)cGroup_7.eContents().get(3);
-		private final Keyword cCommaKeyword_7_3_0 = (Keyword)cGroup_7_3.eContents().get(0);
-		private final Assignment cTurnPolicyAssignment_7_3_1 = (Assignment)cGroup_7_3.eContents().get(1);
-		private final RuleCall cTurnPolicyTurnPolicyParserRuleCall_7_3_1_0 = (RuleCall)cTurnPolicyAssignment_7_3_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_7_4 = (Keyword)cGroup_7.eContents().get(4);
-		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Keyword cTurnPolicyKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cTurnPolicyAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cTurnPolicyTurnPolicyParserRuleCall_8_0 = (RuleCall)cTurnPolicyAssignment_8.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
 		//Game returns Game:
 		//    'Game'
@@ -70,7 +63,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//        ('initialPlayer' initialPlayer=[Player|EString])?
 		//        'board' board=Board
 		//        ('players' '{' players+=Player ( "," players+=Player)* '}' )?
-		//        ('turnPolicy' '{' turnPolicy+=TurnPolicy ( "," turnPolicy+=TurnPolicy)* '}' )?
+		//        'turnPolicy' turnPolicy=TurnPolicy
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -80,7 +73,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    ('initialPlayer' initialPlayer=[Player|EString])?
 		//    'board' board=Board
 		//    ('players' '{' players+=Player ( "," players+=Player)* '}' )?
-		//    ('turnPolicy' '{' turnPolicy+=TurnPolicy ( "," turnPolicy+=TurnPolicy)* '}' )?
+		//    'turnPolicy' turnPolicy=TurnPolicy
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
@@ -150,38 +143,17 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_6_4() { return cRightCurlyBracketKeyword_6_4; }
 		
-		//('turnPolicy' '{' turnPolicy+=TurnPolicy ( "," turnPolicy+=TurnPolicy)* '}' )?
-		public Group getGroup_7() { return cGroup_7; }
-		
 		//'turnPolicy'
-		public Keyword getTurnPolicyKeyword_7_0() { return cTurnPolicyKeyword_7_0; }
+		public Keyword getTurnPolicyKeyword_7() { return cTurnPolicyKeyword_7; }
 		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_7_1() { return cLeftCurlyBracketKeyword_7_1; }
-		
-		//turnPolicy+=TurnPolicy
-		public Assignment getTurnPolicyAssignment_7_2() { return cTurnPolicyAssignment_7_2; }
+		//turnPolicy=TurnPolicy
+		public Assignment getTurnPolicyAssignment_8() { return cTurnPolicyAssignment_8; }
 		
 		//TurnPolicy
-		public RuleCall getTurnPolicyTurnPolicyParserRuleCall_7_2_0() { return cTurnPolicyTurnPolicyParserRuleCall_7_2_0; }
-		
-		//( "," turnPolicy+=TurnPolicy)*
-		public Group getGroup_7_3() { return cGroup_7_3; }
-		
-		//","
-		public Keyword getCommaKeyword_7_3_0() { return cCommaKeyword_7_3_0; }
-		
-		//turnPolicy+=TurnPolicy
-		public Assignment getTurnPolicyAssignment_7_3_1() { return cTurnPolicyAssignment_7_3_1; }
-		
-		//TurnPolicy
-		public RuleCall getTurnPolicyTurnPolicyParserRuleCall_7_3_1_0() { return cTurnPolicyTurnPolicyParserRuleCall_7_3_1_0; }
+		public RuleCall getTurnPolicyTurnPolicyParserRuleCall_8_0() { return cTurnPolicyTurnPolicyParserRuleCall_8_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_7_4() { return cRightCurlyBracketKeyword_7_4; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
+		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
 	}
 	public class FilterElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.Filter");
@@ -1583,7 +1555,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//        ('initialPlayer' initialPlayer=[Player|EString])?
 	//        'board' board=Board
 	//        ('players' '{' players+=Player ( "," players+=Player)* '}' )?
-	//        ('turnPolicy' '{' turnPolicy+=TurnPolicy ( "," turnPolicy+=TurnPolicy)* '}' )?
+	//        'turnPolicy' turnPolicy=TurnPolicy
 	//    '}';
 	public GameElements getGameAccess() {
 		return pGame;
