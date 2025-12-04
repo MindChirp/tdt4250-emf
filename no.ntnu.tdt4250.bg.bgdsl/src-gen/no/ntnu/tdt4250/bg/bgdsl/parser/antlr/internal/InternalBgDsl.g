@@ -698,17 +698,17 @@ ruleTile returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getTileAccess().getTypeEStringParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getTileAccess().getTileTypeEStringParserRuleCall_1_0());
 				}
-				lv_type_1_0=ruleEString
+				lv_tileType_1_0=ruleEString
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getTileRule());
 					}
 					set(
 						$current,
-						"type",
-						lv_type_1_0,
+						"tileType",
+						lv_tileType_1_0,
 						"no.ntnu.tdt4250.bg.bgdsl.BgDsl.EString");
 					afterParserOrEnumRuleCall();
 				}

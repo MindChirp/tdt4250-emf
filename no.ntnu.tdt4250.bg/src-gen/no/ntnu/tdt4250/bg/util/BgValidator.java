@@ -309,7 +309,7 @@ public class BgValidator extends EObjectValidator {
 
 		for (TilePlacement t : board.getTileplacement()) {
 
-			String coordinate = t.getCoordinate();
+			String coordinate = "(" + t.getRow() + ", " + t.getColumn() + ")";
 
 			if (!positions.add(coordinate)) {
 				if (diagnostics != null) {

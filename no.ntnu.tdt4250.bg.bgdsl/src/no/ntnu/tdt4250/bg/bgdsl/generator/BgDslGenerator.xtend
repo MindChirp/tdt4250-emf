@@ -23,21 +23,15 @@ import java.io.File
  */
 class BgDslGenerator extends AbstractGenerator {
 
-	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
-
-		//val models = resource.allCSontents
-		
-		val gameInstance = resource.contents.head as EObject
-		val gameEClass = gameInstance.eClass
-		
-		val allUniqueEClasses = gameInstance.eAllContents.toIterable.map[eClass].toSet
-		
-		allUniqueEClasses.add(gameEClass)
+    override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+        //val models = resource.allCSontents
+        
+        val gameInstance = resource.contents.head as EObject
+        val gameEClass = gameInstance.eClass
+        
+        val allUniqueEClasses = gameInstance.eAllContents.toIterable.map[eClass].toSet
+        
+        allUniqueEClasses.add(gameEClass)
         
         if (gameInstance === null) {
             System.err.println("Model resource is empty. Cannot generate data.")
@@ -51,305 +45,316 @@ class BgDslGenerator extends AbstractGenerator {
             "models" + ".py",
             allUniqueEClasses.compileModels(gameInstance)
         )
-        
-        // 1b. Generate all other structural classes (e.g., Tile)
-        // Filter out the Board class and generate the structural blueprints.
-        /*for (eClass : allUniqueEClasses.filter[it != gameEClass]) {
-            fsa.generateFile(
-                eClass.name + ".py",
-                eClass.compileStructural
-            )
-        }*/
-        
-  
-	}
-	
-	def compileModels(Set<EClass> models, EObject gameInstance)
-'''
-from typing import List, Optional
-from pydantic import BaseModel
-
-class Filter(BaseModel):
-    pass
-
-«FOR model : models»
-«IF model.name == "PatternFilter"»
-class «model.name»(Filter):
-«ELSE»
-class «model.name»(BaseModel):
-«ENDIF»
-    «IF model.EAllStructuralFeatures.empty»
-    pass
-    «ELSE»
-        «IF model.name == "Tile"»
-            «FOR field : model.EAllStructuralFeatures»
-                «IF field.name == "type"»
-                tile«field.toPythonFieldDec»
-                «ELSE»
-                «field.toPythonFieldDec»
-                «ENDIF»
-            «ENDFOR»
-            activeState: "State"
-            row: "int"
-            column: "int"
-
-            def updateState(self, targetStateName: str):
-                for transition in self.transitions:
-                    for source in transition.source:
-                        if source.name == self.activeState.name and transition.target.name == targetStateName:
-                            self.activeState = transition.target
-
-        «ELSEIF model.name == "Board"»
-            width: "int"
-            tiles: List["Tile"] = []
-            legalMovesPipeline: Optional["LegalMovesPipeline"] = None
-            effectPipeline: Optional["EffectPipeline"] = None
-            height: "int"
-            checkered: "bool"
-            size: "int"
-
-        «ELSE»
-            «FOR field : model.EAllStructuralFeatures»
-                «field.toPythonFieldDec»
-            «ENDFOR»
-        «ENDIF»
-    «ENDIF»
-«ENDFOR»
-
-«FOR model : models»
-«model.name».model_rebuild()
-«ENDFOR»
-
-«initializeValues(gameInstance)»
-'''
-
-
-
-def initializeValues(EObject gameInstance) {
-	val boardInstance = gameInstance.eGet(gameInstance.eClass.getEStructuralFeature("board")) as EObject
-	
-	val tileTypes = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("tiles")) as EList<EObject>
-	val tilePlacements = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("tileplacement")) as EList<EObject>
-	
-	val players = gameInstance.eGet(gameInstance.eClass.getEStructuralFeature("players")) as EList<EObject>
-
-'''
-«FOR tileType : tileTypes»
-    «val tileName = tileType.eGet(tileType.eClass.getEStructuralFeature("name"))»
-    «val initState = tileType.eGet(tileType.eClass.getEStructuralFeature("initialState")) as EObject»
-    «val initName = initState.eGet(initState.eClass.getEStructuralFeature("name"))»
-    «val initColor = initState.eGet(initState.eClass.getEStructuralFeature("hexColor"))»
-    «val states = tileType.eGet(tileType.eClass.getEStructuralFeature("states")) as EList<EObject>»
-    «val transitions = tileType.eGet(tileType.eClass.getEStructuralFeature("transitions")) as EList<EObject>»
-    «val tileColor = tileType.eGet(tileType.eClass.getEStructuralFeature("hexColor"))»
-
-class «tileName»(Tile):
-    def __init__(self, row, column):
-        state«initName» = State(
-            name="«initName»",
-            hexColor="«initColor»",
-            outbound=[]
-        )
-
-        row = row
-        column = column
-
-        «FOR state : states»
-            «val sName = state.eGet(state.eClass.getEStructuralFeature("name"))»
-            state«sName» = State(
-                name="«sName»",
-                hexColor="#ffffff",
-                outbound=[],
-                inbound=[]
-            )
-        «ENDFOR»
-
-        «FOR transition : transitions»
-            «val tName = transition.eGet(transition.eClass.getEStructuralFeature("name"))»
-            «val rawSources = transition.eGet(transition.eClass.getEStructuralFeature("source")) as EList<EObject>»
-            «val srcList = rawSources.toSet()»
-            «val target = transition.eGet(transition.eClass.getEStructuralFeature("target")) as EObject»
-            transition«tName» = Transition(
-                name="«tName»",
-                source=[
-                    «FOR src : srcList SEPARATOR ", "»
-                        state«src.eGet(src.eClass.getEStructuralFeature("name"))»
-                    «ENDFOR»
-                ],
-                target=state«target.eGet(target.eClass.getEStructuralFeature("name"))»
-            )
-        «ENDFOR»
-
-        «FOR transition : transitions»
-            «val tName = transition.eGet(transition.eClass.getEStructuralFeature("name"))»
-            «val rawSources = transition.eGet(transition.eClass.getEStructuralFeature("source")) as EList<EObject>»
-            «val srcList = rawSources.toSet()»
-            «FOR src : srcList»
-                state«src.eGet(src.eClass.getEStructuralFeature("name"))».outbound.append(transition«tName»)
-            «ENDFOR»
-            «val target = transition.eGet(transition.eClass.getEStructuralFeature("target")) as EObject»
-            state«target.eGet(target.eClass.getEStructuralFeature("name"))».inbound.append(transition«tName»)
-        «ENDFOR»
-
-        super().__init__(
-            states=[
-                «FOR state : states SEPARATOR ", "»
-                    state«state.eGet(state.eClass.getEStructuralFeature("name"))»
-                «ENDFOR»
-            ],
-            transitions=[
-                «FOR transition : transitions SEPARATOR ", "»
-                    transition«transition.eGet(transition.eClass.getEStructuralFeature("name"))»
-                «ENDFOR»
-            ],
-            initialState=state«initState.eGet(initState.eClass.getEStructuralFeature("name"))»,
-            activeState=state«initState.eGet(initState.eClass.getEStructuralFeature("name"))»,
-            type="«tileName»",
-            hexColor="«tileColor»",
-            name="«tileName»",
-            row=row,
-            column=column
-        )
-
-«ENDFOR»
-
-tiles = [
-«FOR tilePlacement : tilePlacements SEPARATOR ", "»
-    «val tile = tilePlacement.eGet(tilePlacement.eClass.getEStructuralFeature("tile")) as EObject»
-    «val tileType = tile.eGet(tile.eClass.getEStructuralFeature("name"))»
-    «val tileRow = tilePlacement.eGet(tilePlacement.eClass.getEStructuralFeature("row")) as Integer»
-    «val tileColumn = tilePlacement.eGet(tilePlacement.eClass.getEStructuralFeature("column")) as Integer»
-    «tileType»(«tileRow», «tileColumn»)
-«ENDFOR»
-]
-
-players = [
-«FOR player : players SEPARATOR ", "»
-    «val playerName = player.eGet(player.eClass.getEStructuralFeature("name")) as String»
-    «val playerColor = player.eGet(player.eClass.getEStructuralFeature("hexColor")) as String»
-    «val associatedState = player.eGet(player.eClass.getEStructuralFeature("associatedState")) as EObject»
-    Player(
-        name="«playerName»",
-        hexColor="«playerColor»",
-        associatedState="«associatedState.eGet(associatedState.eClass.getEStructuralFeature("name"))»"
-    )
-«ENDFOR»
-]
-
-«val boardWidth = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("width")) as Integer»
-«val boardHeight = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("height")) as Integer»
-«val isCheckered = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("checkered")) as Boolean»
-«val legalPipelineObj = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("legalMovesPipeline")) as EObject»
-«val legalMovesPipelineRendered =
-    if (legalPipelineObj !== null) {
-        val filter = legalPipelineObj.eGet(legalPipelineObj.eClass.getEStructuralFeature("filter")) as EObject
-        renderFilter(filter)
-    } else ""»
-«val effectPipelineObj = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("effectPipeline")) as EObject»
-«val effectPipelineRendered =
-    if (effectPipelineObj !== null) {
-        val filter = effectPipelineObj.eGet(effectPipelineObj.eClass.getEStructuralFeature("filter")) as EObject
-        renderFilter(filter)
-    } else ""»
-
-board = Board(
-    width=«boardWidth»,
-    height=«boardHeight»,
-    tiles=tiles,
-    checkered=«isCheckered.toPyBool()»,
-    size=«boardWidth * boardHeight»,
-«IF legalMovesPipelineRendered != ""»
-    legalMovesPipeline=LegalMovesPipeline(filter=«legalMovesPipelineRendered»),
-«ENDIF»
-«IF effectPipelineRendered != ""»
-    effectPipeline=EffectPipeline(filter=«effectPipelineRendered»),
-«ENDIF»
-    legalMoves=[]
-)
-
-«val initialPlayer = gameInstance.eGet(gameInstance.eClass.getEStructuralFeature("initialPlayer")) as EObject»
-«val initialPlayerIndex = players.indexOf(initialPlayer)»
-«val gameName = gameInstance.eGet(gameInstance.eClass.getEStructuralFeature("name")) as String»
-«val turnPolicy = gameInstance.eGet(gameInstance.eClass.getEStructuralFeature("turnPolicy"))»
-
-game = Game(
-    board=board,
-    players=players,
-    activePlayer=players[«initialPlayerIndex»],
-    name="«gameName»",
-    initialPlayer=players[«initialPlayerIndex»],
-    turnPolicy="«turnPolicy»"
-)
-
-'''
-
-}
-
-def String renderFilter(EObject filter) {
-    if (filter === null) return ""
+    }
     
-    val filterName = filter.eGet(filter.eClass.getEStructuralFeature("name"))
-    val nextFilter = filter.eGet(filter.eClass.getEStructuralFeature("nextFilter")) as EObject
-    val patterns = filter.eGet(filter.eClass.getEStructuralFeature("patterns")) as EList<EObject>
+    def compileModels(Set<EClass> models, EObject gameInstance)
+    '''
+    from typing import List, Optional
+    from pydantic import BaseModel
 
-    val patternsRendered = if (patterns !== null)
-        patterns.map[ pattern |
-            val patternName = pattern.eGet(pattern.eClass.getEStructuralFeature("name"))
+    class Filter(BaseModel):
+        pass
 
-            // stateSelection is an enum
-            val stateSelectionEnum = pattern.eGet(pattern.eClass.getEStructuralFeature("stateSelection"))
-            val stateSelectionName = if (stateSelectionEnum !== null) stateSelectionEnum else "null"
+    «FOR model : models»
+    «IF model.name == "TilePlacement"»
+    «ELSE»
+    «IF model.name == "PatternFilter"»
+    class «model.name»(Filter):
+    «ELSE»
+    class «model.name»(BaseModel):
+    «ENDIF»
+        «IF model.EAllStructuralFeatures.empty»
+        pass
+        «ELSE»
+            «IF model.name == "Tile"/*Edge cases where we diverge from metamodel*/»
+                «FOR field : model.EAllStructuralFeatures»
+                «field.toPythonFieldDec»
+                «ENDFOR»
+                activeState: "State"
+                row: "int"
+                column: "int"
 
-            // matchState is a cross-reference
-            val matchStateObj = pattern.eGet(pattern.eClass.getEStructuralFeature("matchState")) as EObject
-            val matchStateName = if (matchStateObj !== null)
-                matchStateObj.eGet(matchStateObj.eClass.getEStructuralFeature("name"))
-            else "null"
+                def updateState(self, targetStateName: str):
+                    for transition in self.transitions:
+                        for source in transition.source:
+                            if source.name == self.activeState.name and transition.target.name == targetStateName:
+                                self.activeState = transition.target
 
-            // relative coordinates
-            val relCoords = pattern.eGet(pattern.eClass.getEStructuralFeature("relativecoordinates")) as EList<EObject>
-            val coordsRendered = if (relCoords !== null)
-                relCoords.map[ rc |
-                    val rx = rc.eGet(rc.eClass.getEStructuralFeature("x"))
-                    val ry = rc.eGet(rc.eClass.getEStructuralFeature("y"))
-                    'RelativeCoordinate(x=' + rx + ', y=' + ry + ')'
-                ].join(", ")
-            else ""
+            «ELSEIF model.name == "Board"»
+                width: "int"
+                tiles: List["Tile"] = []
+                legalMovesPipeline: Optional["LegalMovesPipeline"] = None
+                effectPipeline: Optional["EffectPipeline"] = None
+                height: "int"
+                checkered: "bool"
+                size: "int"
+                legalMoves: List["Tile"] = []
+                
+            «ELSEIF model.name == "Pattern"»
+                relativecoordinates: List["RelativeCoordinate"] = []
+                name: "str"
+                stateSelection: Optional["str"] = None
+                matchState: Optional["str"] = None
+                
+            «ELSEIF model.name == "Player"»
+                name: "str"
+                hexColor: "str"
+                associatedState: "str"
 
-            'Pattern(
-                name="' + patternName + '",
-                stateSelection="'+ stateSelectionName + '",
-                matchState="' + matchStateName + '",
-                relativeCoordinates=[' + coordsRendered + ']
-            )'
-        ].join(", ")
-    else ""
+            «ELSE»
+                «FOR field : model.EAllStructuralFeatures»
+                «field.toPythonFieldDec»
+                «ENDFOR»
+            «ENDIF»
+        «ENDIF»
+        
+    «ENDIF»
+    «ENDFOR»
 
-    // Render current filter, then recursively render the next filter if present
-    'PatternFilter(
-        name="' + filterName + '",
-        patterns=[' + patternsRendered + ']' +
-        (if (nextFilter !== null) ', nextFilter=' + renderFilter(nextFilter) else "") +
-    ')'
-}
+    «FOR model : models»
+    «IF model.name == "TilePlacement"»
+    «ELSE»
+    «model.name».model_rebuild()
+    «ENDIF»
+    «ENDFOR»
 
-def toPythonFieldDec(EStructuralFeature field) {
-	val typeStr = field.pythonTypeString
-	if (field.many) {
-		'''	«field.name»: List["«typeStr»"] = []'''
-	} else {
-		if (field.lowerBound == 0) {
-			'''	«field.name»: Optional["«typeStr»"] = None'''
-		} else {
-			'''	«field.name»: "«typeStr»"'''
-		}
-	}
-}
+    «initializeValues(gameInstance)»
+    '''
 
-def pythonTypeString(EStructuralFeature field) {
-	switch field {
-		EAttribute: {
-			val icn = field.EAttributeType.instanceClassName
+    def initializeValues(EObject gameInstance) {
+        val boardInstance = gameInstance.getFeature("board") as EObject
+        
+        val tileTypes = boardInstance.getFeature("tiles") as EList<EObject>
+        val tilePlacements = boardInstance.getFeature("tileplacement") as EList<EObject>
+        
+        val players = gameInstance.getFeature("players") as EList<EObject>
+
+        '''
+        «FOR tileType : tileTypes»
+        «val tileName = tileType.getFeature("name")»
+        «val initState = tileType.getFeature("initialState") as EObject»
+        «val initName = initState.getFeature("name")»
+        «val initColor = initState.getFeature("hexColor")»
+        «val states = tileType.getFeature("states") as EList<EObject>»
+        «val transitions = tileType.getFeature("transitions") as EList<EObject>»
+        «val tileColor = tileType.getFeature("hexColor")»
+
+        class «tileName»(Tile):
+            def __init__(self, row, column):
+                state«initName» = State(
+                    name="«initName»",
+                    hexColor="«initColor»",
+                    outbound=[]
+                )
+
+                row = row
+                column = column
+
+                «FOR state : states»
+                    «val sName = state.getFeature("name")»
+                state«sName» = State(
+                    name="«sName»",
+                    hexColor="#ffffff",
+                    outbound=[],
+                    inbound=[]
+                )
+                «ENDFOR»
+
+                «FOR transition : transitions»
+                    «val tName = transition.getFeature("name")»
+                    «val rawSources = transition.getFeature("source") as EList<EObject>»
+                    «val srcList = rawSources.toSet()»
+                    «val target = transition.getFeature("target") as EObject»
+                transition«tName» = Transition(
+                    name="«tName»",
+                    source=[
+                        «FOR src : srcList SEPARATOR ", "»
+                        state«src.getFeature("name")»
+                        «ENDFOR»
+                    ],
+                    target=state«target.getFeature("name")»
+                )
+                «ENDFOR»
+
+                «FOR transition : transitions»
+                    «val tName = transition.getFeature("name")»
+                    «val rawSources = transition.getFeature("source") as EList<EObject>»
+                    «val srcList = rawSources.toSet()»
+                «FOR src : srcList»
+                state«src.getFeature("name")».outbound.append(transition«tName»)
+                «ENDFOR»
+                    «val target = transition.getFeature("target") as EObject»
+                state«target.getFeature("name")».inbound.append(transition«tName»)
+                «ENDFOR»
+
+                super().__init__(
+                    states=[
+                        «FOR state : states SEPARATOR ", "»
+                        state«state.getFeature("name")»
+                        «ENDFOR»
+                    ],
+                    transitions=[
+                        «FOR transition : transitions SEPARATOR ", "»
+                        transition«transition.getFeature("name")»
+                        «ENDFOR»
+                    ],
+                    initialState=state«initState.getFeature("name")»,
+                    activeState=state«initState.getFeature("name")»,
+                    tileType="«tileName»",
+                    hexColor="«tileColor»",
+                    name="«tileName»",
+                    row=row,
+                    column=column
+                )
+
+        «ENDFOR»
+
+        tiles = [
+            «FOR tilePlacement : tilePlacements SEPARATOR ", "»
+                «val tile = tilePlacement.getFeature("tile") as EObject»
+                «val tileType = tile.getFeature("name")»
+                «val tileRow = tilePlacement.getFeature("row") as Integer»
+                «val tileColumn = tilePlacement.getFeature("column") as Integer»
+                «tileType»(«tileRow», «tileColumn»)
+            «ENDFOR»
+        ]
+
+        players = [
+            «FOR player : players SEPARATOR ", "»
+                «val playerName = player.getFeature("name") as String»
+                «val playerColor = player.getFeature("hexColor") as String»
+                «val associatedState = player.getFeature("associatedState") as EObject»
+                Player(
+                    name="«playerName»",
+                    hexColor="«playerColor»",
+                    associatedState="«associatedState.getFeature("name")»"
+                )
+            «ENDFOR»
+        ]
+
+        «val boardWidth = boardInstance.getFeature("width") as Integer»
+        «val boardHeight = boardInstance.getFeature("height") as Integer»
+        «val isCheckered = boardInstance.getFeature("checkered") as Boolean»
+        «val legalPipelineObj = boardInstance.getFeature("legalMovesPipeline") as EObject»
+        «val legalMovesPipelineRendered =
+            if (legalPipelineObj !== null) {
+                val filter = legalPipelineObj.getFeature("filter") as EObject
+                renderFilter(filter)
+            } else ""»
+        «val effectPipelineObj = boardInstance.getFeature("effectPipeline") as EObject»
+        «val effectPipelineRendered =
+            if (effectPipelineObj !== null) {
+                val filter = effectPipelineObj.getFeature("filter") as EObject
+                renderFilter(filter)
+            } else ""»
+
+        board = Board(
+            width=«boardWidth»,
+            height=«boardHeight»,
+            tiles=tiles,
+            checkered=«isCheckered.toPyBool()»,
+            size=«boardWidth * boardHeight»,
+            «IF legalMovesPipelineRendered != ""»
+            legalMovesPipeline=LegalMovesPipeline(filter=«legalMovesPipelineRendered»),
+            «ENDIF»
+            «IF effectPipelineRendered != ""»
+            effectPipeline=EffectPipeline(filter=«effectPipelineRendered»),
+            «ENDIF»
+            legalMoves=[]
+        )
+
+        «val initialPlayer = gameInstance.getFeature("initialPlayer") as EObject»
+        «val initialPlayerIndex = players.indexOf(initialPlayer)»
+        «val gameName = gameInstance.getFeature("name") as String»
+        «val turnPolicy = gameInstance.getFeature("turnPolicy")»
+
+        game = Game(
+            board=board,
+            players=players,
+            activePlayer=players[«initialPlayerIndex»],
+            name="«gameName»",
+            initialPlayer=players[«initialPlayerIndex»],
+            turnPolicy="«turnPolicy»"
+        )
+
+        '''
+    }
+
+    def String renderFilter(EObject filter) {
+        if (filter === null) return ""
+        
+        val filterName = filter.getFeature("name")
+        val nextFilter = filter.getFeature("nextFilter") as EObject
+        val patterns = filter.getFeature("patterns") as EList<EObject>
+
+        val patternsRendered = if (patterns !== null)
+            patterns.map[ pattern |
+                val patternName = pattern.getFeature("name")
+
+                // stateSelection is an enum
+                val stateSelectionEnum = pattern.getFeature("stateSelection")
+                val stateSelectionName = if (stateSelectionEnum !== null) stateSelectionEnum else "null"
+
+                // matchState is a cross-reference
+                val matchStateObj = pattern.getFeature("matchState") as EObject
+                val matchStateName = if (matchStateObj !== null)
+                    matchStateObj.getFeature("name")
+                else "null"
+
+                // relative coordinates
+                val relCoords = pattern.getFeature("relativecoordinates") as EList<EObject>
+                val coordsRendered = if (relCoords !== null)
+                    relCoords.map[ rc |
+                        val rx = rc.getFeature("x")
+                        val ry = rc.getFeature("y")
+                        'RelativeCoordinate(x=' + rx + ', y=' + ry + ')'
+                    ].join(", ")
+                else ""
+
+                'Pattern(
+                    name="' + patternName + '",
+                    stateSelection="'+ stateSelectionName + '",
+                    matchState="' + matchStateName + '",
+                    relativecoordinates=[' + coordsRendered + ']
+                )'
+            ].join(", ")
+        else ""
+
+        // Render current filter, then recursively render the next filter if present
+        'PatternFilter(
+            name="' + filterName + '",
+            patterns=[' + patternsRendered + ']' +
+            (if (nextFilter !== null) ', nextFilter=' + renderFilter(nextFilter) else "") +
+        ')'
+    }
+
+    /* Helper Code */
+
+    def getFeature(EObject self, String feature) {
+        val es = self.eClass.getEStructuralFeature(feature)
+        if (es === null) {
+            throw new IllegalArgumentException("Feature '" + feature + "' not found on " + self.eClass.name)
+        }
+        return self.eGet(es)
+    }
+
+    def toPythonFieldDec(EStructuralFeature field) {
+        val typeStr = field.pythonTypeString
+        if (field.many) {
+            '''«field.name»: List["«typeStr»"] = []'''
+        } else {
+            if (field.lowerBound == 0) {
+                '''«field.name»: Optional["«typeStr»"] = None'''
+            } else {
+                '''«field.name»: "«typeStr»"'''
+            }
+        }
+    }
+
+    def pythonTypeString(EStructuralFeature field) {
+        switch field {
+            EAttribute: {
+                val icn = field.EAttributeType.instanceClassName
                 if (icn == "int" || icn == "java.lang.Integer") {
                     "int"
                 } else if (icn == "boolean" || icn == "java.lang.Boolean") {
@@ -358,17 +363,16 @@ def pythonTypeString(EStructuralFeature field) {
                     // default to string (also covers enums for now)
                     "str"
                 }
-		}
-		EReference: {
-			val refType = (field as EReference).EReferenceType
-			refType.name
-		}
-		default: "str"
-	}
+            }
+            EReference: {
+                val refType = (field as EReference).EReferenceType
+                refType.name
+            }
+            default: "str"
+        }
+    }
+    
+    def toPyBool(Boolean b) {
+        if (b) "True" else "False"
+    }
 }
-	def toPyBool(Boolean b) {
-	    if (b) "True" else "False"
-	}
-}
-
-

@@ -454,8 +454,8 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.Tile");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cTileKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cTypeEStringParserRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
+		private final Assignment cTileTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTileTypeEStringParserRuleCall_1_0 = (RuleCall)cTileTypeAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cHexColorKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cHexColorAssignment_4 = (Assignment)cGroup.eContents().get(4);
@@ -489,7 +489,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//Tile returns Tile:
 		//    'Tile'
-		//    type=EString
+		//    tileType=EString
 		//    '{'
 		//        'hexColor' hexColor=EString
 		//        'name' name=EString
@@ -500,7 +500,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'Tile'
-		//type=EString
+		//tileType=EString
 		//'{'
 		//    'hexColor' hexColor=EString
 		//    'name' name=EString
@@ -513,11 +513,11 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'Tile'
 		public Keyword getTileKeyword_0() { return cTileKeyword_0; }
 		
-		//type=EString
-		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+		//tileType=EString
+		public Assignment getTileTypeAssignment_1() { return cTileTypeAssignment_1; }
 		
 		//EString
-		public RuleCall getTypeEStringParserRuleCall_1_0() { return cTypeEStringParserRuleCall_1_0; }
+		public RuleCall getTileTypeEStringParserRuleCall_1_0() { return cTileTypeEStringParserRuleCall_1_0; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
@@ -1540,7 +1540,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//Tile returns Tile:
 	//    'Tile'
-	//    type=EString
+	//    tileType=EString
 	//    '{'
 	//        'hexColor' hexColor=EString
 	//        'name' name=EString

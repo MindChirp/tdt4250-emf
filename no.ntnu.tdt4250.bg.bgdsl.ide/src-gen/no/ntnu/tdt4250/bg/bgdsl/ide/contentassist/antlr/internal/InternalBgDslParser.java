@@ -6332,31 +6332,31 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Tile__Group__1__Impl"
-    // InternalBgDsl.g:2106:1: rule__Tile__Group__1__Impl : ( ( rule__Tile__TypeAssignment_1 ) ) ;
+    // InternalBgDsl.g:2106:1: rule__Tile__Group__1__Impl : ( ( rule__Tile__TileTypeAssignment_1 ) ) ;
     public final void rule__Tile__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBgDsl.g:2110:1: ( ( ( rule__Tile__TypeAssignment_1 ) ) )
-            // InternalBgDsl.g:2111:1: ( ( rule__Tile__TypeAssignment_1 ) )
+            // InternalBgDsl.g:2110:1: ( ( ( rule__Tile__TileTypeAssignment_1 ) ) )
+            // InternalBgDsl.g:2111:1: ( ( rule__Tile__TileTypeAssignment_1 ) )
             {
-            // InternalBgDsl.g:2111:1: ( ( rule__Tile__TypeAssignment_1 ) )
-            // InternalBgDsl.g:2112:2: ( rule__Tile__TypeAssignment_1 )
+            // InternalBgDsl.g:2111:1: ( ( rule__Tile__TileTypeAssignment_1 ) )
+            // InternalBgDsl.g:2112:2: ( rule__Tile__TileTypeAssignment_1 )
             {
-             before(grammarAccess.getTileAccess().getTypeAssignment_1()); 
-            // InternalBgDsl.g:2113:2: ( rule__Tile__TypeAssignment_1 )
-            // InternalBgDsl.g:2113:3: rule__Tile__TypeAssignment_1
+             before(grammarAccess.getTileAccess().getTileTypeAssignment_1()); 
+            // InternalBgDsl.g:2113:2: ( rule__Tile__TileTypeAssignment_1 )
+            // InternalBgDsl.g:2113:3: rule__Tile__TileTypeAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__Tile__TypeAssignment_1();
+            rule__Tile__TileTypeAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getTileAccess().getTypeAssignment_1()); 
+             after(grammarAccess.getTileAccess().getTileTypeAssignment_1()); 
 
             }
 
@@ -16635,9 +16635,9 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Player__AssociatedStateAssignment_6"
 
 
-    // $ANTLR start "rule__Tile__TypeAssignment_1"
-    // InternalBgDsl.g:5616:1: rule__Tile__TypeAssignment_1 : ( ruleEString ) ;
-    public final void rule__Tile__TypeAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__Tile__TileTypeAssignment_1"
+    // InternalBgDsl.g:5616:1: rule__Tile__TileTypeAssignment_1 : ( ruleEString ) ;
+    public final void rule__Tile__TileTypeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -16648,13 +16648,13 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:5621:2: ( ruleEString )
             // InternalBgDsl.g:5622:3: ruleEString
             {
-             before(grammarAccess.getTileAccess().getTypeEStringParserRuleCall_1_0()); 
+             before(grammarAccess.getTileAccess().getTileTypeEStringParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
             ruleEString();
 
             state._fsp--;
 
-             after(grammarAccess.getTileAccess().getTypeEStringParserRuleCall_1_0()); 
+             after(grammarAccess.getTileAccess().getTileTypeEStringParserRuleCall_1_0()); 
 
             }
 
@@ -16673,7 +16673,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Tile__TypeAssignment_1"
+    // $ANTLR end "rule__Tile__TileTypeAssignment_1"
 
 
     // $ANTLR start "rule__Tile__HexColorAssignment_4"

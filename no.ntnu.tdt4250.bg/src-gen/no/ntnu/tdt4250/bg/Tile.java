@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getStates <em>States</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getTransitions <em>Transitions</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getInitialState <em>Initial State</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.Tile#getType <em>Type</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.Tile#getTileType <em>Tile Type</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getHexColor <em>Hex Color</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Tile#getName <em>Name</em>}</li>
  * </ul>
@@ -75,26 +75,26 @@ public interface Tile extends EObject {
 	void setInitialState(State value);
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * Returns the value of the '<em><b>Tile Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see #setType(String)
-	 * @see no.ntnu.tdt4250.bg.BgPackage#getTile_Type()
+	 * @return the value of the '<em>Tile Type</em>' attribute.
+	 * @see #setTileType(String)
+	 * @see no.ntnu.tdt4250.bg.BgPackage#getTile_TileType()
 	 * @model id="true" required="true"
 	 * @generated
 	 */
-	String getType();
+	String getTileType();
 
 	/**
-	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Tile#getType <em>Type</em>}' attribute.
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Tile#getTileType <em>Tile Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' attribute.
-	 * @see #getType()
+	 * @param value the new value of the '<em>Tile Type</em>' attribute.
+	 * @see #getTileType()
 	 * @generated
 	 */
-	void setType(String value);
+	void setTileType(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Hex Color</b></em>' attribute.

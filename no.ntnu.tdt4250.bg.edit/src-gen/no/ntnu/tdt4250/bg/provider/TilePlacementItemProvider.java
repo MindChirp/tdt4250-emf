@@ -57,7 +57,6 @@ public class TilePlacementItemProvider extends ItemProviderAdapter implements IE
 			addColumnPropertyDescriptor(object);
 			addTilePropertyDescriptor(object);
 			addDarkerPropertyDescriptor(object);
-			addCoordinatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -126,22 +125,6 @@ public class TilePlacementItemProvider extends ItemProviderAdapter implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Coordinate feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addCoordinatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_TilePlacement_coordinate_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_TilePlacement_coordinate_feature",
-								"_UI_TilePlacement_type"),
-						BgPackage.Literals.TILE_PLACEMENT__COORDINATE, false, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
 	 * This returns TilePlacement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -189,7 +172,6 @@ public class TilePlacementItemProvider extends ItemProviderAdapter implements IE
 		case BgPackage.TILE_PLACEMENT__ROW:
 		case BgPackage.TILE_PLACEMENT__COLUMN:
 		case BgPackage.TILE_PLACEMENT__DARKER:
-		case BgPackage.TILE_PLACEMENT__COORDINATE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

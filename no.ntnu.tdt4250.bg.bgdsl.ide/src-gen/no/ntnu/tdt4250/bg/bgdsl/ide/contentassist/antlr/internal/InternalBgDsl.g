@@ -2109,9 +2109,9 @@ rule__Tile__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getTileAccess().getTypeAssignment_1()); }
-	(rule__Tile__TypeAssignment_1)
-	{ after(grammarAccess.getTileAccess().getTypeAssignment_1()); }
+	{ before(grammarAccess.getTileAccess().getTileTypeAssignment_1()); }
+	(rule__Tile__TileTypeAssignment_1)
+	{ after(grammarAccess.getTileAccess().getTileTypeAssignment_1()); }
 )
 ;
 finally {
@@ -5613,15 +5613,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Tile__TypeAssignment_1
+rule__Tile__TileTypeAssignment_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getTileAccess().getTypeEStringParserRuleCall_1_0()); }
+		{ before(grammarAccess.getTileAccess().getTileTypeEStringParserRuleCall_1_0()); }
 		ruleEString
-		{ after(grammarAccess.getTileAccess().getTypeEStringParserRuleCall_1_0()); }
+		{ after(grammarAccess.getTileAccess().getTileTypeEStringParserRuleCall_1_0()); }
 	)
 ;
 finally {

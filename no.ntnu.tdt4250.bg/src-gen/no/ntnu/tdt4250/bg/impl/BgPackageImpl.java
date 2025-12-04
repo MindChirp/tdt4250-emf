@@ -549,7 +549,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getTile_Type() {
+	public EAttribute getTile_TileType() {
 		return (EAttribute) tileEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -711,16 +711,6 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	@Override
 	public EAttribute getTilePlacement_Darker() {
 		return (EAttribute) tilePlacementEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getTilePlacement_Coordinate() {
-		return (EAttribute) tilePlacementEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -893,7 +883,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEReference(tileEClass, TILE__STATES);
 		createEReference(tileEClass, TILE__TRANSITIONS);
 		createEReference(tileEClass, TILE__INITIAL_STATE);
-		createEAttribute(tileEClass, TILE__TYPE);
+		createEAttribute(tileEClass, TILE__TILE_TYPE);
 		createEAttribute(tileEClass, TILE__HEX_COLOR);
 		createEAttribute(tileEClass, TILE__NAME);
 
@@ -913,7 +903,6 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEAttribute(tilePlacementEClass, TILE_PLACEMENT__COLUMN);
 		createEReference(tilePlacementEClass, TILE_PLACEMENT__TILE);
 		createEAttribute(tilePlacementEClass, TILE_PLACEMENT__DARKER);
-		createEAttribute(tilePlacementEClass, TILE_PLACEMENT__COORDINATE);
 
 		patternEClass = createEClass(PATTERN);
 		createEReference(patternEClass, PATTERN__RELATIVECOORDINATES);
@@ -1046,7 +1035,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		initEReference(getTile_InitialState(), this.getState(), null, "initialState", null, 1, 1, Tile.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTile_Type(), ecorePackage.getEString(), "type", null, 1, 1, Tile.class, !IS_TRANSIENT,
+		initEAttribute(getTile_TileType(), ecorePackage.getEString(), "tileType", null, 1, 1, Tile.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTile_HexColor(), ecorePackage.getEString(), "hexColor", "#ffffff", 1, 1, Tile.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1087,9 +1076,6 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTilePlacement_Darker(), ecorePackage.getEBoolean(), "darker", null, 1, 1, TilePlacement.class,
 				IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTilePlacement_Coordinate(), ecorePackage.getEString(), "coordinate", null, 1, 1,
-				TilePlacement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				IS_DERIVED, IS_ORDERED);
 
 		initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPattern_Relativecoordinates(), this.getRelativeCoordinate(), null, "relativecoordinates",

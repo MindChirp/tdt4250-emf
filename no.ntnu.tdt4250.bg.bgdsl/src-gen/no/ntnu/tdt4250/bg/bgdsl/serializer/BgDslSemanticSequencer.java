@@ -286,7 +286,7 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         type=EString 
+	 *         tileType=EString 
 	 *         hexColor=EString 
 	 *         name=EString 
 	 *         states+=State 

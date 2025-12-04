@@ -498,13 +498,13 @@ public interface BgPackage extends EPackage {
 	int TILE__INITIAL_STATE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Tile Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TILE__TYPE = 3;
+	int TILE__TILE_TYPE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Hex Color</b></em>' attribute.
@@ -708,22 +708,13 @@ public interface BgPackage extends EPackage {
 	int TILE_PLACEMENT__DARKER = 3;
 
 	/**
-	 * The feature id for the '<em><b>Coordinate</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TILE_PLACEMENT__COORDINATE = 4;
-
-	/**
 	 * The number of structural features of the '<em>Tile Placement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TILE_PLACEMENT_FEATURE_COUNT = 5;
+	int TILE_PLACEMENT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Tile Placement</em>' class.
@@ -1220,15 +1211,15 @@ public interface BgPackage extends EPackage {
 	EReference getTile_InitialState();
 
 	/**
-	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Tile#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Tile#getTileType <em>Tile Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see no.ntnu.tdt4250.bg.Tile#getType()
+	 * @return the meta object for the attribute '<em>Tile Type</em>'.
+	 * @see no.ntnu.tdt4250.bg.Tile#getTileType()
 	 * @see #getTile()
 	 * @generated
 	 */
-	EAttribute getTile_Type();
+	EAttribute getTile_TileType();
 
 	/**
 	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Tile#getHexColor <em>Hex Color</em>}'.
@@ -1402,17 +1393,6 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTilePlacement_Darker();
-
-	/**
-	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.TilePlacement#getCoordinate <em>Coordinate</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Coordinate</em>'.
-	 * @see no.ntnu.tdt4250.bg.TilePlacement#getCoordinate()
-	 * @see #getTilePlacement()
-	 * @generated
-	 */
-	EAttribute getTilePlacement_Coordinate();
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Pattern <em>Pattern</em>}'.
@@ -1824,12 +1804,12 @@ public interface BgPackage extends EPackage {
 		EReference TILE__INITIAL_STATE = eINSTANCE.getTile_InitialState();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Tile Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TILE__TYPE = eINSTANCE.getTile_Type();
+		EAttribute TILE__TILE_TYPE = eINSTANCE.getTile_TileType();
 
 		/**
 		 * The meta object literal for the '<em><b>Hex Color</b></em>' attribute feature.
@@ -1964,14 +1944,6 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TILE_PLACEMENT__DARKER = eINSTANCE.getTilePlacement_Darker();
-
-		/**
-		 * The meta object literal for the '<em><b>Coordinate</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TILE_PLACEMENT__COORDINATE = eINSTANCE.getTilePlacement_Coordinate();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.PatternImpl <em>Pattern</em>}' class.

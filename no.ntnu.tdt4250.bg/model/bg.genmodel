@@ -59,7 +59,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Tile/states"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Tile/transitions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Tile/initialState"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Tile/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Tile/tileType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Tile/hexColor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//Tile/name"/>
     </genClasses>
@@ -79,7 +79,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//TilePlacement/column"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//TilePlacement/tile"/>
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//TilePlacement/darker"/>
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//TilePlacement/coordinate"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//Pattern">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Pattern/relativecoordinates"/>

@@ -49,7 +49,7 @@ EInt returns ecore::EInt:
 
 Tile returns Tile:
 	'Tile'
-	type=EString
+	tileType=EString
 	'{'
 		'hexColor' hexColor=EString
 		'name' name=EString

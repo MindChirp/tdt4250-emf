@@ -88,7 +88,7 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPlayerAccess().getNameAssignment_1(), "rule__Player__NameAssignment_1");
 			builder.put(grammarAccess.getPlayerAccess().getHexColorAssignment_4(), "rule__Player__HexColorAssignment_4");
 			builder.put(grammarAccess.getPlayerAccess().getAssociatedStateAssignment_6(), "rule__Player__AssociatedStateAssignment_6");
-			builder.put(grammarAccess.getTileAccess().getTypeAssignment_1(), "rule__Tile__TypeAssignment_1");
+			builder.put(grammarAccess.getTileAccess().getTileTypeAssignment_1(), "rule__Tile__TileTypeAssignment_1");
 			builder.put(grammarAccess.getTileAccess().getHexColorAssignment_4(), "rule__Tile__HexColorAssignment_4");
 			builder.put(grammarAccess.getTileAccess().getNameAssignment_6(), "rule__Tile__NameAssignment_6");
 			builder.put(grammarAccess.getTileAccess().getStatesAssignment_9(), "rule__Tile__StatesAssignment_9");
