@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.PatternImpl#getRelativecoordinates <em>Relativecoordinates</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.PatternImpl#getName <em>Name</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.impl.PatternImpl#getTileTypeName <em>Tile Type Name</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.PatternImpl#getStateSelection <em>State Selection</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.PatternImpl#getMatchState <em>Match State</em>}</li>
  * </ul>
@@ -71,26 +70,6 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getTileTypeName() <em>Tile Type Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTileTypeName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String TILE_TYPE_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getTileTypeName() <em>Tile Type Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTileTypeName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String tileTypeName = TILE_TYPE_NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getStateSelection() <em>State Selection</em>}' attribute.
@@ -176,30 +155,6 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.PATTERN__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getTileTypeName() {
-		return tileTypeName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTileTypeName(String newTileTypeName) {
-		String oldTileTypeName = tileTypeName;
-		tileTypeName = newTileTypeName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.PATTERN__TILE_TYPE_NAME, oldTileTypeName,
-					tileTypeName));
 	}
 
 	/**
@@ -294,8 +249,6 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
 			return getRelativecoordinates();
 		case BgPackage.PATTERN__NAME:
 			return getName();
-		case BgPackage.PATTERN__TILE_TYPE_NAME:
-			return getTileTypeName();
 		case BgPackage.PATTERN__STATE_SELECTION:
 			return getStateSelection();
 		case BgPackage.PATTERN__MATCH_STATE:
@@ -322,9 +275,6 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
 		case BgPackage.PATTERN__NAME:
 			setName((String) newValue);
 			return;
-		case BgPackage.PATTERN__TILE_TYPE_NAME:
-			setTileTypeName((String) newValue);
-			return;
 		case BgPackage.PATTERN__STATE_SELECTION:
 			setStateSelection((StateSelection) newValue);
 			return;
@@ -349,9 +299,6 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
 		case BgPackage.PATTERN__NAME:
 			setName(NAME_EDEFAULT);
 			return;
-		case BgPackage.PATTERN__TILE_TYPE_NAME:
-			setTileTypeName(TILE_TYPE_NAME_EDEFAULT);
-			return;
 		case BgPackage.PATTERN__STATE_SELECTION:
 			setStateSelection(STATE_SELECTION_EDEFAULT);
 			return;
@@ -374,9 +321,6 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
 			return relativecoordinates != null && !relativecoordinates.isEmpty();
 		case BgPackage.PATTERN__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case BgPackage.PATTERN__TILE_TYPE_NAME:
-			return TILE_TYPE_NAME_EDEFAULT == null ? tileTypeName != null
-					: !TILE_TYPE_NAME_EDEFAULT.equals(tileTypeName);
 		case BgPackage.PATTERN__STATE_SELECTION:
 			return stateSelection != STATE_SELECTION_EDEFAULT;
 		case BgPackage.PATTERN__MATCH_STATE:
@@ -398,8 +342,6 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", tileTypeName: ");
-		result.append(tileTypeName);
 		result.append(", stateSelection: ");
 		result.append(stateSelection);
 		result.append(')');
