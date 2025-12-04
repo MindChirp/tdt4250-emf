@@ -787,7 +787,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getPattern_TileTypeName() {
+	public EAttribute getPattern_StateSelection() {
 		return (EAttribute) patternEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -797,18 +797,8 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getPattern_StateSelection() {
-		return (EAttribute) patternEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getPattern_MatchState() {
-		return (EReference) patternEClass.getEStructuralFeatures().get(4);
+		return (EReference) patternEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -959,7 +949,6 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		patternEClass = createEClass(PATTERN);
 		createEReference(patternEClass, PATTERN__RELATIVECOORDINATES);
 		createEAttribute(patternEClass, PATTERN__NAME);
-		createEAttribute(patternEClass, PATTERN__TILE_TYPE_NAME);
 		createEAttribute(patternEClass, PATTERN__STATE_SELECTION);
 		createEReference(patternEClass, PATTERN__MATCH_STATE);
 
@@ -1145,8 +1134,6 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPattern_Name(), ecorePackage.getEString(), "name", null, 1, 1, Pattern.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPattern_TileTypeName(), ecorePackage.getEString(), "tileTypeName", null, 0, 1, Pattern.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPattern_StateSelection(), this.getStateSelection(), "stateSelection", null, 0, 1,
 				Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
@@ -1169,7 +1156,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		initEEnum(stateSelectionEEnum, StateSelection.class, "StateSelection");
 		addEEnumLiteral(stateSelectionEEnum, StateSelection.CURRENT_PLAYER);
 		addEEnumLiteral(stateSelectionEEnum, StateSelection.OTHER_PLAYER);
-		addEEnumLiteral(stateSelectionEEnum, StateSelection.STATE_NAME);
+		addEEnumLiteral(stateSelectionEEnum, StateSelection.STATE);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -1203,6 +1190,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		addAnnotation(transitionEClass, source, new String[] { "constraints", "transitionMustStayWithinTile" });
 		addAnnotation(tilePlacementEClass, source, new String[] { "constraints",
 				"rowAndColumnMustBeNonNegative tilePlacementMustBelongToBoard rowAndColumnMustBeWithinBoardBounds tileMustBeSet" });
+		addAnnotation(patternEClass, source, new String[] { "constraints", "matchStateDefined" });
 	}
 
 } //BgPackageImpl

@@ -57,7 +57,6 @@ public class PatternItemProvider extends ItemProviderAdapter implements IEditing
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addTileTypeNamePropertyDescriptor(object);
 			addStateSelectionPropertyDescriptor(object);
 			addMatchStatePropertyDescriptor(object);
 		}
@@ -76,22 +75,6 @@ public class PatternItemProvider extends ItemProviderAdapter implements IEditing
 						getResourceLocator(), getString("_UI_Pattern_name_feature"),
 						getString("_UI_PropertyDescriptor_description", "_UI_Pattern_name_feature", "_UI_Pattern_type"),
 						BgPackage.Literals.PATTERN__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Tile Type Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTileTypeNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Pattern_tileTypeName_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Pattern_tileTypeName_feature",
-								"_UI_Pattern_type"),
-						BgPackage.Literals.PATTERN__TILE_TYPE_NAME, true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -203,7 +186,6 @@ public class PatternItemProvider extends ItemProviderAdapter implements IEditing
 
 		switch (notification.getFeatureID(Pattern.class)) {
 		case BgPackage.PATTERN__NAME:
-		case BgPackage.PATTERN__TILE_TYPE_NAME:
 		case BgPackage.PATTERN__STATE_SELECTION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

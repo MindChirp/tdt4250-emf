@@ -33,8 +33,8 @@ public class BgDslParser extends AbstractContentAssistParser {
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, BgDslGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getEStringAccess().getAlternatives(), "rule__EString__Alternatives");
 			builder.put(grammarAccess.getEBooleanAccess().getAlternatives(), "rule__EBoolean__Alternatives");
-			builder.put(grammarAccess.getTurnTypeAccess().getAlternatives(), "rule__TurnType__Alternatives");
 			builder.put(grammarAccess.getStateSelectionAccess().getAlternatives(), "rule__StateSelection__Alternatives");
+			builder.put(grammarAccess.getTurnTypeAccess().getAlternatives(), "rule__TurnType__Alternatives");
 			builder.put(grammarAccess.getGameAccess().getGroup(), "rule__Game__Group__0");
 			builder.put(grammarAccess.getGameAccess().getGroup_3(), "rule__Game__Group_3__0");
 			builder.put(grammarAccess.getGameAccess().getGroup_6(), "rule__Game__Group_6__0");
@@ -68,11 +68,12 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTransitionAccess().getGroup(), "rule__Transition__Group__0");
 			builder.put(grammarAccess.getTransitionAccess().getGroup_6(), "rule__Transition__Group_6__0");
 			builder.put(grammarAccess.getPatternFilterAccess().getGroup(), "rule__PatternFilter__Group__0");
-			builder.put(grammarAccess.getPatternFilterAccess().getGroup_4(), "rule__PatternFilter__Group_4__0");
-			builder.put(grammarAccess.getPatternFilterAccess().getGroup_8(), "rule__PatternFilter__Group_8__0");
+			builder.put(grammarAccess.getPatternFilterAccess().getGroup_3(), "rule__PatternFilter__Group_3__0");
+			builder.put(grammarAccess.getPatternFilterAccess().getGroup_7(), "rule__PatternFilter__Group_7__0");
 			builder.put(grammarAccess.getPatternAccess().getGroup(), "rule__Pattern__Group__0");
-			builder.put(grammarAccess.getPatternAccess().getGroup_5(), "rule__Pattern__Group_5__0");
-			builder.put(grammarAccess.getPatternAccess().getGroup_9(), "rule__Pattern__Group_9__0");
+			builder.put(grammarAccess.getPatternAccess().getGroup_3(), "rule__Pattern__Group_3__0");
+			builder.put(grammarAccess.getPatternAccess().getGroup_4(), "rule__Pattern__Group_4__0");
+			builder.put(grammarAccess.getPatternAccess().getGroup_8(), "rule__Pattern__Group_8__0");
 			builder.put(grammarAccess.getRelativeCoordinateAccess().getGroup(), "rule__RelativeCoordinate__Group__0");
 			builder.put(grammarAccess.getGameAccess().getNameAssignment_1(), "rule__Game__NameAssignment_1");
 			builder.put(grammarAccess.getGameAccess().getInitialPlayerAssignment_3_1(), "rule__Game__InitialPlayerAssignment_3_1");
@@ -119,15 +120,15 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTransitionAccess().getSourceAssignment_5(), "rule__Transition__SourceAssignment_5");
 			builder.put(grammarAccess.getTransitionAccess().getSourceAssignment_6_1(), "rule__Transition__SourceAssignment_6_1");
 			builder.put(grammarAccess.getTransitionAccess().getTargetAssignment_9(), "rule__Transition__TargetAssignment_9");
-			builder.put(grammarAccess.getPatternFilterAccess().getNameAssignment_2(), "rule__PatternFilter__NameAssignment_2");
-			builder.put(grammarAccess.getPatternFilterAccess().getNextFilterAssignment_4_1(), "rule__PatternFilter__NextFilterAssignment_4_1");
-			builder.put(grammarAccess.getPatternFilterAccess().getPatternsAssignment_7(), "rule__PatternFilter__PatternsAssignment_7");
-			builder.put(grammarAccess.getPatternFilterAccess().getPatternsAssignment_8_1(), "rule__PatternFilter__PatternsAssignment_8_1");
+			builder.put(grammarAccess.getPatternFilterAccess().getNameAssignment_1(), "rule__PatternFilter__NameAssignment_1");
+			builder.put(grammarAccess.getPatternFilterAccess().getNextFilterAssignment_3_1(), "rule__PatternFilter__NextFilterAssignment_3_1");
+			builder.put(grammarAccess.getPatternFilterAccess().getPatternsAssignment_6(), "rule__PatternFilter__PatternsAssignment_6");
+			builder.put(grammarAccess.getPatternFilterAccess().getPatternsAssignment_7_1(), "rule__PatternFilter__PatternsAssignment_7_1");
 			builder.put(grammarAccess.getPatternAccess().getNameAssignment_1(), "rule__Pattern__NameAssignment_1");
-			builder.put(grammarAccess.getPatternAccess().getStateSelectionAssignment_4(), "rule__Pattern__StateSelectionAssignment_4");
-			builder.put(grammarAccess.getPatternAccess().getMatchStateAssignment_5_1(), "rule__Pattern__MatchStateAssignment_5_1");
-			builder.put(grammarAccess.getPatternAccess().getRelativecoordinatesAssignment_8(), "rule__Pattern__RelativecoordinatesAssignment_8");
-			builder.put(grammarAccess.getPatternAccess().getRelativecoordinatesAssignment_9_1(), "rule__Pattern__RelativecoordinatesAssignment_9_1");
+			builder.put(grammarAccess.getPatternAccess().getStateSelectionAssignment_3_1(), "rule__Pattern__StateSelectionAssignment_3_1");
+			builder.put(grammarAccess.getPatternAccess().getMatchStateAssignment_4_1(), "rule__Pattern__MatchStateAssignment_4_1");
+			builder.put(grammarAccess.getPatternAccess().getRelativecoordinatesAssignment_7(), "rule__Pattern__RelativecoordinatesAssignment_7");
+			builder.put(grammarAccess.getPatternAccess().getRelativecoordinatesAssignment_8_1(), "rule__Pattern__RelativecoordinatesAssignment_8_1");
 			builder.put(grammarAccess.getRelativeCoordinateAccess().getXAssignment_3(), "rule__RelativeCoordinate__XAssignment_3");
 			builder.put(grammarAccess.getRelativeCoordinateAccess().getYAssignment_5(), "rule__RelativeCoordinate__YAssignment_5");
 		}

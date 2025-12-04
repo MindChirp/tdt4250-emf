@@ -177,7 +177,7 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         name=EString 
-	 *         stateSelection=StateSelection 
+	 *         stateSelection=StateSelection? 
 	 *         matchState=[State|EString]? 
 	 *         relativecoordinates+=RelativeCoordinate 
 	 *         relativecoordinates+=RelativeCoordinate*
