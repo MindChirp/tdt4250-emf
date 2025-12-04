@@ -201,12 +201,95 @@ players = [
 «val boardWidth = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("width")) as Integer»
 «val boardHeight = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("height")) as Integer»
 «val isCheckered = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("checkered")) as Boolean»
+
+«/*
+«val legalPipelineObj = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("legalMovesPipeline")) as EObject»
+«val legalFilters = if (legalPipelineObj !== null) legalPipelineObj.eGet(legalPipelineObj.eClass.getEStructuralFeature("filter")) as EList<EObject> else null»
+
+«val legalMovesPipelineRendered = 
+    if (legalFilters !== null)
+        legalFilters.map[ filter |
+            val filterName = filter.eGet(filter.eClass.getEStructuralFeature("name"))
+            val patterns = filter.eGet(filter.eClass.getEStructuralFeature("patterns")) as EList<EObject>
+            'PatternFilter(
+                name="' + filterName + '",
+                patterns=[
+                    ' + (if (patterns !== null)
+                            patterns.map[ pattern |
+                                val patternName = pattern.eGet(pattern.eClass.getEStructuralFeature("name"))
+                                val relCoords = pattern.eGet(pattern.eClass.getEStructuralFeature("relativeCoordinates")) as EList<EObject>
+                                'Pattern(
+                                    name="' + patternName + '",
+                                    relativeCoordinates=[
+                                        ' + (if (relCoords !== null)
+                                                relCoords.map[ rc |
+                                                    val rx = rc.eGet(rc.eClass.getEStructuralFeature("x"))
+                                                    val ry = rc.eGet(rc.eClass.getEStructuralFeature("y"))
+                                                    'RelativeCoordinate(x=' + rx + ', y=' + ry + ')'
+                                                ].join(", ")
+                                            else
+                                                ''
+                                            ) + '
+                                    ]
+                                )'
+                            ].join(", ")
+                        else
+                            ''
+                        ) + '
+                ]
+            )'
+        ].join(", ")
+    else
+        ''
+»
+
+
+«val effectPipelineObj = boardInstance.eGet(boardInstance.eClass.getEStructuralFeature("effectPipeline")) as EObject»
+«val effectFilters = if (effectPipelineObj !== null) effectPipelineObj.eGet(effectPipelineObj.eClass.getEStructuralFeature("filter")) as EList<EObject> else null»
+
+«val effectPipelineRendered = 
+    if (effectFilters !== null)
+        effectFilters.map[ filter |
+            val filterName = filter.eGet(filter.eClass.getEStructuralFeature("name"))
+            val patterns = filter.eGet(filter.eClass.getEStructuralFeature("patterns")) as EList<EObject>
+            'PatternFilter(
+                name="' + filterName + '",
+                patterns=[
+                    ' + (if (patterns !== null)
+                            patterns.map[ pattern |
+                                val patternName = pattern.eGet(pattern.eClass.getEStructuralFeature("name"))
+                                val relCoords = pattern.eGet(pattern.eClass.getEStructuralFeature("relativeCoordinates")) as EList<EObject>
+                                'Pattern(
+                                    name="' + patternName + '",
+                                    relativeCoordinates=[
+                                        ' + (if (relCoords !== null)
+                                                relCoords.map[ rc |
+                                                    val rx = rc.eGet(rc.eClass.getEStructuralFeature("x"))
+                                                    val ry = rc.eGet(rc.eClass.getEStructuralFeature("y"))
+                                                    'RelativeCoordinate(x=' + rx + ', y=' + ry + ')'
+                                                ].join(", ")
+                                            else
+                                                ''
+                                            ) + '
+                                    ]
+                                )'
+                            ].join(", ")
+                        else
+                            ''
+                        ) + '
+                ]
+            )'
+        ].join(", ")
+    else
+        ''
+»*/»
+
 board = Board(
     width=«boardWidth»,
     height=«boardHeight»,
     tileplacement=tileplacements,
     checkered=«isCheckered.toPyBool()»,
-    size=«boardWidth * boardHeight»
+    size=«boardWidth * boardHeight»,
 )
 
 «val initialPlayer = gameInstance.eGet(gameInstance.eClass.getEStructuralFeature("initialPlayer")) as EObject»
@@ -219,6 +302,7 @@ game = Game(
     name="«gameName»",
     initialPlayer=players[«initialPlayerIndex»]
 )
+
 '''
 }
 

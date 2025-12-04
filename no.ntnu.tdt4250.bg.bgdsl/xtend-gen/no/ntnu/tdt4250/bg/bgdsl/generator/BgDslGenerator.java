@@ -490,6 +490,9 @@ public class BgDslGenerator extends AbstractGenerator {
       Object _eGet_29 = boardInstance.eGet(boardInstance.eClass().getEStructuralFeature("checkered"));
       final Boolean isCheckered = ((Boolean) _eGet_29);
       _builder.newLineIfNotEmpty();
+      _builder.newLine();
+      _builder.newLine();
+      _builder.newLine();
       _builder.append("board = Board(");
       _builder.newLine();
       _builder.append("    ");
@@ -514,6 +517,7 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.append("    ");
       _builder.append("size=");
       _builder.append(((boardWidth).intValue() * (boardHeight).intValue()), "    ");
+      _builder.append(",");
       _builder.newLineIfNotEmpty();
       _builder.append(")");
       _builder.newLine();
@@ -550,6 +554,7 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.append("]");
       _builder.newLineIfNotEmpty();
       _builder.append(")");
+      _builder.newLine();
       _builder.newLine();
       _xblockexpression = _builder;
     }
