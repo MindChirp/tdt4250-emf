@@ -3,6 +3,9 @@
  */
 package no.ntnu.tdt4250.bg.bgdsl.generator;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
@@ -16,6 +19,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
@@ -30,22 +34,32 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 public class BgDslGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    EObject _head = IterableExtensions.<EObject>head(resource.getContents());
-    final EObject gameInstance = ((EObject) _head);
-    final EClass gameEClass = gameInstance.eClass();
-    final Function1<EObject, EClass> _function = (EObject it) -> {
-      return it.eClass();
-    };
-    final Set<EClass> allUniqueEClasses = IterableExtensions.<EClass>toSet(IterableExtensions.<EObject, EClass>map(IteratorExtensions.<EObject>toIterable(gameInstance.eAllContents()), _function));
-    allUniqueEClasses.add(gameEClass);
-    if ((gameInstance == null)) {
-      System.err.println("Model resource is empty. Cannot generate data.");
-      return;
+    try {
+      EObject _head = IterableExtensions.<EObject>head(resource.getContents());
+      final EObject gameInstance = ((EObject) _head);
+      final EClass gameEClass = gameInstance.eClass();
+      final Function1<EObject, EClass> _function = (EObject it) -> {
+        return it.eClass();
+      };
+      final Set<EClass> allUniqueEClasses = IterableExtensions.<EClass>toSet(IterableExtensions.<EObject, EClass>map(IteratorExtensions.<EObject>toIterable(gameInstance.eAllContents()), _function));
+      allUniqueEClasses.add(gameEClass);
+      if ((gameInstance == null)) {
+        System.err.println("Model resource is empty. Cannot generate data.");
+        return;
+      }
+      System.out.println("Generating code with model instance data...");
+      final CharSequence generatedContent = this.compileModels(allUniqueEClasses, gameInstance);
+      final String personalPath = "/Users/andgjers/Development/eclipse-workspace-project/";
+      final String projectPath = "tdt4250-emf/fastapi-backend/app/generated/";
+      final String outputFolder = (personalPath + projectPath);
+      final Path targetDir = Paths.get(outputFolder);
+      final Path targetFile = targetDir.resolve("game.py");
+      Files.writeString(targetFile, generatedContent);
+      fsa.generateFile(
+        ("models" + ".py"), generatedContent);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
     }
-    System.out.println("Generating code with model instance data...");
-    fsa.generateFile(
-      ("models" + ".py"), 
-      this.compileModels(allUniqueEClasses, gameInstance));
   }
 
   public CharSequence compileModels(final Set<EClass> models, final EObject gameInstance) {

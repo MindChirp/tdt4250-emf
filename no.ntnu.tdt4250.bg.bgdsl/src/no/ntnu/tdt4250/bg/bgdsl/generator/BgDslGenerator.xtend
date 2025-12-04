@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.common.util.EList
 import java.io.File
+import java.nio.file.Files
+import java.nio.file.Paths
 
 /**
  * Generates code from your model files on save.
@@ -41,9 +43,26 @@ class BgDslGenerator extends AbstractGenerator {
         System.out.println("Generating code with model instance data...")
         
         // 1a. Generate the Board file (Data-Specific)
+        val generatedContent = allUniqueEClasses.compileModels(gameInstance)
+
+		val personalPath = "/Users/andgjers/Development/eclipse-workspace-project/"
+		val projectPath = "tdt4250-emf/fastapi-backend/app/generated/"
+		val outputFolder = personalPath + projectPath
+		val targetDir = Paths.get(outputFolder)
+
+		val targetFile = targetDir.resolve("game.py")
+		Files.writeString(targetFile, generatedContent)
+		
+		// Construct absolute path to fastapi-backend/app/generated
+		//val targetDir = projectDir.resolve("../../fastapi-backend/app/generated").normalize
+		//Files.createDirectories(targetDir) // ensure folder exists
+		
+		//val targetFile = targetDir.resolve("game.py")
+		//Files.writeString(targetFile, generatedContent)
+        
         fsa.generateFile(
             "models" + ".py",
-            allUniqueEClasses.compileModels(gameInstance)
+            generatedContent
         )
     }
     
