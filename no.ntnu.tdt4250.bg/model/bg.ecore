@@ -158,6 +158,9 @@
         eType="#//Pattern" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StateEffectFilter" eSuperTypes="#//Filter">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="matchStateDefined"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetState" eType="#//State"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stateSelection" lowerBound="1"
         eType="#//StateSelection"/>

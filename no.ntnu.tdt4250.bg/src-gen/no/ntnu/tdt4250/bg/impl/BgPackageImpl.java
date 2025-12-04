@@ -1272,6 +1272,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		addAnnotation(tilePlacementEClass, source, new String[] { "constraints",
 				"rowAndColumnMustBeNonNegative tilePlacementMustBelongToBoard rowAndColumnMustBeWithinBoardBounds tileMustBeSet" });
 		addAnnotation(patternEClass, source, new String[] { "constraints", "matchStateDefined" });
+		addAnnotation(stateEffectFilterEClass, source, new String[] { "constraints", "matchStateDefined" });
 	}
 
 } //BgPackageImpl
