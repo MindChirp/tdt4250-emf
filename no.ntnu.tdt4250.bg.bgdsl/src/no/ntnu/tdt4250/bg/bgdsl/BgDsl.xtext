@@ -11,7 +11,7 @@ Game returns Game:
 		('initialPlayer' initialPlayer=[Player|EString])?
 		'board' board=Board
 		('players' '{' players+=Player ( "," players+=Player)* '}' )?
-		'turnPolicy' turnPolicy=TurnPolicy
+		'turnPolicy' turnPolicy=TurnType
 	'}';
 
 
@@ -28,8 +28,8 @@ Board returns Board:
 		'width' width=EInt
 		'height' height=EInt
 		'tiles' '{' tiles+=Tile ( "," tiles+=Tile)* '}' 
-		('legalMovesPipeline' '{' legalMovesPipeline+=LegalMovesPipeline ( "," legalMovesPipeline+=LegalMovesPipeline)* '}' )?
-		('effectPipeline' '{' effectPipeline+=EffectPipeline ( "," effectPipeline+=EffectPipeline)* '}' )?
+		('legalMovesPipeline' legalMovesPipeline=LegalMovesPipeline)?
+		('effectPipeline'effectPipeline=EffectPipeline)?
 		'tileplacement' '{' tileplacement+=TilePlacement ( "," tileplacement+=TilePlacement)* '}' 
 	'}';
 
@@ -42,12 +42,6 @@ Player returns Player:
 	'{'
 		'hexColor' hexColor=EString
 		'associatedState' associatedState=[State|EString]
-	'}';
-
-TurnPolicy returns TurnPolicy:
-	'TurnPolicy'
-	'{'
-		'type' type=TurnType
 	'}';
 
 EInt returns ecore::EInt:

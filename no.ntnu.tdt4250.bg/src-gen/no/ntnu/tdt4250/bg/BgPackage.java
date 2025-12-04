@@ -95,22 +95,13 @@ public interface BgPackage extends EPackage {
 	int GAME__PLAYERS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Turn Policy</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GAME__TURN_POLICY = 3;
-
-	/**
 	 * The feature id for the '<em><b>Initial Player</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GAME__INITIAL_PLAYER = 4;
+	int GAME__INITIAL_PLAYER = 3;
 
 	/**
 	 * The feature id for the '<em><b>Active Player</b></em>' reference.
@@ -119,7 +110,16 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GAME__ACTIVE_PLAYER = 5;
+	int GAME__ACTIVE_PLAYER = 4;
+
+	/**
+	 * The feature id for the '<em><b>Turn Policy</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GAME__TURN_POLICY = 5;
 
 	/**
 	 * The number of structural features of the '<em>Game</em>' class.
@@ -168,7 +168,7 @@ public interface BgPackage extends EPackage {
 	int BOARD__TILES = 1;
 
 	/**
-	 * The feature id for the '<em><b>Legal Moves Pipeline</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Legal Moves Pipeline</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -177,7 +177,7 @@ public interface BgPackage extends EPackage {
 	int BOARD__LEGAL_MOVES_PIPELINE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Effect Pipeline</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Effect Pipeline</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -295,43 +295,6 @@ public interface BgPackage extends EPackage {
 	int PLAYER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.impl.TurnPolicyImpl <em>Turn Policy</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.ntnu.tdt4250.bg.impl.TurnPolicyImpl
-	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getTurnPolicy()
-	 * @generated
-	 */
-	int TURN_POLICY = 3;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TURN_POLICY__TYPE = 0;
-
-	/**
-	 * The number of structural features of the '<em>Turn Policy</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TURN_POLICY_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Turn Policy</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TURN_POLICY_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.impl.LegalMovesPipelineImpl <em>Legal Moves Pipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -339,7 +302,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getLegalMovesPipeline()
 	 * @generated
 	 */
-	int LEGAL_MOVES_PIPELINE = 4;
+	int LEGAL_MOVES_PIPELINE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Filter</b></em>' containment reference.
@@ -376,7 +339,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getEffectPipeline()
 	 * @generated
 	 */
-	int EFFECT_PIPELINE = 5;
+	int EFFECT_PIPELINE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Filter</b></em>' containment reference.
@@ -413,7 +376,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getFilter()
 	 * @generated
 	 */
-	int FILTER = 6;
+	int FILTER = 5;
 
 	/**
 	 * The feature id for the '<em><b>Next Filter</b></em>' containment reference.
@@ -450,7 +413,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getPatternFilter()
 	 * @generated
 	 */
-	int PATTERN_FILTER = 7;
+	int PATTERN_FILTER = 6;
 
 	/**
 	 * The feature id for the '<em><b>Next Filter</b></em>' containment reference.
@@ -505,7 +468,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getTile()
 	 * @generated
 	 */
-	int TILE = 8;
+	int TILE = 7;
 
 	/**
 	 * The feature id for the '<em><b>States</b></em>' containment reference list.
@@ -587,7 +550,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getState()
 	 * @generated
 	 */
-	int STATE = 9;
+	int STATE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Outbound</b></em>' reference list.
@@ -651,7 +614,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getTransition()
 	 * @generated
 	 */
-	int TRANSITION = 10;
+	int TRANSITION = 9;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference list.
@@ -706,7 +669,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getTilePlacement()
 	 * @generated
 	 */
-	int TILE_PLACEMENT = 11;
+	int TILE_PLACEMENT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Row</b></em>' attribute.
@@ -779,7 +742,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getPattern()
 	 * @generated
 	 */
-	int PATTERN = 12;
+	int PATTERN = 11;
 
 	/**
 	 * The feature id for the '<em><b>Relativecoordinates</b></em>' containment reference list.
@@ -843,7 +806,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getRelativeCoordinate()
 	 * @generated
 	 */
-	int RELATIVE_COORDINATE = 13;
+	int RELATIVE_COORDINATE = 12;
 
 	/**
 	 * The feature id for the '<em><b>X</b></em>' attribute.
@@ -889,7 +852,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getTurnType()
 	 * @generated
 	 */
-	int TURN_TYPE = 14;
+	int TURN_TYPE = 13;
 
 	/**
 	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.StateSelection <em>State Selection</em>}' enum.
@@ -899,7 +862,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getStateSelection()
 	 * @generated
 	 */
-	int STATE_SELECTION = 15;
+	int STATE_SELECTION = 14;
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Game <em>Game</em>}'.
@@ -945,17 +908,6 @@ public interface BgPackage extends EPackage {
 	EReference getGame_Players();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link no.ntnu.tdt4250.bg.Game#getTurnPolicy <em>Turn Policy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Turn Policy</em>'.
-	 * @see no.ntnu.tdt4250.bg.Game#getTurnPolicy()
-	 * @see #getGame()
-	 * @generated
-	 */
-	EReference getGame_TurnPolicy();
-
-	/**
 	 * Returns the meta object for the reference '{@link no.ntnu.tdt4250.bg.Game#getInitialPlayer <em>Initial Player</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -976,6 +928,17 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGame_ActivePlayer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Game#getTurnPolicy <em>Turn Policy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Turn Policy</em>'.
+	 * @see no.ntnu.tdt4250.bg.Game#getTurnPolicy()
+	 * @see #getGame()
+	 * @generated
+	 */
+	EAttribute getGame_TurnPolicy();
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Board <em>Board</em>}'.
@@ -1010,10 +973,10 @@ public interface BgPackage extends EPackage {
 	EReference getBoard_Tiles();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link no.ntnu.tdt4250.bg.Board#getLegalMovesPipeline <em>Legal Moves Pipeline</em>}'.
+	 * Returns the meta object for the containment reference '{@link no.ntnu.tdt4250.bg.Board#getLegalMovesPipeline <em>Legal Moves Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Legal Moves Pipeline</em>'.
+	 * @return the meta object for the containment reference '<em>Legal Moves Pipeline</em>'.
 	 * @see no.ntnu.tdt4250.bg.Board#getLegalMovesPipeline()
 	 * @see #getBoard()
 	 * @generated
@@ -1021,10 +984,10 @@ public interface BgPackage extends EPackage {
 	EReference getBoard_LegalMovesPipeline();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link no.ntnu.tdt4250.bg.Board#getEffectPipeline <em>Effect Pipeline</em>}'.
+	 * Returns the meta object for the containment reference '{@link no.ntnu.tdt4250.bg.Board#getEffectPipeline <em>Effect Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Effect Pipeline</em>'.
+	 * @return the meta object for the containment reference '<em>Effect Pipeline</em>'.
 	 * @see no.ntnu.tdt4250.bg.Board#getEffectPipeline()
 	 * @see #getBoard()
 	 * @generated
@@ -1117,27 +1080,6 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPlayer_AssociatedState();
-
-	/**
-	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.TurnPolicy <em>Turn Policy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Turn Policy</em>'.
-	 * @see no.ntnu.tdt4250.bg.TurnPolicy
-	 * @generated
-	 */
-	EClass getTurnPolicy();
-
-	/**
-	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.TurnPolicy#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see no.ntnu.tdt4250.bg.TurnPolicy#getType()
-	 * @see #getTurnPolicy()
-	 * @generated
-	 */
-	EAttribute getTurnPolicy_Type();
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.LegalMovesPipeline <em>Legal Moves Pipeline</em>}'.
@@ -1636,14 +1578,6 @@ public interface BgPackage extends EPackage {
 		EReference GAME__PLAYERS = eINSTANCE.getGame_Players();
 
 		/**
-		 * The meta object literal for the '<em><b>Turn Policy</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GAME__TURN_POLICY = eINSTANCE.getGame_TurnPolicy();
-
-		/**
 		 * The meta object literal for the '<em><b>Initial Player</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1658,6 +1592,14 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GAME__ACTIVE_PLAYER = eINSTANCE.getGame_ActivePlayer();
+
+		/**
+		 * The meta object literal for the '<em><b>Turn Policy</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GAME__TURN_POLICY = eINSTANCE.getGame_TurnPolicy();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.BoardImpl <em>Board</em>}' class.
@@ -1686,7 +1628,7 @@ public interface BgPackage extends EPackage {
 		EReference BOARD__TILES = eINSTANCE.getBoard_Tiles();
 
 		/**
-		 * The meta object literal for the '<em><b>Legal Moves Pipeline</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Legal Moves Pipeline</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1694,7 +1636,7 @@ public interface BgPackage extends EPackage {
 		EReference BOARD__LEGAL_MOVES_PIPELINE = eINSTANCE.getBoard_LegalMovesPipeline();
 
 		/**
-		 * The meta object literal for the '<em><b>Effect Pipeline</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Effect Pipeline</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1766,24 +1708,6 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PLAYER__ASSOCIATED_STATE = eINSTANCE.getPlayer_AssociatedState();
-
-		/**
-		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.TurnPolicyImpl <em>Turn Policy</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see no.ntnu.tdt4250.bg.impl.TurnPolicyImpl
-		 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getTurnPolicy()
-		 * @generated
-		 */
-		EClass TURN_POLICY = eINSTANCE.getTurnPolicy();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TURN_POLICY__TYPE = eINSTANCE.getTurnPolicy_Type();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.LegalMovesPipelineImpl <em>Legal Moves Pipeline</em>}' class.

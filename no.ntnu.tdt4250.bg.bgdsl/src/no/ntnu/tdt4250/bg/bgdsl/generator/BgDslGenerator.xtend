@@ -96,8 +96,6 @@ def initializeValues(EObject gameInstance) {
 
 	// ??? vi har vel ikke en game class (?) så idk hvordan vi skal finne ut hvor mange players vi har
 	val players = gameInstance.eGet(gameInstance.eClass.getEStructuralFeature("players")) as EList<EObject>
-	
-	val turnPolicy = gameInstance.eGet(gameInstance.eClass.getEStructuralFeature("turnPolicy")) as EList<EObject>
 
 '''
 «FOR tileType : tileTypes»

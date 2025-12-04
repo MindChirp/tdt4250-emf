@@ -62,8 +62,6 @@ public class BgFactoryImpl extends EFactoryImpl implements BgFactory {
 			return createBoard();
 		case BgPackage.PLAYER:
 			return createPlayer();
-		case BgPackage.TURN_POLICY:
-			return createTurnPolicy();
 		case BgPackage.LEGAL_MOVES_PIPELINE:
 			return createLegalMovesPipeline();
 		case BgPackage.EFFECT_PIPELINE:
@@ -152,17 +150,6 @@ public class BgFactoryImpl extends EFactoryImpl implements BgFactory {
 	public Player createPlayer() {
 		PlayerImpl player = new PlayerImpl();
 		return player;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public TurnPolicy createTurnPolicy() {
-		TurnPolicyImpl turnPolicy = new TurnPolicyImpl();
-		return turnPolicy;
 	}
 
 	/**

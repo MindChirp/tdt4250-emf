@@ -65,28 +65,48 @@ public interface Board extends EObject {
 	EList<Tile> getTiles();
 
 	/**
-	 * Returns the value of the '<em><b>Legal Moves Pipeline</b></em>' containment reference list.
-	 * The list contents are of type {@link no.ntnu.tdt4250.bg.LegalMovesPipeline}.
+	 * Returns the value of the '<em><b>Legal Moves Pipeline</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Legal Moves Pipeline</em>' containment reference list.
+	 * @return the value of the '<em>Legal Moves Pipeline</em>' containment reference.
+	 * @see #setLegalMovesPipeline(LegalMovesPipeline)
 	 * @see no.ntnu.tdt4250.bg.BgPackage#getBoard_LegalMovesPipeline()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<LegalMovesPipeline> getLegalMovesPipeline();
+	LegalMovesPipeline getLegalMovesPipeline();
 
 	/**
-	 * Returns the value of the '<em><b>Effect Pipeline</b></em>' containment reference list.
-	 * The list contents are of type {@link no.ntnu.tdt4250.bg.EffectPipeline}.
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Board#getLegalMovesPipeline <em>Legal Moves Pipeline</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Effect Pipeline</em>' containment reference list.
+	 * @param value the new value of the '<em>Legal Moves Pipeline</em>' containment reference.
+	 * @see #getLegalMovesPipeline()
+	 * @generated
+	 */
+	void setLegalMovesPipeline(LegalMovesPipeline value);
+
+	/**
+	 * Returns the value of the '<em><b>Effect Pipeline</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Effect Pipeline</em>' containment reference.
+	 * @see #setEffectPipeline(EffectPipeline)
 	 * @see no.ntnu.tdt4250.bg.BgPackage#getBoard_EffectPipeline()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<EffectPipeline> getEffectPipeline();
+	EffectPipeline getEffectPipeline();
+
+	/**
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Board#getEffectPipeline <em>Effect Pipeline</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Effect Pipeline</em>' containment reference.
+	 * @see #getEffectPipeline()
+	 * @generated
+	 */
+	void setEffectPipeline(EffectPipeline value);
 
 	/**
 	 * Returns the value of the '<em><b>Height</b></em>' attribute.

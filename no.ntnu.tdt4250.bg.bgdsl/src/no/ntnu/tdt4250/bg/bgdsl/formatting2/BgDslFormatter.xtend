@@ -20,21 +20,13 @@ class BgDslFormatter extends AbstractFormatter2 {
 		for (player : game.players) {
 			player.format
 		}
-		for (turnPolicy : game.turnPolicy) {
-			turnPolicy.format
-		}
+		game.turnPolicy.format
 	}
 
 	def dispatch void format(Board board, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
 		for (tile : board.tiles) {
 			tile.format
-		}
-		for (legalMovesPipeline : board.legalMovesPipeline) {
-			legalMovesPipeline.format
-		}
-		for (effectPipeline : board.effectPipeline) {
-			effectPipeline.format
 		}
 		for (tilePlacement : board.tileplacement) {
 			tilePlacement.format
