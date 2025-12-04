@@ -39,14 +39,14 @@ public enum StateSelection implements Enumerator {
 	OTHER_PLAYER(1, "OtherPlayer", "OtherPlayer"),
 
 	/**
-	 * The '<em><b>State Name</b></em>' literal object.
+	 * The '<em><b>State</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #STATE_NAME_VALUE
+	 * @see #STATE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	STATE_NAME(2, "StateName", "StateName");
+	STATE(2, "State", "State");
 
 	/**
 	 * The '<em><b>Current Player</b></em>' literal value.
@@ -71,15 +71,15 @@ public enum StateSelection implements Enumerator {
 	public static final int OTHER_PLAYER_VALUE = 1;
 
 	/**
-	 * The '<em><b>State Name</b></em>' literal value.
+	 * The '<em><b>State</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #STATE_NAME
-	 * @model name="StateName"
+	 * @see #STATE
+	 * @model name="State"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STATE_NAME_VALUE = 2;
+	public static final int STATE_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>State Selection</b></em>' enumerators.
@@ -87,8 +87,7 @@ public enum StateSelection implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final StateSelection[] VALUES_ARRAY = new StateSelection[] { CURRENT_PLAYER, OTHER_PLAYER,
-			STATE_NAME, };
+	private static final StateSelection[] VALUES_ARRAY = new StateSelection[] { CURRENT_PLAYER, OTHER_PLAYER, STATE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>State Selection</b></em>' enumerators.
@@ -148,8 +147,8 @@ public enum StateSelection implements Enumerator {
 			return CURRENT_PLAYER;
 		case OTHER_PLAYER_VALUE:
 			return OTHER_PLAYER;
-		case STATE_NAME_VALUE:
-			return STATE_NAME;
+		case STATE_VALUE:
+			return STATE;
 		}
 		return null;
 	}

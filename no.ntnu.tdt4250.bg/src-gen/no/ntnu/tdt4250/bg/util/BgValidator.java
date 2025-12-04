@@ -1118,7 +1118,58 @@ public class BgValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validatePattern(Pattern pattern, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(pattern, diagnostics, context);
+		if (!validate_NoCircularContainment(pattern, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(pattern, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(pattern, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(pattern, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(pattern, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(pattern, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(pattern, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(pattern, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(pattern, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePattern_matchStateDefined(pattern, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the matchStateDefined constraint of '<em>Pattern</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validatePattern_matchStateDefined(Pattern pattern, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		boolean isLegal = true;
+		
+		
+		if (pattern.getStateSelection().getLiteral() == (StateSelection.STATE).getLiteral()) {
+			isLegal = (pattern.getMatchState() != null);
+		}
+		
+		
+		if (!isLegal) {
+			if (diagnostics != null) {
+				diagnostics.add(
+						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
+								new Object[] { "matchStateDefined", getObjectLabel(pattern, context) },
+								new Object[] { pattern }, context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**

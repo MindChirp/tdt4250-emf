@@ -800,22 +800,13 @@ public interface BgPackage extends EPackage {
 	int PATTERN__NAME = 1;
 
 	/**
-	 * The feature id for the '<em><b>Tile Type Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATTERN__TILE_TYPE_NAME = 2;
-
-	/**
 	 * The feature id for the '<em><b>State Selection</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN__STATE_SELECTION = 3;
+	int PATTERN__STATE_SELECTION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Match State</b></em>' reference.
@@ -824,7 +815,7 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN__MATCH_STATE = 4;
+	int PATTERN__MATCH_STATE = 3;
 
 	/**
 	 * The number of structural features of the '<em>Pattern</em>' class.
@@ -833,7 +824,7 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_FEATURE_COUNT = 5;
+	int PATTERN_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Pattern</em>' class.
@@ -1514,17 +1505,6 @@ public interface BgPackage extends EPackage {
 	EAttribute getPattern_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Pattern#getTileTypeName <em>Tile Type Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Tile Type Name</em>'.
-	 * @see no.ntnu.tdt4250.bg.Pattern#getTileTypeName()
-	 * @see #getPattern()
-	 * @generated
-	 */
-	EAttribute getPattern_TileTypeName();
-
-	/**
 	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Pattern#getStateSelection <em>State Selection</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2094,14 +2074,6 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PATTERN__NAME = eINSTANCE.getPattern_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Tile Type Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PATTERN__TILE_TYPE_NAME = eINSTANCE.getPattern_TileTypeName();
 
 		/**
 		 * The meta object literal for the '<em><b>State Selection</b></em>' attribute feature.

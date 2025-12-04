@@ -20,6 +20,9 @@ class GameStateManager:
 
     def set_tile_state(self, game_name, row, col, new_state):
         self.games[game_name]["tileStates"][(row, col)] = new_state
+        
+    def get_tiles_and_states(self, game_name):
+        return self.games[game_name]
 
     @staticmethod
     def find_tile_placement(game, row: int, column: int):
@@ -27,5 +30,7 @@ class GameStateManager:
             if placement.row == row and placement.column == column:
                 return placement
         return None
+      
+    
 
 game_manager = GameStateManager()

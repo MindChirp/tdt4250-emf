@@ -17,13 +17,12 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link no.ntnu.tdt4250.bg.Pattern#getRelativecoordinates <em>Relativecoordinates</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Pattern#getName <em>Name</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.Pattern#getTileTypeName <em>Tile Type Name</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Pattern#getStateSelection <em>State Selection</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Pattern#getMatchState <em>Match State</em>}</li>
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getPattern()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='matchStateDefined'"
  * @generated
  */
 public interface Pattern extends EObject {
@@ -60,28 +59,6 @@ public interface Pattern extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Tile Type Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Tile Type Name</em>' attribute.
-	 * @see #setTileTypeName(String)
-	 * @see no.ntnu.tdt4250.bg.BgPackage#getPattern_TileTypeName()
-	 * @model
-	 * @generated
-	 */
-	String getTileTypeName();
-
-	/**
-	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Pattern#getTileTypeName <em>Tile Type Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Tile Type Name</em>' attribute.
-	 * @see #getTileTypeName()
-	 * @generated
-	 */
-	void setTileTypeName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>State Selection</b></em>' attribute.
