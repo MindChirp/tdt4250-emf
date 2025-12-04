@@ -16,9 +16,10 @@ Game returns Game:
 
 
 
-
 Filter returns Filter:
 	PatternFilter;
+
+
 
 Board returns Board:
 	checkered?='checkered'
@@ -106,23 +107,21 @@ Transition returns Transition:
 	'}';
 
 PatternFilter returns PatternFilter:
-	{PatternFilter}
 	'PatternFilter'
 	name=EString
 	'{'
 		('nextFilter' nextFilter=Filter)?
-		'patterns' '{' patterns+=Pattern ( "," patterns+=Pattern)* '}'
+		'patterns' '{' patterns+=Pattern ( "," patterns+=Pattern)* '}' 
 	'}';
-	
+
 Pattern returns Pattern:
 	'Pattern'
 	name=EString
 	'{'
-		'stateSelection' stateSelection=StateSelection
+		('stateSelection' stateSelection=StateSelection)?
 		('matchState' matchState=[State|EString])?
-		'relativeCoordinates' '{' relativecoordinates+=RelativeCoordinate ( ","  relativecoordinates+=RelativeCoordinate)* '}'
+		'relativecoordinates' '{' relativecoordinates+=RelativeCoordinate ( "," relativecoordinates+=RelativeCoordinate)* '}' 
 	'}';
-
 
 RelativeCoordinate returns RelativeCoordinate:
 	'RelativeCoordinate'
@@ -131,8 +130,8 @@ RelativeCoordinate returns RelativeCoordinate:
 		'y' y=EInt
 	'}';
 
+enum StateSelection returns StateSelection:
+				CurrentPlayer = 'CurrentPlayer' | OtherPlayer = 'OtherPlayer' | State = 'State';
+
 enum TurnType returns TurnType:
 				TurnBased = 'TurnBased' | Simultaneous = 'Simultaneous';
-				
-enum StateSelection returns StateSelection:
-	CurrentPlayer = 'CurrentPlayer' | OtherPlayer = 'OtherPlayer' | State = 'State';

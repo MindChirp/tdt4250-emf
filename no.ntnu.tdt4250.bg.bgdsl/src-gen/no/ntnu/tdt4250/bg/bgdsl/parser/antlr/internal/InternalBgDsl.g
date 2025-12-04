@@ -1599,23 +1599,16 @@ rulePatternFilter returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		(
-			{
-				$current = forceCreateModelElement(
-					grammarAccess.getPatternFilterAccess().getPatternFilterAction_0(),
-					$current);
-			}
-		)
-		otherlv_1='PatternFilter'
+		otherlv_0='PatternFilter'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getPatternFilterAccess().getPatternFilterKeyword_1());
+			newLeafNode(otherlv_0, grammarAccess.getPatternFilterAccess().getPatternFilterKeyword_0());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPatternFilterAccess().getNameEStringParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getPatternFilterAccess().getNameEStringParserRuleCall_1_0());
 				}
-				lv_name_2_0=ruleEString
+				lv_name_1_0=ruleEString
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPatternFilterRule());
@@ -1623,27 +1616,27 @@ rulePatternFilter returns [EObject current=null]
 					set(
 						$current,
 						"name",
-						lv_name_2_0,
+						lv_name_1_0,
 						"no.ntnu.tdt4250.bg.bgdsl.BgDsl.EString");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_3='{'
+		otherlv_2='{'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getPatternFilterAccess().getLeftCurlyBracketKeyword_3());
+			newLeafNode(otherlv_2, grammarAccess.getPatternFilterAccess().getLeftCurlyBracketKeyword_2());
 		}
 		(
-			otherlv_4='nextFilter'
+			otherlv_3='nextFilter'
 			{
-				newLeafNode(otherlv_4, grammarAccess.getPatternFilterAccess().getNextFilterKeyword_4_0());
+				newLeafNode(otherlv_3, grammarAccess.getPatternFilterAccess().getNextFilterKeyword_3_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPatternFilterAccess().getNextFilterFilterParserRuleCall_4_1_0());
+						newCompositeNode(grammarAccess.getPatternFilterAccess().getNextFilterFilterParserRuleCall_3_1_0());
 					}
-					lv_nextFilter_5_0=ruleFilter
+					lv_nextFilter_4_0=ruleFilter
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPatternFilterRule());
@@ -1651,27 +1644,27 @@ rulePatternFilter returns [EObject current=null]
 						set(
 							$current,
 							"nextFilter",
-							lv_nextFilter_5_0,
+							lv_nextFilter_4_0,
 							"no.ntnu.tdt4250.bg.bgdsl.BgDsl.Filter");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)?
-		otherlv_6='patterns'
+		otherlv_5='patterns'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getPatternFilterAccess().getPatternsKeyword_5());
+			newLeafNode(otherlv_5, grammarAccess.getPatternFilterAccess().getPatternsKeyword_4());
 		}
-		otherlv_7='{'
+		otherlv_6='{'
 		{
-			newLeafNode(otherlv_7, grammarAccess.getPatternFilterAccess().getLeftCurlyBracketKeyword_6());
+			newLeafNode(otherlv_6, grammarAccess.getPatternFilterAccess().getLeftCurlyBracketKeyword_5());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPatternFilterAccess().getPatternsPatternParserRuleCall_7_0());
+					newCompositeNode(grammarAccess.getPatternFilterAccess().getPatternsPatternParserRuleCall_6_0());
 				}
-				lv_patterns_8_0=rulePattern
+				lv_patterns_7_0=rulePattern
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPatternFilterRule());
@@ -1679,23 +1672,23 @@ rulePatternFilter returns [EObject current=null]
 					add(
 						$current,
 						"patterns",
-						lv_patterns_8_0,
+						lv_patterns_7_0,
 						"no.ntnu.tdt4250.bg.bgdsl.BgDsl.Pattern");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
 		(
-			otherlv_9=','
+			otherlv_8=','
 			{
-				newLeafNode(otherlv_9, grammarAccess.getPatternFilterAccess().getCommaKeyword_8_0());
+				newLeafNode(otherlv_8, grammarAccess.getPatternFilterAccess().getCommaKeyword_7_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPatternFilterAccess().getPatternsPatternParserRuleCall_8_1_0());
+						newCompositeNode(grammarAccess.getPatternFilterAccess().getPatternsPatternParserRuleCall_7_1_0());
 					}
-					lv_patterns_10_0=rulePattern
+					lv_patterns_9_0=rulePattern
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPatternFilterRule());
@@ -1703,20 +1696,20 @@ rulePatternFilter returns [EObject current=null]
 						add(
 							$current,
 							"patterns",
-							lv_patterns_10_0,
+							lv_patterns_9_0,
 							"no.ntnu.tdt4250.bg.bgdsl.BgDsl.Pattern");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)*
+		otherlv_10='}'
+		{
+			newLeafNode(otherlv_10, grammarAccess.getPatternFilterAccess().getRightCurlyBracketKeyword_8());
+		}
 		otherlv_11='}'
 		{
 			newLeafNode(otherlv_11, grammarAccess.getPatternFilterAccess().getRightCurlyBracketKeyword_9());
-		}
-		otherlv_12='}'
-		{
-			newLeafNode(otherlv_12, grammarAccess.getPatternFilterAccess().getRightCurlyBracketKeyword_10());
 		}
 	)
 ;
@@ -1764,33 +1757,35 @@ rulePattern returns [EObject current=null]
 		{
 			newLeafNode(otherlv_2, grammarAccess.getPatternAccess().getLeftCurlyBracketKeyword_2());
 		}
-		otherlv_3='stateSelection'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getPatternAccess().getStateSelectionKeyword_3());
-		}
 		(
+			otherlv_3='stateSelection'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getPatternAccess().getStateSelectionKeyword_3_0());
+			}
 			(
-				{
-					newCompositeNode(grammarAccess.getPatternAccess().getStateSelectionStateSelectionEnumRuleCall_4_0());
-				}
-				lv_stateSelection_4_0=ruleStateSelection
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getPatternRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getPatternAccess().getStateSelectionStateSelectionEnumRuleCall_3_1_0());
 					}
-					set(
-						$current,
-						"stateSelection",
-						lv_stateSelection_4_0,
-						"no.ntnu.tdt4250.bg.bgdsl.BgDsl.StateSelection");
-					afterParserOrEnumRuleCall();
-				}
+					lv_stateSelection_4_0=ruleStateSelection
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getPatternRule());
+						}
+						set(
+							$current,
+							"stateSelection",
+							lv_stateSelection_4_0,
+							"no.ntnu.tdt4250.bg.bgdsl.BgDsl.StateSelection");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
+		)?
 		(
 			otherlv_5='matchState'
 			{
-				newLeafNode(otherlv_5, grammarAccess.getPatternAccess().getMatchStateKeyword_5_0());
+				newLeafNode(otherlv_5, grammarAccess.getPatternAccess().getMatchStateKeyword_4_0());
 			}
 			(
 				(
@@ -1800,7 +1795,7 @@ rulePattern returns [EObject current=null]
 						}
 					}
 					{
-						newCompositeNode(grammarAccess.getPatternAccess().getMatchStateStateCrossReference_5_1_0());
+						newCompositeNode(grammarAccess.getPatternAccess().getMatchStateStateCrossReference_4_1_0());
 					}
 					ruleEString
 					{
@@ -1809,18 +1804,18 @@ rulePattern returns [EObject current=null]
 				)
 			)
 		)?
-		otherlv_7='relativeCoordinates'
+		otherlv_7='relativecoordinates'
 		{
-			newLeafNode(otherlv_7, grammarAccess.getPatternAccess().getRelativeCoordinatesKeyword_6());
+			newLeafNode(otherlv_7, grammarAccess.getPatternAccess().getRelativecoordinatesKeyword_5());
 		}
 		otherlv_8='{'
 		{
-			newLeafNode(otherlv_8, grammarAccess.getPatternAccess().getLeftCurlyBracketKeyword_7());
+			newLeafNode(otherlv_8, grammarAccess.getPatternAccess().getLeftCurlyBracketKeyword_6());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPatternAccess().getRelativecoordinatesRelativeCoordinateParserRuleCall_8_0());
+					newCompositeNode(grammarAccess.getPatternAccess().getRelativecoordinatesRelativeCoordinateParserRuleCall_7_0());
 				}
 				lv_relativecoordinates_9_0=ruleRelativeCoordinate
 				{
@@ -1839,12 +1834,12 @@ rulePattern returns [EObject current=null]
 		(
 			otherlv_10=','
 			{
-				newLeafNode(otherlv_10, grammarAccess.getPatternAccess().getCommaKeyword_9_0());
+				newLeafNode(otherlv_10, grammarAccess.getPatternAccess().getCommaKeyword_8_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPatternAccess().getRelativecoordinatesRelativeCoordinateParserRuleCall_9_1_0());
+						newCompositeNode(grammarAccess.getPatternAccess().getRelativecoordinatesRelativeCoordinateParserRuleCall_8_1_0());
 					}
 					lv_relativecoordinates_11_0=ruleRelativeCoordinate
 					{
@@ -1863,11 +1858,11 @@ rulePattern returns [EObject current=null]
 		)*
 		otherlv_12='}'
 		{
-			newLeafNode(otherlv_12, grammarAccess.getPatternAccess().getRightCurlyBracketKeyword_10());
+			newLeafNode(otherlv_12, grammarAccess.getPatternAccess().getRightCurlyBracketKeyword_9());
 		}
 		otherlv_13='}'
 		{
-			newLeafNode(otherlv_13, grammarAccess.getPatternAccess().getRightCurlyBracketKeyword_11());
+			newLeafNode(otherlv_13, grammarAccess.getPatternAccess().getRightCurlyBracketKeyword_10());
 		}
 	)
 ;
@@ -1949,33 +1944,6 @@ ruleRelativeCoordinate returns [EObject current=null]
 	)
 ;
 
-// Rule TurnType
-ruleTurnType returns [Enumerator current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			enumLiteral_0='TurnBased'
-			{
-				$current = grammarAccess.getTurnTypeAccess().getTurnBasedEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getTurnTypeAccess().getTurnBasedEnumLiteralDeclaration_0());
-			}
-		)
-		    |
-		(
-			enumLiteral_1='Simultaneous'
-			{
-				$current = grammarAccess.getTurnTypeAccess().getSimultaneousEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getTurnTypeAccess().getSimultaneousEnumLiteralDeclaration_1());
-			}
-		)
-	)
-;
-
 // Rule StateSelection
 ruleStateSelection returns [Enumerator current=null]
 @init {
@@ -2006,6 +1974,33 @@ ruleStateSelection returns [Enumerator current=null]
 			{
 				$current = grammarAccess.getStateSelectionAccess().getStateEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_2, grammarAccess.getStateSelectionAccess().getStateEnumLiteralDeclaration_2());
+			}
+		)
+	)
+;
+
+// Rule TurnType
+ruleTurnType returns [Enumerator current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			enumLiteral_0='TurnBased'
+			{
+				$current = grammarAccess.getTurnTypeAccess().getTurnBasedEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getTurnTypeAccess().getTurnBasedEnumLiteralDeclaration_0());
+			}
+		)
+		    |
+		(
+			enumLiteral_1='Simultaneous'
+			{
+				$current = grammarAccess.getTurnTypeAccess().getSimultaneousEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getTurnTypeAccess().getSimultaneousEnumLiteralDeclaration_1());
 			}
 		)
 	)
