@@ -107,14 +107,17 @@ Represents a complete, fully defined playable game configuration.
 - **`name : EString`**  
   The name of the game (e.g., “Connect 4”, “Othello”).
 
-- **`players : Player[*]`**  
+- **`players : Player[1..*]`**  
   All players participating in the game.
 
 - **`board : Board`**  
-  The board on which the game is played.
+  The board used for gameplay.
 
-- **`initialPlayer : Player[0..1]`**  
-  Defines which player begins the game.
+- **`turnPolicy : TurnType`**  
+  Defines turn-taking rules (TurnBased or Simultaneous).
+
+- **`initialPlayer : Player[1..1]`**  
+  The first player to take a turn.
 
 - **`activePlayer : Player[1..1]`**  
   The player whose turn is currently active.
@@ -125,216 +128,267 @@ Represents a complete, fully defined playable game configuration.
 Represents a participant in the game.
 
 - **`name : EString`**  
-  The display name of the player.
+  The name of the player.
 
 - **`hexColor : EString`**  
-  Hex color representing the player's pieces (e.g., `#FF0000`).
+  UI color representing the player's pieces (e.g., `#FF0000`).
 
 - **`associatedState : State[1..1]`**  
-  The state instance that represents this player's pieces (each player has exactly one associated State).
+  The state representing this player's tile ownership (e.g., XPlayed, RedPiece).
 
 ---
 
 ### **Board**
-Defines the tile grid used by the game.
+Defines the 2D grid for the game.
 
 - **`width : EInt`**  
-  The number of columns on the board.
+  Number of columns.
 
 - **`height : EInt`**  
-  The number of rows on the board.
+  Number of rows.
 
 - **`checkered : EBoolean = false`**  
-  Optional rendering rule enabling alternating light/dark tiles.
+  Enables optional light/dark alternating tiles.
 
 - **`tiles : Tile[1..*]`**  
-  All possible tiles for the game.
-
-- **`legalMovesPipeline : LegalMovesPipeline[0..*]`**  
-  Pipeline that determines which tiles are legal moves for the current player.
-
-- **`effectPipeline : EffectPipeline[0..*]`**  
-  Pipeline that applies tile changes and game effects after a move is executed.
+  All tile types that may appear on the board.
 
 - **`tileplacement : TilePlacement[1..*]`**  
-  Placement metadata for tiles.
+  Specifies each tile's position in the grid.
+
+- **`legalMovesPipeline : LegalMovesPipeline[0..1]`**  
+  Determines which moves are legal for the current player.
+
+- **`effectPipeline : EffectPipeline[0..1]`**  
+  Applies effects (state changes, flips, win conditions) after a tile is selected.
 
 ---
 
 ### **TilePlacement**
-
-Represents the position and rendering hints for a tile.
+Maps a tile type to an exact location on the board.
 
 - **`row : EInt`**  
-  Row position (0-based).
+  Grid row (0-indexed).
 
 - **`column : EInt`**  
-  Column position (0-based).
+  Grid column (0-indexed).
 
 - **`tile : Tile[1..1]`**  
-  The tile placed at this location.
+  The tile instance placed at these coordinates.
 
 ---
 
 ### **Tile**
-Represents a single grid cell on the board.
+Represents a logical tile type used on the board.
 
-- **`type : EString`**  
-  Category or type label for the tile.
+- **`tileType : EString`**  
+  Category label for the tile (e.g., 'PlayTile').
 
 - **`hexColor : EString`**  
-  The color of the tile, for UI purposes.
+  Base tile color.
 
 - **`name : EString`**  
-  The name of the tile.
+  Tile identifier.
 
-- **`initialState : State[1..1 ]`**  
-  The tile's initial state, every tile must have an initial state.
+- **`initialState : State[1..1]`**  
+  Default tile state before gameplay starts.
 
 - **`states : State[1..*]`**  
-  All valid states this tile can take.
+  All possible states this tile may transition between.
 
 - **`transitions : Transition[0..*]`**  
-  The state machine transitions allowed for this tile.
+  Defines the tile's internal state machine.
 
 ---
 
 ### **State**
-Represents a specific possible tile condition.
+Represents a tile's visual and logical status.
 
 - **`name : EString`**  
-  The name of the state (e.g., “empty”, “red”, “white”).
+  The state name.
 
-- **`hexColor : EString = #dddddd`**  
-  The state's visual color, defaulting to light gray.
+- **`hexColor : EString = "#dddddd"`**  
+  UI color of the tile when in this state.
 
 - **`(reverse) matchState : Pattern[0..1]`**  
-  Patterns may reference this state.
+  Patterns may reference this state when matching.
 
 ---
 
 ### **Transition**
-Defines how a tile may change from one state to another.
+Defines valid state changes for a tile.
 
 - **`name : EString`**  
-  The name of the transition.
+  Identifier for the transition.
 
-- **`outbound : State`**  
-  The current state before the transition.
+- **`source : State[0..*]`**  
+  State(s) from which this transition may originate.
 
-- **`inbound : State`**  
-  The new state after applying the transition.
+- **`target : State[1..1]`**  
+  State that results from the transition.
 
-Transitions always occur **within the same tile**.
+Transitions form per-tile state machines.
 
 ---
 
-### LegalMovesPipeline
+## Pipelines
 
-A chain of filters used to determine valid moves.
+### **LegalMovesPipeline**
+Determines how legal moves are computed.
 
 - **`filter : Filter[0..1]`**  
-  First filter in the chain.
+  The first filter in the pipeline.  
+  Filters are chained together using `nextFilter`.
 
 ---
 
-### EffectPipeline
-
-A chain of filters used to apply post-move effects.
+### **EffectPipeline**
+Runs after a legal move is executed.
 
 - **`filter : Filter[0..1]`**  
-  First filter in the chain.
+  First filter in the effect sequence.  
+  This pipeline may include:
+  - StateEffect filters (state transitions)
+  - WinCondition filters (global win evaluation)
 
 ---
+
+## Filters
 
 ### **Filter**
-An abstract class with reusable logic units that form part of a pipeline's chain.
-
-- **`nextFilter : Filter[0..1]`**  
-  The next filter in the sequence. If null, this filter is the final step.
-
----
-
-### PatternFilter
-
-Uses patterns to evaluate tile configurations.
-
-- **`name : EString`**
-  The name of the pattern filter.
-
-- **`patterns : Pattern[1..*]`**  
-  Set of patterns to check.
-
----
-
-### Pattern
-
-Describes a spatial arrangement to match against tiles.
+Abstract superclass for all filters.
 
 - **`name : EString`**  
-  Pattern name.
+  Identifier for the filter.
+
+- **`nextFilter : Filter[0..1]`**  
+  Next filter in the sequence; null indicates end of chain.
+
+Filters form a linked list in both pipelines.
+
+---
+
+## Concrete Filters
+
+### **PatternFilter**
+Matches tile configurations using relative coordinate patterns.
+
+- **`name : EString`**
+
+- **`patterns : Pattern[1..*]`**  
+  Patterns used for checking tile legality or effect conditions.
+
+Used primarily in:
+- LegalMovesPipeline
+- IterativeFilter (as matchRule / endRule)
+- WinConditionFilter (as child PatternFilters)
+
+---
+
+### **Pattern**
+Defines a pattern relative to an anchor tile.
+
+- **`name : EString`**
 
 - **`stateSelection : StateSelection = CurrentPlayer`**  
-  Determines how states are matched.
-
-- **`Enum StateSelection`**: 
-- CurrentPlayer  
-- OtherPlayer  
-- State
-
-- **`relativecoordinates : RelativeCoordinate[1..*]`**  
-  Tile offsets relative to an anchor tile.
+  Determines which states this pattern matches:
+  - `CurrentPlayer`
+  - `OtherPlayer`
+  - `StateBased`
 
 - **`matchState : State[0..1]`**  
-  The exact state to match when `stateSelection = State`.
+  When `stateSelection = StateBased`, this is the state to match.
+
+- **`relativecoordinates : RelativeCoordinate[1..*]`**  
+  Offsets relative to the anchor tile.
+
+Patterns are reusable and composable.
 
 ---
 
-### RelativeCoordinate
-
-Coordinate relative to a pattern anchor.
+### **RelativeCoordinate**
+A single coordinate inside a pattern.
 
 - **`x : EInt`**  
-  Horizontal offset.
+  Column offset relative to anchor.
 
 - **`y : EInt`**  
-  Vertical offset.
+  Row offset relative to anchor.
 
 ---
 
-#### State Machines
+### **StateEffectFilter**
+Applies a state transition to all affected tiles.
 
-- Each `Tile` contains its own small state machine.
-- Example transition:
-  - **Connect 4**:
-    - `Empty → Red`
-    - `Empty → Yellow`
-- Transitions are used by effect filters to apply gameplay actions.
+- **`stateSelection : StateSelection = CurrentPlayer`**  
+  Controls which state is applied:
+  - CurrentPlayer → player's associatedState  
+  - OtherPlayer → opponent's associatedState  
+  - StateBased → a specific state
 
-#### Pipelines
+Used for:
+- Placing pieces (TicTacToe, Connect Four)
+- Flipping discs (Othello)
 
-- **LegalMovesPipeline**
-  - Determines whether a tile is a legal move.
-  - Runs a chain of filters until one returns `false`.
+---
 
-- **EffectPipeline**
-  - Runs after a legal tile is selected.
-  - Applies state transitions, flips, gravity, win checking, turn switching.
+### **IterativeFilter**
+A loop-based filter that repeatedly scans tiles in a direction.
 
-- Both pipelines are modeled as linked lists of `Filter`s.
+Used heavily in Othello/Reversi.
 
-#### Filters
+- **`directionVector : RelativeCoordinate[1..1]`**  
+  The direction to scan (e.g., (1,0) for right).
 
-- Reusable logic building blocks chained to form pipelines.
-- Here are some example filters: (Change this to use pattern filter instead?)
-  - `TileEmptyFilter` - tile must be empty
-  - `GravityFilter` - Connect 4 gravity rule
-  - `ImmediateNeighbourFilter` - Othello edge rule
-  - `RaycastFilter` - scans lines for Othello
-  - `PlaceTileEffect` - set tile state
-  - `FlipTilesEffect` - flips Othello discs
-  - `NextTurnEffect` - switch player turn
-  - `CheckWinEffect` - detect winner
+- **`matchRule : Pattern[1..1]`**  
+  Pattern that must match repeatedly to continue scanning.
+
+- **`endRule : Pattern[1..1]`**  
+  Pattern that must match to confirm a successful scan.
+
+- **`nextFilter : Filter[0..1]`**  
+  The effect to apply when scanning completes.
+
+---
+
+### **WinConditionFilter**
+Evaluates game-winning conditions.
+
+- **`patternFilters : PatternFilter[1..*]`**  
+  Each PatternFilter describes one possible winning line.
+
+WinConditionFilter is a **global filter**:
+- It inspects the **entire board**.
+- It is always run **after** local effect filters.
+- If a win is detected, gameplay ends.
+
+Used in:
+- TicTacToe (rows, cols, diagonals)
+- Connect Four (lines of four)
+- Other alignment-based games.
+
+---
+
+## Summary of Pipeline Execution
+
+### **LegalMovesPipeline**
+1. Runs per-tile.
+2. Each filter anchors on the tile being tested.
+3. Returns a list of legal tiles.
+
+### **EffectPipeline**
+1. Runs only after a legal move is chosen.
+2. **Local filters** (PatternFilter, StateEffectFilter, IterativeFilter) receive a list of affected tiles.
+3. **Global filters** (WinConditionFilter) inspect the entire board at the end of the pipeline.
+4. Determines:
+   - tile updates  
+   - flips  
+   - cascades  
+   - whether the player has won  
+
+This pipeline-based model enables expressive rule definitions across many types of board games.
+
+---
 
 ## Constraints
 
@@ -364,7 +418,7 @@ Coordinate relative to a pattern anchor.
   Validates that both `width` and `height` are greater than zero, preventing invalid board sizes.
 
 - **`tilesInsideBoardBounds`**  
-  Ensures that all `TilePlacement` coordinates lie within the board’s width and height.
+  Ensures that all `TilePlacement` coordinates lie within the board's width and height.
 
 - **`boardMustBelongToGame`**  
   Ensures every board is associated with exactly one game, preventing orphaned boards.
@@ -390,7 +444,7 @@ Coordinate relative to a pattern anchor.
   Ensures `row` and `column` coordinates are never negative.
 
 - **`rowAndColumnMustBeWithinBoardBounds`**  
-  Verifies that the placement’s coordinates fit inside the board dimensions.
+  Verifies that the placement's coordinates fit inside the board dimensions.
 
 - **`tileMustBeSet`**  
   Ensures that every `TilePlacement` references a valid `Tile` (no empty placements).
@@ -400,7 +454,7 @@ Coordinate relative to a pattern anchor.
 ### **State machine constraints**
 
 - **`allStatesMustBeReachable`**  
-  Ensures every state inside a tile can be reached from the tile’s `initialState`.
+  Ensures every state inside a tile can be reached from the tile's `initialState`.
 
 - **`transitionMustStayWithinTile`**  
   Validates that all transition source and target states belong to the same tile, preventing cross-tile transitions.
