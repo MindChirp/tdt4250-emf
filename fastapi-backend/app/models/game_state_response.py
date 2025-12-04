@@ -1,16 +1,22 @@
 from pydantic import BaseModel
+from app.generated.tictactoe import Tile
 from typing import List
 
-class TilePosition(BaseModel):
+class TileResponse(BaseModel):
+    name: str
+    tileType: str
     row: int
     column: int
-    tileName: str
-    stateName: str
+    defaultHexColor: str
+    currentState: str
+    currentStateColor: str
+
 
 class GameStateResponse(BaseModel):
+    gameName: str
     players: List[str]
     activePlayer: str
     boardWidth: int
     boardHeight: int
-    tiles: List[TilePosition]
-    legalMoves: List[TilePosition]
+    tiles: List[TileResponse]
+    legalMoves: List[TileResponse]
