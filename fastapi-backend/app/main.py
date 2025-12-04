@@ -6,8 +6,8 @@ from app.generated.games import GAMES
 
 app = FastAPI()
 
-for name, game_def in GAMES.items():
-    game_manager.init_game(name, game_def)
+for name, game in GAMES.items():
+    game_manager.init_game(name, game)
 
 app.include_router(game_state.router)
 app.include_router(moves.router)

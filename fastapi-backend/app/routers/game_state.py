@@ -15,7 +15,6 @@ def get_game_state(game_name: str):
 
     board = game.board
     players = [p.name for p in game.players]
-    active_player = game_manager.get_active_player(game_name, game)
     tile_states = game_manager.get_state(game_name)["tileStates"]
 
     tile_positions = []
@@ -35,7 +34,7 @@ def get_game_state(game_name: str):
 
     return GameStateResponse(
         players=players,
-        activePlayer=active_player.name,
+        activePlayer=game.activePlayer.name,
         boardWidth=board.width,
         boardHeight=board.height,
         tiles=tile_positions,
