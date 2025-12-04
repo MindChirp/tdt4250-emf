@@ -1,91 +1,51 @@
 from typing import List
-from app.generated.tictactoe import Board, Filter, Pattern, Tile, State, game
+from app.generated.tictactoe import Board, Filter, Tile
+from app.util.filters.filter_dict import filter_dict
 
-
-def get_relative_tile(anchorTile: Tile, rel_x: int, rel_y: int) -> Tile | None:
-  target_row = anchorTile.row + rel_y
-  target_col = anchorTile.column + rel_x
-
-  # Check if target tile is within board bounds
-  if target_row < 0 or target_row >= game.board.height or target_col < 0 or target_col >= game.board.width:
-    return None
-
-  return next((t for t in game.board.tiles if t.row == target_row and t.column == target_col), None)
-
-
-
-def pattern_filter(anchorTile: Tile, nextFilter: Filter, patterns: List[Pattern]):
-  all_pattern_match = True
-  for pattern in patterns:
-    rel_coords = pattern.relativecoordinates 
-    match_mode = pattern.stateSelection # Can either be "StateBased", "OwnTiles", or "OpponentTiles"
-
-
-    active_player = game.activePlayer
-    opponents = [p for p in game.players if p != active_player]
-
-    # The state(s) to match against depends on the match mode. If there are multiple states, we only need
-    # all relative coordinates to match at least one of them.
-    match_state: list[str] = [pattern.matchState] if match_mode == "StateBased" else [ active_player.associatedState ] if match_mode == "OwnTiles" else [ opp.associatedState for opp in opponents ] 
-    print("Match states:", match_state)
-
-
-
-    all_match = True
-    for rel_coord in rel_coords:
-      target_row = anchorTile.row + rel_coord.y
-      target_col = anchorTile.column + rel_coord.x
-
-
-      # Check if target coordinates are within board bounds
-      if target_row < 0 or target_row >= game.board.height or target_col < 0 or target_col >= game.board.width:
-        all_match = False
-        break
-
-      target_tile = get_relative_tile(anchorTile, rel_coord.x, rel_coord.y)
-      print(f"Checking tile at ({target_col}, {target_row}): activeState {target_tile.activeState.name if target_tile else 'N/A'} against match states {match_state}")
-      if not target_tile or target_tile.activeState.name not in match_state:
-        print(f"Tile at ({target_col}, {target_row}) with state {target_tile.activeState.name if target_tile else 'N/A'} did not match any of {match_state}")
-        all_match = False
-        break
+def calculateLegalMoves(board: Board) -> List[Tile]:
+    pipeline = board.legalMovesPipeline
     
-    #burde if next filter loopen være en egen helper metode, hvis den gjenbrukes i alle filters?
-    if all_match:
-      if nextFilter:
-        method = method_dict.get(nextFilter.__class__.__name__)
-        if method:
-          return method(anchorTile, nextFilter.nextFilter, nextFilter.patterns)
+    # Safety check
+    if not pipeline or not pipeline.filters:
+        return []
+
+    first_filters = pipeline.filters
+    legal_moves: List[Tile] = []
+
+    # Define recursion logic
+    def recurse(current_filter: Filter, current_tiles: List[Tile]):
+        # 1. DYNAMICALLY look up the adapter for the CURRENT filter type
+        # This fixes the "Stale Adapter" bug
+        filter_type = current_filter.__class__.__name__
+        adapter = filter_dict.get(filter_type)
+        
+        if not adapter:
+            print(f"Warning: No adapter found for filter type {filter_type}")
+            return
+
+        # 2. Run the specific logic for this filter step
+        survivors = adapter(current_filter, current_tiles)
+
+        # If no tiles survived this step, stop immediately
+        if not survivors:
+            return
+
+        # 3. Check if there is a next step in the pipeline
+        next_filter = getattr(current_filter, 'nextFilter', None)
+
+        if next_filter:
+            # Pass the survivors to the next filter
+            recurse(next_filter, survivors)
         else:
-          return True
-      else:
-        return True
-    
-    return False
+            # 4. END OF CHAIN: Only now do we confirm these are valid moves
+            # This fixes the "Premature Add" bug
+            legal_moves.extend(survivors)
 
+    # Run the pipeline for every starting filter defined in the pipeline
+    for start_filter in first_filters:
+        # We loop through board tiles individually because your pattern_filter 
+        # implementation currently requires all input tiles to match or it returns empty.
+        for tile in board.tiles:
+            recurse(start_filter, [tile])
 
-
-method_dict = {
-  "PatternFilter": pattern_filter,
-}
-
-def calculateLegalMoves(board: Board):
-  pipeline = board.legalMovesPipeline
-  first_filter = pipeline.filter
-
-  legal_moves: List[Tile] = []
-  
-  method = method_dict.get(first_filter.__class__.__name__)
-  if method:
-    # Loop through all tiles, add the tile to the legal move list if the filter returns true
-    for tile in board.tiles:
-      if method(tile, first_filter.nextFilter, first_filter.patterns):
-        legal_moves.append(tile)
-  
-  
-  return legal_moves
-
-  
-
-   
-
-   
+    return legal_moves
