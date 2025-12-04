@@ -757,9 +757,9 @@ rule__Game__Group__7__Impl
 	}
 :
 (
-	{ before(grammarAccess.getGameAccess().getGroup_7()); }
-	(rule__Game__Group_7__0)?
-	{ after(grammarAccess.getGameAccess().getGroup_7()); }
+	{ before(grammarAccess.getGameAccess().getTurnPolicyKeyword_7()); }
+	'turnPolicy'
+	{ after(grammarAccess.getGameAccess().getTurnPolicyKeyword_7()); }
 )
 ;
 finally {
@@ -772,6 +772,7 @@ rule__Game__Group__8
 	}
 :
 	rule__Game__Group__8__Impl
+	rule__Game__Group__9
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -783,9 +784,35 @@ rule__Game__Group__8__Impl
 	}
 :
 (
-	{ before(grammarAccess.getGameAccess().getRightCurlyBracketKeyword_8()); }
+	{ before(grammarAccess.getGameAccess().getTurnPolicyAssignment_8()); }
+	(rule__Game__TurnPolicyAssignment_8)
+	{ after(grammarAccess.getGameAccess().getTurnPolicyAssignment_8()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Game__Group__9
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__Game__Group__9__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Game__Group__9__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getGameAccess().getRightCurlyBracketKeyword_9()); }
 	'}'
-	{ after(grammarAccess.getGameAccess().getRightCurlyBracketKeyword_8()); }
+	{ after(grammarAccess.getGameAccess().getRightCurlyBracketKeyword_9()); }
 )
 ;
 finally {
@@ -1029,195 +1056,6 @@ rule__Game__Group_6_3__1__Impl
 	{ before(grammarAccess.getGameAccess().getPlayersAssignment_6_3_1()); }
 	(rule__Game__PlayersAssignment_6_3_1)
 	{ after(grammarAccess.getGameAccess().getPlayersAssignment_6_3_1()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-rule__Game__Group_7__0
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__Game__Group_7__0__Impl
-	rule__Game__Group_7__1
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Game__Group_7__0__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getGameAccess().getTurnPolicyKeyword_7_0()); }
-	'turnPolicy'
-	{ after(grammarAccess.getGameAccess().getTurnPolicyKeyword_7_0()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Game__Group_7__1
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__Game__Group_7__1__Impl
-	rule__Game__Group_7__2
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Game__Group_7__1__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getGameAccess().getLeftCurlyBracketKeyword_7_1()); }
-	'{'
-	{ after(grammarAccess.getGameAccess().getLeftCurlyBracketKeyword_7_1()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Game__Group_7__2
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__Game__Group_7__2__Impl
-	rule__Game__Group_7__3
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Game__Group_7__2__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getGameAccess().getTurnPolicyAssignment_7_2()); }
-	(rule__Game__TurnPolicyAssignment_7_2)
-	{ after(grammarAccess.getGameAccess().getTurnPolicyAssignment_7_2()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Game__Group_7__3
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__Game__Group_7__3__Impl
-	rule__Game__Group_7__4
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Game__Group_7__3__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getGameAccess().getGroup_7_3()); }
-	(rule__Game__Group_7_3__0)*
-	{ after(grammarAccess.getGameAccess().getGroup_7_3()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Game__Group_7__4
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__Game__Group_7__4__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Game__Group_7__4__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getGameAccess().getRightCurlyBracketKeyword_7_4()); }
-	'}'
-	{ after(grammarAccess.getGameAccess().getRightCurlyBracketKeyword_7_4()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-rule__Game__Group_7_3__0
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__Game__Group_7_3__0__Impl
-	rule__Game__Group_7_3__1
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Game__Group_7_3__0__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getGameAccess().getCommaKeyword_7_3_0()); }
-	','
-	{ after(grammarAccess.getGameAccess().getCommaKeyword_7_3_0()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Game__Group_7_3__1
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__Game__Group_7_3__1__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Game__Group_7_3__1__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getGameAccess().getTurnPolicyAssignment_7_3_1()); }
-	(rule__Game__TurnPolicyAssignment_7_3_1)
-	{ after(grammarAccess.getGameAccess().getTurnPolicyAssignment_7_3_1()); }
 )
 ;
 finally {
@@ -6002,30 +5840,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Game__TurnPolicyAssignment_7_2
+rule__Game__TurnPolicyAssignment_8
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getGameAccess().getTurnPolicyTurnPolicyParserRuleCall_7_2_0()); }
+		{ before(grammarAccess.getGameAccess().getTurnPolicyTurnPolicyParserRuleCall_8_0()); }
 		ruleTurnPolicy
-		{ after(grammarAccess.getGameAccess().getTurnPolicyTurnPolicyParserRuleCall_7_2_0()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Game__TurnPolicyAssignment_7_3_1
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getGameAccess().getTurnPolicyTurnPolicyParserRuleCall_7_3_1_0()); }
-		ruleTurnPolicy
-		{ after(grammarAccess.getGameAccess().getTurnPolicyTurnPolicyParserRuleCall_7_3_1_0()); }
+		{ after(grammarAccess.getGameAccess().getTurnPolicyTurnPolicyParserRuleCall_8_0()); }
 	)
 ;
 finally {
