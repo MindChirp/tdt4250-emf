@@ -716,9 +716,29 @@ rulePlayer returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_5='}'
+		otherlv_5='associatedState'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getPlayerAccess().getRightCurlyBracketKeyword_5());
+			newLeafNode(otherlv_5, grammarAccess.getPlayerAccess().getAssociatedStateKeyword_5());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getPlayerRule());
+					}
+				}
+				{
+					newCompositeNode(grammarAccess.getPlayerAccess().getAssociatedStateStateCrossReference_6_0());
+				}
+				ruleEString
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_7='}'
+		{
+			newLeafNode(otherlv_7, grammarAccess.getPlayerAccess().getRightCurlyBracketKeyword_7());
 		}
 	)
 ;
@@ -1744,20 +1764,65 @@ rulePattern returns [EObject current=null]
 		{
 			newLeafNode(otherlv_2, grammarAccess.getPatternAccess().getLeftCurlyBracketKeyword_2());
 		}
-		otherlv_3='relativeCoordinates'
+		otherlv_3='stateSelection'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getPatternAccess().getRelativeCoordinatesKeyword_3());
-		}
-		otherlv_4='{'
-		{
-			newLeafNode(otherlv_4, grammarAccess.getPatternAccess().getLeftCurlyBracketKeyword_4());
+			newLeafNode(otherlv_3, grammarAccess.getPatternAccess().getStateSelectionKeyword_3());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPatternAccess().getRelativecoordinatesRelativeCoordinateParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getPatternAccess().getStateSelectionStateSelectionEnumRuleCall_4_0());
 				}
-				lv_relativecoordinates_5_0=ruleRelativeCoordinate
+				lv_stateSelection_4_0=ruleStateSelection
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPatternRule());
+					}
+					set(
+						$current,
+						"stateSelection",
+						lv_stateSelection_4_0,
+						"no.ntnu.tdt4250.bg.bgdsl.BgDsl.StateSelection");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			otherlv_5='matchState'
+			{
+				newLeafNode(otherlv_5, grammarAccess.getPatternAccess().getMatchStateKeyword_5_0());
+			}
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getPatternRule());
+						}
+					}
+					{
+						newCompositeNode(grammarAccess.getPatternAccess().getMatchStateStateCrossReference_5_1_0());
+					}
+					ruleEString
+					{
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		otherlv_7='relativeCoordinates'
+		{
+			newLeafNode(otherlv_7, grammarAccess.getPatternAccess().getRelativeCoordinatesKeyword_6());
+		}
+		otherlv_8='{'
+		{
+			newLeafNode(otherlv_8, grammarAccess.getPatternAccess().getLeftCurlyBracketKeyword_7());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPatternAccess().getRelativecoordinatesRelativeCoordinateParserRuleCall_8_0());
+				}
+				lv_relativecoordinates_9_0=ruleRelativeCoordinate
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPatternRule());
@@ -1765,23 +1830,23 @@ rulePattern returns [EObject current=null]
 					add(
 						$current,
 						"relativecoordinates",
-						lv_relativecoordinates_5_0,
+						lv_relativecoordinates_9_0,
 						"no.ntnu.tdt4250.bg.bgdsl.BgDsl.RelativeCoordinate");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
 		(
-			otherlv_6=','
+			otherlv_10=','
 			{
-				newLeafNode(otherlv_6, grammarAccess.getPatternAccess().getCommaKeyword_6_0());
+				newLeafNode(otherlv_10, grammarAccess.getPatternAccess().getCommaKeyword_9_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPatternAccess().getRelativecoordinatesRelativeCoordinateParserRuleCall_6_1_0());
+						newCompositeNode(grammarAccess.getPatternAccess().getRelativecoordinatesRelativeCoordinateParserRuleCall_9_1_0());
 					}
-					lv_relativecoordinates_7_0=ruleRelativeCoordinate
+					lv_relativecoordinates_11_0=ruleRelativeCoordinate
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPatternRule());
@@ -1789,20 +1854,20 @@ rulePattern returns [EObject current=null]
 						add(
 							$current,
 							"relativecoordinates",
-							lv_relativecoordinates_7_0,
+							lv_relativecoordinates_11_0,
 							"no.ntnu.tdt4250.bg.bgdsl.BgDsl.RelativeCoordinate");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)*
-		otherlv_8='}'
+		otherlv_12='}'
 		{
-			newLeafNode(otherlv_8, grammarAccess.getPatternAccess().getRightCurlyBracketKeyword_7());
+			newLeafNode(otherlv_12, grammarAccess.getPatternAccess().getRightCurlyBracketKeyword_10());
 		}
-		otherlv_9='}'
+		otherlv_13='}'
 		{
-			newLeafNode(otherlv_9, grammarAccess.getPatternAccess().getRightCurlyBracketKeyword_8());
+			newLeafNode(otherlv_13, grammarAccess.getPatternAccess().getRightCurlyBracketKeyword_11());
 		}
 	)
 ;
@@ -1906,6 +1971,41 @@ ruleTurnType returns [Enumerator current=null]
 			{
 				$current = grammarAccess.getTurnTypeAccess().getSimultaneousEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_1, grammarAccess.getTurnTypeAccess().getSimultaneousEnumLiteralDeclaration_1());
+			}
+		)
+	)
+;
+
+// Rule StateSelection
+ruleStateSelection returns [Enumerator current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			enumLiteral_0='CurrentPlayer'
+			{
+				$current = grammarAccess.getStateSelectionAccess().getCurrentPlayerEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getStateSelectionAccess().getCurrentPlayerEnumLiteralDeclaration_0());
+			}
+		)
+		    |
+		(
+			enumLiteral_1='OtherPlayer'
+			{
+				$current = grammarAccess.getStateSelectionAccess().getOtherPlayerEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getStateSelectionAccess().getOtherPlayerEnumLiteralDeclaration_1());
+			}
+		)
+		    |
+		(
+			enumLiteral_2='State'
+			{
+				$current = grammarAccess.getStateSelectionAccess().getStateEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_2, grammarAccess.getStateSelectionAccess().getStateEnumLiteralDeclaration_2());
 			}
 		)
 	)

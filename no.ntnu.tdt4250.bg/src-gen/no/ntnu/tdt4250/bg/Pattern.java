@@ -18,7 +18,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.ntnu.tdt4250.bg.Pattern#getRelativecoordinates <em>Relativecoordinates</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Pattern#getName <em>Name</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.Pattern#getTileTypeName <em>Tile Type Name</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.Pattern#getTileStateName <em>Tile State Name</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.Pattern#getStateSelection <em>State Selection</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.Pattern#getMatchState <em>Match State</em>}</li>
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getPattern()
@@ -83,25 +84,50 @@ public interface Pattern extends EObject {
 	void setTileTypeName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Tile State Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>State Selection</b></em>' attribute.
+	 * The literals are from the enumeration {@link no.ntnu.tdt4250.bg.StateSelection}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Tile State Name</em>' attribute.
-	 * @see #setTileStateName(String)
-	 * @see no.ntnu.tdt4250.bg.BgPackage#getPattern_TileStateName()
+	 * @return the value of the '<em>State Selection</em>' attribute.
+	 * @see no.ntnu.tdt4250.bg.StateSelection
+	 * @see #setStateSelection(StateSelection)
+	 * @see no.ntnu.tdt4250.bg.BgPackage#getPattern_StateSelection()
 	 * @model
 	 * @generated
 	 */
-	String getTileStateName();
+	StateSelection getStateSelection();
 
 	/**
-	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Pattern#getTileStateName <em>Tile State Name</em>}' attribute.
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Pattern#getStateSelection <em>State Selection</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Tile State Name</em>' attribute.
-	 * @see #getTileStateName()
+	 * @param value the new value of the '<em>State Selection</em>' attribute.
+	 * @see no.ntnu.tdt4250.bg.StateSelection
+	 * @see #getStateSelection()
 	 * @generated
 	 */
-	void setTileStateName(String value);
+	void setStateSelection(StateSelection value);
+
+	/**
+	 * Returns the value of the '<em><b>Match State</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Match State</em>' reference.
+	 * @see #setMatchState(State)
+	 * @see no.ntnu.tdt4250.bg.BgPackage#getPattern_MatchState()
+	 * @model
+	 * @generated
+	 */
+	State getMatchState();
+
+	/**
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.Pattern#getMatchState <em>Match State</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Match State</em>' reference.
+	 * @see #getMatchState()
+	 * @generated
+	 */
+	void setMatchState(State value);
 
 } // Pattern

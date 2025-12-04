@@ -58,7 +58,8 @@ public class PatternItemProvider extends ItemProviderAdapter implements IEditing
 
 			addNamePropertyDescriptor(object);
 			addTileTypeNamePropertyDescriptor(object);
-			addTileStateNamePropertyDescriptor(object);
+			addStateSelectionPropertyDescriptor(object);
+			addMatchStatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -95,19 +96,34 @@ public class PatternItemProvider extends ItemProviderAdapter implements IEditing
 	}
 
 	/**
-	 * This adds a property descriptor for the Tile State Name feature.
+	 * This adds a property descriptor for the State Selection feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTileStateNamePropertyDescriptor(Object object) {
+	protected void addStateSelectionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Pattern_tileStateName_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Pattern_tileStateName_feature",
+						getResourceLocator(), getString("_UI_Pattern_stateSelection_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Pattern_stateSelection_feature",
 								"_UI_Pattern_type"),
-						BgPackage.Literals.PATTERN__TILE_STATE_NAME, true, false, false,
+						BgPackage.Literals.PATTERN__STATE_SELECTION, true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Match State feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMatchStatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Pattern_matchState_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Pattern_matchState_feature",
+								"_UI_Pattern_type"),
+						BgPackage.Literals.PATTERN__MATCH_STATE, true, false, true, null, null, null));
 	}
 
 	/**
@@ -188,7 +204,7 @@ public class PatternItemProvider extends ItemProviderAdapter implements IEditing
 		switch (notification.getFeatureID(Pattern.class)) {
 		case BgPackage.PATTERN__NAME:
 		case BgPackage.PATTERN__TILE_TYPE_NAME:
-		case BgPackage.PATTERN__TILE_STATE_NAME:
+		case BgPackage.PATTERN__STATE_SELECTION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case BgPackage.PATTERN__RELATIVECOORDINATES:

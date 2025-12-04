@@ -5,10 +5,12 @@ package no.ntnu.tdt4250.bg.impl;
 import no.ntnu.tdt4250.bg.BgPackage;
 import no.ntnu.tdt4250.bg.Player;
 
+import no.ntnu.tdt4250.bg.State;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -22,6 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.PlayerImpl#getName <em>Name</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.PlayerImpl#getHexColor <em>Hex Color</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.impl.PlayerImpl#getAssociatedState <em>Associated State</em>}</li>
  * </ul>
  *
  * @generated
@@ -66,6 +69,16 @@ public class PlayerImpl extends MinimalEObjectImpl.Container implements Player {
 	 * @ordered
 	 */
 	protected String hexColor = HEX_COLOR_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getAssociatedState() <em>Associated State</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssociatedState()
+	 * @generated
+	 * @ordered
+	 */
+	protected State associatedState;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -138,12 +151,58 @@ public class PlayerImpl extends MinimalEObjectImpl.Container implements Player {
 	 * @generated
 	 */
 	@Override
+	public State getAssociatedState() {
+		if (associatedState != null && associatedState.eIsProxy()) {
+			InternalEObject oldAssociatedState = (InternalEObject) associatedState;
+			associatedState = (State) eResolveProxy(oldAssociatedState);
+			if (associatedState != oldAssociatedState) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BgPackage.PLAYER__ASSOCIATED_STATE,
+							oldAssociatedState, associatedState));
+			}
+		}
+		return associatedState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public State basicGetAssociatedState() {
+		return associatedState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setAssociatedState(State newAssociatedState) {
+		State oldAssociatedState = associatedState;
+		associatedState = newAssociatedState;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.PLAYER__ASSOCIATED_STATE,
+					oldAssociatedState, associatedState));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case BgPackage.PLAYER__NAME:
 			return getName();
 		case BgPackage.PLAYER__HEX_COLOR:
 			return getHexColor();
+		case BgPackage.PLAYER__ASSOCIATED_STATE:
+			if (resolve)
+				return getAssociatedState();
+			return basicGetAssociatedState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -161,6 +220,9 @@ public class PlayerImpl extends MinimalEObjectImpl.Container implements Player {
 			return;
 		case BgPackage.PLAYER__HEX_COLOR:
 			setHexColor((String) newValue);
+			return;
+		case BgPackage.PLAYER__ASSOCIATED_STATE:
+			setAssociatedState((State) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -180,6 +242,9 @@ public class PlayerImpl extends MinimalEObjectImpl.Container implements Player {
 		case BgPackage.PLAYER__HEX_COLOR:
 			setHexColor(HEX_COLOR_EDEFAULT);
 			return;
+		case BgPackage.PLAYER__ASSOCIATED_STATE:
+			setAssociatedState((State) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -196,6 +261,8 @@ public class PlayerImpl extends MinimalEObjectImpl.Container implements Player {
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case BgPackage.PLAYER__HEX_COLOR:
 			return HEX_COLOR_EDEFAULT == null ? hexColor != null : !HEX_COLOR_EDEFAULT.equals(hexColor);
+		case BgPackage.PLAYER__ASSOCIATED_STATE:
+			return associatedState != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -122,6 +122,8 @@ public class BgValidator extends EObjectValidator {
 			return validateRelativeCoordinate((RelativeCoordinate) value, diagnostics, context);
 		case BgPackage.TURN_TYPE:
 			return validateTurnType((TurnType) value, diagnostics, context);
+		case BgPackage.STATE_SELECTION:
+			return validateStateSelection((StateSelection) value, diagnostics, context);
 		default:
 			return true;
 		}
@@ -1135,6 +1137,16 @@ public class BgValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTurnType(TurnType turnType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStateSelection(StateSelection stateSelection, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return true;
 	}
 
