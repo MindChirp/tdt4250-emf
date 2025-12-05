@@ -18,6 +18,7 @@ def calculateEffects(tile: Tile):
         # This fixes the "Stale Adapter" bug
         filter_type = current_filter.__class__.__name__
         adapter = filter_dict.get(filter_type)
+
         
         if not adapter:
             print(f"Warning: No adapter found for filter type {filter_type}")
