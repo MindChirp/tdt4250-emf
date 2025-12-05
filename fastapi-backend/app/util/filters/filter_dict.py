@@ -21,7 +21,7 @@ except Exception as e:
 try:
   from app.generated.game import IterativeFilter
   def adapt_iterative_filter(f: IterativeFilter, tiles: List[Tile]) -> List[Tile]:
-    return iterative_filter(tiles, f.matchRule, f.endRule, f.directionVector)
+    return iterative_filter(tiles, f.matchRule, f.endRule, f.directionVectors)
 except Exception as e:
   print(e)
 

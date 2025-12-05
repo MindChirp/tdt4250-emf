@@ -40,7 +40,6 @@ def calculateLegalMoves(board: Board) -> List[Tile]:
             # 4. END OF CHAIN: Only now do we confirm these are valid moves
             # This fixes the "Premature Add" bug
             if (len(survivors) > 0):
-                print(f"Legal move found: {survivors[0].column} {survivors[0].row}")
                 return survivors                   
 
     # Run the pipeline for every starting filter defined in the pipeline
@@ -49,7 +48,6 @@ def calculateLegalMoves(board: Board) -> List[Tile]:
         # implementation currently requires all input tiles to match or it returns empty.
         for tile in board.tiles:
             result = recurse(start_filter, [tile])
-            # print(f"Tile {tile.column} {tile.row} resulted in {result}")
             if result:
                 is_legal = len(result) > 0
                 if is_legal:

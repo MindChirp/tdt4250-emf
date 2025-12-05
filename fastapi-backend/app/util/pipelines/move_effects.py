@@ -1,7 +1,7 @@
 from typing import List, Optional
 from app.generated.game import (
     Board, Pattern, Tile,
-    StateEffectFilter, PatternFilter, WinConditionFilter,
+    StateEffectFilter, PatternFilter,
     game
 )
 
@@ -83,22 +83,28 @@ def state_effect_filter(tile_context: List[Tile], filterObj: StateEffectFilter) 
  
     return tile_context
 
-def win_condition_filter(board: Board, winFilter: WinConditionFilter) -> bool:
-    """
-    WinConditionFilter ALWAYS checks the entire board, not affected tiles.
-    """
+win_condition_filter = None
 
-    board_tiles = game.board.tiles
-    
-    print("checking legal moves")
+try:
+    from app.generated.game import WinConditionFilter
+    def win_condition_filter(board: Board, winFilter: WinConditionFilter) -> bool:
+        """
+        WinConditionFilter ALWAYS checks the entire board, not affected tiles.
+        """
 
-    for tile in board_tiles:
-        for pattern in winFilter.patterns:
-            if matches_pattern(tile, pattern):
-                print(f"WINNER: {game.activePlayer.name}")
-                return True
+        board_tiles = game.board.tiles
+        
 
-    return False
+        for tile in board_tiles:
+            for pattern in winFilter.patterns:
+                if matches_pattern(tile, pattern):
+                    print(f"WINNER: {game.activePlayer.name}")
+                    return True
+
+        return False
+except Exception as e:
+   print(e) 
+
 
 LOCAL_FILTERS = {
     "StateEffectFilter": state_effect_filter,

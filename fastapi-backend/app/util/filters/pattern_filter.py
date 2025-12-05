@@ -26,6 +26,7 @@ def pattern_filter(tiles: List[Tile], patterns: List[Pattern]):
           break
   
   if all_pattern_match:
+    print("Pattern matched!")
     return tiles
   return []
 

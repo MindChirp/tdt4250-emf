@@ -46,13 +46,14 @@ def calculateEffects(tile: Tile):
         # implementation currently requires all input tiles to match or it returns empty.
         recurse(start_filter, [tile])
     for start_filter in first_filters:
-        current = start_filter
+        pass
+        # current = start_filter
 
-        while current:
-            if isinstance(current, WinConditionFilter):
-                if win_condition_filter(game.board, current):
-                    return True
-            current = current.nextFilter
+        # while current:
+        #     if isinstance(current, WinConditionFilter):
+        #         if win_condition_filter(game.board, current):
+        #             return True
+        #     current = current.nextFilter
 
     return False
     
