@@ -56,6 +56,7 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEffectPipelineAccess().getGroup_3(), "rule__EffectPipeline__Group_3__0");
 			builder.put(grammarAccess.getEffectPipelineAccess().getGroup_3_3(), "rule__EffectPipeline__Group_3_3__0");
 			builder.put(grammarAccess.getTilePlacementAccess().getGroup(), "rule__TilePlacement__Group__0");
+			builder.put(grammarAccess.getTilePlacementAccess().getGroup_8(), "rule__TilePlacement__Group_8__0");
 			builder.put(grammarAccess.getStateAccess().getGroup(), "rule__State__Group__0");
 			builder.put(grammarAccess.getStateAccess().getGroup_5(), "rule__State__Group_5__0");
 			builder.put(grammarAccess.getStateAccess().getGroup_5_3(), "rule__State__Group_5_3__0");
@@ -68,6 +69,7 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPatternFilterAccess().getGroup_7(), "rule__PatternFilter__Group_7__0");
 			builder.put(grammarAccess.getIterativeFilterAccess().getGroup(), "rule__IterativeFilter__Group__0");
 			builder.put(grammarAccess.getIterativeFilterAccess().getGroup_3(), "rule__IterativeFilter__Group_3__0");
+			builder.put(grammarAccess.getIterativeFilterAccess().getGroup_7(), "rule__IterativeFilter__Group_7__0");
 			builder.put(grammarAccess.getStateEffectFilterAccess().getGroup(), "rule__StateEffectFilter__Group__0");
 			builder.put(grammarAccess.getStateEffectFilterAccess().getGroup_5(), "rule__StateEffectFilter__Group_5__0");
 			builder.put(grammarAccess.getStateEffectFilterAccess().getGroup_6(), "rule__StateEffectFilter__Group_6__0");
@@ -112,6 +114,7 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTilePlacementAccess().getRowAssignment_3(), "rule__TilePlacement__RowAssignment_3");
 			builder.put(grammarAccess.getTilePlacementAccess().getColumnAssignment_5(), "rule__TilePlacement__ColumnAssignment_5");
 			builder.put(grammarAccess.getTilePlacementAccess().getTileAssignment_7(), "rule__TilePlacement__TileAssignment_7");
+			builder.put(grammarAccess.getTilePlacementAccess().getInitialStateAssignment_8_1(), "rule__TilePlacement__InitialStateAssignment_8_1");
 			builder.put(grammarAccess.getStateAccess().getNameAssignment_1(), "rule__State__NameAssignment_1");
 			builder.put(grammarAccess.getStateAccess().getHexColorAssignment_4(), "rule__State__HexColorAssignment_4");
 			builder.put(grammarAccess.getStateAccess().getOutboundAssignment_5_2(), "rule__State__OutboundAssignment_5_2");
@@ -128,9 +131,10 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPatternFilterAccess().getPatternsAssignment_7_1(), "rule__PatternFilter__PatternsAssignment_7_1");
 			builder.put(grammarAccess.getIterativeFilterAccess().getNameAssignment_1(), "rule__IterativeFilter__NameAssignment_1");
 			builder.put(grammarAccess.getIterativeFilterAccess().getNextFilterAssignment_3_1(), "rule__IterativeFilter__NextFilterAssignment_3_1");
-			builder.put(grammarAccess.getIterativeFilterAccess().getDirectionVectorAssignment_5(), "rule__IterativeFilter__DirectionVectorAssignment_5");
-			builder.put(grammarAccess.getIterativeFilterAccess().getMatchRuleAssignment_7(), "rule__IterativeFilter__MatchRuleAssignment_7");
-			builder.put(grammarAccess.getIterativeFilterAccess().getEndRuleAssignment_9(), "rule__IterativeFilter__EndRuleAssignment_9");
+			builder.put(grammarAccess.getIterativeFilterAccess().getDirectionVectorsAssignment_6(), "rule__IterativeFilter__DirectionVectorsAssignment_6");
+			builder.put(grammarAccess.getIterativeFilterAccess().getDirectionVectorsAssignment_7_1(), "rule__IterativeFilter__DirectionVectorsAssignment_7_1");
+			builder.put(grammarAccess.getIterativeFilterAccess().getMatchRuleAssignment_10(), "rule__IterativeFilter__MatchRuleAssignment_10");
+			builder.put(grammarAccess.getIterativeFilterAccess().getEndRuleAssignment_12(), "rule__IterativeFilter__EndRuleAssignment_12");
 			builder.put(grammarAccess.getStateEffectFilterAccess().getNameAssignment_1(), "rule__StateEffectFilter__NameAssignment_1");
 			builder.put(grammarAccess.getStateEffectFilterAccess().getStateSelectionAssignment_4(), "rule__StateEffectFilter__StateSelectionAssignment_4");
 			builder.put(grammarAccess.getStateEffectFilterAccess().getTargetStateAssignment_5_1(), "rule__StateEffectFilter__TargetStateAssignment_5_1");

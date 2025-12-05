@@ -162,7 +162,14 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     IterativeFilter returns IterativeFilter
 	 *
 	 * Constraint:
-	 *     (name=EString nextFilter=Filter? directionVector=RelativeCoordinate matchRule=Pattern endRule=Pattern)
+	 *     (
+	 *         name=EString 
+	 *         nextFilter=Filter? 
+	 *         directionVectors+=RelativeCoordinate 
+	 *         directionVectors+=RelativeCoordinate* 
+	 *         matchRule=Pattern 
+	 *         endRule=Pattern
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_IterativeFilter(ISerializationContext context, IterativeFilter semanticObject) {
@@ -308,23 +315,11 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TilePlacement returns TilePlacement
 	 *
 	 * Constraint:
-	 *     (row=EInt column=EInt tile=[Tile|EString])
+	 *     (row=EInt column=EInt tile=[Tile|EString] initialState=[State|EString]?)
 	 * </pre>
 	 */
 	protected void sequence_TilePlacement(ISerializationContext context, TilePlacement semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BgPackage.Literals.TILE_PLACEMENT__ROW) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BgPackage.Literals.TILE_PLACEMENT__ROW));
-			if (transientValues.isValueTransient(semanticObject, BgPackage.Literals.TILE_PLACEMENT__COLUMN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BgPackage.Literals.TILE_PLACEMENT__COLUMN));
-			if (transientValues.isValueTransient(semanticObject, BgPackage.Literals.TILE_PLACEMENT__TILE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BgPackage.Literals.TILE_PLACEMENT__TILE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTilePlacementAccess().getRowEIntParserRuleCall_3_0(), semanticObject.getRow());
-		feeder.accept(grammarAccess.getTilePlacementAccess().getColumnEIntParserRuleCall_5_0(), semanticObject.getColumn());
-		feeder.accept(grammarAccess.getTilePlacementAccess().getTileTileEStringParserRuleCall_7_0_1(), semanticObject.eGet(BgPackage.Literals.TILE_PLACEMENT__TILE, false));
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

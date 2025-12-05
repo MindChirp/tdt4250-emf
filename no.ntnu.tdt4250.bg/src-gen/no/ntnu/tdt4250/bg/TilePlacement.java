@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.ntnu.tdt4250.bg.TilePlacement#getColumn <em>Column</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.TilePlacement#getTile <em>Tile</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.TilePlacement#isDarker <em>Darker</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.TilePlacement#getInitialState <em>Initial State</em>}</li>
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getTilePlacement()
@@ -100,5 +101,27 @@ public interface TilePlacement extends EObject {
 	 * @generated
 	 */
 	boolean isDarker();
+
+	/**
+	 * Returns the value of the '<em><b>Initial State</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Initial State</em>' reference.
+	 * @see #setInitialState(State)
+	 * @see no.ntnu.tdt4250.bg.BgPackage#getTilePlacement_InitialState()
+	 * @model
+	 * @generated
+	 */
+	State getInitialState();
+
+	/**
+	 * Sets the value of the '{@link no.ntnu.tdt4250.bg.TilePlacement#getInitialState <em>Initial State</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Initial State</em>' reference.
+	 * @see #getInitialState()
+	 * @generated
+	 */
+	void setInitialState(State value);
 
 } // TilePlacement

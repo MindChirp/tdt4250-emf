@@ -4,6 +4,7 @@ package no.ntnu.tdt4250.bg.impl;
 
 import no.ntnu.tdt4250.bg.BgPackage;
 import no.ntnu.tdt4250.bg.Board;
+import no.ntnu.tdt4250.bg.State;
 import no.ntnu.tdt4250.bg.Tile;
 import no.ntnu.tdt4250.bg.TilePlacement;
 
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TilePlacementImpl#getColumn <em>Column</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TilePlacementImpl#getTile <em>Tile</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TilePlacementImpl#isDarker <em>Darker</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.impl.TilePlacementImpl#getInitialState <em>Initial State</em>}</li>
  * </ul>
  *
  * @generated
@@ -91,6 +93,16 @@ public class TilePlacementImpl extends MinimalEObjectImpl.Container implements T
 	 * @ordered
 	 */
 	protected static final boolean DARKER_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #getInitialState() <em>Initial State</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInitialState()
+	 * @generated
+	 * @ordered
+	 */
+	protected State initialState;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -215,6 +227,48 @@ public class TilePlacementImpl extends MinimalEObjectImpl.Container implements T
 	 * @generated
 	 */
 	@Override
+	public State getInitialState() {
+		if (initialState != null && initialState.eIsProxy()) {
+			InternalEObject oldInitialState = (InternalEObject) initialState;
+			initialState = (State) eResolveProxy(oldInitialState);
+			if (initialState != oldInitialState) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BgPackage.TILE_PLACEMENT__INITIAL_STATE,
+							oldInitialState, initialState));
+			}
+		}
+		return initialState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public State basicGetInitialState() {
+		return initialState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setInitialState(State newInitialState) {
+		State oldInitialState = initialState;
+		initialState = newInitialState;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.TILE_PLACEMENT__INITIAL_STATE,
+					oldInitialState, initialState));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case BgPackage.TILE_PLACEMENT__ROW:
@@ -227,6 +281,10 @@ public class TilePlacementImpl extends MinimalEObjectImpl.Container implements T
 			return basicGetTile();
 		case BgPackage.TILE_PLACEMENT__DARKER:
 			return isDarker();
+		case BgPackage.TILE_PLACEMENT__INITIAL_STATE:
+			if (resolve)
+				return getInitialState();
+			return basicGetInitialState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -247,6 +305,9 @@ public class TilePlacementImpl extends MinimalEObjectImpl.Container implements T
 			return;
 		case BgPackage.TILE_PLACEMENT__TILE:
 			setTile((Tile) newValue);
+			return;
+		case BgPackage.TILE_PLACEMENT__INITIAL_STATE:
+			setInitialState((State) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -269,6 +330,9 @@ public class TilePlacementImpl extends MinimalEObjectImpl.Container implements T
 		case BgPackage.TILE_PLACEMENT__TILE:
 			setTile((Tile) null);
 			return;
+		case BgPackage.TILE_PLACEMENT__INITIAL_STATE:
+			setInitialState((State) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -289,6 +353,8 @@ public class TilePlacementImpl extends MinimalEObjectImpl.Container implements T
 			return tile != null;
 		case BgPackage.TILE_PLACEMENT__DARKER:
 			return isDarker() != DARKER_EDEFAULT;
+		case BgPackage.TILE_PLACEMENT__INITIAL_STATE:
+			return initialState != null;
 		}
 		return super.eIsSet(featureID);
 	}

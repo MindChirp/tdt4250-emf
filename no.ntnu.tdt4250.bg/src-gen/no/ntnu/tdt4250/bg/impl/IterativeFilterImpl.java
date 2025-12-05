@@ -2,6 +2,7 @@
  */
 package no.ntnu.tdt4250.bg.impl;
 
+import java.util.Collection;
 import no.ntnu.tdt4250.bg.BgPackage;
 import no.ntnu.tdt4250.bg.IterativeFilter;
 import no.ntnu.tdt4250.bg.Pattern;
@@ -10,10 +11,13 @@ import no.ntnu.tdt4250.bg.RelativeCoordinate;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link no.ntnu.tdt4250.bg.impl.IterativeFilterImpl#getDirectionVector <em>Direction Vector</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.impl.IterativeFilterImpl#getDirectionVectors <em>Direction Vectors</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.IterativeFilterImpl#getMatchRule <em>Match Rule</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.IterativeFilterImpl#getEndRule <em>End Rule</em>}</li>
  * </ul>
@@ -32,14 +36,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class IterativeFilterImpl extends FilterImpl implements IterativeFilter {
 	/**
-	 * The cached value of the '{@link #getDirectionVector() <em>Direction Vector</em>}' containment reference.
+	 * The cached value of the '{@link #getDirectionVectors() <em>Direction Vectors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDirectionVector()
+	 * @see #getDirectionVectors()
 	 * @generated
 	 * @ordered
 	 */
-	protected RelativeCoordinate directionVector;
+	protected EList<RelativeCoordinate> directionVectors;
 
 	/**
 	 * The cached value of the '{@link #getMatchRule() <em>Match Rule</em>}' containment reference.
@@ -86,50 +90,12 @@ public class IterativeFilterImpl extends FilterImpl implements IterativeFilter {
 	 * @generated
 	 */
 	@Override
-	public RelativeCoordinate getDirectionVector() {
-		return directionVector;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDirectionVector(RelativeCoordinate newDirectionVector, NotificationChain msgs) {
-		RelativeCoordinate oldDirectionVector = directionVector;
-		directionVector = newDirectionVector;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					BgPackage.ITERATIVE_FILTER__DIRECTION_VECTOR, oldDirectionVector, newDirectionVector);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+	public EList<RelativeCoordinate> getDirectionVectors() {
+		if (directionVectors == null) {
+			directionVectors = new EObjectContainmentEList<RelativeCoordinate>(RelativeCoordinate.class, this,
+					BgPackage.ITERATIVE_FILTER__DIRECTION_VECTORS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDirectionVector(RelativeCoordinate newDirectionVector) {
-		if (newDirectionVector != directionVector) {
-			NotificationChain msgs = null;
-			if (directionVector != null)
-				msgs = ((InternalEObject) directionVector).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - BgPackage.ITERATIVE_FILTER__DIRECTION_VECTOR, null, msgs);
-			if (newDirectionVector != null)
-				msgs = ((InternalEObject) newDirectionVector).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - BgPackage.ITERATIVE_FILTER__DIRECTION_VECTOR, null, msgs);
-			msgs = basicSetDirectionVector(newDirectionVector, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.ITERATIVE_FILTER__DIRECTION_VECTOR,
-					newDirectionVector, newDirectionVector));
+		return directionVectors;
 	}
 
 	/**
@@ -244,8 +210,8 @@ public class IterativeFilterImpl extends FilterImpl implements IterativeFilter {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case BgPackage.ITERATIVE_FILTER__DIRECTION_VECTOR:
-			return basicSetDirectionVector(null, msgs);
+		case BgPackage.ITERATIVE_FILTER__DIRECTION_VECTORS:
+			return ((InternalEList<?>) getDirectionVectors()).basicRemove(otherEnd, msgs);
 		case BgPackage.ITERATIVE_FILTER__MATCH_RULE:
 			return basicSetMatchRule(null, msgs);
 		case BgPackage.ITERATIVE_FILTER__END_RULE:
@@ -262,8 +228,8 @@ public class IterativeFilterImpl extends FilterImpl implements IterativeFilter {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case BgPackage.ITERATIVE_FILTER__DIRECTION_VECTOR:
-			return getDirectionVector();
+		case BgPackage.ITERATIVE_FILTER__DIRECTION_VECTORS:
+			return getDirectionVectors();
 		case BgPackage.ITERATIVE_FILTER__MATCH_RULE:
 			return getMatchRule();
 		case BgPackage.ITERATIVE_FILTER__END_RULE:
@@ -277,11 +243,13 @@ public class IterativeFilterImpl extends FilterImpl implements IterativeFilter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case BgPackage.ITERATIVE_FILTER__DIRECTION_VECTOR:
-			setDirectionVector((RelativeCoordinate) newValue);
+		case BgPackage.ITERATIVE_FILTER__DIRECTION_VECTORS:
+			getDirectionVectors().clear();
+			getDirectionVectors().addAll((Collection<? extends RelativeCoordinate>) newValue);
 			return;
 		case BgPackage.ITERATIVE_FILTER__MATCH_RULE:
 			setMatchRule((Pattern) newValue);
@@ -301,8 +269,8 @@ public class IterativeFilterImpl extends FilterImpl implements IterativeFilter {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case BgPackage.ITERATIVE_FILTER__DIRECTION_VECTOR:
-			setDirectionVector((RelativeCoordinate) null);
+		case BgPackage.ITERATIVE_FILTER__DIRECTION_VECTORS:
+			getDirectionVectors().clear();
 			return;
 		case BgPackage.ITERATIVE_FILTER__MATCH_RULE:
 			setMatchRule((Pattern) null);
@@ -322,8 +290,8 @@ public class IterativeFilterImpl extends FilterImpl implements IterativeFilter {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case BgPackage.ITERATIVE_FILTER__DIRECTION_VECTOR:
-			return directionVector != null;
+		case BgPackage.ITERATIVE_FILTER__DIRECTION_VECTORS:
+			return directionVectors != null && !directionVectors.isEmpty();
 		case BgPackage.ITERATIVE_FILTER__MATCH_RULE:
 			return matchRule != null;
 		case BgPackage.ITERATIVE_FILTER__END_RULE:

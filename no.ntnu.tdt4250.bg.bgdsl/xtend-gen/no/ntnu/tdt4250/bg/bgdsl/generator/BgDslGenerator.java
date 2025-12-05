@@ -102,10 +102,10 @@ public class BgDslGenerator extends AbstractGenerator {
                     _builder.append("activeState: \"State\"");
                     _builder.newLine();
                     _builder.append("    ");
-                    _builder.append("row: \"int\"");
+                    _builder.append("column: \"int\"");
                     _builder.newLine();
                     _builder.append("    ");
-                    _builder.append("column: \"int\"");
+                    _builder.append("row: \"int\"");
                     _builder.newLine();
                     _builder.append("    ");
                     _builder.newLine();
@@ -203,15 +203,43 @@ public class BgDslGenerator extends AbstractGenerator {
                             _builder.append("    ");
                             _builder.append("associatedState: \"str\"");
                             _builder.newLine();
+                            _builder.append("    ");
                             _builder.newLine();
                           } else {
-                            {
-                              EList<EStructuralFeature> _eAllStructuralFeatures_1 = model.getEAllStructuralFeatures();
-                              for(final EStructuralFeature field_1 : _eAllStructuralFeatures_1) {
-                                _builder.append("    ");
-                                CharSequence _pythonFieldDec_1 = this.toPythonFieldDec(field_1);
-                                _builder.append(_pythonFieldDec_1, "    ");
-                                _builder.newLineIfNotEmpty();
+                            String _name_8 = model.getName();
+                            boolean _equals_6 = Objects.equals(_name_8, "Game");
+                            if (_equals_6) {
+                              _builder.append("    ");
+                              _builder.append("board: \"Board\"");
+                              _builder.newLine();
+                              _builder.append("    ");
+                              _builder.append("name: \"str\"");
+                              _builder.newLine();
+                              _builder.append("    ");
+                              _builder.append("players: List[\"Player\"] = []");
+                              _builder.newLine();
+                              _builder.append("    ");
+                              _builder.append("initialPlayer: \"Player\"");
+                              _builder.newLine();
+                              _builder.append("    ");
+                              _builder.append("activePlayer: \"Player\"");
+                              _builder.newLine();
+                              _builder.append("    ");
+                              _builder.append("turnPolicy: \"str\"");
+                              _builder.newLine();
+                              _builder.append("    ");
+                              _builder.append("winMessage: \"str\" = None");
+                              _builder.newLine();
+                              _builder.newLine();
+                            } else {
+                              {
+                                EList<EStructuralFeature> _eAllStructuralFeatures_1 = model.getEAllStructuralFeatures();
+                                for(final EStructuralFeature field_1 : _eAllStructuralFeatures_1) {
+                                  _builder.append("    ");
+                                  CharSequence _pythonFieldDec_1 = this.toPythonFieldDec(field_1);
+                                  _builder.append(_pythonFieldDec_1, "    ");
+                                  _builder.newLineIfNotEmpty();
+                                }
                               }
                             }
                           }
@@ -234,11 +262,11 @@ public class BgDslGenerator extends AbstractGenerator {
     {
       for(final EClass model_1 : models) {
         {
-          String _name_8 = model_1.getName();
-          boolean _notEquals = (!Objects.equals(_name_8, "TilePlacement"));
+          String _name_9 = model_1.getName();
+          boolean _notEquals = (!Objects.equals(_name_9, "TilePlacement"));
           if (_notEquals) {
-            String _name_9 = model_1.getName();
-            _builder.append(_name_9);
+            String _name_10 = model_1.getName();
+            _builder.append(_name_10);
             _builder.append(".model_rebuild()");
             _builder.newLineIfNotEmpty();
           }
@@ -295,7 +323,7 @@ public class BgDslGenerator extends AbstractGenerator {
           _builder.append("(Tile):");
           _builder.newLineIfNotEmpty();
           _builder.append("    ");
-          _builder.append("def __init__(self, row, column):");
+          _builder.append("def __init__(self, column, row):");
           _builder.newLine();
           _builder.append("        ");
           _builder.append("# 1. Create Initial State");
@@ -546,10 +574,10 @@ public class BgDslGenerator extends AbstractGenerator {
           _builder.append("\",");
           _builder.newLineIfNotEmpty();
           _builder.append("            ");
-          _builder.append("row=row,");
+          _builder.append("column=column,");
           _builder.newLine();
           _builder.append("            ");
-          _builder.append("column=column");
+          _builder.append("row=row");
           _builder.newLine();
           _builder.append("        ");
           _builder.append(")");
@@ -557,28 +585,65 @@ public class BgDslGenerator extends AbstractGenerator {
         }
       }
       _builder.newLine();
+      final Function1<EObject, Boolean> _function = (EObject t) -> {
+        Object _feature_23 = this.getFeature(t, "initialState");
+        return Boolean.valueOf((_feature_23 != null));
+      };
+      final Iterable<EObject> tilesWithInitial = IterableExtensions.<EObject>filter(tilePlacements, _function);
+      _builder.newLineIfNotEmpty();
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("initial_tile_placement = {");
+      _builder.newLine();
+      {
+        boolean _hasElements_3 = false;
+        for(final EObject tile : tilesWithInitial) {
+          if (!_hasElements_3) {
+            _hasElements_3 = true;
+          } else {
+            _builder.appendImmediate(", ", "\t");
+          }
+          _builder.append("\t");
+          _builder.append("(");
+          Object _feature_23 = this.getFeature(tile, "column");
+          _builder.append(_feature_23, "\t");
+          _builder.append(",");
+          Object _feature_24 = this.getFeature(tile, "row");
+          _builder.append(_feature_24, "\t");
+          _builder.append("): \"");
+          Object _feature_25 = this.getFeature(tile, "initialState");
+          Object _feature_26 = this.getFeature(((EObject) _feature_25), "name");
+          _builder.append(_feature_26, "\t");
+          _builder.append("\"");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.append("}");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.newLine();
       _builder.append("# --- Instance Initialization ---");
       _builder.newLine();
       _builder.append("tiles = [");
       _builder.newLine();
       {
-        boolean _hasElements_3 = false;
+        boolean _hasElements_4 = false;
         for(final EObject placement : tilePlacements) {
-          if (!_hasElements_3) {
-            _hasElements_3 = true;
+          if (!_hasElements_4) {
+            _hasElements_4 = true;
           } else {
             _builder.appendImmediate(", ", "    ");
           }
           _builder.append("    ");
-          Object _feature_23 = this.getFeature(placement, "tile");
-          Object _feature_24 = this.getFeature(((EObject) _feature_23), "name");
-          _builder.append(_feature_24, "    ");
+          Object _feature_27 = this.getFeature(placement, "tile");
+          Object _feature_28 = this.getFeature(((EObject) _feature_27), "name");
+          _builder.append(_feature_28, "    ");
           _builder.append("(");
-          Object _feature_25 = this.getFeature(placement, "row");
-          _builder.append(_feature_25, "    ");
+          Object _feature_29 = this.getFeature(placement, "column");
+          _builder.append(_feature_29, "    ");
           _builder.append(", ");
-          Object _feature_26 = this.getFeature(placement, "column");
-          _builder.append(_feature_26, "    ");
+          Object _feature_30 = this.getFeature(placement, "row");
+          _builder.append(_feature_30, "    ");
           _builder.append(")");
           _builder.newLineIfNotEmpty();
         }
@@ -586,27 +651,39 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.append("]");
       _builder.newLine();
       _builder.newLine();
+      _builder.append("for tile in tiles:");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("for startingTile in initial_tile_placement.keys():");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("if (tile.column, tile.row) == startingTile:");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("tile.updateState(initial_tile_placement.get(startingTile))");
+      _builder.newLine();
+      _builder.newLine();
       _builder.append("players = [");
       _builder.newLine();
       {
-        boolean _hasElements_4 = false;
+        boolean _hasElements_5 = false;
         for(final EObject player : players) {
-          if (!_hasElements_4) {
-            _hasElements_4 = true;
+          if (!_hasElements_5) {
+            _hasElements_5 = true;
           } else {
             _builder.appendImmediate(", ", "    ");
           }
           _builder.append("    ");
           _builder.append("Player(name=\"");
-          Object _feature_27 = this.getFeature(player, "name");
-          _builder.append(_feature_27, "    ");
+          Object _feature_31 = this.getFeature(player, "name");
+          _builder.append(_feature_31, "    ");
           _builder.append("\", hexColor=\"");
-          Object _feature_28 = this.getFeature(player, "hexColor");
-          _builder.append(_feature_28, "    ");
+          Object _feature_32 = this.getFeature(player, "hexColor");
+          _builder.append(_feature_32, "    ");
           _builder.append("\", associatedState=\"");
-          Object _feature_29 = this.getFeature(player, "associatedState");
-          Object _feature_30 = this.getFeature(((EObject) _feature_29), "name");
-          _builder.append(_feature_30, "    ");
+          Object _feature_33 = this.getFeature(player, "associatedState");
+          Object _feature_34 = this.getFeature(((EObject) _feature_33), "name");
+          _builder.append(_feature_34, "    ");
           _builder.append("\")");
           _builder.newLineIfNotEmpty();
         }
@@ -643,14 +720,14 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.newLine();
       _builder.append("    ");
       _builder.append("width=");
-      Object _feature_31 = this.getFeature(boardInstance, "width");
-      _builder.append(_feature_31, "    ");
+      Object _feature_35 = this.getFeature(boardInstance, "width");
+      _builder.append(_feature_35, "    ");
       _builder.append(",");
       _builder.newLineIfNotEmpty();
       _builder.append("    ");
       _builder.append("height=");
-      Object _feature_32 = this.getFeature(boardInstance, "height");
-      _builder.append(_feature_32, "    ");
+      Object _feature_36 = this.getFeature(boardInstance, "height");
+      _builder.append(_feature_36, "    ");
       _builder.append(",");
       _builder.newLineIfNotEmpty();
       _builder.append("    ");
@@ -658,16 +735,16 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.newLine();
       _builder.append("    ");
       _builder.append("checkered=");
-      Object _feature_33 = this.getFeature(boardInstance, "checkered");
-      String _pyBool = this.toPyBool(((Boolean) _feature_33));
+      Object _feature_37 = this.getFeature(boardInstance, "checkered");
+      String _pyBool = this.toPyBool(((Boolean) _feature_37));
       _builder.append(_pyBool, "    ");
       _builder.append(",");
       _builder.newLineIfNotEmpty();
       _builder.append("    ");
       _builder.append("size=");
-      Object _feature_34 = this.getFeature(boardInstance, "width");
-      Object _feature_35 = this.getFeature(boardInstance, "height");
-      int _multiply = ((((Integer) _feature_34)).intValue() * (((Integer) _feature_35)).intValue());
+      Object _feature_38 = this.getFeature(boardInstance, "width");
+      Object _feature_39 = this.getFeature(boardInstance, "height");
+      int _multiply = ((((Integer) _feature_38)).intValue() * (((Integer) _feature_39)).intValue());
       _builder.append(_multiply, "    ");
       _builder.append(",");
       _builder.newLineIfNotEmpty();
@@ -699,8 +776,8 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.newLineIfNotEmpty();
       _builder.append("    ");
       _builder.append("name=\"");
-      Object _feature_36 = this.getFeature(gameInstance, "name");
-      _builder.append(_feature_36, "    ");
+      Object _feature_40 = this.getFeature(gameInstance, "name");
+      _builder.append(_feature_40, "    ");
       _builder.append("\",");
       _builder.newLineIfNotEmpty();
       _builder.append("    ");
@@ -711,8 +788,8 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.newLineIfNotEmpty();
       _builder.append("    ");
       _builder.append("turnPolicy=\"");
-      Object _feature_37 = this.getFeature(gameInstance, "turnPolicy");
-      _builder.append(_feature_37, "    ");
+      Object _feature_41 = this.getFeature(gameInstance, "turnPolicy");
+      _builder.append(_feature_41, "    ");
       _builder.append("\"");
       _builder.newLineIfNotEmpty();
       _builder.append(")");
@@ -824,8 +901,9 @@ public class BgDslGenerator extends AbstractGenerator {
         {
           Object _feature = this.getFeature(filter, "nextFilter");
           final EObject nextFilter = ((EObject) _feature);
-          Object _feature_1 = this.getFeature(filter, "directionVector");
-          final EObject dirVector = ((EObject) _feature_1);
+          Object _feature_1 = this.getFeature(filter, "directionVectors");
+          final EList<EObject> dirVectors = ((EList<EObject>) _feature_1);
+          System.out.println(("Dirvectors: " + dirVectors));
           Object _feature_2 = this.getFeature(filter, "matchRule");
           final EObject matchRule = ((EObject) _feature_2);
           Object _feature_3 = this.getFeature(filter, "endRule");
@@ -840,11 +918,25 @@ public class BgDslGenerator extends AbstractGenerator {
           _builder.append("\",");
           _builder.newLineIfNotEmpty();
           _builder.append("    ");
-          _builder.append("directionVector=");
-          CharSequence _generateRelCoord = this.generateRelCoord(dirVector);
-          _builder.append(_generateRelCoord, "    ");
-          _builder.append(",");
-          _builder.newLineIfNotEmpty();
+          _builder.append("directionVectors=[");
+          _builder.newLine();
+          {
+            boolean _hasElements = false;
+            for(final EObject vector : dirVectors) {
+              if (!_hasElements) {
+                _hasElements = true;
+              } else {
+                _builder.appendImmediate(", ", "    ");
+              }
+              _builder.append("    ");
+              CharSequence _generateRelCoord = this.generateRelCoord(vector);
+              _builder.append(_generateRelCoord, "    ");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+          _builder.append("    ");
+          _builder.append("],");
+          _builder.newLine();
           _builder.append("    ");
           _builder.append("matchRule=");
           CharSequence _generatePattern = this.generatePattern(matchRule);

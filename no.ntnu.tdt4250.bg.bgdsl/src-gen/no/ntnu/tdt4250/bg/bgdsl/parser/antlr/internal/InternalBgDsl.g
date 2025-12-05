@@ -1215,9 +1215,31 @@ ruleTilePlacement returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_8='}'
+		(
+			otherlv_8='initialState'
+			{
+				newLeafNode(otherlv_8, grammarAccess.getTilePlacementAccess().getInitialStateKeyword_8_0());
+			}
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getTilePlacementRule());
+						}
+					}
+					{
+						newCompositeNode(grammarAccess.getTilePlacementAccess().getInitialStateStateCrossReference_8_1_0());
+					}
+					ruleEString
+					{
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		otherlv_10='}'
 		{
-			newLeafNode(otherlv_8, grammarAccess.getTilePlacementAccess().getRightCurlyBracketKeyword_8());
+			newLeafNode(otherlv_10, grammarAccess.getTilePlacementAccess().getRightCurlyBracketKeyword_9());
 		}
 	)
 ;
@@ -1718,39 +1740,72 @@ ruleIterativeFilter returns [EObject current=null]
 				)
 			)
 		)?
-		otherlv_5='directionVector'
+		otherlv_5='directionVectors'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getIterativeFilterAccess().getDirectionVectorKeyword_4());
+			newLeafNode(otherlv_5, grammarAccess.getIterativeFilterAccess().getDirectionVectorsKeyword_4());
+		}
+		otherlv_6='{'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getIterativeFilterAccess().getLeftCurlyBracketKeyword_5());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getIterativeFilterAccess().getDirectionVectorRelativeCoordinateParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getIterativeFilterAccess().getDirectionVectorsRelativeCoordinateParserRuleCall_6_0());
 				}
-				lv_directionVector_6_0=ruleRelativeCoordinate
+				lv_directionVectors_7_0=ruleRelativeCoordinate
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getIterativeFilterRule());
 					}
-					set(
+					add(
 						$current,
-						"directionVector",
-						lv_directionVector_6_0,
+						"directionVectors",
+						lv_directionVectors_7_0,
 						"no.ntnu.tdt4250.bg.bgdsl.BgDsl.RelativeCoordinate");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_7='matchRule'
+		(
+			otherlv_8=','
+			{
+				newLeafNode(otherlv_8, grammarAccess.getIterativeFilterAccess().getCommaKeyword_7_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getIterativeFilterAccess().getDirectionVectorsRelativeCoordinateParserRuleCall_7_1_0());
+					}
+					lv_directionVectors_9_0=ruleRelativeCoordinate
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getIterativeFilterRule());
+						}
+						add(
+							$current,
+							"directionVectors",
+							lv_directionVectors_9_0,
+							"no.ntnu.tdt4250.bg.bgdsl.BgDsl.RelativeCoordinate");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+		otherlv_10='}'
 		{
-			newLeafNode(otherlv_7, grammarAccess.getIterativeFilterAccess().getMatchRuleKeyword_6());
+			newLeafNode(otherlv_10, grammarAccess.getIterativeFilterAccess().getRightCurlyBracketKeyword_8());
+		}
+		otherlv_11='matchRule'
+		{
+			newLeafNode(otherlv_11, grammarAccess.getIterativeFilterAccess().getMatchRuleKeyword_9());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getIterativeFilterAccess().getMatchRulePatternParserRuleCall_7_0());
+					newCompositeNode(grammarAccess.getIterativeFilterAccess().getMatchRulePatternParserRuleCall_10_0());
 				}
-				lv_matchRule_8_0=rulePattern
+				lv_matchRule_12_0=rulePattern
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getIterativeFilterRule());
@@ -1758,22 +1813,22 @@ ruleIterativeFilter returns [EObject current=null]
 					set(
 						$current,
 						"matchRule",
-						lv_matchRule_8_0,
+						lv_matchRule_12_0,
 						"no.ntnu.tdt4250.bg.bgdsl.BgDsl.Pattern");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_9='endRule'
+		otherlv_13='endRule'
 		{
-			newLeafNode(otherlv_9, grammarAccess.getIterativeFilterAccess().getEndRuleKeyword_8());
+			newLeafNode(otherlv_13, grammarAccess.getIterativeFilterAccess().getEndRuleKeyword_11());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getIterativeFilterAccess().getEndRulePatternParserRuleCall_9_0());
+					newCompositeNode(grammarAccess.getIterativeFilterAccess().getEndRulePatternParserRuleCall_12_0());
 				}
-				lv_endRule_10_0=rulePattern
+				lv_endRule_14_0=rulePattern
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getIterativeFilterRule());
@@ -1781,15 +1836,15 @@ ruleIterativeFilter returns [EObject current=null]
 					set(
 						$current,
 						"endRule",
-						lv_endRule_10_0,
+						lv_endRule_14_0,
 						"no.ntnu.tdt4250.bg.bgdsl.BgDsl.Pattern");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_11='}'
+		otherlv_15='}'
 		{
-			newLeafNode(otherlv_11, grammarAccess.getIterativeFilterAccess().getRightCurlyBracketKeyword_10());
+			newLeafNode(otherlv_15, grammarAccess.getIterativeFilterAccess().getRightCurlyBracketKeyword_13());
 		}
 	)
 ;

@@ -46,25 +46,25 @@ public class IterativeFilterItemProvider extends FilterItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addDirectionVectorPropertyDescriptor(object);
+			addDirectionVectorsPropertyDescriptor(object);
 			addMatchRulePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Direction Vector feature.
+	 * This adds a property descriptor for the Direction Vectors feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDirectionVectorPropertyDescriptor(Object object) {
+	protected void addDirectionVectorsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IterativeFilter_directionVector_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IterativeFilter_directionVector_feature",
+						getResourceLocator(), getString("_UI_IterativeFilter_directionVectors_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_IterativeFilter_directionVectors_feature",
 								"_UI_IterativeFilter_type"),
-						BgPackage.Literals.ITERATIVE_FILTER__DIRECTION_VECTOR, true, false, true, null, null, null));
+						BgPackage.Literals.ITERATIVE_FILTER__DIRECTION_VECTORS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class IterativeFilterItemProvider extends FilterItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(BgPackage.Literals.ITERATIVE_FILTER__DIRECTION_VECTOR);
+			childrenFeatures.add(BgPackage.Literals.ITERATIVE_FILTER__DIRECTION_VECTORS);
 			childrenFeatures.add(BgPackage.Literals.ITERATIVE_FILTER__MATCH_RULE);
 			childrenFeatures.add(BgPackage.Literals.ITERATIVE_FILTER__END_RULE);
 		}
@@ -160,7 +160,7 @@ public class IterativeFilterItemProvider extends FilterItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(IterativeFilter.class)) {
-		case BgPackage.ITERATIVE_FILTER__DIRECTION_VECTOR:
+		case BgPackage.ITERATIVE_FILTER__DIRECTION_VECTORS:
 		case BgPackage.ITERATIVE_FILTER__MATCH_RULE:
 		case BgPackage.ITERATIVE_FILTER__END_RULE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -180,7 +180,7 @@ public class IterativeFilterItemProvider extends FilterItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(BgPackage.Literals.ITERATIVE_FILTER__DIRECTION_VECTOR,
+		newChildDescriptors.add(createChildParameter(BgPackage.Literals.ITERATIVE_FILTER__DIRECTION_VECTORS,
 				BgFactory.eINSTANCE.createRelativeCoordinate()));
 
 		newChildDescriptors.add(createChildParameter(BgPackage.Literals.ITERATIVE_FILTER__MATCH_RULE,
