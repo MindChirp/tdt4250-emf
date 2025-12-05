@@ -142,7 +142,19 @@ These are included in the repository:
 4. Choose **Local…** and select: **/p2-repo/**
 5. Install the offered feature and restart Eclipse.
 
+### Backend Setup (FastAPI)
 
+The backend (game engine runtime + API) is located in the `fastapi-backend/` folder.  
+A separate, detailed setup guide is provided there.
+
+➡ **See the backend documentation:**  
+[`fastapi-backend/README.md`](fastapi-backend/README.md)
+
+This includes instructions for:
+- Installing dependencies  
+- Running the FastAPI server  
+- Using the generated Python game runtime  
+- Interacting with the API from the frontend  
 
 ---
 
