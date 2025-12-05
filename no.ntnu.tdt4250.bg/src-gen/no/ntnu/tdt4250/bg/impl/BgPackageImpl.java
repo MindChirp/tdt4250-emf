@@ -903,7 +903,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getWinConditionFilter_Patternfilter() {
+	public EReference getWinConditionFilter_Patterns() {
 		return (EReference) winConditionFilterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1038,7 +1038,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEAttribute(stateEffectFilterEClass, STATE_EFFECT_FILTER__STATE_SELECTION);
 
 		winConditionFilterEClass = createEClass(WIN_CONDITION_FILTER);
-		createEReference(winConditionFilterEClass, WIN_CONDITION_FILTER__PATTERNFILTER);
+		createEReference(winConditionFilterEClass, WIN_CONDITION_FILTER__PATTERNS);
 
 		// Create enums
 		turnTypeEEnum = createEEnum(TURN_TYPE);
@@ -1249,9 +1249,9 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 
 		initEClass(winConditionFilterEClass, WinConditionFilter.class, "WinConditionFilter", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWinConditionFilter_Patternfilter(), this.getPatternFilter(), null, "patternfilter", null, 1,
-				-1, WinConditionFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWinConditionFilter_Patterns(), this.getPattern(), null, "patterns", null, 1, -1,
+				WinConditionFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(turnTypeEEnum, TurnType.class, "TurnType");

@@ -371,7 +371,7 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     WinConditionFilter returns WinConditionFilter
 	 *
 	 * Constraint:
-	 *     (name=EString nextFilter=Filter? patternfilter+=PatternFilter patternfilter+=PatternFilter*)
+	 *     (name=EString nextFilter=Filter? patterns+=Pattern patterns+=Pattern*)
 	 * </pre>
 	 */
 	protected void sequence_WinConditionFilter(ISerializationContext context, WinConditionFilter semanticObject) {

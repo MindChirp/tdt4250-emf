@@ -1982,9 +1982,9 @@ ruleWinConditionFilter returns [EObject current=null]
 				)
 			)
 		)?
-		otherlv_5='patternfilter'
+		otherlv_5='patterns'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getWinConditionFilterAccess().getPatternfilterKeyword_4());
+			newLeafNode(otherlv_5, grammarAccess.getWinConditionFilterAccess().getPatternsKeyword_4());
 		}
 		otherlv_6='{'
 		{
@@ -1993,18 +1993,18 @@ ruleWinConditionFilter returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getWinConditionFilterAccess().getPatternfilterPatternFilterParserRuleCall_6_0());
+					newCompositeNode(grammarAccess.getWinConditionFilterAccess().getPatternsPatternParserRuleCall_6_0());
 				}
-				lv_patternfilter_7_0=rulePatternFilter
+				lv_patterns_7_0=rulePattern
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getWinConditionFilterRule());
 					}
 					add(
 						$current,
-						"patternfilter",
-						lv_patternfilter_7_0,
-						"no.ntnu.tdt4250.bg.bgdsl.BgDsl.PatternFilter");
+						"patterns",
+						lv_patterns_7_0,
+						"no.ntnu.tdt4250.bg.bgdsl.BgDsl.Pattern");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -2017,18 +2017,18 @@ ruleWinConditionFilter returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getWinConditionFilterAccess().getPatternfilterPatternFilterParserRuleCall_7_1_0());
+						newCompositeNode(grammarAccess.getWinConditionFilterAccess().getPatternsPatternParserRuleCall_7_1_0());
 					}
-					lv_patternfilter_9_0=rulePatternFilter
+					lv_patterns_9_0=rulePattern
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getWinConditionFilterRule());
 						}
 						add(
 							$current,
-							"patternfilter",
-							lv_patternfilter_9_0,
-							"no.ntnu.tdt4250.bg.bgdsl.BgDsl.PatternFilter");
+							"patterns",
+							lv_patterns_9_0,
+							"no.ntnu.tdt4250.bg.bgdsl.BgDsl.Pattern");
 						afterParserOrEnumRuleCall();
 					}
 				)

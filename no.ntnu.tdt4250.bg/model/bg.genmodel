@@ -100,7 +100,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//StateEffectFilter/stateSelection"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//WinConditionFilter">
-      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//WinConditionFilter/patternfilter"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//WinConditionFilter/patterns"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

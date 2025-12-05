@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalBgDslParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'TurnBased'", "'Simultaneous'", "'CurrentPlayer'", "'OtherPlayer'", "'StateBased'", "'Game'", "'{'", "'turnPolicy'", "'initialPlayer'", "'board'", "'players'", "'}'", "','", "'Board'", "'width'", "'height'", "'tiles'", "'tileplacement'", "'legalMovesPipeline'", "'effectPipeline'", "'Player'", "'hexColor'", "'associatedState'", "'-'", "'Tile'", "'name'", "'states'", "'initialState'", "'transitions'", "'LegalMovesPipeline'", "'filters'", "'EffectPipeline'", "'TilePlacement'", "'row'", "'column'", "'tile'", "'State'", "'outbound'", "'('", "')'", "'inbound'", "'Transition'", "'source'", "'target'", "'PatternFilter'", "'patterns'", "'nextFilter'", "'IterativeFilter'", "'directionVector'", "'matchRule'", "'endRule'", "'StateEffectFilter'", "'stateSelection'", "'targetState'", "'WinConditionFilter'", "'patternfilter'", "'Pattern'", "'relativecoordinates'", "'matchState'", "'RelativeCoordinate'", "'x'", "'y'", "'checkered'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'TurnBased'", "'Simultaneous'", "'CurrentPlayer'", "'OtherPlayer'", "'StateBased'", "'Game'", "'{'", "'turnPolicy'", "'initialPlayer'", "'board'", "'players'", "'}'", "','", "'Board'", "'width'", "'height'", "'tiles'", "'tileplacement'", "'legalMovesPipeline'", "'effectPipeline'", "'Player'", "'hexColor'", "'associatedState'", "'-'", "'Tile'", "'name'", "'states'", "'initialState'", "'transitions'", "'LegalMovesPipeline'", "'filters'", "'EffectPipeline'", "'TilePlacement'", "'row'", "'column'", "'tile'", "'State'", "'outbound'", "'('", "')'", "'inbound'", "'Transition'", "'source'", "'target'", "'PatternFilter'", "'patterns'", "'nextFilter'", "'IterativeFilter'", "'directionVector'", "'matchRule'", "'endRule'", "'StateEffectFilter'", "'stateSelection'", "'targetState'", "'WinConditionFilter'", "'Pattern'", "'relativecoordinates'", "'matchState'", "'RelativeCoordinate'", "'x'", "'y'", "'checkered'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -78,7 +78,6 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
     public static final int T__34=34;
     public static final int T__35=35;
     public static final int T__36=36;
-    public static final int T__73=73;
     public static final int EOF=-1;
     public static final int T__30=30;
     public static final int T__31=31;
@@ -17145,7 +17144,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:5743:1: ( rule__WinConditionFilter__Group__2__Impl rule__WinConditionFilter__Group__3 )
             // InternalBgDsl.g:5744:2: rule__WinConditionFilter__Group__2__Impl rule__WinConditionFilter__Group__3
             {
-            pushFollow(FOLLOW_51);
+            pushFollow(FOLLOW_42);
             rule__WinConditionFilter__Group__2__Impl();
 
             state._fsp--;
@@ -17220,7 +17219,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:5770:1: ( rule__WinConditionFilter__Group__3__Impl rule__WinConditionFilter__Group__4 )
             // InternalBgDsl.g:5771:2: rule__WinConditionFilter__Group__3__Impl rule__WinConditionFilter__Group__4
             {
-            pushFollow(FOLLOW_51);
+            pushFollow(FOLLOW_42);
             rule__WinConditionFilter__Group__3__Impl();
 
             state._fsp--;
@@ -17345,21 +17344,21 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__WinConditionFilter__Group__4__Impl"
-    // InternalBgDsl.g:5805:1: rule__WinConditionFilter__Group__4__Impl : ( 'patternfilter' ) ;
+    // InternalBgDsl.g:5805:1: rule__WinConditionFilter__Group__4__Impl : ( 'patterns' ) ;
     public final void rule__WinConditionFilter__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBgDsl.g:5809:1: ( ( 'patternfilter' ) )
-            // InternalBgDsl.g:5810:1: ( 'patternfilter' )
+            // InternalBgDsl.g:5809:1: ( ( 'patterns' ) )
+            // InternalBgDsl.g:5810:1: ( 'patterns' )
             {
-            // InternalBgDsl.g:5810:1: ( 'patternfilter' )
-            // InternalBgDsl.g:5811:2: 'patternfilter'
+            // InternalBgDsl.g:5810:1: ( 'patterns' )
+            // InternalBgDsl.g:5811:2: 'patterns'
             {
-             before(grammarAccess.getWinConditionFilterAccess().getPatternfilterKeyword_4()); 
-            match(input,66,FOLLOW_2); 
-             after(grammarAccess.getWinConditionFilterAccess().getPatternfilterKeyword_4()); 
+             before(grammarAccess.getWinConditionFilterAccess().getPatternsKeyword_4()); 
+            match(input,56,FOLLOW_2); 
+             after(grammarAccess.getWinConditionFilterAccess().getPatternsKeyword_4()); 
 
             }
 
@@ -17391,7 +17390,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:5824:1: ( rule__WinConditionFilter__Group__5__Impl rule__WinConditionFilter__Group__6 )
             // InternalBgDsl.g:5825:2: rule__WinConditionFilter__Group__5__Impl rule__WinConditionFilter__Group__6
             {
-            pushFollow(FOLLOW_52);
+            pushFollow(FOLLOW_43);
             rule__WinConditionFilter__Group__5__Impl();
 
             state._fsp--;
@@ -17495,31 +17494,31 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__WinConditionFilter__Group__6__Impl"
-    // InternalBgDsl.g:5859:1: rule__WinConditionFilter__Group__6__Impl : ( ( rule__WinConditionFilter__PatternfilterAssignment_6 ) ) ;
+    // InternalBgDsl.g:5859:1: rule__WinConditionFilter__Group__6__Impl : ( ( rule__WinConditionFilter__PatternsAssignment_6 ) ) ;
     public final void rule__WinConditionFilter__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBgDsl.g:5863:1: ( ( ( rule__WinConditionFilter__PatternfilterAssignment_6 ) ) )
-            // InternalBgDsl.g:5864:1: ( ( rule__WinConditionFilter__PatternfilterAssignment_6 ) )
+            // InternalBgDsl.g:5863:1: ( ( ( rule__WinConditionFilter__PatternsAssignment_6 ) ) )
+            // InternalBgDsl.g:5864:1: ( ( rule__WinConditionFilter__PatternsAssignment_6 ) )
             {
-            // InternalBgDsl.g:5864:1: ( ( rule__WinConditionFilter__PatternfilterAssignment_6 ) )
-            // InternalBgDsl.g:5865:2: ( rule__WinConditionFilter__PatternfilterAssignment_6 )
+            // InternalBgDsl.g:5864:1: ( ( rule__WinConditionFilter__PatternsAssignment_6 ) )
+            // InternalBgDsl.g:5865:2: ( rule__WinConditionFilter__PatternsAssignment_6 )
             {
-             before(grammarAccess.getWinConditionFilterAccess().getPatternfilterAssignment_6()); 
-            // InternalBgDsl.g:5866:2: ( rule__WinConditionFilter__PatternfilterAssignment_6 )
-            // InternalBgDsl.g:5866:3: rule__WinConditionFilter__PatternfilterAssignment_6
+             before(grammarAccess.getWinConditionFilterAccess().getPatternsAssignment_6()); 
+            // InternalBgDsl.g:5866:2: ( rule__WinConditionFilter__PatternsAssignment_6 )
+            // InternalBgDsl.g:5866:3: rule__WinConditionFilter__PatternsAssignment_6
             {
             pushFollow(FOLLOW_2);
-            rule__WinConditionFilter__PatternfilterAssignment_6();
+            rule__WinConditionFilter__PatternsAssignment_6();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getWinConditionFilterAccess().getPatternfilterAssignment_6()); 
+             after(grammarAccess.getWinConditionFilterAccess().getPatternsAssignment_6()); 
 
             }
 
@@ -17954,7 +17953,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:6013:1: ( rule__WinConditionFilter__Group_7__0__Impl rule__WinConditionFilter__Group_7__1 )
             // InternalBgDsl.g:6014:2: rule__WinConditionFilter__Group_7__0__Impl rule__WinConditionFilter__Group_7__1
             {
-            pushFollow(FOLLOW_52);
+            pushFollow(FOLLOW_43);
             rule__WinConditionFilter__Group_7__0__Impl();
 
             state._fsp--;
@@ -18053,31 +18052,31 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__WinConditionFilter__Group_7__1__Impl"
-    // InternalBgDsl.g:6047:1: rule__WinConditionFilter__Group_7__1__Impl : ( ( rule__WinConditionFilter__PatternfilterAssignment_7_1 ) ) ;
+    // InternalBgDsl.g:6047:1: rule__WinConditionFilter__Group_7__1__Impl : ( ( rule__WinConditionFilter__PatternsAssignment_7_1 ) ) ;
     public final void rule__WinConditionFilter__Group_7__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBgDsl.g:6051:1: ( ( ( rule__WinConditionFilter__PatternfilterAssignment_7_1 ) ) )
-            // InternalBgDsl.g:6052:1: ( ( rule__WinConditionFilter__PatternfilterAssignment_7_1 ) )
+            // InternalBgDsl.g:6051:1: ( ( ( rule__WinConditionFilter__PatternsAssignment_7_1 ) ) )
+            // InternalBgDsl.g:6052:1: ( ( rule__WinConditionFilter__PatternsAssignment_7_1 ) )
             {
-            // InternalBgDsl.g:6052:1: ( ( rule__WinConditionFilter__PatternfilterAssignment_7_1 ) )
-            // InternalBgDsl.g:6053:2: ( rule__WinConditionFilter__PatternfilterAssignment_7_1 )
+            // InternalBgDsl.g:6052:1: ( ( rule__WinConditionFilter__PatternsAssignment_7_1 ) )
+            // InternalBgDsl.g:6053:2: ( rule__WinConditionFilter__PatternsAssignment_7_1 )
             {
-             before(grammarAccess.getWinConditionFilterAccess().getPatternfilterAssignment_7_1()); 
-            // InternalBgDsl.g:6054:2: ( rule__WinConditionFilter__PatternfilterAssignment_7_1 )
-            // InternalBgDsl.g:6054:3: rule__WinConditionFilter__PatternfilterAssignment_7_1
+             before(grammarAccess.getWinConditionFilterAccess().getPatternsAssignment_7_1()); 
+            // InternalBgDsl.g:6054:2: ( rule__WinConditionFilter__PatternsAssignment_7_1 )
+            // InternalBgDsl.g:6054:3: rule__WinConditionFilter__PatternsAssignment_7_1
             {
             pushFollow(FOLLOW_2);
-            rule__WinConditionFilter__PatternfilterAssignment_7_1();
+            rule__WinConditionFilter__PatternsAssignment_7_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getWinConditionFilterAccess().getPatternfilterAssignment_7_1()); 
+             after(grammarAccess.getWinConditionFilterAccess().getPatternsAssignment_7_1()); 
 
             }
 
@@ -18151,7 +18150,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:6081:2: 'Pattern'
             {
              before(grammarAccess.getPatternAccess().getPatternKeyword_0()); 
-            match(input,67,FOLLOW_2); 
+            match(input,66,FOLLOW_2); 
              after(grammarAccess.getPatternAccess().getPatternKeyword_0()); 
 
             }
@@ -18269,7 +18268,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:6121:1: ( rule__Pattern__Group__2__Impl rule__Pattern__Group__3 )
             // InternalBgDsl.g:6122:2: rule__Pattern__Group__2__Impl rule__Pattern__Group__3
             {
-            pushFollow(FOLLOW_53);
+            pushFollow(FOLLOW_51);
             rule__Pattern__Group__2__Impl();
 
             state._fsp--;
@@ -18344,7 +18343,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:6148:1: ( rule__Pattern__Group__3__Impl rule__Pattern__Group__4 )
             // InternalBgDsl.g:6149:2: rule__Pattern__Group__3__Impl rule__Pattern__Group__4
             {
-            pushFollow(FOLLOW_53);
+            pushFollow(FOLLOW_51);
             rule__Pattern__Group__3__Impl();
 
             state._fsp--;
@@ -18440,7 +18439,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:6175:1: ( rule__Pattern__Group__4__Impl rule__Pattern__Group__5 )
             // InternalBgDsl.g:6176:2: rule__Pattern__Group__4__Impl rule__Pattern__Group__5
             {
-            pushFollow(FOLLOW_53);
+            pushFollow(FOLLOW_51);
             rule__Pattern__Group__4__Impl();
 
             state._fsp--;
@@ -18486,7 +18485,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             int alt31=2;
             int LA31_0 = input.LA(1);
 
-            if ( (LA31_0==69) ) {
+            if ( (LA31_0==68) ) {
                 alt31=1;
             }
             switch (alt31) {
@@ -18578,7 +18577,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:6216:2: 'relativecoordinates'
             {
              before(grammarAccess.getPatternAccess().getRelativecoordinatesKeyword_5()); 
-            match(input,68,FOLLOW_2); 
+            match(input,67,FOLLOW_2); 
              after(grammarAccess.getPatternAccess().getRelativecoordinatesKeyword_5()); 
 
             }
@@ -19216,7 +19215,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:6432:2: 'matchState'
             {
              before(grammarAccess.getPatternAccess().getMatchStateKeyword_4_0()); 
-            match(input,69,FOLLOW_2); 
+            match(input,68,FOLLOW_2); 
              after(grammarAccess.getPatternAccess().getMatchStateKeyword_4_0()); 
 
             }
@@ -19526,7 +19525,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:6540:2: 'RelativeCoordinate'
             {
              before(grammarAccess.getRelativeCoordinateAccess().getRelativeCoordinateKeyword_0()); 
-            match(input,70,FOLLOW_2); 
+            match(input,69,FOLLOW_2); 
              after(grammarAccess.getRelativeCoordinateAccess().getRelativeCoordinateKeyword_0()); 
 
             }
@@ -19559,7 +19558,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:6553:1: ( rule__RelativeCoordinate__Group__1__Impl rule__RelativeCoordinate__Group__2 )
             // InternalBgDsl.g:6554:2: rule__RelativeCoordinate__Group__1__Impl rule__RelativeCoordinate__Group__2
             {
-            pushFollow(FOLLOW_54);
+            pushFollow(FOLLOW_52);
             rule__RelativeCoordinate__Group__1__Impl();
 
             state._fsp--;
@@ -19676,7 +19675,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:6594:2: 'x'
             {
              before(grammarAccess.getRelativeCoordinateAccess().getXKeyword_2()); 
-            match(input,71,FOLLOW_2); 
+            match(input,70,FOLLOW_2); 
              after(grammarAccess.getRelativeCoordinateAccess().getXKeyword_2()); 
 
             }
@@ -19709,7 +19708,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:6607:1: ( rule__RelativeCoordinate__Group__3__Impl rule__RelativeCoordinate__Group__4 )
             // InternalBgDsl.g:6608:2: rule__RelativeCoordinate__Group__3__Impl rule__RelativeCoordinate__Group__4
             {
-            pushFollow(FOLLOW_55);
+            pushFollow(FOLLOW_53);
             rule__RelativeCoordinate__Group__3__Impl();
 
             state._fsp--;
@@ -19836,7 +19835,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:6648:2: 'y'
             {
              before(grammarAccess.getRelativeCoordinateAccess().getYKeyword_4()); 
-            match(input,72,FOLLOW_2); 
+            match(input,71,FOLLOW_2); 
              after(grammarAccess.getRelativeCoordinateAccess().getYKeyword_4()); 
 
             }
@@ -20286,7 +20285,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
             // InternalBgDsl.g:6813:4: 'checkered'
             {
              before(grammarAccess.getBoardAccess().getCheckeredCheckeredKeyword_0_0()); 
-            match(input,73,FOLLOW_2); 
+            match(input,72,FOLLOW_2); 
              after(grammarAccess.getBoardAccess().getCheckeredCheckeredKeyword_0_0()); 
 
             }
@@ -22484,26 +22483,26 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__WinConditionFilter__NextFilterAssignment_3_1"
 
 
-    // $ANTLR start "rule__WinConditionFilter__PatternfilterAssignment_6"
-    // InternalBgDsl.g:7629:1: rule__WinConditionFilter__PatternfilterAssignment_6 : ( rulePatternFilter ) ;
-    public final void rule__WinConditionFilter__PatternfilterAssignment_6() throws RecognitionException {
+    // $ANTLR start "rule__WinConditionFilter__PatternsAssignment_6"
+    // InternalBgDsl.g:7629:1: rule__WinConditionFilter__PatternsAssignment_6 : ( rulePattern ) ;
+    public final void rule__WinConditionFilter__PatternsAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBgDsl.g:7633:1: ( ( rulePatternFilter ) )
-            // InternalBgDsl.g:7634:2: ( rulePatternFilter )
+            // InternalBgDsl.g:7633:1: ( ( rulePattern ) )
+            // InternalBgDsl.g:7634:2: ( rulePattern )
             {
-            // InternalBgDsl.g:7634:2: ( rulePatternFilter )
-            // InternalBgDsl.g:7635:3: rulePatternFilter
+            // InternalBgDsl.g:7634:2: ( rulePattern )
+            // InternalBgDsl.g:7635:3: rulePattern
             {
-             before(grammarAccess.getWinConditionFilterAccess().getPatternfilterPatternFilterParserRuleCall_6_0()); 
+             before(grammarAccess.getWinConditionFilterAccess().getPatternsPatternParserRuleCall_6_0()); 
             pushFollow(FOLLOW_2);
-            rulePatternFilter();
+            rulePattern();
 
             state._fsp--;
 
-             after(grammarAccess.getWinConditionFilterAccess().getPatternfilterPatternFilterParserRuleCall_6_0()); 
+             after(grammarAccess.getWinConditionFilterAccess().getPatternsPatternParserRuleCall_6_0()); 
 
             }
 
@@ -22522,29 +22521,29 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__WinConditionFilter__PatternfilterAssignment_6"
+    // $ANTLR end "rule__WinConditionFilter__PatternsAssignment_6"
 
 
-    // $ANTLR start "rule__WinConditionFilter__PatternfilterAssignment_7_1"
-    // InternalBgDsl.g:7644:1: rule__WinConditionFilter__PatternfilterAssignment_7_1 : ( rulePatternFilter ) ;
-    public final void rule__WinConditionFilter__PatternfilterAssignment_7_1() throws RecognitionException {
+    // $ANTLR start "rule__WinConditionFilter__PatternsAssignment_7_1"
+    // InternalBgDsl.g:7644:1: rule__WinConditionFilter__PatternsAssignment_7_1 : ( rulePattern ) ;
+    public final void rule__WinConditionFilter__PatternsAssignment_7_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBgDsl.g:7648:1: ( ( rulePatternFilter ) )
-            // InternalBgDsl.g:7649:2: ( rulePatternFilter )
+            // InternalBgDsl.g:7648:1: ( ( rulePattern ) )
+            // InternalBgDsl.g:7649:2: ( rulePattern )
             {
-            // InternalBgDsl.g:7649:2: ( rulePatternFilter )
-            // InternalBgDsl.g:7650:3: rulePatternFilter
+            // InternalBgDsl.g:7649:2: ( rulePattern )
+            // InternalBgDsl.g:7650:3: rulePattern
             {
-             before(grammarAccess.getWinConditionFilterAccess().getPatternfilterPatternFilterParserRuleCall_7_1_0()); 
+             before(grammarAccess.getWinConditionFilterAccess().getPatternsPatternParserRuleCall_7_1_0()); 
             pushFollow(FOLLOW_2);
-            rulePatternFilter();
+            rulePattern();
 
             state._fsp--;
 
-             after(grammarAccess.getWinConditionFilterAccess().getPatternfilterPatternFilterParserRuleCall_7_1_0()); 
+             after(grammarAccess.getWinConditionFilterAccess().getPatternsPatternParserRuleCall_7_1_0()); 
 
             }
 
@@ -22563,7 +22562,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__WinConditionFilter__PatternfilterAssignment_7_1"
+    // $ANTLR end "rule__WinConditionFilter__PatternsAssignment_7_1"
 
 
     // $ANTLR start "rule__Pattern__NameAssignment_1"
@@ -22873,7 +22872,7 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000001800L});
     public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000080000L});
     public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000100L});
     public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000200000L});
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000080000000L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000C00000L});
@@ -22907,18 +22906,16 @@ public class InternalBgDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0020000000000000L});
     public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0040000000000000L});
     public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0300000000000000L});
-    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
     public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0A00000000000000L});
-    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
     public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x1000000000000000L});
     public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x2000000000000000L});
     public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x8000000000000000L});
     public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x000000000000E000L});
     public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x0200000000400000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0200000000000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0080000000000000L});
-    public static final BitSet FOLLOW_53 = new BitSet(new long[]{0x8000000000000000L,0x0000000000000030L});
-    public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x8000000000000000L,0x0000000000000018L});
+    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+    public static final BitSet FOLLOW_53 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
 
 }

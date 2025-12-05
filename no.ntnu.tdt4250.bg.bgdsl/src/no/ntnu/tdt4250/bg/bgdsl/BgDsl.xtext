@@ -26,7 +26,6 @@ Filter returns Filter:
 
 
 
-
 Board returns Board:
 	checkered?='checkered'
 	'Board'
@@ -141,7 +140,7 @@ WinConditionFilter returns WinConditionFilter:
 	name=EString
 	'{'
 		('nextFilter' nextFilter=Filter)?
-		'patternfilter' '{' patternfilter+=PatternFilter ( "," patternfilter+=PatternFilter)* '}' 
+		'patterns' '{' patterns+=Pattern ( "," patterns+=Pattern)* '}' 
 	'}';
 
 Pattern returns Pattern:

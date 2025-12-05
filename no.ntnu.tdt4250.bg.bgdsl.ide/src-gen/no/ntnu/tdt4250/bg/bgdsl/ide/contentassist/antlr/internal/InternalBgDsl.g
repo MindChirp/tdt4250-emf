@@ -5808,9 +5808,9 @@ rule__WinConditionFilter__Group__4__Impl
 	}
 :
 (
-	{ before(grammarAccess.getWinConditionFilterAccess().getPatternfilterKeyword_4()); }
-	'patternfilter'
-	{ after(grammarAccess.getWinConditionFilterAccess().getPatternfilterKeyword_4()); }
+	{ before(grammarAccess.getWinConditionFilterAccess().getPatternsKeyword_4()); }
+	'patterns'
+	{ after(grammarAccess.getWinConditionFilterAccess().getPatternsKeyword_4()); }
 )
 ;
 finally {
@@ -5862,9 +5862,9 @@ rule__WinConditionFilter__Group__6__Impl
 	}
 :
 (
-	{ before(grammarAccess.getWinConditionFilterAccess().getPatternfilterAssignment_6()); }
-	(rule__WinConditionFilter__PatternfilterAssignment_6)
-	{ after(grammarAccess.getWinConditionFilterAccess().getPatternfilterAssignment_6()); }
+	{ before(grammarAccess.getWinConditionFilterAccess().getPatternsAssignment_6()); }
+	(rule__WinConditionFilter__PatternsAssignment_6)
+	{ after(grammarAccess.getWinConditionFilterAccess().getPatternsAssignment_6()); }
 )
 ;
 finally {
@@ -6050,9 +6050,9 @@ rule__WinConditionFilter__Group_7__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getWinConditionFilterAccess().getPatternfilterAssignment_7_1()); }
-	(rule__WinConditionFilter__PatternfilterAssignment_7_1)
-	{ after(grammarAccess.getWinConditionFilterAccess().getPatternfilterAssignment_7_1()); }
+	{ before(grammarAccess.getWinConditionFilterAccess().getPatternsAssignment_7_1()); }
+	(rule__WinConditionFilter__PatternsAssignment_7_1)
+	{ after(grammarAccess.getWinConditionFilterAccess().getPatternsAssignment_7_1()); }
 )
 ;
 finally {
@@ -7626,30 +7626,30 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__WinConditionFilter__PatternfilterAssignment_6
+rule__WinConditionFilter__PatternsAssignment_6
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getWinConditionFilterAccess().getPatternfilterPatternFilterParserRuleCall_6_0()); }
-		rulePatternFilter
-		{ after(grammarAccess.getWinConditionFilterAccess().getPatternfilterPatternFilterParserRuleCall_6_0()); }
+		{ before(grammarAccess.getWinConditionFilterAccess().getPatternsPatternParserRuleCall_6_0()); }
+		rulePattern
+		{ after(grammarAccess.getWinConditionFilterAccess().getPatternsPatternParserRuleCall_6_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__WinConditionFilter__PatternfilterAssignment_7_1
+rule__WinConditionFilter__PatternsAssignment_7_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getWinConditionFilterAccess().getPatternfilterPatternFilterParserRuleCall_7_1_0()); }
-		rulePatternFilter
-		{ after(grammarAccess.getWinConditionFilterAccess().getPatternfilterPatternFilterParserRuleCall_7_1_0()); }
+		{ before(grammarAccess.getWinConditionFilterAccess().getPatternsPatternParserRuleCall_7_1_0()); }
+		rulePattern
+		{ after(grammarAccess.getWinConditionFilterAccess().getPatternsPatternParserRuleCall_7_1_0()); }
 	)
 ;
 finally {

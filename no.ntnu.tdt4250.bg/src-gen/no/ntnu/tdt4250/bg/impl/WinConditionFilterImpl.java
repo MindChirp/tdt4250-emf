@@ -5,7 +5,7 @@ package no.ntnu.tdt4250.bg.impl;
 import java.util.Collection;
 
 import no.ntnu.tdt4250.bg.BgPackage;
-import no.ntnu.tdt4250.bg.PatternFilter;
+import no.ntnu.tdt4250.bg.Pattern;
 import no.ntnu.tdt4250.bg.WinConditionFilter;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -25,21 +25,21 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link no.ntnu.tdt4250.bg.impl.WinConditionFilterImpl#getPatternfilter <em>Patternfilter</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.impl.WinConditionFilterImpl#getPatterns <em>Patterns</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class WinConditionFilterImpl extends FilterImpl implements WinConditionFilter {
 	/**
-	 * The cached value of the '{@link #getPatternfilter() <em>Patternfilter</em>}' containment reference list.
+	 * The cached value of the '{@link #getPatterns() <em>Patterns</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPatternfilter()
+	 * @see #getPatterns()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<PatternFilter> patternfilter;
+	protected EList<Pattern> patterns;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -66,12 +66,12 @@ public class WinConditionFilterImpl extends FilterImpl implements WinConditionFi
 	 * @generated
 	 */
 	@Override
-	public EList<PatternFilter> getPatternfilter() {
-		if (patternfilter == null) {
-			patternfilter = new EObjectContainmentEList<PatternFilter>(PatternFilter.class, this,
-					BgPackage.WIN_CONDITION_FILTER__PATTERNFILTER);
+	public EList<Pattern> getPatterns() {
+		if (patterns == null) {
+			patterns = new EObjectContainmentEList<Pattern>(Pattern.class, this,
+					BgPackage.WIN_CONDITION_FILTER__PATTERNS);
 		}
-		return patternfilter;
+		return patterns;
 	}
 
 	/**
@@ -82,8 +82,8 @@ public class WinConditionFilterImpl extends FilterImpl implements WinConditionFi
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case BgPackage.WIN_CONDITION_FILTER__PATTERNFILTER:
-			return ((InternalEList<?>) getPatternfilter()).basicRemove(otherEnd, msgs);
+		case BgPackage.WIN_CONDITION_FILTER__PATTERNS:
+			return ((InternalEList<?>) getPatterns()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -96,8 +96,8 @@ public class WinConditionFilterImpl extends FilterImpl implements WinConditionFi
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case BgPackage.WIN_CONDITION_FILTER__PATTERNFILTER:
-			return getPatternfilter();
+		case BgPackage.WIN_CONDITION_FILTER__PATTERNS:
+			return getPatterns();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -111,9 +111,9 @@ public class WinConditionFilterImpl extends FilterImpl implements WinConditionFi
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case BgPackage.WIN_CONDITION_FILTER__PATTERNFILTER:
-			getPatternfilter().clear();
-			getPatternfilter().addAll((Collection<? extends PatternFilter>) newValue);
+		case BgPackage.WIN_CONDITION_FILTER__PATTERNS:
+			getPatterns().clear();
+			getPatterns().addAll((Collection<? extends Pattern>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,8 +127,8 @@ public class WinConditionFilterImpl extends FilterImpl implements WinConditionFi
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case BgPackage.WIN_CONDITION_FILTER__PATTERNFILTER:
-			getPatternfilter().clear();
+		case BgPackage.WIN_CONDITION_FILTER__PATTERNS:
+			getPatterns().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -142,8 +142,8 @@ public class WinConditionFilterImpl extends FilterImpl implements WinConditionFi
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case BgPackage.WIN_CONDITION_FILTER__PATTERNFILTER:
-			return patternfilter != null && !patternfilter.isEmpty();
+		case BgPackage.WIN_CONDITION_FILTER__PATTERNS:
+			return patterns != null && !patterns.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

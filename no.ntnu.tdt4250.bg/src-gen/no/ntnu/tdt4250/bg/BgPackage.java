@@ -1010,13 +1010,13 @@ public interface BgPackage extends EPackage {
 	int WIN_CONDITION_FILTER__NAME = FILTER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Patternfilter</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WIN_CONDITION_FILTER__PATTERNFILTER = FILTER_FEATURE_COUNT + 0;
+	int WIN_CONDITION_FILTER__PATTERNS = FILTER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Win Condition Filter</em>' class.
@@ -1767,15 +1767,15 @@ public interface BgPackage extends EPackage {
 	EClass getWinConditionFilter();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link no.ntnu.tdt4250.bg.WinConditionFilter#getPatternfilter <em>Patternfilter</em>}'.
+	 * Returns the meta object for the containment reference list '{@link no.ntnu.tdt4250.bg.WinConditionFilter#getPatterns <em>Patterns</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Patternfilter</em>'.
-	 * @see no.ntnu.tdt4250.bg.WinConditionFilter#getPatternfilter()
+	 * @return the meta object for the containment reference list '<em>Patterns</em>'.
+	 * @see no.ntnu.tdt4250.bg.WinConditionFilter#getPatterns()
 	 * @see #getWinConditionFilter()
 	 * @generated
 	 */
-	EReference getWinConditionFilter_Patternfilter();
+	EReference getWinConditionFilter_Patterns();
 
 	/**
 	 * Returns the meta object for enum '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}'.
@@ -2381,12 +2381,12 @@ public interface BgPackage extends EPackage {
 		EClass WIN_CONDITION_FILTER = eINSTANCE.getWinConditionFilter();
 
 		/**
-		 * The meta object literal for the '<em><b>Patternfilter</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Patterns</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WIN_CONDITION_FILTER__PATTERNFILTER = eINSTANCE.getWinConditionFilter_Patternfilter();
+		EReference WIN_CONDITION_FILTER__PATTERNS = eINSTANCE.getWinConditionFilter_Patterns();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}' enum.

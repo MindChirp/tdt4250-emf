@@ -45,24 +45,24 @@ public class WinConditionFilterItemProvider extends FilterItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addPatternfilterPropertyDescriptor(object);
+			addPatternsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Patternfilter feature.
+	 * This adds a property descriptor for the Patterns feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPatternfilterPropertyDescriptor(Object object) {
+	protected void addPatternsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_WinConditionFilter_patternfilter_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_WinConditionFilter_patternfilter_feature",
+						getResourceLocator(), getString("_UI_WinConditionFilter_patterns_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_WinConditionFilter_patterns_feature",
 								"_UI_WinConditionFilter_type"),
-						BgPackage.Literals.WIN_CONDITION_FILTER__PATTERNFILTER, true, false, true, null, null, null));
+						BgPackage.Literals.WIN_CONDITION_FILTER__PATTERNS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class WinConditionFilterItemProvider extends FilterItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(BgPackage.Literals.WIN_CONDITION_FILTER__PATTERNFILTER);
+			childrenFeatures.add(BgPackage.Literals.WIN_CONDITION_FILTER__PATTERNS);
 		}
 		return childrenFeatures;
 	}
@@ -141,7 +141,7 @@ public class WinConditionFilterItemProvider extends FilterItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(WinConditionFilter.class)) {
-		case BgPackage.WIN_CONDITION_FILTER__PATTERNFILTER:
+		case BgPackage.WIN_CONDITION_FILTER__PATTERNS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -159,29 +159,8 @@ public class WinConditionFilterItemProvider extends FilterItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(BgPackage.Literals.WIN_CONDITION_FILTER__PATTERNFILTER,
-				BgFactory.eINSTANCE.createPatternFilter()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify = childFeature == BgPackage.Literals.FILTER__NEXT_FILTER
-				|| childFeature == BgPackage.Literals.WIN_CONDITION_FILTER__PATTERNFILTER;
-
-		if (qualify) {
-			return getString("_UI_CreateChild_text2",
-					new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
+		newChildDescriptors.add(createChildParameter(BgPackage.Literals.WIN_CONDITION_FILTER__PATTERNS,
+				BgFactory.eINSTANCE.createPattern()));
 	}
 
 }

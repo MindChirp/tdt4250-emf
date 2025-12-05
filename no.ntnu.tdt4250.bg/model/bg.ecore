@@ -163,7 +163,7 @@
         eType="#//StateSelection"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WinConditionFilter" eSuperTypes="#//Filter">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="patternfilter" lowerBound="1"
-        upperBound="-1" eType="#//PatternFilter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" lowerBound="1"
+        upperBound="-1" eType="#//Pattern" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

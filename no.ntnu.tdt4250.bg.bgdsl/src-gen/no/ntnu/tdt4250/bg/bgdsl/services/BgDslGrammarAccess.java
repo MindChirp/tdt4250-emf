@@ -1403,14 +1403,14 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cNextFilterKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cNextFilterAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cNextFilterFilterParserRuleCall_3_1_0 = (RuleCall)cNextFilterAssignment_3_1.eContents().get(0);
-		private final Keyword cPatternfilterKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cPatternsKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cPatternfilterAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cPatternfilterPatternFilterParserRuleCall_6_0 = (RuleCall)cPatternfilterAssignment_6.eContents().get(0);
+		private final Assignment cPatternsAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cPatternsPatternParserRuleCall_6_0 = (RuleCall)cPatternsAssignment_6.eContents().get(0);
 		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
 		private final Keyword cCommaKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
-		private final Assignment cPatternfilterAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
-		private final RuleCall cPatternfilterPatternFilterParserRuleCall_7_1_0 = (RuleCall)cPatternfilterAssignment_7_1.eContents().get(0);
+		private final Assignment cPatternsAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cPatternsPatternParserRuleCall_7_1_0 = (RuleCall)cPatternsAssignment_7_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
@@ -1419,7 +1419,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    name=EString
 		//    '{'
 		//        ('nextFilter' nextFilter=Filter)?
-		//        'patternfilter' '{' patternfilter+=PatternFilter ( "," patternfilter+=PatternFilter)* '}'
+		//        'patterns' '{' patterns+=Pattern ( "," patterns+=Pattern)* '}'
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -1427,7 +1427,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//name=EString
 		//'{'
 		//    ('nextFilter' nextFilter=Filter)?
-		//    'patternfilter' '{' patternfilter+=PatternFilter ( "," patternfilter+=PatternFilter)* '}'
+		//    'patterns' '{' patterns+=Pattern ( "," patterns+=Pattern)* '}'
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
@@ -1455,29 +1455,29 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Filter
 		public RuleCall getNextFilterFilterParserRuleCall_3_1_0() { return cNextFilterFilterParserRuleCall_3_1_0; }
 		
-		//'patternfilter'
-		public Keyword getPatternfilterKeyword_4() { return cPatternfilterKeyword_4; }
+		//'patterns'
+		public Keyword getPatternsKeyword_4() { return cPatternsKeyword_4; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
 		
-		//patternfilter+=PatternFilter
-		public Assignment getPatternfilterAssignment_6() { return cPatternfilterAssignment_6; }
+		//patterns+=Pattern
+		public Assignment getPatternsAssignment_6() { return cPatternsAssignment_6; }
 		
-		//PatternFilter
-		public RuleCall getPatternfilterPatternFilterParserRuleCall_6_0() { return cPatternfilterPatternFilterParserRuleCall_6_0; }
+		//Pattern
+		public RuleCall getPatternsPatternParserRuleCall_6_0() { return cPatternsPatternParserRuleCall_6_0; }
 		
-		//( "," patternfilter+=PatternFilter)*
+		//( "," patterns+=Pattern)*
 		public Group getGroup_7() { return cGroup_7; }
 		
 		//","
 		public Keyword getCommaKeyword_7_0() { return cCommaKeyword_7_0; }
 		
-		//patternfilter+=PatternFilter
-		public Assignment getPatternfilterAssignment_7_1() { return cPatternfilterAssignment_7_1; }
+		//patterns+=Pattern
+		public Assignment getPatternsAssignment_7_1() { return cPatternsAssignment_7_1; }
 		
-		//PatternFilter
-		public RuleCall getPatternfilterPatternFilterParserRuleCall_7_1_0() { return cPatternfilterPatternFilterParserRuleCall_7_1_0; }
+		//Pattern
+		public RuleCall getPatternsPatternParserRuleCall_7_1_0() { return cPatternsPatternParserRuleCall_7_1_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
@@ -2046,7 +2046,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    name=EString
 	//    '{'
 	//        ('nextFilter' nextFilter=Filter)?
-	//        'patternfilter' '{' patternfilter+=PatternFilter ( "," patternfilter+=PatternFilter)* '}'
+	//        'patterns' '{' patterns+=Pattern ( "," patterns+=Pattern)* '}'
 	//    '}';
 	public WinConditionFilterElements getWinConditionFilterAccess() {
 		return pWinConditionFilter;

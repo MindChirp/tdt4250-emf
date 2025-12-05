@@ -113,12 +113,20 @@ public class BgDslGenerator extends AbstractGenerator {
                     _builder.append("def updateState(self, targetStateName: str):");
                     _builder.newLine();
                     _builder.append("    ");
-                    _builder.append("    ");
-                    _builder.append("# Logic to update state based on transitions");
+                    _builder.append("        ");
+                    _builder.append("for transition in self.transitions:");
                     _builder.newLine();
                     _builder.append("    ");
+                    _builder.append("            ");
+                    _builder.append("for source in transition.source:");
+                    _builder.newLine();
                     _builder.append("    ");
-                    _builder.append("pass");
+                    _builder.append("                ");
+                    _builder.append("if source.name == self.activeState.name and transition.target.name == targetStateName:");
+                    _builder.newLine();
+                    _builder.append("    ");
+                    _builder.append("                    ");
+                    _builder.append("self.activeState = transition.target");
                     _builder.newLine();
                     _builder.newLine();
                   } else {
@@ -920,9 +928,67 @@ public class BgDslGenerator extends AbstractGenerator {
           }
           _xifexpression_2 = _xblockexpression_2;
         } else {
-          StringConcatenation _builder = new StringConcatenation();
-          _builder.append("None");
-          _xifexpression_2 = _builder.toString();
+          String _xifexpression_3 = null;
+          String _name_3 = filter.eClass().getName();
+          boolean _equals_3 = Objects.equals(_name_3, "WinConditionFilter");
+          if (_equals_3) {
+            String _xblockexpression_3 = null;
+            {
+              Object _feature = this.getFeature(filter, "nextFilter");
+              final EObject nextFilter = ((EObject) _feature);
+              Object _feature_1 = this.getFeature(filter, "patterns");
+              final EList<EObject> patterns = ((EList<EObject>) _feature_1);
+              StringConcatenation _builder = new StringConcatenation();
+              _builder.append("WinConditionFilter(");
+              _builder.newLine();
+              _builder.append("\t");
+              _builder.append("name=\"");
+              Object _feature_2 = this.getFeature(filter, "name");
+              _builder.append(_feature_2, "\t");
+              _builder.append("\",");
+              _builder.newLineIfNotEmpty();
+              _builder.append("\t");
+              _builder.append("patterns=[");
+              _builder.newLine();
+              {
+                boolean _hasElements = false;
+                for(final EObject p : patterns) {
+                  if (!_hasElements) {
+                    _hasElements = true;
+                  } else {
+                    _builder.appendImmediate(", ", "\t\t");
+                  }
+                  _builder.append("\t\t");
+                  CharSequence _generatePattern = this.generatePattern(p);
+                  _builder.append(_generatePattern, "\t\t");
+                  _builder.newLineIfNotEmpty();
+                }
+              }
+              _builder.append("\t");
+              _builder.append("],");
+              _builder.newLine();
+              _builder.append("\t");
+              _builder.append("nextFilter=");
+              {
+                if ((nextFilter != null)) {
+                  String _generateFilter = this.generateFilter(nextFilter);
+                  _builder.append(_generateFilter, "\t");
+                } else {
+                  _builder.append("None");
+                }
+              }
+              _builder.newLineIfNotEmpty();
+              _builder.append(")");
+              _builder.newLine();
+              _xblockexpression_3 = _builder.toString();
+            }
+            _xifexpression_3 = _xblockexpression_3;
+          } else {
+            StringConcatenation _builder = new StringConcatenation();
+            _builder.append("None");
+            _xifexpression_3 = _builder.toString();
+          }
+          _xifexpression_2 = _xifexpression_3;
         }
         _xifexpression_1 = _xifexpression_2;
       }
@@ -1015,7 +1081,7 @@ public class BgDslGenerator extends AbstractGenerator {
   }
 
   public HashSet<String> getAllFilterTypes() {
-    return CollectionLiterals.<String>newHashSet("PatternFilter", "IterativeFilter", "StateEffectFilter");
+    return CollectionLiterals.<String>newHashSet("PatternFilter", "IterativeFilter", "StateEffectFilter", "WinConditionFilter");
   }
 
   public Object getFeature(final EObject self, final String feature) {

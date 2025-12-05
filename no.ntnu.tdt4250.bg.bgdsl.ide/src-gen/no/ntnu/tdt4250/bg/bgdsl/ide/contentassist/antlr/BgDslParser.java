@@ -137,8 +137,8 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStateEffectFilterAccess().getNextFilterAssignment_6_1(), "rule__StateEffectFilter__NextFilterAssignment_6_1");
 			builder.put(grammarAccess.getWinConditionFilterAccess().getNameAssignment_1(), "rule__WinConditionFilter__NameAssignment_1");
 			builder.put(grammarAccess.getWinConditionFilterAccess().getNextFilterAssignment_3_1(), "rule__WinConditionFilter__NextFilterAssignment_3_1");
-			builder.put(grammarAccess.getWinConditionFilterAccess().getPatternfilterAssignment_6(), "rule__WinConditionFilter__PatternfilterAssignment_6");
-			builder.put(grammarAccess.getWinConditionFilterAccess().getPatternfilterAssignment_7_1(), "rule__WinConditionFilter__PatternfilterAssignment_7_1");
+			builder.put(grammarAccess.getWinConditionFilterAccess().getPatternsAssignment_6(), "rule__WinConditionFilter__PatternsAssignment_6");
+			builder.put(grammarAccess.getWinConditionFilterAccess().getPatternsAssignment_7_1(), "rule__WinConditionFilter__PatternsAssignment_7_1");
 			builder.put(grammarAccess.getPatternAccess().getNameAssignment_1(), "rule__Pattern__NameAssignment_1");
 			builder.put(grammarAccess.getPatternAccess().getStateSelectionAssignment_3_1(), "rule__Pattern__StateSelectionAssignment_3_1");
 			builder.put(grammarAccess.getPatternAccess().getMatchStateAssignment_4_1(), "rule__Pattern__MatchStateAssignment_4_1");

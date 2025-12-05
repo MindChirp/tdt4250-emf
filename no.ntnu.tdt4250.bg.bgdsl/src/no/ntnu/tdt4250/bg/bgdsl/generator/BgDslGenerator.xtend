@@ -75,8 +75,10 @@ class BgDslGenerator extends AbstractGenerator {
                 column: "int"
                 
                 def updateState(self, targetStateName: str):
-                    # Logic to update state based on transitions
-                    pass
+                        for transition in self.transitions:
+                            for source in transition.source:
+                                if source.name == self.activeState.name and transition.target.name == targetStateName:
+                                    self.activeState = transition.target
 
             «ELSEIF model.name == "Board"»
                 width: "int"
@@ -291,6 +293,7 @@ class BgDslGenerator extends AbstractGenerator {
             )'''
         } else if (filter.eClass.name == "StateEffectFilter") {
             val nextFilter = filter.getFeature("nextFilter") as EObject
+            
             val targetState = filter.getFeature("targetState") as EObject
             '''
             StateEffectFilter(
@@ -299,6 +302,22 @@ class BgDslGenerator extends AbstractGenerator {
                 targetState=«IF targetState !== null»"«targetState.getFeature("name")»"«ELSE»None«ENDIF»,
                 nextFilter=«IF nextFilter !== null»«generateFilter(nextFilter)»«ELSE»None«ENDIF»
             )'''
+        } else if (filter.eClass.name == "WinConditionFilter") {
+            val nextFilter = filter.getFeature("nextFilter") as EObject
+            val patterns = filter.getFeature("patterns") as EList<EObject>
+            
+            
+            '''
+            WinConditionFilter(
+            	name="«filter.getFeature("name")»",
+            	patterns=[
+            		«FOR p : patterns SEPARATOR ", "»
+            		«generatePattern(p)»
+            		«ENDFOR»
+            	],
+            	nextFilter=«IF nextFilter !== null»«generateFilter(nextFilter)»«ELSE»None«ENDIF»
+            )
+            '''
         } else {
             '''None'''
         }
@@ -331,7 +350,7 @@ class BgDslGenerator extends AbstractGenerator {
     // --- HELPERS ---
 
     def getAllFilterTypes() {
-        newHashSet("PatternFilter", "IterativeFilter", "StateEffectFilter")
+        newHashSet("PatternFilter", "IterativeFilter", "StateEffectFilter", "WinConditionFilter")
     }
 
     def getFeature(EObject self, String feature) {
