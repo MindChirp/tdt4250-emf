@@ -28,25 +28,31 @@ def calculateLegalMoves(board: Board) -> List[Tile]:
 
         # If no tiles survived this step, stop immediately
         if not survivors:
-            return
+            return []
 
         # 3. Check if there is a next step in the pipeline
         next_filter = getattr(current_filter, 'nextFilter', None)
 
         if next_filter:
             # Pass the survivors to the next filter
-            recurse(next_filter, survivors)
+            return recurse(next_filter, survivors)
         else:
             # 4. END OF CHAIN: Only now do we confirm these are valid moves
             # This fixes the "Premature Add" bug
             if (len(survivors) > 0):
-                legal_moves.extend()                   
+                print(f"Legal move found: {survivors[0].column} {survivors[0].row}")
+                return survivors                   
 
     # Run the pipeline for every starting filter defined in the pipeline
     for start_filter in first_filters:
         # We loop through board tiles individually because your pattern_filter 
         # implementation currently requires all input tiles to match or it returns empty.
         for tile in board.tiles:
-            recurse(start_filter, [tile])
+            result = recurse(start_filter, [tile])
+            # print(f"Tile {tile.column} {tile.row} resulted in {result}")
+            if result:
+                is_legal = len(result) > 0
+                if is_legal:
+                    legal_moves.append(tile)
 
     return legal_moves

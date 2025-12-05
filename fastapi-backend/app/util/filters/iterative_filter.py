@@ -38,4 +38,5 @@ def iterative_filter(tiles: List[Tile], matchRule: Pattern, endRule: Pattern, di
     if len(pattern_filter([current_tile], [endRule])) > 0:
       matched_tiles.extend(current_matched_tiles)
 
+
   return matched_tiles

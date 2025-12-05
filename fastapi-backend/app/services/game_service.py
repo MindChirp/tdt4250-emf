@@ -49,8 +49,7 @@ class GameService:
         #         # Call the appropriate helper method
         #         legal_moves =  
 
-        # TODO: Replace placeholder once legal moves pipeline is implemented
-        # board.legal_moves = []
+        
         legal_moves: List[Tile] = calculateLegalMoves(game.board)
         game.board.legalMoves.clear()
         game.board.legalMoves.extend(legal_moves)
