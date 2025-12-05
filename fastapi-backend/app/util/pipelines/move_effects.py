@@ -99,6 +99,7 @@ try:
             for pattern in winFilter.patterns:
                 if matches_pattern(tile, pattern):
                     print(f"WINNER: {game.activePlayer.name}")
+                    game.winMessage = f"Player {game.activePlayer.name} has won the game!"
                     return True
 
         return False

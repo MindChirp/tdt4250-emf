@@ -20,3 +20,4 @@ class GameStateResponse(BaseModel):
     boardHeight: int
     tiles: List[TileResponse]
     legalMoves: List[TileResponse]
+    wonMessage: str | None = None

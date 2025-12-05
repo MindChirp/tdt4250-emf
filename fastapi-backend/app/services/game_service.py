@@ -32,7 +32,6 @@ class IllegalMoveError(GameServiceError):
         super().__init__(f"Illegal move on tile ({row}, {col}).")
         self.coordinates = coordinates
 
-
 class GameService:
     """Application service that encapsulates game logic."""
 
@@ -82,6 +81,7 @@ class GameService:
             boardHeight=board.height,
             tiles=actual_tiles,
             legalMoves=legal_moves_mapped,
+            wonMessage=game.winMessage
         )
 
     def make_move(self, move: MoveRequest) -> GameStateResponse:
