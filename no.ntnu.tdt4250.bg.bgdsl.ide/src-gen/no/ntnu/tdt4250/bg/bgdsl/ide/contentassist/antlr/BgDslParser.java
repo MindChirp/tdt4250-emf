@@ -56,6 +56,7 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEffectPipelineAccess().getGroup_3(), "rule__EffectPipeline__Group_3__0");
 			builder.put(grammarAccess.getEffectPipelineAccess().getGroup_3_3(), "rule__EffectPipeline__Group_3_3__0");
 			builder.put(grammarAccess.getTilePlacementAccess().getGroup(), "rule__TilePlacement__Group__0");
+			builder.put(grammarAccess.getTilePlacementAccess().getGroup_8(), "rule__TilePlacement__Group_8__0");
 			builder.put(grammarAccess.getStateAccess().getGroup(), "rule__State__Group__0");
 			builder.put(grammarAccess.getStateAccess().getGroup_5(), "rule__State__Group_5__0");
 			builder.put(grammarAccess.getStateAccess().getGroup_5_3(), "rule__State__Group_5_3__0");
@@ -112,6 +113,7 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTilePlacementAccess().getRowAssignment_3(), "rule__TilePlacement__RowAssignment_3");
 			builder.put(grammarAccess.getTilePlacementAccess().getColumnAssignment_5(), "rule__TilePlacement__ColumnAssignment_5");
 			builder.put(grammarAccess.getTilePlacementAccess().getTileAssignment_7(), "rule__TilePlacement__TileAssignment_7");
+			builder.put(grammarAccess.getTilePlacementAccess().getInitialStateAssignment_8_1(), "rule__TilePlacement__InitialStateAssignment_8_1");
 			builder.put(grammarAccess.getStateAccess().getNameAssignment_1(), "rule__State__NameAssignment_1");
 			builder.put(grammarAccess.getStateAccess().getHexColorAssignment_4(), "rule__State__HexColorAssignment_4");
 			builder.put(grammarAccess.getStateAccess().getOutboundAssignment_5_2(), "rule__State__OutboundAssignment_5_2");

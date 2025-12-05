@@ -801,7 +801,12 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cTileAssignment_7 = (Assignment)cGroup.eContents().get(7);
 		private final CrossReference cTileTileCrossReference_7_0 = (CrossReference)cTileAssignment_7.eContents().get(0);
 		private final RuleCall cTileTileEStringParserRuleCall_7_0_1 = (RuleCall)cTileTileCrossReference_7_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
+		private final Keyword cInitialStateKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
+		private final Assignment cInitialStateAssignment_8_1 = (Assignment)cGroup_8.eContents().get(1);
+		private final CrossReference cInitialStateStateCrossReference_8_1_0 = (CrossReference)cInitialStateAssignment_8_1.eContents().get(0);
+		private final RuleCall cInitialStateStateEStringParserRuleCall_8_1_0_1 = (RuleCall)cInitialStateStateCrossReference_8_1_0.eContents().get(1);
+		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
 		//TilePlacement returns TilePlacement:
 		//    'TilePlacement'
@@ -809,6 +814,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//        'row' row=EInt
 		//        'column' column=EInt
 		//        'tile' tile=[Tile|EString]
+		//        ('initialState' initialState=[State|EString])?
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -817,6 +823,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    'row' row=EInt
 		//    'column' column=EInt
 		//    'tile' tile=[Tile|EString]
+		//    ('initialState' initialState=[State|EString])?
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
@@ -856,8 +863,23 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//EString
 		public RuleCall getTileTileEStringParserRuleCall_7_0_1() { return cTileTileEStringParserRuleCall_7_0_1; }
 		
+		//('initialState' initialState=[State|EString])?
+		public Group getGroup_8() { return cGroup_8; }
+		
+		//'initialState'
+		public Keyword getInitialStateKeyword_8_0() { return cInitialStateKeyword_8_0; }
+		
+		//initialState=[State|EString]
+		public Assignment getInitialStateAssignment_8_1() { return cInitialStateAssignment_8_1; }
+		
+		//[State|EString]
+		public CrossReference getInitialStateStateCrossReference_8_1_0() { return cInitialStateStateCrossReference_8_1_0; }
+		
+		//EString
+		public RuleCall getInitialStateStateEStringParserRuleCall_8_1_0_1() { return cInitialStateStateEStringParserRuleCall_8_1_0_1; }
+		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
+		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
 	}
 	public class StateElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "no.ntnu.tdt4250.bg.bgdsl.BgDsl.State");
@@ -1953,6 +1975,7 @@ public class BgDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//        'row' row=EInt
 	//        'column' column=EInt
 	//        'tile' tile=[Tile|EString]
+	//        ('initialState' initialState=[State|EString])?
 	//    '}';
 	public TilePlacementElements getTilePlacementAccess() {
 		return pTilePlacement;

@@ -743,6 +743,16 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
+	public EReference getTilePlacement_InitialState() {
+		return (EReference) tilePlacementEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getPattern() {
 		return patternEClass;
 	}
@@ -1017,6 +1027,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEAttribute(tilePlacementEClass, TILE_PLACEMENT__COLUMN);
 		createEReference(tilePlacementEClass, TILE_PLACEMENT__TILE);
 		createEAttribute(tilePlacementEClass, TILE_PLACEMENT__DARKER);
+		createEReference(tilePlacementEClass, TILE_PLACEMENT__INITIAL_STATE);
 
 		patternEClass = createEClass(PATTERN);
 		createEReference(patternEClass, PATTERN__RELATIVECOORDINATES);
@@ -1205,6 +1216,9 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTilePlacement_Darker(), ecorePackage.getEBoolean(), "darker", null, 1, 1, TilePlacement.class,
 				IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getTilePlacement_InitialState(), this.getState(), null, "initialState", null, 0, 1,
+				TilePlacement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPattern_Relativecoordinates(), this.getRelativeCoordinate(), null, "relativecoordinates",

@@ -1215,9 +1215,31 @@ ruleTilePlacement returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_8='}'
+		(
+			otherlv_8='initialState'
+			{
+				newLeafNode(otherlv_8, grammarAccess.getTilePlacementAccess().getInitialStateKeyword_8_0());
+			}
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getTilePlacementRule());
+						}
+					}
+					{
+						newCompositeNode(grammarAccess.getTilePlacementAccess().getInitialStateStateCrossReference_8_1_0());
+					}
+					ruleEString
+					{
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		otherlv_10='}'
 		{
-			newLeafNode(otherlv_8, grammarAccess.getTilePlacementAccess().getRightCurlyBracketKeyword_8());
+			newLeafNode(otherlv_10, grammarAccess.getTilePlacementAccess().getRightCurlyBracketKeyword_9());
 		}
 	)
 ;

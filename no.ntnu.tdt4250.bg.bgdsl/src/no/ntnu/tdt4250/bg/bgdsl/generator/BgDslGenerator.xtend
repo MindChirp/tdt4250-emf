@@ -208,6 +208,16 @@ class BgDslGenerator extends AbstractGenerator {
                     column=column
                 )
         «ENDFOR»
+        
+        «val tilesWithInitial = tilePlacements.filter[t | t.getFeature("initialState") !== null]»
+        
+        
+        initial_tile_placement = {
+        	«FOR tile : tilesWithInitial SEPARATOR ", "»
+        	(«tile.getFeature("row")», «tile.getFeature("column")»): "«(tile.getFeature("initialState") as EObject).getFeature("name")»"
+        	«ENDFOR»
+        }
+        
 
         # --- Instance Initialization ---
         tiles = [
@@ -215,6 +225,11 @@ class BgDslGenerator extends AbstractGenerator {
             «(placement.getFeature("tile") as EObject).getFeature("name")»(«placement.getFeature("row")», «placement.getFeature("column")»)
             «ENDFOR»
         ]
+        
+        for tile in tiles:
+        	for startingTile in initial_tile_placement.keys():
+        		if (tile.row, tile.column) == startingTile:
+        			tile.updateState(initial_tile_placement.get(startingTile))
 
         players = [
             «FOR player : players SEPARATOR ", "»

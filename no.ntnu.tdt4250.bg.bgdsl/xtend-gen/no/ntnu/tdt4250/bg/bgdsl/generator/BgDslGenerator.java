@@ -557,28 +557,65 @@ public class BgDslGenerator extends AbstractGenerator {
         }
       }
       _builder.newLine();
+      final Function1<EObject, Boolean> _function = (EObject t) -> {
+        Object _feature_23 = this.getFeature(t, "initialState");
+        return Boolean.valueOf((_feature_23 != null));
+      };
+      final Iterable<EObject> tilesWithInitial = IterableExtensions.<EObject>filter(tilePlacements, _function);
+      _builder.newLineIfNotEmpty();
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("initial_tile_placement = {");
+      _builder.newLine();
+      {
+        boolean _hasElements_3 = false;
+        for(final EObject tile : tilesWithInitial) {
+          if (!_hasElements_3) {
+            _hasElements_3 = true;
+          } else {
+            _builder.appendImmediate(", ", "\t");
+          }
+          _builder.append("\t");
+          _builder.append("(");
+          Object _feature_23 = this.getFeature(tile, "row");
+          _builder.append(_feature_23, "\t");
+          _builder.append(", ");
+          Object _feature_24 = this.getFeature(tile, "column");
+          _builder.append(_feature_24, "\t");
+          _builder.append("): \"");
+          Object _feature_25 = this.getFeature(tile, "initialState");
+          Object _feature_26 = this.getFeature(((EObject) _feature_25), "name");
+          _builder.append(_feature_26, "\t");
+          _builder.append("\"");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.append("}");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.newLine();
       _builder.append("# --- Instance Initialization ---");
       _builder.newLine();
       _builder.append("tiles = [");
       _builder.newLine();
       {
-        boolean _hasElements_3 = false;
+        boolean _hasElements_4 = false;
         for(final EObject placement : tilePlacements) {
-          if (!_hasElements_3) {
-            _hasElements_3 = true;
+          if (!_hasElements_4) {
+            _hasElements_4 = true;
           } else {
             _builder.appendImmediate(", ", "    ");
           }
           _builder.append("    ");
-          Object _feature_23 = this.getFeature(placement, "tile");
-          Object _feature_24 = this.getFeature(((EObject) _feature_23), "name");
-          _builder.append(_feature_24, "    ");
+          Object _feature_27 = this.getFeature(placement, "tile");
+          Object _feature_28 = this.getFeature(((EObject) _feature_27), "name");
+          _builder.append(_feature_28, "    ");
           _builder.append("(");
-          Object _feature_25 = this.getFeature(placement, "row");
-          _builder.append(_feature_25, "    ");
+          Object _feature_29 = this.getFeature(placement, "row");
+          _builder.append(_feature_29, "    ");
           _builder.append(", ");
-          Object _feature_26 = this.getFeature(placement, "column");
-          _builder.append(_feature_26, "    ");
+          Object _feature_30 = this.getFeature(placement, "column");
+          _builder.append(_feature_30, "    ");
           _builder.append(")");
           _builder.newLineIfNotEmpty();
         }
@@ -586,27 +623,39 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.append("]");
       _builder.newLine();
       _builder.newLine();
+      _builder.append("for tile in tiles:");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("for startingTile in initial_tile_placement.keys():");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("if (tile.row, tile.column) == startingTile:");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("tile.updateState(initial_tile_placement.get(startingTile))");
+      _builder.newLine();
+      _builder.newLine();
       _builder.append("players = [");
       _builder.newLine();
       {
-        boolean _hasElements_4 = false;
+        boolean _hasElements_5 = false;
         for(final EObject player : players) {
-          if (!_hasElements_4) {
-            _hasElements_4 = true;
+          if (!_hasElements_5) {
+            _hasElements_5 = true;
           } else {
             _builder.appendImmediate(", ", "    ");
           }
           _builder.append("    ");
           _builder.append("Player(name=\"");
-          Object _feature_27 = this.getFeature(player, "name");
-          _builder.append(_feature_27, "    ");
+          Object _feature_31 = this.getFeature(player, "name");
+          _builder.append(_feature_31, "    ");
           _builder.append("\", hexColor=\"");
-          Object _feature_28 = this.getFeature(player, "hexColor");
-          _builder.append(_feature_28, "    ");
+          Object _feature_32 = this.getFeature(player, "hexColor");
+          _builder.append(_feature_32, "    ");
           _builder.append("\", associatedState=\"");
-          Object _feature_29 = this.getFeature(player, "associatedState");
-          Object _feature_30 = this.getFeature(((EObject) _feature_29), "name");
-          _builder.append(_feature_30, "    ");
+          Object _feature_33 = this.getFeature(player, "associatedState");
+          Object _feature_34 = this.getFeature(((EObject) _feature_33), "name");
+          _builder.append(_feature_34, "    ");
           _builder.append("\")");
           _builder.newLineIfNotEmpty();
         }
@@ -643,14 +692,14 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.newLine();
       _builder.append("    ");
       _builder.append("width=");
-      Object _feature_31 = this.getFeature(boardInstance, "width");
-      _builder.append(_feature_31, "    ");
+      Object _feature_35 = this.getFeature(boardInstance, "width");
+      _builder.append(_feature_35, "    ");
       _builder.append(",");
       _builder.newLineIfNotEmpty();
       _builder.append("    ");
       _builder.append("height=");
-      Object _feature_32 = this.getFeature(boardInstance, "height");
-      _builder.append(_feature_32, "    ");
+      Object _feature_36 = this.getFeature(boardInstance, "height");
+      _builder.append(_feature_36, "    ");
       _builder.append(",");
       _builder.newLineIfNotEmpty();
       _builder.append("    ");
@@ -658,16 +707,16 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.newLine();
       _builder.append("    ");
       _builder.append("checkered=");
-      Object _feature_33 = this.getFeature(boardInstance, "checkered");
-      String _pyBool = this.toPyBool(((Boolean) _feature_33));
+      Object _feature_37 = this.getFeature(boardInstance, "checkered");
+      String _pyBool = this.toPyBool(((Boolean) _feature_37));
       _builder.append(_pyBool, "    ");
       _builder.append(",");
       _builder.newLineIfNotEmpty();
       _builder.append("    ");
       _builder.append("size=");
-      Object _feature_34 = this.getFeature(boardInstance, "width");
-      Object _feature_35 = this.getFeature(boardInstance, "height");
-      int _multiply = ((((Integer) _feature_34)).intValue() * (((Integer) _feature_35)).intValue());
+      Object _feature_38 = this.getFeature(boardInstance, "width");
+      Object _feature_39 = this.getFeature(boardInstance, "height");
+      int _multiply = ((((Integer) _feature_38)).intValue() * (((Integer) _feature_39)).intValue());
       _builder.append(_multiply, "    ");
       _builder.append(",");
       _builder.newLineIfNotEmpty();
@@ -699,8 +748,8 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.newLineIfNotEmpty();
       _builder.append("    ");
       _builder.append("name=\"");
-      Object _feature_36 = this.getFeature(gameInstance, "name");
-      _builder.append(_feature_36, "    ");
+      Object _feature_40 = this.getFeature(gameInstance, "name");
+      _builder.append(_feature_40, "    ");
       _builder.append("\",");
       _builder.newLineIfNotEmpty();
       _builder.append("    ");
@@ -711,8 +760,8 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.newLineIfNotEmpty();
       _builder.append("    ");
       _builder.append("turnPolicy=\"");
-      Object _feature_37 = this.getFeature(gameInstance, "turnPolicy");
-      _builder.append(_feature_37, "    ");
+      Object _feature_41 = this.getFeature(gameInstance, "turnPolicy");
+      _builder.append(_feature_41, "    ");
       _builder.append("\"");
       _builder.newLineIfNotEmpty();
       _builder.append(")");

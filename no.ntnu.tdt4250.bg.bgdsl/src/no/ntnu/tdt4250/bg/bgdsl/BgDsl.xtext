@@ -89,6 +89,7 @@ TilePlacement returns TilePlacement:
 		'row' row=EInt
 		'column' column=EInt
 		'tile' tile=[Tile|EString]
+		('initialState' initialState=[State|EString])?
 	'}';
 
 State returns State:

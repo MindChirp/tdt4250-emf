@@ -717,13 +717,22 @@ public interface BgPackage extends EPackage {
 	int TILE_PLACEMENT__DARKER = 3;
 
 	/**
+	 * The feature id for the '<em><b>Initial State</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TILE_PLACEMENT__INITIAL_STATE = 4;
+
+	/**
 	 * The number of structural features of the '<em>Tile Placement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TILE_PLACEMENT_FEATURE_COUNT = 4;
+	int TILE_PLACEMENT_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Tile Placement</em>' class.
@@ -1596,6 +1605,17 @@ public interface BgPackage extends EPackage {
 	EAttribute getTilePlacement_Darker();
 
 	/**
+	 * Returns the meta object for the reference '{@link no.ntnu.tdt4250.bg.TilePlacement#getInitialState <em>Initial State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Initial State</em>'.
+	 * @see no.ntnu.tdt4250.bg.TilePlacement#getInitialState()
+	 * @see #getTilePlacement()
+	 * @generated
+	 */
+	EReference getTilePlacement_InitialState();
+
+	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Pattern <em>Pattern</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2241,6 +2261,14 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TILE_PLACEMENT__DARKER = eINSTANCE.getTilePlacement_Darker();
+
+		/**
+		 * The meta object literal for the '<em><b>Initial State</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TILE_PLACEMENT__INITIAL_STATE = eINSTANCE.getTilePlacement_InitialState();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.PatternImpl <em>Pattern</em>}' class.

@@ -2553,7 +2553,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTilePlacement"
-    // InternalBgDsl.g:1136:1: ruleTilePlacement returns [EObject current=null] : (otherlv_0= 'TilePlacement' otherlv_1= '{' otherlv_2= 'row' ( (lv_row_3_0= ruleEInt ) ) otherlv_4= 'column' ( (lv_column_5_0= ruleEInt ) ) otherlv_6= 'tile' ( ( ruleEString ) ) otherlv_8= '}' ) ;
+    // InternalBgDsl.g:1136:1: ruleTilePlacement returns [EObject current=null] : (otherlv_0= 'TilePlacement' otherlv_1= '{' otherlv_2= 'row' ( (lv_row_3_0= ruleEInt ) ) otherlv_4= 'column' ( (lv_column_5_0= ruleEInt ) ) otherlv_6= 'tile' ( ( ruleEString ) ) (otherlv_8= 'initialState' ( ( ruleEString ) ) )? otherlv_10= '}' ) ;
     public final EObject ruleTilePlacement() throws RecognitionException {
         EObject current = null;
 
@@ -2563,6 +2563,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
         Token otherlv_4=null;
         Token otherlv_6=null;
         Token otherlv_8=null;
+        Token otherlv_10=null;
         AntlrDatatypeRuleToken lv_row_3_0 = null;
 
         AntlrDatatypeRuleToken lv_column_5_0 = null;
@@ -2572,11 +2573,11 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBgDsl.g:1142:2: ( (otherlv_0= 'TilePlacement' otherlv_1= '{' otherlv_2= 'row' ( (lv_row_3_0= ruleEInt ) ) otherlv_4= 'column' ( (lv_column_5_0= ruleEInt ) ) otherlv_6= 'tile' ( ( ruleEString ) ) otherlv_8= '}' ) )
-            // InternalBgDsl.g:1143:2: (otherlv_0= 'TilePlacement' otherlv_1= '{' otherlv_2= 'row' ( (lv_row_3_0= ruleEInt ) ) otherlv_4= 'column' ( (lv_column_5_0= ruleEInt ) ) otherlv_6= 'tile' ( ( ruleEString ) ) otherlv_8= '}' )
+            // InternalBgDsl.g:1142:2: ( (otherlv_0= 'TilePlacement' otherlv_1= '{' otherlv_2= 'row' ( (lv_row_3_0= ruleEInt ) ) otherlv_4= 'column' ( (lv_column_5_0= ruleEInt ) ) otherlv_6= 'tile' ( ( ruleEString ) ) (otherlv_8= 'initialState' ( ( ruleEString ) ) )? otherlv_10= '}' ) )
+            // InternalBgDsl.g:1143:2: (otherlv_0= 'TilePlacement' otherlv_1= '{' otherlv_2= 'row' ( (lv_row_3_0= ruleEInt ) ) otherlv_4= 'column' ( (lv_column_5_0= ruleEInt ) ) otherlv_6= 'tile' ( ( ruleEString ) ) (otherlv_8= 'initialState' ( ( ruleEString ) ) )? otherlv_10= '}' )
             {
-            // InternalBgDsl.g:1143:2: (otherlv_0= 'TilePlacement' otherlv_1= '{' otherlv_2= 'row' ( (lv_row_3_0= ruleEInt ) ) otherlv_4= 'column' ( (lv_column_5_0= ruleEInt ) ) otherlv_6= 'tile' ( ( ruleEString ) ) otherlv_8= '}' )
-            // InternalBgDsl.g:1144:3: otherlv_0= 'TilePlacement' otherlv_1= '{' otherlv_2= 'row' ( (lv_row_3_0= ruleEInt ) ) otherlv_4= 'column' ( (lv_column_5_0= ruleEInt ) ) otherlv_6= 'tile' ( ( ruleEString ) ) otherlv_8= '}'
+            // InternalBgDsl.g:1143:2: (otherlv_0= 'TilePlacement' otherlv_1= '{' otherlv_2= 'row' ( (lv_row_3_0= ruleEInt ) ) otherlv_4= 'column' ( (lv_column_5_0= ruleEInt ) ) otherlv_6= 'tile' ( ( ruleEString ) ) (otherlv_8= 'initialState' ( ( ruleEString ) ) )? otherlv_10= '}' )
+            // InternalBgDsl.g:1144:3: otherlv_0= 'TilePlacement' otherlv_1= '{' otherlv_2= 'row' ( (lv_row_3_0= ruleEInt ) ) otherlv_4= 'column' ( (lv_column_5_0= ruleEInt ) ) otherlv_6= 'tile' ( ( ruleEString ) ) (otherlv_8= 'initialState' ( ( ruleEString ) ) )? otherlv_10= '}'
             {
             otherlv_0=(Token)match(input,39,FOLLOW_4); 
 
@@ -2674,7 +2675,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getTilePlacementAccess().getTileTileCrossReference_7_0());
             				
-            pushFollow(FOLLOW_13);
+            pushFollow(FOLLOW_40);
             ruleEString();
 
             state._fsp--;
@@ -2688,9 +2689,58 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_8=(Token)match(input,18,FOLLOW_2); 
+            // InternalBgDsl.g:1218:3: (otherlv_8= 'initialState' ( ( ruleEString ) ) )?
+            int alt16=2;
+            int LA16_0 = input.LA(1);
 
-            			newLeafNode(otherlv_8, grammarAccess.getTilePlacementAccess().getRightCurlyBracketKeyword_8());
+            if ( (LA16_0==35) ) {
+                alt16=1;
+            }
+            switch (alt16) {
+                case 1 :
+                    // InternalBgDsl.g:1219:4: otherlv_8= 'initialState' ( ( ruleEString ) )
+                    {
+                    otherlv_8=(Token)match(input,35,FOLLOW_3); 
+
+                    				newLeafNode(otherlv_8, grammarAccess.getTilePlacementAccess().getInitialStateKeyword_8_0());
+                    			
+                    // InternalBgDsl.g:1223:4: ( ( ruleEString ) )
+                    // InternalBgDsl.g:1224:5: ( ruleEString )
+                    {
+                    // InternalBgDsl.g:1224:5: ( ruleEString )
+                    // InternalBgDsl.g:1225:6: ruleEString
+                    {
+
+                    						if (current==null) {
+                    							current = createModelElement(grammarAccess.getTilePlacementRule());
+                    						}
+                    					
+
+                    						newCompositeNode(grammarAccess.getTilePlacementAccess().getInitialStateStateCrossReference_8_1_0());
+                    					
+                    pushFollow(FOLLOW_13);
+                    ruleEString();
+
+                    state._fsp--;
+
+
+                    						afterParserOrEnumRuleCall();
+                    					
+
+                    }
+
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+
+            otherlv_10=(Token)match(input,18,FOLLOW_2); 
+
+            			newLeafNode(otherlv_10, grammarAccess.getTilePlacementAccess().getRightCurlyBracketKeyword_9());
             		
 
             }
@@ -2715,7 +2765,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleState"
-    // InternalBgDsl.g:1226:1: entryRuleState returns [EObject current=null] : iv_ruleState= ruleState EOF ;
+    // InternalBgDsl.g:1248:1: entryRuleState returns [EObject current=null] : iv_ruleState= ruleState EOF ;
     public final EObject entryRuleState() throws RecognitionException {
         EObject current = null;
 
@@ -2723,8 +2773,8 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalBgDsl.g:1226:46: (iv_ruleState= ruleState EOF )
-            // InternalBgDsl.g:1227:2: iv_ruleState= ruleState EOF
+            // InternalBgDsl.g:1248:46: (iv_ruleState= ruleState EOF )
+            // InternalBgDsl.g:1249:2: iv_ruleState= ruleState EOF
             {
              newCompositeNode(grammarAccess.getStateRule()); 
             pushFollow(FOLLOW_1);
@@ -2751,7 +2801,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleState"
-    // InternalBgDsl.g:1233:1: ruleState returns [EObject current=null] : (otherlv_0= 'State' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'hexColor' ( (lv_hexColor_4_0= ruleEString ) ) (otherlv_5= 'outbound' otherlv_6= '(' ( ( ruleEString ) ) (otherlv_8= ',' ( ( ruleEString ) ) )* otherlv_10= ')' )? (otherlv_11= 'inbound' otherlv_12= '(' ( ( ruleEString ) ) (otherlv_14= ',' ( ( ruleEString ) ) )* otherlv_16= ')' )? otherlv_17= '}' ) ;
+    // InternalBgDsl.g:1255:1: ruleState returns [EObject current=null] : (otherlv_0= 'State' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'hexColor' ( (lv_hexColor_4_0= ruleEString ) ) (otherlv_5= 'outbound' otherlv_6= '(' ( ( ruleEString ) ) (otherlv_8= ',' ( ( ruleEString ) ) )* otherlv_10= ')' )? (otherlv_11= 'inbound' otherlv_12= '(' ( ( ruleEString ) ) (otherlv_14= ',' ( ( ruleEString ) ) )* otherlv_16= ')' )? otherlv_17= '}' ) ;
     public final EObject ruleState() throws RecognitionException {
         EObject current = null;
 
@@ -2776,21 +2826,21 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBgDsl.g:1239:2: ( (otherlv_0= 'State' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'hexColor' ( (lv_hexColor_4_0= ruleEString ) ) (otherlv_5= 'outbound' otherlv_6= '(' ( ( ruleEString ) ) (otherlv_8= ',' ( ( ruleEString ) ) )* otherlv_10= ')' )? (otherlv_11= 'inbound' otherlv_12= '(' ( ( ruleEString ) ) (otherlv_14= ',' ( ( ruleEString ) ) )* otherlv_16= ')' )? otherlv_17= '}' ) )
-            // InternalBgDsl.g:1240:2: (otherlv_0= 'State' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'hexColor' ( (lv_hexColor_4_0= ruleEString ) ) (otherlv_5= 'outbound' otherlv_6= '(' ( ( ruleEString ) ) (otherlv_8= ',' ( ( ruleEString ) ) )* otherlv_10= ')' )? (otherlv_11= 'inbound' otherlv_12= '(' ( ( ruleEString ) ) (otherlv_14= ',' ( ( ruleEString ) ) )* otherlv_16= ')' )? otherlv_17= '}' )
+            // InternalBgDsl.g:1261:2: ( (otherlv_0= 'State' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'hexColor' ( (lv_hexColor_4_0= ruleEString ) ) (otherlv_5= 'outbound' otherlv_6= '(' ( ( ruleEString ) ) (otherlv_8= ',' ( ( ruleEString ) ) )* otherlv_10= ')' )? (otherlv_11= 'inbound' otherlv_12= '(' ( ( ruleEString ) ) (otherlv_14= ',' ( ( ruleEString ) ) )* otherlv_16= ')' )? otherlv_17= '}' ) )
+            // InternalBgDsl.g:1262:2: (otherlv_0= 'State' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'hexColor' ( (lv_hexColor_4_0= ruleEString ) ) (otherlv_5= 'outbound' otherlv_6= '(' ( ( ruleEString ) ) (otherlv_8= ',' ( ( ruleEString ) ) )* otherlv_10= ')' )? (otherlv_11= 'inbound' otherlv_12= '(' ( ( ruleEString ) ) (otherlv_14= ',' ( ( ruleEString ) ) )* otherlv_16= ')' )? otherlv_17= '}' )
             {
-            // InternalBgDsl.g:1240:2: (otherlv_0= 'State' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'hexColor' ( (lv_hexColor_4_0= ruleEString ) ) (otherlv_5= 'outbound' otherlv_6= '(' ( ( ruleEString ) ) (otherlv_8= ',' ( ( ruleEString ) ) )* otherlv_10= ')' )? (otherlv_11= 'inbound' otherlv_12= '(' ( ( ruleEString ) ) (otherlv_14= ',' ( ( ruleEString ) ) )* otherlv_16= ')' )? otherlv_17= '}' )
-            // InternalBgDsl.g:1241:3: otherlv_0= 'State' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'hexColor' ( (lv_hexColor_4_0= ruleEString ) ) (otherlv_5= 'outbound' otherlv_6= '(' ( ( ruleEString ) ) (otherlv_8= ',' ( ( ruleEString ) ) )* otherlv_10= ')' )? (otherlv_11= 'inbound' otherlv_12= '(' ( ( ruleEString ) ) (otherlv_14= ',' ( ( ruleEString ) ) )* otherlv_16= ')' )? otherlv_17= '}'
+            // InternalBgDsl.g:1262:2: (otherlv_0= 'State' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'hexColor' ( (lv_hexColor_4_0= ruleEString ) ) (otherlv_5= 'outbound' otherlv_6= '(' ( ( ruleEString ) ) (otherlv_8= ',' ( ( ruleEString ) ) )* otherlv_10= ')' )? (otherlv_11= 'inbound' otherlv_12= '(' ( ( ruleEString ) ) (otherlv_14= ',' ( ( ruleEString ) ) )* otherlv_16= ')' )? otherlv_17= '}' )
+            // InternalBgDsl.g:1263:3: otherlv_0= 'State' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'hexColor' ( (lv_hexColor_4_0= ruleEString ) ) (otherlv_5= 'outbound' otherlv_6= '(' ( ( ruleEString ) ) (otherlv_8= ',' ( ( ruleEString ) ) )* otherlv_10= ')' )? (otherlv_11= 'inbound' otherlv_12= '(' ( ( ruleEString ) ) (otherlv_14= ',' ( ( ruleEString ) ) )* otherlv_16= ')' )? otherlv_17= '}'
             {
             otherlv_0=(Token)match(input,43,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getStateAccess().getStateKeyword_0());
             		
-            // InternalBgDsl.g:1245:3: ( (lv_name_1_0= ruleEString ) )
-            // InternalBgDsl.g:1246:4: (lv_name_1_0= ruleEString )
+            // InternalBgDsl.g:1267:3: ( (lv_name_1_0= ruleEString ) )
+            // InternalBgDsl.g:1268:4: (lv_name_1_0= ruleEString )
             {
-            // InternalBgDsl.g:1246:4: (lv_name_1_0= ruleEString )
-            // InternalBgDsl.g:1247:5: lv_name_1_0= ruleEString
+            // InternalBgDsl.g:1268:4: (lv_name_1_0= ruleEString )
+            // InternalBgDsl.g:1269:5: lv_name_1_0= ruleEString
             {
 
             					newCompositeNode(grammarAccess.getStateAccess().getNameEStringParserRuleCall_1_0());
@@ -2825,16 +2875,16 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_3, grammarAccess.getStateAccess().getHexColorKeyword_3());
             		
-            // InternalBgDsl.g:1272:3: ( (lv_hexColor_4_0= ruleEString ) )
-            // InternalBgDsl.g:1273:4: (lv_hexColor_4_0= ruleEString )
+            // InternalBgDsl.g:1294:3: ( (lv_hexColor_4_0= ruleEString ) )
+            // InternalBgDsl.g:1295:4: (lv_hexColor_4_0= ruleEString )
             {
-            // InternalBgDsl.g:1273:4: (lv_hexColor_4_0= ruleEString )
-            // InternalBgDsl.g:1274:5: lv_hexColor_4_0= ruleEString
+            // InternalBgDsl.g:1295:4: (lv_hexColor_4_0= ruleEString )
+            // InternalBgDsl.g:1296:5: lv_hexColor_4_0= ruleEString
             {
 
             					newCompositeNode(grammarAccess.getStateAccess().getHexColorEStringParserRuleCall_4_0());
             				
-            pushFollow(FOLLOW_40);
+            pushFollow(FOLLOW_41);
             lv_hexColor_4_0=ruleEString();
 
             state._fsp--;
@@ -2856,18 +2906,18 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalBgDsl.g:1291:3: (otherlv_5= 'outbound' otherlv_6= '(' ( ( ruleEString ) ) (otherlv_8= ',' ( ( ruleEString ) ) )* otherlv_10= ')' )?
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+            // InternalBgDsl.g:1313:3: (otherlv_5= 'outbound' otherlv_6= '(' ( ( ruleEString ) ) (otherlv_8= ',' ( ( ruleEString ) ) )* otherlv_10= ')' )?
+            int alt18=2;
+            int LA18_0 = input.LA(1);
 
-            if ( (LA17_0==44) ) {
-                alt17=1;
+            if ( (LA18_0==44) ) {
+                alt18=1;
             }
-            switch (alt17) {
+            switch (alt18) {
                 case 1 :
-                    // InternalBgDsl.g:1292:4: otherlv_5= 'outbound' otherlv_6= '(' ( ( ruleEString ) ) (otherlv_8= ',' ( ( ruleEString ) ) )* otherlv_10= ')'
+                    // InternalBgDsl.g:1314:4: otherlv_5= 'outbound' otherlv_6= '(' ( ( ruleEString ) ) (otherlv_8= ',' ( ( ruleEString ) ) )* otherlv_10= ')'
                     {
-                    otherlv_5=(Token)match(input,44,FOLLOW_41); 
+                    otherlv_5=(Token)match(input,44,FOLLOW_42); 
 
                     				newLeafNode(otherlv_5, grammarAccess.getStateAccess().getOutboundKeyword_5_0());
                     			
@@ -2875,11 +2925,11 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
                     				newLeafNode(otherlv_6, grammarAccess.getStateAccess().getLeftParenthesisKeyword_5_1());
                     			
-                    // InternalBgDsl.g:1300:4: ( ( ruleEString ) )
-                    // InternalBgDsl.g:1301:5: ( ruleEString )
+                    // InternalBgDsl.g:1322:4: ( ( ruleEString ) )
+                    // InternalBgDsl.g:1323:5: ( ruleEString )
                     {
-                    // InternalBgDsl.g:1301:5: ( ruleEString )
-                    // InternalBgDsl.g:1302:6: ruleEString
+                    // InternalBgDsl.g:1323:5: ( ruleEString )
+                    // InternalBgDsl.g:1324:6: ruleEString
                     {
 
                     						if (current==null) {
@@ -2889,7 +2939,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
                     						newCompositeNode(grammarAccess.getStateAccess().getOutboundTransitionCrossReference_5_2_0());
                     					
-                    pushFollow(FOLLOW_42);
+                    pushFollow(FOLLOW_43);
                     ruleEString();
 
                     state._fsp--;
@@ -2903,30 +2953,30 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalBgDsl.g:1316:4: (otherlv_8= ',' ( ( ruleEString ) ) )*
-                    loop16:
+                    // InternalBgDsl.g:1338:4: (otherlv_8= ',' ( ( ruleEString ) ) )*
+                    loop17:
                     do {
-                        int alt16=2;
-                        int LA16_0 = input.LA(1);
+                        int alt17=2;
+                        int LA17_0 = input.LA(1);
 
-                        if ( (LA16_0==17) ) {
-                            alt16=1;
+                        if ( (LA17_0==17) ) {
+                            alt17=1;
                         }
 
 
-                        switch (alt16) {
+                        switch (alt17) {
                     	case 1 :
-                    	    // InternalBgDsl.g:1317:5: otherlv_8= ',' ( ( ruleEString ) )
+                    	    // InternalBgDsl.g:1339:5: otherlv_8= ',' ( ( ruleEString ) )
                     	    {
                     	    otherlv_8=(Token)match(input,17,FOLLOW_3); 
 
                     	    					newLeafNode(otherlv_8, grammarAccess.getStateAccess().getCommaKeyword_5_3_0());
                     	    				
-                    	    // InternalBgDsl.g:1321:5: ( ( ruleEString ) )
-                    	    // InternalBgDsl.g:1322:6: ( ruleEString )
+                    	    // InternalBgDsl.g:1343:5: ( ( ruleEString ) )
+                    	    // InternalBgDsl.g:1344:6: ( ruleEString )
                     	    {
-                    	    // InternalBgDsl.g:1322:6: ( ruleEString )
-                    	    // InternalBgDsl.g:1323:7: ruleEString
+                    	    // InternalBgDsl.g:1344:6: ( ruleEString )
+                    	    // InternalBgDsl.g:1345:7: ruleEString
                     	    {
 
                     	    							if (current==null) {
@@ -2936,7 +2986,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
                     	    							newCompositeNode(grammarAccess.getStateAccess().getOutboundTransitionCrossReference_5_3_1_0());
                     	    						
-                    	    pushFollow(FOLLOW_42);
+                    	    pushFollow(FOLLOW_43);
                     	    ruleEString();
 
                     	    state._fsp--;
@@ -2955,11 +3005,11 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop16;
+                    	    break loop17;
                         }
                     } while (true);
 
-                    otherlv_10=(Token)match(input,46,FOLLOW_43); 
+                    otherlv_10=(Token)match(input,46,FOLLOW_44); 
 
                     				newLeafNode(otherlv_10, grammarAccess.getStateAccess().getRightParenthesisKeyword_5_4());
                     			
@@ -2969,18 +3019,18 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalBgDsl.g:1343:3: (otherlv_11= 'inbound' otherlv_12= '(' ( ( ruleEString ) ) (otherlv_14= ',' ( ( ruleEString ) ) )* otherlv_16= ')' )?
-            int alt19=2;
-            int LA19_0 = input.LA(1);
+            // InternalBgDsl.g:1365:3: (otherlv_11= 'inbound' otherlv_12= '(' ( ( ruleEString ) ) (otherlv_14= ',' ( ( ruleEString ) ) )* otherlv_16= ')' )?
+            int alt20=2;
+            int LA20_0 = input.LA(1);
 
-            if ( (LA19_0==47) ) {
-                alt19=1;
+            if ( (LA20_0==47) ) {
+                alt20=1;
             }
-            switch (alt19) {
+            switch (alt20) {
                 case 1 :
-                    // InternalBgDsl.g:1344:4: otherlv_11= 'inbound' otherlv_12= '(' ( ( ruleEString ) ) (otherlv_14= ',' ( ( ruleEString ) ) )* otherlv_16= ')'
+                    // InternalBgDsl.g:1366:4: otherlv_11= 'inbound' otherlv_12= '(' ( ( ruleEString ) ) (otherlv_14= ',' ( ( ruleEString ) ) )* otherlv_16= ')'
                     {
-                    otherlv_11=(Token)match(input,47,FOLLOW_41); 
+                    otherlv_11=(Token)match(input,47,FOLLOW_42); 
 
                     				newLeafNode(otherlv_11, grammarAccess.getStateAccess().getInboundKeyword_6_0());
                     			
@@ -2988,11 +3038,11 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
                     				newLeafNode(otherlv_12, grammarAccess.getStateAccess().getLeftParenthesisKeyword_6_1());
                     			
-                    // InternalBgDsl.g:1352:4: ( ( ruleEString ) )
-                    // InternalBgDsl.g:1353:5: ( ruleEString )
+                    // InternalBgDsl.g:1374:4: ( ( ruleEString ) )
+                    // InternalBgDsl.g:1375:5: ( ruleEString )
                     {
-                    // InternalBgDsl.g:1353:5: ( ruleEString )
-                    // InternalBgDsl.g:1354:6: ruleEString
+                    // InternalBgDsl.g:1375:5: ( ruleEString )
+                    // InternalBgDsl.g:1376:6: ruleEString
                     {
 
                     						if (current==null) {
@@ -3002,7 +3052,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
                     						newCompositeNode(grammarAccess.getStateAccess().getInboundTransitionCrossReference_6_2_0());
                     					
-                    pushFollow(FOLLOW_42);
+                    pushFollow(FOLLOW_43);
                     ruleEString();
 
                     state._fsp--;
@@ -3016,30 +3066,30 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalBgDsl.g:1368:4: (otherlv_14= ',' ( ( ruleEString ) ) )*
-                    loop18:
+                    // InternalBgDsl.g:1390:4: (otherlv_14= ',' ( ( ruleEString ) ) )*
+                    loop19:
                     do {
-                        int alt18=2;
-                        int LA18_0 = input.LA(1);
+                        int alt19=2;
+                        int LA19_0 = input.LA(1);
 
-                        if ( (LA18_0==17) ) {
-                            alt18=1;
+                        if ( (LA19_0==17) ) {
+                            alt19=1;
                         }
 
 
-                        switch (alt18) {
+                        switch (alt19) {
                     	case 1 :
-                    	    // InternalBgDsl.g:1369:5: otherlv_14= ',' ( ( ruleEString ) )
+                    	    // InternalBgDsl.g:1391:5: otherlv_14= ',' ( ( ruleEString ) )
                     	    {
                     	    otherlv_14=(Token)match(input,17,FOLLOW_3); 
 
                     	    					newLeafNode(otherlv_14, grammarAccess.getStateAccess().getCommaKeyword_6_3_0());
                     	    				
-                    	    // InternalBgDsl.g:1373:5: ( ( ruleEString ) )
-                    	    // InternalBgDsl.g:1374:6: ( ruleEString )
+                    	    // InternalBgDsl.g:1395:5: ( ( ruleEString ) )
+                    	    // InternalBgDsl.g:1396:6: ( ruleEString )
                     	    {
-                    	    // InternalBgDsl.g:1374:6: ( ruleEString )
-                    	    // InternalBgDsl.g:1375:7: ruleEString
+                    	    // InternalBgDsl.g:1396:6: ( ruleEString )
+                    	    // InternalBgDsl.g:1397:7: ruleEString
                     	    {
 
                     	    							if (current==null) {
@@ -3049,7 +3099,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
                     	    							newCompositeNode(grammarAccess.getStateAccess().getInboundTransitionCrossReference_6_3_1_0());
                     	    						
-                    	    pushFollow(FOLLOW_42);
+                    	    pushFollow(FOLLOW_43);
                     	    ruleEString();
 
                     	    state._fsp--;
@@ -3068,7 +3118,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop18;
+                    	    break loop19;
                         }
                     } while (true);
 
@@ -3109,7 +3159,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTransition"
-    // InternalBgDsl.g:1403:1: entryRuleTransition returns [EObject current=null] : iv_ruleTransition= ruleTransition EOF ;
+    // InternalBgDsl.g:1425:1: entryRuleTransition returns [EObject current=null] : iv_ruleTransition= ruleTransition EOF ;
     public final EObject entryRuleTransition() throws RecognitionException {
         EObject current = null;
 
@@ -3117,8 +3167,8 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalBgDsl.g:1403:51: (iv_ruleTransition= ruleTransition EOF )
-            // InternalBgDsl.g:1404:2: iv_ruleTransition= ruleTransition EOF
+            // InternalBgDsl.g:1425:51: (iv_ruleTransition= ruleTransition EOF )
+            // InternalBgDsl.g:1426:2: iv_ruleTransition= ruleTransition EOF
             {
              newCompositeNode(grammarAccess.getTransitionRule()); 
             pushFollow(FOLLOW_1);
@@ -3145,7 +3195,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTransition"
-    // InternalBgDsl.g:1410:1: ruleTransition returns [EObject current=null] : (otherlv_0= 'Transition' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'source' otherlv_4= '(' ( ( ruleEString ) ) (otherlv_6= ',' ( ( ruleEString ) ) )* otherlv_8= ')' otherlv_9= 'target' ( ( ruleEString ) ) otherlv_11= '}' ) ;
+    // InternalBgDsl.g:1432:1: ruleTransition returns [EObject current=null] : (otherlv_0= 'Transition' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'source' otherlv_4= '(' ( ( ruleEString ) ) (otherlv_6= ',' ( ( ruleEString ) ) )* otherlv_8= ')' otherlv_9= 'target' ( ( ruleEString ) ) otherlv_11= '}' ) ;
     public final EObject ruleTransition() throws RecognitionException {
         EObject current = null;
 
@@ -3164,21 +3214,21 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBgDsl.g:1416:2: ( (otherlv_0= 'Transition' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'source' otherlv_4= '(' ( ( ruleEString ) ) (otherlv_6= ',' ( ( ruleEString ) ) )* otherlv_8= ')' otherlv_9= 'target' ( ( ruleEString ) ) otherlv_11= '}' ) )
-            // InternalBgDsl.g:1417:2: (otherlv_0= 'Transition' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'source' otherlv_4= '(' ( ( ruleEString ) ) (otherlv_6= ',' ( ( ruleEString ) ) )* otherlv_8= ')' otherlv_9= 'target' ( ( ruleEString ) ) otherlv_11= '}' )
+            // InternalBgDsl.g:1438:2: ( (otherlv_0= 'Transition' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'source' otherlv_4= '(' ( ( ruleEString ) ) (otherlv_6= ',' ( ( ruleEString ) ) )* otherlv_8= ')' otherlv_9= 'target' ( ( ruleEString ) ) otherlv_11= '}' ) )
+            // InternalBgDsl.g:1439:2: (otherlv_0= 'Transition' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'source' otherlv_4= '(' ( ( ruleEString ) ) (otherlv_6= ',' ( ( ruleEString ) ) )* otherlv_8= ')' otherlv_9= 'target' ( ( ruleEString ) ) otherlv_11= '}' )
             {
-            // InternalBgDsl.g:1417:2: (otherlv_0= 'Transition' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'source' otherlv_4= '(' ( ( ruleEString ) ) (otherlv_6= ',' ( ( ruleEString ) ) )* otherlv_8= ')' otherlv_9= 'target' ( ( ruleEString ) ) otherlv_11= '}' )
-            // InternalBgDsl.g:1418:3: otherlv_0= 'Transition' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'source' otherlv_4= '(' ( ( ruleEString ) ) (otherlv_6= ',' ( ( ruleEString ) ) )* otherlv_8= ')' otherlv_9= 'target' ( ( ruleEString ) ) otherlv_11= '}'
+            // InternalBgDsl.g:1439:2: (otherlv_0= 'Transition' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'source' otherlv_4= '(' ( ( ruleEString ) ) (otherlv_6= ',' ( ( ruleEString ) ) )* otherlv_8= ')' otherlv_9= 'target' ( ( ruleEString ) ) otherlv_11= '}' )
+            // InternalBgDsl.g:1440:3: otherlv_0= 'Transition' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'source' otherlv_4= '(' ( ( ruleEString ) ) (otherlv_6= ',' ( ( ruleEString ) ) )* otherlv_8= ')' otherlv_9= 'target' ( ( ruleEString ) ) otherlv_11= '}'
             {
             otherlv_0=(Token)match(input,48,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getTransitionAccess().getTransitionKeyword_0());
             		
-            // InternalBgDsl.g:1422:3: ( (lv_name_1_0= ruleEString ) )
-            // InternalBgDsl.g:1423:4: (lv_name_1_0= ruleEString )
+            // InternalBgDsl.g:1444:3: ( (lv_name_1_0= ruleEString ) )
+            // InternalBgDsl.g:1445:4: (lv_name_1_0= ruleEString )
             {
-            // InternalBgDsl.g:1423:4: (lv_name_1_0= ruleEString )
-            // InternalBgDsl.g:1424:5: lv_name_1_0= ruleEString
+            // InternalBgDsl.g:1445:4: (lv_name_1_0= ruleEString )
+            // InternalBgDsl.g:1446:5: lv_name_1_0= ruleEString
             {
 
             					newCompositeNode(grammarAccess.getTransitionAccess().getNameEStringParserRuleCall_1_0());
@@ -3205,11 +3255,11 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,12,FOLLOW_44); 
+            otherlv_2=(Token)match(input,12,FOLLOW_45); 
 
             			newLeafNode(otherlv_2, grammarAccess.getTransitionAccess().getLeftCurlyBracketKeyword_2());
             		
-            otherlv_3=(Token)match(input,49,FOLLOW_41); 
+            otherlv_3=(Token)match(input,49,FOLLOW_42); 
 
             			newLeafNode(otherlv_3, grammarAccess.getTransitionAccess().getSourceKeyword_3());
             		
@@ -3217,11 +3267,11 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_4, grammarAccess.getTransitionAccess().getLeftParenthesisKeyword_4());
             		
-            // InternalBgDsl.g:1453:3: ( ( ruleEString ) )
-            // InternalBgDsl.g:1454:4: ( ruleEString )
+            // InternalBgDsl.g:1475:3: ( ( ruleEString ) )
+            // InternalBgDsl.g:1476:4: ( ruleEString )
             {
-            // InternalBgDsl.g:1454:4: ( ruleEString )
-            // InternalBgDsl.g:1455:5: ruleEString
+            // InternalBgDsl.g:1476:4: ( ruleEString )
+            // InternalBgDsl.g:1477:5: ruleEString
             {
 
             					if (current==null) {
@@ -3231,7 +3281,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getTransitionAccess().getSourceStateCrossReference_5_0());
             				
-            pushFollow(FOLLOW_42);
+            pushFollow(FOLLOW_43);
             ruleEString();
 
             state._fsp--;
@@ -3245,30 +3295,30 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalBgDsl.g:1469:3: (otherlv_6= ',' ( ( ruleEString ) ) )*
-            loop20:
+            // InternalBgDsl.g:1491:3: (otherlv_6= ',' ( ( ruleEString ) ) )*
+            loop21:
             do {
-                int alt20=2;
-                int LA20_0 = input.LA(1);
+                int alt21=2;
+                int LA21_0 = input.LA(1);
 
-                if ( (LA20_0==17) ) {
-                    alt20=1;
+                if ( (LA21_0==17) ) {
+                    alt21=1;
                 }
 
 
-                switch (alt20) {
+                switch (alt21) {
             	case 1 :
-            	    // InternalBgDsl.g:1470:4: otherlv_6= ',' ( ( ruleEString ) )
+            	    // InternalBgDsl.g:1492:4: otherlv_6= ',' ( ( ruleEString ) )
             	    {
             	    otherlv_6=(Token)match(input,17,FOLLOW_3); 
 
             	    				newLeafNode(otherlv_6, grammarAccess.getTransitionAccess().getCommaKeyword_6_0());
             	    			
-            	    // InternalBgDsl.g:1474:4: ( ( ruleEString ) )
-            	    // InternalBgDsl.g:1475:5: ( ruleEString )
+            	    // InternalBgDsl.g:1496:4: ( ( ruleEString ) )
+            	    // InternalBgDsl.g:1497:5: ( ruleEString )
             	    {
-            	    // InternalBgDsl.g:1475:5: ( ruleEString )
-            	    // InternalBgDsl.g:1476:6: ruleEString
+            	    // InternalBgDsl.g:1497:5: ( ruleEString )
+            	    // InternalBgDsl.g:1498:6: ruleEString
             	    {
 
             	    						if (current==null) {
@@ -3278,7 +3328,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             	    						newCompositeNode(grammarAccess.getTransitionAccess().getSourceStateCrossReference_6_1_0());
             	    					
-            	    pushFollow(FOLLOW_42);
+            	    pushFollow(FOLLOW_43);
             	    ruleEString();
 
             	    state._fsp--;
@@ -3297,11 +3347,11 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop20;
+            	    break loop21;
                 }
             } while (true);
 
-            otherlv_8=(Token)match(input,46,FOLLOW_45); 
+            otherlv_8=(Token)match(input,46,FOLLOW_46); 
 
             			newLeafNode(otherlv_8, grammarAccess.getTransitionAccess().getRightParenthesisKeyword_7());
             		
@@ -3309,11 +3359,11 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_9, grammarAccess.getTransitionAccess().getTargetKeyword_8());
             		
-            // InternalBgDsl.g:1499:3: ( ( ruleEString ) )
-            // InternalBgDsl.g:1500:4: ( ruleEString )
+            // InternalBgDsl.g:1521:3: ( ( ruleEString ) )
+            // InternalBgDsl.g:1522:4: ( ruleEString )
             {
-            // InternalBgDsl.g:1500:4: ( ruleEString )
-            // InternalBgDsl.g:1501:5: ruleEString
+            // InternalBgDsl.g:1522:4: ( ruleEString )
+            // InternalBgDsl.g:1523:5: ruleEString
             {
 
             					if (current==null) {
@@ -3364,7 +3414,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePatternFilter"
-    // InternalBgDsl.g:1523:1: entryRulePatternFilter returns [EObject current=null] : iv_rulePatternFilter= rulePatternFilter EOF ;
+    // InternalBgDsl.g:1545:1: entryRulePatternFilter returns [EObject current=null] : iv_rulePatternFilter= rulePatternFilter EOF ;
     public final EObject entryRulePatternFilter() throws RecognitionException {
         EObject current = null;
 
@@ -3372,8 +3422,8 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalBgDsl.g:1523:54: (iv_rulePatternFilter= rulePatternFilter EOF )
-            // InternalBgDsl.g:1524:2: iv_rulePatternFilter= rulePatternFilter EOF
+            // InternalBgDsl.g:1545:54: (iv_rulePatternFilter= rulePatternFilter EOF )
+            // InternalBgDsl.g:1546:2: iv_rulePatternFilter= rulePatternFilter EOF
             {
              newCompositeNode(grammarAccess.getPatternFilterRule()); 
             pushFollow(FOLLOW_1);
@@ -3400,7 +3450,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePatternFilter"
-    // InternalBgDsl.g:1530:1: rulePatternFilter returns [EObject current=null] : (otherlv_0= 'PatternFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}' ) ;
+    // InternalBgDsl.g:1552:1: rulePatternFilter returns [EObject current=null] : (otherlv_0= 'PatternFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}' ) ;
     public final EObject rulePatternFilter() throws RecognitionException {
         EObject current = null;
 
@@ -3425,21 +3475,21 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBgDsl.g:1536:2: ( (otherlv_0= 'PatternFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}' ) )
-            // InternalBgDsl.g:1537:2: (otherlv_0= 'PatternFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}' )
+            // InternalBgDsl.g:1558:2: ( (otherlv_0= 'PatternFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}' ) )
+            // InternalBgDsl.g:1559:2: (otherlv_0= 'PatternFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}' )
             {
-            // InternalBgDsl.g:1537:2: (otherlv_0= 'PatternFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}' )
-            // InternalBgDsl.g:1538:3: otherlv_0= 'PatternFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}'
+            // InternalBgDsl.g:1559:2: (otherlv_0= 'PatternFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}' )
+            // InternalBgDsl.g:1560:3: otherlv_0= 'PatternFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}'
             {
             otherlv_0=(Token)match(input,51,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getPatternFilterAccess().getPatternFilterKeyword_0());
             		
-            // InternalBgDsl.g:1542:3: ( (lv_name_1_0= ruleEString ) )
-            // InternalBgDsl.g:1543:4: (lv_name_1_0= ruleEString )
+            // InternalBgDsl.g:1564:3: ( (lv_name_1_0= ruleEString ) )
+            // InternalBgDsl.g:1565:4: (lv_name_1_0= ruleEString )
             {
-            // InternalBgDsl.g:1543:4: (lv_name_1_0= ruleEString )
-            // InternalBgDsl.g:1544:5: lv_name_1_0= ruleEString
+            // InternalBgDsl.g:1565:4: (lv_name_1_0= ruleEString )
+            // InternalBgDsl.g:1566:5: lv_name_1_0= ruleEString
             {
 
             					newCompositeNode(grammarAccess.getPatternFilterAccess().getNameEStringParserRuleCall_1_0());
@@ -3466,35 +3516,35 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,12,FOLLOW_46); 
+            otherlv_2=(Token)match(input,12,FOLLOW_47); 
 
             			newLeafNode(otherlv_2, grammarAccess.getPatternFilterAccess().getLeftCurlyBracketKeyword_2());
             		
-            // InternalBgDsl.g:1565:3: (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )?
-            int alt21=2;
-            int LA21_0 = input.LA(1);
+            // InternalBgDsl.g:1587:3: (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )?
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-            if ( (LA21_0==52) ) {
-                alt21=1;
+            if ( (LA22_0==52) ) {
+                alt22=1;
             }
-            switch (alt21) {
+            switch (alt22) {
                 case 1 :
-                    // InternalBgDsl.g:1566:4: otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) )
+                    // InternalBgDsl.g:1588:4: otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) )
                     {
                     otherlv_3=(Token)match(input,52,FOLLOW_36); 
 
                     				newLeafNode(otherlv_3, grammarAccess.getPatternFilterAccess().getNextFilterKeyword_3_0());
                     			
-                    // InternalBgDsl.g:1570:4: ( (lv_nextFilter_4_0= ruleFilter ) )
-                    // InternalBgDsl.g:1571:5: (lv_nextFilter_4_0= ruleFilter )
+                    // InternalBgDsl.g:1592:4: ( (lv_nextFilter_4_0= ruleFilter ) )
+                    // InternalBgDsl.g:1593:5: (lv_nextFilter_4_0= ruleFilter )
                     {
-                    // InternalBgDsl.g:1571:5: (lv_nextFilter_4_0= ruleFilter )
-                    // InternalBgDsl.g:1572:6: lv_nextFilter_4_0= ruleFilter
+                    // InternalBgDsl.g:1593:5: (lv_nextFilter_4_0= ruleFilter )
+                    // InternalBgDsl.g:1594:6: lv_nextFilter_4_0= ruleFilter
                     {
 
                     						newCompositeNode(grammarAccess.getPatternFilterAccess().getNextFilterFilterParserRuleCall_3_1_0());
                     					
-                    pushFollow(FOLLOW_47);
+                    pushFollow(FOLLOW_48);
                     lv_nextFilter_4_0=ruleFilter();
 
                     state._fsp--;
@@ -3526,15 +3576,15 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_5, grammarAccess.getPatternFilterAccess().getPatternsKeyword_4());
             		
-            otherlv_6=(Token)match(input,12,FOLLOW_48); 
+            otherlv_6=(Token)match(input,12,FOLLOW_49); 
 
             			newLeafNode(otherlv_6, grammarAccess.getPatternFilterAccess().getLeftCurlyBracketKeyword_5());
             		
-            // InternalBgDsl.g:1598:3: ( (lv_patterns_7_0= rulePattern ) )
-            // InternalBgDsl.g:1599:4: (lv_patterns_7_0= rulePattern )
+            // InternalBgDsl.g:1620:3: ( (lv_patterns_7_0= rulePattern ) )
+            // InternalBgDsl.g:1621:4: (lv_patterns_7_0= rulePattern )
             {
-            // InternalBgDsl.g:1599:4: (lv_patterns_7_0= rulePattern )
-            // InternalBgDsl.g:1600:5: lv_patterns_7_0= rulePattern
+            // InternalBgDsl.g:1621:4: (lv_patterns_7_0= rulePattern )
+            // InternalBgDsl.g:1622:5: lv_patterns_7_0= rulePattern
             {
 
             					newCompositeNode(grammarAccess.getPatternFilterAccess().getPatternsPatternParserRuleCall_6_0());
@@ -3561,30 +3611,30 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalBgDsl.g:1617:3: (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )*
-            loop22:
+            // InternalBgDsl.g:1639:3: (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )*
+            loop23:
             do {
-                int alt22=2;
-                int LA22_0 = input.LA(1);
+                int alt23=2;
+                int LA23_0 = input.LA(1);
 
-                if ( (LA22_0==17) ) {
-                    alt22=1;
+                if ( (LA23_0==17) ) {
+                    alt23=1;
                 }
 
 
-                switch (alt22) {
+                switch (alt23) {
             	case 1 :
-            	    // InternalBgDsl.g:1618:4: otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) )
+            	    // InternalBgDsl.g:1640:4: otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) )
             	    {
-            	    otherlv_8=(Token)match(input,17,FOLLOW_48); 
+            	    otherlv_8=(Token)match(input,17,FOLLOW_49); 
 
             	    				newLeafNode(otherlv_8, grammarAccess.getPatternFilterAccess().getCommaKeyword_7_0());
             	    			
-            	    // InternalBgDsl.g:1622:4: ( (lv_patterns_9_0= rulePattern ) )
-            	    // InternalBgDsl.g:1623:5: (lv_patterns_9_0= rulePattern )
+            	    // InternalBgDsl.g:1644:4: ( (lv_patterns_9_0= rulePattern ) )
+            	    // InternalBgDsl.g:1645:5: (lv_patterns_9_0= rulePattern )
             	    {
-            	    // InternalBgDsl.g:1623:5: (lv_patterns_9_0= rulePattern )
-            	    // InternalBgDsl.g:1624:6: lv_patterns_9_0= rulePattern
+            	    // InternalBgDsl.g:1645:5: (lv_patterns_9_0= rulePattern )
+            	    // InternalBgDsl.g:1646:6: lv_patterns_9_0= rulePattern
             	    {
 
             	    						newCompositeNode(grammarAccess.getPatternFilterAccess().getPatternsPatternParserRuleCall_7_1_0());
@@ -3616,7 +3666,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop22;
+            	    break loop23;
                 }
             } while (true);
 
@@ -3651,7 +3701,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleIterativeFilter"
-    // InternalBgDsl.g:1654:1: entryRuleIterativeFilter returns [EObject current=null] : iv_ruleIterativeFilter= ruleIterativeFilter EOF ;
+    // InternalBgDsl.g:1676:1: entryRuleIterativeFilter returns [EObject current=null] : iv_ruleIterativeFilter= ruleIterativeFilter EOF ;
     public final EObject entryRuleIterativeFilter() throws RecognitionException {
         EObject current = null;
 
@@ -3659,8 +3709,8 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalBgDsl.g:1654:56: (iv_ruleIterativeFilter= ruleIterativeFilter EOF )
-            // InternalBgDsl.g:1655:2: iv_ruleIterativeFilter= ruleIterativeFilter EOF
+            // InternalBgDsl.g:1676:56: (iv_ruleIterativeFilter= ruleIterativeFilter EOF )
+            // InternalBgDsl.g:1677:2: iv_ruleIterativeFilter= ruleIterativeFilter EOF
             {
              newCompositeNode(grammarAccess.getIterativeFilterRule()); 
             pushFollow(FOLLOW_1);
@@ -3687,7 +3737,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIterativeFilter"
-    // InternalBgDsl.g:1661:1: ruleIterativeFilter returns [EObject current=null] : (otherlv_0= 'IterativeFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'directionVector' ( (lv_directionVector_6_0= ruleRelativeCoordinate ) ) otherlv_7= 'matchRule' ( (lv_matchRule_8_0= rulePattern ) ) otherlv_9= 'endRule' ( (lv_endRule_10_0= rulePattern ) ) otherlv_11= '}' ) ;
+    // InternalBgDsl.g:1683:1: ruleIterativeFilter returns [EObject current=null] : (otherlv_0= 'IterativeFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'directionVector' ( (lv_directionVector_6_0= ruleRelativeCoordinate ) ) otherlv_7= 'matchRule' ( (lv_matchRule_8_0= rulePattern ) ) otherlv_9= 'endRule' ( (lv_endRule_10_0= rulePattern ) ) otherlv_11= '}' ) ;
     public final EObject ruleIterativeFilter() throws RecognitionException {
         EObject current = null;
 
@@ -3713,21 +3763,21 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBgDsl.g:1667:2: ( (otherlv_0= 'IterativeFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'directionVector' ( (lv_directionVector_6_0= ruleRelativeCoordinate ) ) otherlv_7= 'matchRule' ( (lv_matchRule_8_0= rulePattern ) ) otherlv_9= 'endRule' ( (lv_endRule_10_0= rulePattern ) ) otherlv_11= '}' ) )
-            // InternalBgDsl.g:1668:2: (otherlv_0= 'IterativeFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'directionVector' ( (lv_directionVector_6_0= ruleRelativeCoordinate ) ) otherlv_7= 'matchRule' ( (lv_matchRule_8_0= rulePattern ) ) otherlv_9= 'endRule' ( (lv_endRule_10_0= rulePattern ) ) otherlv_11= '}' )
+            // InternalBgDsl.g:1689:2: ( (otherlv_0= 'IterativeFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'directionVector' ( (lv_directionVector_6_0= ruleRelativeCoordinate ) ) otherlv_7= 'matchRule' ( (lv_matchRule_8_0= rulePattern ) ) otherlv_9= 'endRule' ( (lv_endRule_10_0= rulePattern ) ) otherlv_11= '}' ) )
+            // InternalBgDsl.g:1690:2: (otherlv_0= 'IterativeFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'directionVector' ( (lv_directionVector_6_0= ruleRelativeCoordinate ) ) otherlv_7= 'matchRule' ( (lv_matchRule_8_0= rulePattern ) ) otherlv_9= 'endRule' ( (lv_endRule_10_0= rulePattern ) ) otherlv_11= '}' )
             {
-            // InternalBgDsl.g:1668:2: (otherlv_0= 'IterativeFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'directionVector' ( (lv_directionVector_6_0= ruleRelativeCoordinate ) ) otherlv_7= 'matchRule' ( (lv_matchRule_8_0= rulePattern ) ) otherlv_9= 'endRule' ( (lv_endRule_10_0= rulePattern ) ) otherlv_11= '}' )
-            // InternalBgDsl.g:1669:3: otherlv_0= 'IterativeFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'directionVector' ( (lv_directionVector_6_0= ruleRelativeCoordinate ) ) otherlv_7= 'matchRule' ( (lv_matchRule_8_0= rulePattern ) ) otherlv_9= 'endRule' ( (lv_endRule_10_0= rulePattern ) ) otherlv_11= '}'
+            // InternalBgDsl.g:1690:2: (otherlv_0= 'IterativeFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'directionVector' ( (lv_directionVector_6_0= ruleRelativeCoordinate ) ) otherlv_7= 'matchRule' ( (lv_matchRule_8_0= rulePattern ) ) otherlv_9= 'endRule' ( (lv_endRule_10_0= rulePattern ) ) otherlv_11= '}' )
+            // InternalBgDsl.g:1691:3: otherlv_0= 'IterativeFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'directionVector' ( (lv_directionVector_6_0= ruleRelativeCoordinate ) ) otherlv_7= 'matchRule' ( (lv_matchRule_8_0= rulePattern ) ) otherlv_9= 'endRule' ( (lv_endRule_10_0= rulePattern ) ) otherlv_11= '}'
             {
             otherlv_0=(Token)match(input,54,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getIterativeFilterAccess().getIterativeFilterKeyword_0());
             		
-            // InternalBgDsl.g:1673:3: ( (lv_name_1_0= ruleEString ) )
-            // InternalBgDsl.g:1674:4: (lv_name_1_0= ruleEString )
+            // InternalBgDsl.g:1695:3: ( (lv_name_1_0= ruleEString ) )
+            // InternalBgDsl.g:1696:4: (lv_name_1_0= ruleEString )
             {
-            // InternalBgDsl.g:1674:4: (lv_name_1_0= ruleEString )
-            // InternalBgDsl.g:1675:5: lv_name_1_0= ruleEString
+            // InternalBgDsl.g:1696:4: (lv_name_1_0= ruleEString )
+            // InternalBgDsl.g:1697:5: lv_name_1_0= ruleEString
             {
 
             					newCompositeNode(grammarAccess.getIterativeFilterAccess().getNameEStringParserRuleCall_1_0());
@@ -3754,35 +3804,35 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,12,FOLLOW_49); 
+            otherlv_2=(Token)match(input,12,FOLLOW_50); 
 
             			newLeafNode(otherlv_2, grammarAccess.getIterativeFilterAccess().getLeftCurlyBracketKeyword_2());
             		
-            // InternalBgDsl.g:1696:3: (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )?
-            int alt23=2;
-            int LA23_0 = input.LA(1);
+            // InternalBgDsl.g:1718:3: (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )?
+            int alt24=2;
+            int LA24_0 = input.LA(1);
 
-            if ( (LA23_0==52) ) {
-                alt23=1;
+            if ( (LA24_0==52) ) {
+                alt24=1;
             }
-            switch (alt23) {
+            switch (alt24) {
                 case 1 :
-                    // InternalBgDsl.g:1697:4: otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) )
+                    // InternalBgDsl.g:1719:4: otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) )
                     {
                     otherlv_3=(Token)match(input,52,FOLLOW_36); 
 
                     				newLeafNode(otherlv_3, grammarAccess.getIterativeFilterAccess().getNextFilterKeyword_3_0());
                     			
-                    // InternalBgDsl.g:1701:4: ( (lv_nextFilter_4_0= ruleFilter ) )
-                    // InternalBgDsl.g:1702:5: (lv_nextFilter_4_0= ruleFilter )
+                    // InternalBgDsl.g:1723:4: ( (lv_nextFilter_4_0= ruleFilter ) )
+                    // InternalBgDsl.g:1724:5: (lv_nextFilter_4_0= ruleFilter )
                     {
-                    // InternalBgDsl.g:1702:5: (lv_nextFilter_4_0= ruleFilter )
-                    // InternalBgDsl.g:1703:6: lv_nextFilter_4_0= ruleFilter
+                    // InternalBgDsl.g:1724:5: (lv_nextFilter_4_0= ruleFilter )
+                    // InternalBgDsl.g:1725:6: lv_nextFilter_4_0= ruleFilter
                     {
 
                     						newCompositeNode(grammarAccess.getIterativeFilterAccess().getNextFilterFilterParserRuleCall_3_1_0());
                     					
-                    pushFollow(FOLLOW_50);
+                    pushFollow(FOLLOW_51);
                     lv_nextFilter_4_0=ruleFilter();
 
                     state._fsp--;
@@ -3810,20 +3860,20 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,55,FOLLOW_51); 
+            otherlv_5=(Token)match(input,55,FOLLOW_52); 
 
             			newLeafNode(otherlv_5, grammarAccess.getIterativeFilterAccess().getDirectionVectorKeyword_4());
             		
-            // InternalBgDsl.g:1725:3: ( (lv_directionVector_6_0= ruleRelativeCoordinate ) )
-            // InternalBgDsl.g:1726:4: (lv_directionVector_6_0= ruleRelativeCoordinate )
+            // InternalBgDsl.g:1747:3: ( (lv_directionVector_6_0= ruleRelativeCoordinate ) )
+            // InternalBgDsl.g:1748:4: (lv_directionVector_6_0= ruleRelativeCoordinate )
             {
-            // InternalBgDsl.g:1726:4: (lv_directionVector_6_0= ruleRelativeCoordinate )
-            // InternalBgDsl.g:1727:5: lv_directionVector_6_0= ruleRelativeCoordinate
+            // InternalBgDsl.g:1748:4: (lv_directionVector_6_0= ruleRelativeCoordinate )
+            // InternalBgDsl.g:1749:5: lv_directionVector_6_0= ruleRelativeCoordinate
             {
 
             					newCompositeNode(grammarAccess.getIterativeFilterAccess().getDirectionVectorRelativeCoordinateParserRuleCall_5_0());
             				
-            pushFollow(FOLLOW_52);
+            pushFollow(FOLLOW_53);
             lv_directionVector_6_0=ruleRelativeCoordinate();
 
             state._fsp--;
@@ -3845,20 +3895,20 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,56,FOLLOW_48); 
+            otherlv_7=(Token)match(input,56,FOLLOW_49); 
 
             			newLeafNode(otherlv_7, grammarAccess.getIterativeFilterAccess().getMatchRuleKeyword_6());
             		
-            // InternalBgDsl.g:1748:3: ( (lv_matchRule_8_0= rulePattern ) )
-            // InternalBgDsl.g:1749:4: (lv_matchRule_8_0= rulePattern )
+            // InternalBgDsl.g:1770:3: ( (lv_matchRule_8_0= rulePattern ) )
+            // InternalBgDsl.g:1771:4: (lv_matchRule_8_0= rulePattern )
             {
-            // InternalBgDsl.g:1749:4: (lv_matchRule_8_0= rulePattern )
-            // InternalBgDsl.g:1750:5: lv_matchRule_8_0= rulePattern
+            // InternalBgDsl.g:1771:4: (lv_matchRule_8_0= rulePattern )
+            // InternalBgDsl.g:1772:5: lv_matchRule_8_0= rulePattern
             {
 
             					newCompositeNode(grammarAccess.getIterativeFilterAccess().getMatchRulePatternParserRuleCall_7_0());
             				
-            pushFollow(FOLLOW_53);
+            pushFollow(FOLLOW_54);
             lv_matchRule_8_0=rulePattern();
 
             state._fsp--;
@@ -3880,15 +3930,15 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_9=(Token)match(input,57,FOLLOW_48); 
+            otherlv_9=(Token)match(input,57,FOLLOW_49); 
 
             			newLeafNode(otherlv_9, grammarAccess.getIterativeFilterAccess().getEndRuleKeyword_8());
             		
-            // InternalBgDsl.g:1771:3: ( (lv_endRule_10_0= rulePattern ) )
-            // InternalBgDsl.g:1772:4: (lv_endRule_10_0= rulePattern )
+            // InternalBgDsl.g:1793:3: ( (lv_endRule_10_0= rulePattern ) )
+            // InternalBgDsl.g:1794:4: (lv_endRule_10_0= rulePattern )
             {
-            // InternalBgDsl.g:1772:4: (lv_endRule_10_0= rulePattern )
-            // InternalBgDsl.g:1773:5: lv_endRule_10_0= rulePattern
+            // InternalBgDsl.g:1794:4: (lv_endRule_10_0= rulePattern )
+            // InternalBgDsl.g:1795:5: lv_endRule_10_0= rulePattern
             {
 
             					newCompositeNode(grammarAccess.getIterativeFilterAccess().getEndRulePatternParserRuleCall_9_0());
@@ -3942,7 +3992,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleStateEffectFilter"
-    // InternalBgDsl.g:1798:1: entryRuleStateEffectFilter returns [EObject current=null] : iv_ruleStateEffectFilter= ruleStateEffectFilter EOF ;
+    // InternalBgDsl.g:1820:1: entryRuleStateEffectFilter returns [EObject current=null] : iv_ruleStateEffectFilter= ruleStateEffectFilter EOF ;
     public final EObject entryRuleStateEffectFilter() throws RecognitionException {
         EObject current = null;
 
@@ -3950,8 +4000,8 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalBgDsl.g:1798:58: (iv_ruleStateEffectFilter= ruleStateEffectFilter EOF )
-            // InternalBgDsl.g:1799:2: iv_ruleStateEffectFilter= ruleStateEffectFilter EOF
+            // InternalBgDsl.g:1820:58: (iv_ruleStateEffectFilter= ruleStateEffectFilter EOF )
+            // InternalBgDsl.g:1821:2: iv_ruleStateEffectFilter= ruleStateEffectFilter EOF
             {
              newCompositeNode(grammarAccess.getStateEffectFilterRule()); 
             pushFollow(FOLLOW_1);
@@ -3978,7 +4028,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStateEffectFilter"
-    // InternalBgDsl.g:1805:1: ruleStateEffectFilter returns [EObject current=null] : (otherlv_0= 'StateEffectFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) (otherlv_5= 'targetState' ( ( ruleEString ) ) )? (otherlv_7= 'nextFilter' ( (lv_nextFilter_8_0= ruleFilter ) ) )? otherlv_9= '}' ) ;
+    // InternalBgDsl.g:1827:1: ruleStateEffectFilter returns [EObject current=null] : (otherlv_0= 'StateEffectFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) (otherlv_5= 'targetState' ( ( ruleEString ) ) )? (otherlv_7= 'nextFilter' ( (lv_nextFilter_8_0= ruleFilter ) ) )? otherlv_9= '}' ) ;
     public final EObject ruleStateEffectFilter() throws RecognitionException {
         EObject current = null;
 
@@ -3999,21 +4049,21 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBgDsl.g:1811:2: ( (otherlv_0= 'StateEffectFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) (otherlv_5= 'targetState' ( ( ruleEString ) ) )? (otherlv_7= 'nextFilter' ( (lv_nextFilter_8_0= ruleFilter ) ) )? otherlv_9= '}' ) )
-            // InternalBgDsl.g:1812:2: (otherlv_0= 'StateEffectFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) (otherlv_5= 'targetState' ( ( ruleEString ) ) )? (otherlv_7= 'nextFilter' ( (lv_nextFilter_8_0= ruleFilter ) ) )? otherlv_9= '}' )
+            // InternalBgDsl.g:1833:2: ( (otherlv_0= 'StateEffectFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) (otherlv_5= 'targetState' ( ( ruleEString ) ) )? (otherlv_7= 'nextFilter' ( (lv_nextFilter_8_0= ruleFilter ) ) )? otherlv_9= '}' ) )
+            // InternalBgDsl.g:1834:2: (otherlv_0= 'StateEffectFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) (otherlv_5= 'targetState' ( ( ruleEString ) ) )? (otherlv_7= 'nextFilter' ( (lv_nextFilter_8_0= ruleFilter ) ) )? otherlv_9= '}' )
             {
-            // InternalBgDsl.g:1812:2: (otherlv_0= 'StateEffectFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) (otherlv_5= 'targetState' ( ( ruleEString ) ) )? (otherlv_7= 'nextFilter' ( (lv_nextFilter_8_0= ruleFilter ) ) )? otherlv_9= '}' )
-            // InternalBgDsl.g:1813:3: otherlv_0= 'StateEffectFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) (otherlv_5= 'targetState' ( ( ruleEString ) ) )? (otherlv_7= 'nextFilter' ( (lv_nextFilter_8_0= ruleFilter ) ) )? otherlv_9= '}'
+            // InternalBgDsl.g:1834:2: (otherlv_0= 'StateEffectFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) (otherlv_5= 'targetState' ( ( ruleEString ) ) )? (otherlv_7= 'nextFilter' ( (lv_nextFilter_8_0= ruleFilter ) ) )? otherlv_9= '}' )
+            // InternalBgDsl.g:1835:3: otherlv_0= 'StateEffectFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) (otherlv_5= 'targetState' ( ( ruleEString ) ) )? (otherlv_7= 'nextFilter' ( (lv_nextFilter_8_0= ruleFilter ) ) )? otherlv_9= '}'
             {
             otherlv_0=(Token)match(input,58,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getStateEffectFilterAccess().getStateEffectFilterKeyword_0());
             		
-            // InternalBgDsl.g:1817:3: ( (lv_name_1_0= ruleEString ) )
-            // InternalBgDsl.g:1818:4: (lv_name_1_0= ruleEString )
+            // InternalBgDsl.g:1839:3: ( (lv_name_1_0= ruleEString ) )
+            // InternalBgDsl.g:1840:4: (lv_name_1_0= ruleEString )
             {
-            // InternalBgDsl.g:1818:4: (lv_name_1_0= ruleEString )
-            // InternalBgDsl.g:1819:5: lv_name_1_0= ruleEString
+            // InternalBgDsl.g:1840:4: (lv_name_1_0= ruleEString )
+            // InternalBgDsl.g:1841:5: lv_name_1_0= ruleEString
             {
 
             					newCompositeNode(grammarAccess.getStateEffectFilterAccess().getNameEStringParserRuleCall_1_0());
@@ -4040,24 +4090,24 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,12,FOLLOW_54); 
+            otherlv_2=(Token)match(input,12,FOLLOW_55); 
 
             			newLeafNode(otherlv_2, grammarAccess.getStateEffectFilterAccess().getLeftCurlyBracketKeyword_2());
             		
-            otherlv_3=(Token)match(input,59,FOLLOW_55); 
+            otherlv_3=(Token)match(input,59,FOLLOW_56); 
 
             			newLeafNode(otherlv_3, grammarAccess.getStateEffectFilterAccess().getStateSelectionKeyword_3());
             		
-            // InternalBgDsl.g:1844:3: ( (lv_stateSelection_4_0= ruleStateSelection ) )
-            // InternalBgDsl.g:1845:4: (lv_stateSelection_4_0= ruleStateSelection )
+            // InternalBgDsl.g:1866:3: ( (lv_stateSelection_4_0= ruleStateSelection ) )
+            // InternalBgDsl.g:1867:4: (lv_stateSelection_4_0= ruleStateSelection )
             {
-            // InternalBgDsl.g:1845:4: (lv_stateSelection_4_0= ruleStateSelection )
-            // InternalBgDsl.g:1846:5: lv_stateSelection_4_0= ruleStateSelection
+            // InternalBgDsl.g:1867:4: (lv_stateSelection_4_0= ruleStateSelection )
+            // InternalBgDsl.g:1868:5: lv_stateSelection_4_0= ruleStateSelection
             {
 
             					newCompositeNode(grammarAccess.getStateEffectFilterAccess().getStateSelectionStateSelectionEnumRuleCall_4_0());
             				
-            pushFollow(FOLLOW_56);
+            pushFollow(FOLLOW_57);
             lv_stateSelection_4_0=ruleStateSelection();
 
             state._fsp--;
@@ -4079,26 +4129,26 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalBgDsl.g:1863:3: (otherlv_5= 'targetState' ( ( ruleEString ) ) )?
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            // InternalBgDsl.g:1885:3: (otherlv_5= 'targetState' ( ( ruleEString ) ) )?
+            int alt25=2;
+            int LA25_0 = input.LA(1);
 
-            if ( (LA24_0==60) ) {
-                alt24=1;
+            if ( (LA25_0==60) ) {
+                alt25=1;
             }
-            switch (alt24) {
+            switch (alt25) {
                 case 1 :
-                    // InternalBgDsl.g:1864:4: otherlv_5= 'targetState' ( ( ruleEString ) )
+                    // InternalBgDsl.g:1886:4: otherlv_5= 'targetState' ( ( ruleEString ) )
                     {
                     otherlv_5=(Token)match(input,60,FOLLOW_3); 
 
                     				newLeafNode(otherlv_5, grammarAccess.getStateEffectFilterAccess().getTargetStateKeyword_5_0());
                     			
-                    // InternalBgDsl.g:1868:4: ( ( ruleEString ) )
-                    // InternalBgDsl.g:1869:5: ( ruleEString )
+                    // InternalBgDsl.g:1890:4: ( ( ruleEString ) )
+                    // InternalBgDsl.g:1891:5: ( ruleEString )
                     {
-                    // InternalBgDsl.g:1869:5: ( ruleEString )
-                    // InternalBgDsl.g:1870:6: ruleEString
+                    // InternalBgDsl.g:1891:5: ( ruleEString )
+                    // InternalBgDsl.g:1892:6: ruleEString
                     {
 
                     						if (current==null) {
@@ -4108,7 +4158,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
                     						newCompositeNode(grammarAccess.getStateEffectFilterAccess().getTargetStateStateCrossReference_5_1_0());
                     					
-                    pushFollow(FOLLOW_57);
+                    pushFollow(FOLLOW_58);
                     ruleEString();
 
                     state._fsp--;
@@ -4128,26 +4178,26 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalBgDsl.g:1885:3: (otherlv_7= 'nextFilter' ( (lv_nextFilter_8_0= ruleFilter ) ) )?
-            int alt25=2;
-            int LA25_0 = input.LA(1);
+            // InternalBgDsl.g:1907:3: (otherlv_7= 'nextFilter' ( (lv_nextFilter_8_0= ruleFilter ) ) )?
+            int alt26=2;
+            int LA26_0 = input.LA(1);
 
-            if ( (LA25_0==52) ) {
-                alt25=1;
+            if ( (LA26_0==52) ) {
+                alt26=1;
             }
-            switch (alt25) {
+            switch (alt26) {
                 case 1 :
-                    // InternalBgDsl.g:1886:4: otherlv_7= 'nextFilter' ( (lv_nextFilter_8_0= ruleFilter ) )
+                    // InternalBgDsl.g:1908:4: otherlv_7= 'nextFilter' ( (lv_nextFilter_8_0= ruleFilter ) )
                     {
                     otherlv_7=(Token)match(input,52,FOLLOW_36); 
 
                     				newLeafNode(otherlv_7, grammarAccess.getStateEffectFilterAccess().getNextFilterKeyword_6_0());
                     			
-                    // InternalBgDsl.g:1890:4: ( (lv_nextFilter_8_0= ruleFilter ) )
-                    // InternalBgDsl.g:1891:5: (lv_nextFilter_8_0= ruleFilter )
+                    // InternalBgDsl.g:1912:4: ( (lv_nextFilter_8_0= ruleFilter ) )
+                    // InternalBgDsl.g:1913:5: (lv_nextFilter_8_0= ruleFilter )
                     {
-                    // InternalBgDsl.g:1891:5: (lv_nextFilter_8_0= ruleFilter )
-                    // InternalBgDsl.g:1892:6: lv_nextFilter_8_0= ruleFilter
+                    // InternalBgDsl.g:1913:5: (lv_nextFilter_8_0= ruleFilter )
+                    // InternalBgDsl.g:1914:6: lv_nextFilter_8_0= ruleFilter
                     {
 
                     						newCompositeNode(grammarAccess.getStateEffectFilterAccess().getNextFilterFilterParserRuleCall_6_1_0());
@@ -4207,7 +4257,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleWinConditionFilter"
-    // InternalBgDsl.g:1918:1: entryRuleWinConditionFilter returns [EObject current=null] : iv_ruleWinConditionFilter= ruleWinConditionFilter EOF ;
+    // InternalBgDsl.g:1940:1: entryRuleWinConditionFilter returns [EObject current=null] : iv_ruleWinConditionFilter= ruleWinConditionFilter EOF ;
     public final EObject entryRuleWinConditionFilter() throws RecognitionException {
         EObject current = null;
 
@@ -4215,8 +4265,8 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalBgDsl.g:1918:59: (iv_ruleWinConditionFilter= ruleWinConditionFilter EOF )
-            // InternalBgDsl.g:1919:2: iv_ruleWinConditionFilter= ruleWinConditionFilter EOF
+            // InternalBgDsl.g:1940:59: (iv_ruleWinConditionFilter= ruleWinConditionFilter EOF )
+            // InternalBgDsl.g:1941:2: iv_ruleWinConditionFilter= ruleWinConditionFilter EOF
             {
              newCompositeNode(grammarAccess.getWinConditionFilterRule()); 
             pushFollow(FOLLOW_1);
@@ -4243,7 +4293,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleWinConditionFilter"
-    // InternalBgDsl.g:1925:1: ruleWinConditionFilter returns [EObject current=null] : (otherlv_0= 'WinConditionFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}' ) ;
+    // InternalBgDsl.g:1947:1: ruleWinConditionFilter returns [EObject current=null] : (otherlv_0= 'WinConditionFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}' ) ;
     public final EObject ruleWinConditionFilter() throws RecognitionException {
         EObject current = null;
 
@@ -4268,21 +4318,21 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBgDsl.g:1931:2: ( (otherlv_0= 'WinConditionFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}' ) )
-            // InternalBgDsl.g:1932:2: (otherlv_0= 'WinConditionFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}' )
+            // InternalBgDsl.g:1953:2: ( (otherlv_0= 'WinConditionFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}' ) )
+            // InternalBgDsl.g:1954:2: (otherlv_0= 'WinConditionFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}' )
             {
-            // InternalBgDsl.g:1932:2: (otherlv_0= 'WinConditionFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}' )
-            // InternalBgDsl.g:1933:3: otherlv_0= 'WinConditionFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}'
+            // InternalBgDsl.g:1954:2: (otherlv_0= 'WinConditionFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}' )
+            // InternalBgDsl.g:1955:3: otherlv_0= 'WinConditionFilter' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )? otherlv_5= 'patterns' otherlv_6= '{' ( (lv_patterns_7_0= rulePattern ) ) (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )* otherlv_10= '}' otherlv_11= '}'
             {
             otherlv_0=(Token)match(input,61,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getWinConditionFilterAccess().getWinConditionFilterKeyword_0());
             		
-            // InternalBgDsl.g:1937:3: ( (lv_name_1_0= ruleEString ) )
-            // InternalBgDsl.g:1938:4: (lv_name_1_0= ruleEString )
+            // InternalBgDsl.g:1959:3: ( (lv_name_1_0= ruleEString ) )
+            // InternalBgDsl.g:1960:4: (lv_name_1_0= ruleEString )
             {
-            // InternalBgDsl.g:1938:4: (lv_name_1_0= ruleEString )
-            // InternalBgDsl.g:1939:5: lv_name_1_0= ruleEString
+            // InternalBgDsl.g:1960:4: (lv_name_1_0= ruleEString )
+            // InternalBgDsl.g:1961:5: lv_name_1_0= ruleEString
             {
 
             					newCompositeNode(grammarAccess.getWinConditionFilterAccess().getNameEStringParserRuleCall_1_0());
@@ -4309,35 +4359,35 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,12,FOLLOW_46); 
+            otherlv_2=(Token)match(input,12,FOLLOW_47); 
 
             			newLeafNode(otherlv_2, grammarAccess.getWinConditionFilterAccess().getLeftCurlyBracketKeyword_2());
             		
-            // InternalBgDsl.g:1960:3: (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )?
-            int alt26=2;
-            int LA26_0 = input.LA(1);
+            // InternalBgDsl.g:1982:3: (otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) ) )?
+            int alt27=2;
+            int LA27_0 = input.LA(1);
 
-            if ( (LA26_0==52) ) {
-                alt26=1;
+            if ( (LA27_0==52) ) {
+                alt27=1;
             }
-            switch (alt26) {
+            switch (alt27) {
                 case 1 :
-                    // InternalBgDsl.g:1961:4: otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) )
+                    // InternalBgDsl.g:1983:4: otherlv_3= 'nextFilter' ( (lv_nextFilter_4_0= ruleFilter ) )
                     {
                     otherlv_3=(Token)match(input,52,FOLLOW_36); 
 
                     				newLeafNode(otherlv_3, grammarAccess.getWinConditionFilterAccess().getNextFilterKeyword_3_0());
                     			
-                    // InternalBgDsl.g:1965:4: ( (lv_nextFilter_4_0= ruleFilter ) )
-                    // InternalBgDsl.g:1966:5: (lv_nextFilter_4_0= ruleFilter )
+                    // InternalBgDsl.g:1987:4: ( (lv_nextFilter_4_0= ruleFilter ) )
+                    // InternalBgDsl.g:1988:5: (lv_nextFilter_4_0= ruleFilter )
                     {
-                    // InternalBgDsl.g:1966:5: (lv_nextFilter_4_0= ruleFilter )
-                    // InternalBgDsl.g:1967:6: lv_nextFilter_4_0= ruleFilter
+                    // InternalBgDsl.g:1988:5: (lv_nextFilter_4_0= ruleFilter )
+                    // InternalBgDsl.g:1989:6: lv_nextFilter_4_0= ruleFilter
                     {
 
                     						newCompositeNode(grammarAccess.getWinConditionFilterAccess().getNextFilterFilterParserRuleCall_3_1_0());
                     					
-                    pushFollow(FOLLOW_47);
+                    pushFollow(FOLLOW_48);
                     lv_nextFilter_4_0=ruleFilter();
 
                     state._fsp--;
@@ -4369,15 +4419,15 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_5, grammarAccess.getWinConditionFilterAccess().getPatternsKeyword_4());
             		
-            otherlv_6=(Token)match(input,12,FOLLOW_48); 
+            otherlv_6=(Token)match(input,12,FOLLOW_49); 
 
             			newLeafNode(otherlv_6, grammarAccess.getWinConditionFilterAccess().getLeftCurlyBracketKeyword_5());
             		
-            // InternalBgDsl.g:1993:3: ( (lv_patterns_7_0= rulePattern ) )
-            // InternalBgDsl.g:1994:4: (lv_patterns_7_0= rulePattern )
+            // InternalBgDsl.g:2015:3: ( (lv_patterns_7_0= rulePattern ) )
+            // InternalBgDsl.g:2016:4: (lv_patterns_7_0= rulePattern )
             {
-            // InternalBgDsl.g:1994:4: (lv_patterns_7_0= rulePattern )
-            // InternalBgDsl.g:1995:5: lv_patterns_7_0= rulePattern
+            // InternalBgDsl.g:2016:4: (lv_patterns_7_0= rulePattern )
+            // InternalBgDsl.g:2017:5: lv_patterns_7_0= rulePattern
             {
 
             					newCompositeNode(grammarAccess.getWinConditionFilterAccess().getPatternsPatternParserRuleCall_6_0());
@@ -4404,30 +4454,30 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalBgDsl.g:2012:3: (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )*
-            loop27:
+            // InternalBgDsl.g:2034:3: (otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) ) )*
+            loop28:
             do {
-                int alt27=2;
-                int LA27_0 = input.LA(1);
+                int alt28=2;
+                int LA28_0 = input.LA(1);
 
-                if ( (LA27_0==17) ) {
-                    alt27=1;
+                if ( (LA28_0==17) ) {
+                    alt28=1;
                 }
 
 
-                switch (alt27) {
+                switch (alt28) {
             	case 1 :
-            	    // InternalBgDsl.g:2013:4: otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) )
+            	    // InternalBgDsl.g:2035:4: otherlv_8= ',' ( (lv_patterns_9_0= rulePattern ) )
             	    {
-            	    otherlv_8=(Token)match(input,17,FOLLOW_48); 
+            	    otherlv_8=(Token)match(input,17,FOLLOW_49); 
 
             	    				newLeafNode(otherlv_8, grammarAccess.getWinConditionFilterAccess().getCommaKeyword_7_0());
             	    			
-            	    // InternalBgDsl.g:2017:4: ( (lv_patterns_9_0= rulePattern ) )
-            	    // InternalBgDsl.g:2018:5: (lv_patterns_9_0= rulePattern )
+            	    // InternalBgDsl.g:2039:4: ( (lv_patterns_9_0= rulePattern ) )
+            	    // InternalBgDsl.g:2040:5: (lv_patterns_9_0= rulePattern )
             	    {
-            	    // InternalBgDsl.g:2018:5: (lv_patterns_9_0= rulePattern )
-            	    // InternalBgDsl.g:2019:6: lv_patterns_9_0= rulePattern
+            	    // InternalBgDsl.g:2040:5: (lv_patterns_9_0= rulePattern )
+            	    // InternalBgDsl.g:2041:6: lv_patterns_9_0= rulePattern
             	    {
 
             	    						newCompositeNode(grammarAccess.getWinConditionFilterAccess().getPatternsPatternParserRuleCall_7_1_0());
@@ -4459,7 +4509,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop27;
+            	    break loop28;
                 }
             } while (true);
 
@@ -4494,7 +4544,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePattern"
-    // InternalBgDsl.g:2049:1: entryRulePattern returns [EObject current=null] : iv_rulePattern= rulePattern EOF ;
+    // InternalBgDsl.g:2071:1: entryRulePattern returns [EObject current=null] : iv_rulePattern= rulePattern EOF ;
     public final EObject entryRulePattern() throws RecognitionException {
         EObject current = null;
 
@@ -4502,8 +4552,8 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalBgDsl.g:2049:48: (iv_rulePattern= rulePattern EOF )
-            // InternalBgDsl.g:2050:2: iv_rulePattern= rulePattern EOF
+            // InternalBgDsl.g:2071:48: (iv_rulePattern= rulePattern EOF )
+            // InternalBgDsl.g:2072:2: iv_rulePattern= rulePattern EOF
             {
              newCompositeNode(grammarAccess.getPatternRule()); 
             pushFollow(FOLLOW_1);
@@ -4530,7 +4580,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePattern"
-    // InternalBgDsl.g:2056:1: rulePattern returns [EObject current=null] : (otherlv_0= 'Pattern' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) )? (otherlv_5= 'matchState' ( ( ruleEString ) ) )? otherlv_7= 'relativecoordinates' otherlv_8= '{' ( (lv_relativecoordinates_9_0= ruleRelativeCoordinate ) ) (otherlv_10= ',' ( (lv_relativecoordinates_11_0= ruleRelativeCoordinate ) ) )* otherlv_12= '}' otherlv_13= '}' ) ;
+    // InternalBgDsl.g:2078:1: rulePattern returns [EObject current=null] : (otherlv_0= 'Pattern' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) )? (otherlv_5= 'matchState' ( ( ruleEString ) ) )? otherlv_7= 'relativecoordinates' otherlv_8= '{' ( (lv_relativecoordinates_9_0= ruleRelativeCoordinate ) ) (otherlv_10= ',' ( (lv_relativecoordinates_11_0= ruleRelativeCoordinate ) ) )* otherlv_12= '}' otherlv_13= '}' ) ;
     public final EObject rulePattern() throws RecognitionException {
         EObject current = null;
 
@@ -4556,21 +4606,21 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBgDsl.g:2062:2: ( (otherlv_0= 'Pattern' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) )? (otherlv_5= 'matchState' ( ( ruleEString ) ) )? otherlv_7= 'relativecoordinates' otherlv_8= '{' ( (lv_relativecoordinates_9_0= ruleRelativeCoordinate ) ) (otherlv_10= ',' ( (lv_relativecoordinates_11_0= ruleRelativeCoordinate ) ) )* otherlv_12= '}' otherlv_13= '}' ) )
-            // InternalBgDsl.g:2063:2: (otherlv_0= 'Pattern' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) )? (otherlv_5= 'matchState' ( ( ruleEString ) ) )? otherlv_7= 'relativecoordinates' otherlv_8= '{' ( (lv_relativecoordinates_9_0= ruleRelativeCoordinate ) ) (otherlv_10= ',' ( (lv_relativecoordinates_11_0= ruleRelativeCoordinate ) ) )* otherlv_12= '}' otherlv_13= '}' )
+            // InternalBgDsl.g:2084:2: ( (otherlv_0= 'Pattern' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) )? (otherlv_5= 'matchState' ( ( ruleEString ) ) )? otherlv_7= 'relativecoordinates' otherlv_8= '{' ( (lv_relativecoordinates_9_0= ruleRelativeCoordinate ) ) (otherlv_10= ',' ( (lv_relativecoordinates_11_0= ruleRelativeCoordinate ) ) )* otherlv_12= '}' otherlv_13= '}' ) )
+            // InternalBgDsl.g:2085:2: (otherlv_0= 'Pattern' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) )? (otherlv_5= 'matchState' ( ( ruleEString ) ) )? otherlv_7= 'relativecoordinates' otherlv_8= '{' ( (lv_relativecoordinates_9_0= ruleRelativeCoordinate ) ) (otherlv_10= ',' ( (lv_relativecoordinates_11_0= ruleRelativeCoordinate ) ) )* otherlv_12= '}' otherlv_13= '}' )
             {
-            // InternalBgDsl.g:2063:2: (otherlv_0= 'Pattern' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) )? (otherlv_5= 'matchState' ( ( ruleEString ) ) )? otherlv_7= 'relativecoordinates' otherlv_8= '{' ( (lv_relativecoordinates_9_0= ruleRelativeCoordinate ) ) (otherlv_10= ',' ( (lv_relativecoordinates_11_0= ruleRelativeCoordinate ) ) )* otherlv_12= '}' otherlv_13= '}' )
-            // InternalBgDsl.g:2064:3: otherlv_0= 'Pattern' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) )? (otherlv_5= 'matchState' ( ( ruleEString ) ) )? otherlv_7= 'relativecoordinates' otherlv_8= '{' ( (lv_relativecoordinates_9_0= ruleRelativeCoordinate ) ) (otherlv_10= ',' ( (lv_relativecoordinates_11_0= ruleRelativeCoordinate ) ) )* otherlv_12= '}' otherlv_13= '}'
+            // InternalBgDsl.g:2085:2: (otherlv_0= 'Pattern' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) )? (otherlv_5= 'matchState' ( ( ruleEString ) ) )? otherlv_7= 'relativecoordinates' otherlv_8= '{' ( (lv_relativecoordinates_9_0= ruleRelativeCoordinate ) ) (otherlv_10= ',' ( (lv_relativecoordinates_11_0= ruleRelativeCoordinate ) ) )* otherlv_12= '}' otherlv_13= '}' )
+            // InternalBgDsl.g:2086:3: otherlv_0= 'Pattern' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' (otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) )? (otherlv_5= 'matchState' ( ( ruleEString ) ) )? otherlv_7= 'relativecoordinates' otherlv_8= '{' ( (lv_relativecoordinates_9_0= ruleRelativeCoordinate ) ) (otherlv_10= ',' ( (lv_relativecoordinates_11_0= ruleRelativeCoordinate ) ) )* otherlv_12= '}' otherlv_13= '}'
             {
             otherlv_0=(Token)match(input,62,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getPatternAccess().getPatternKeyword_0());
             		
-            // InternalBgDsl.g:2068:3: ( (lv_name_1_0= ruleEString ) )
-            // InternalBgDsl.g:2069:4: (lv_name_1_0= ruleEString )
+            // InternalBgDsl.g:2090:3: ( (lv_name_1_0= ruleEString ) )
+            // InternalBgDsl.g:2091:4: (lv_name_1_0= ruleEString )
             {
-            // InternalBgDsl.g:2069:4: (lv_name_1_0= ruleEString )
-            // InternalBgDsl.g:2070:5: lv_name_1_0= ruleEString
+            // InternalBgDsl.g:2091:4: (lv_name_1_0= ruleEString )
+            // InternalBgDsl.g:2092:5: lv_name_1_0= ruleEString
             {
 
             					newCompositeNode(grammarAccess.getPatternAccess().getNameEStringParserRuleCall_1_0());
@@ -4597,35 +4647,35 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,12,FOLLOW_58); 
+            otherlv_2=(Token)match(input,12,FOLLOW_59); 
 
             			newLeafNode(otherlv_2, grammarAccess.getPatternAccess().getLeftCurlyBracketKeyword_2());
             		
-            // InternalBgDsl.g:2091:3: (otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) )?
-            int alt28=2;
-            int LA28_0 = input.LA(1);
+            // InternalBgDsl.g:2113:3: (otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) ) )?
+            int alt29=2;
+            int LA29_0 = input.LA(1);
 
-            if ( (LA28_0==59) ) {
-                alt28=1;
+            if ( (LA29_0==59) ) {
+                alt29=1;
             }
-            switch (alt28) {
+            switch (alt29) {
                 case 1 :
-                    // InternalBgDsl.g:2092:4: otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) )
+                    // InternalBgDsl.g:2114:4: otherlv_3= 'stateSelection' ( (lv_stateSelection_4_0= ruleStateSelection ) )
                     {
-                    otherlv_3=(Token)match(input,59,FOLLOW_55); 
+                    otherlv_3=(Token)match(input,59,FOLLOW_56); 
 
                     				newLeafNode(otherlv_3, grammarAccess.getPatternAccess().getStateSelectionKeyword_3_0());
                     			
-                    // InternalBgDsl.g:2096:4: ( (lv_stateSelection_4_0= ruleStateSelection ) )
-                    // InternalBgDsl.g:2097:5: (lv_stateSelection_4_0= ruleStateSelection )
+                    // InternalBgDsl.g:2118:4: ( (lv_stateSelection_4_0= ruleStateSelection ) )
+                    // InternalBgDsl.g:2119:5: (lv_stateSelection_4_0= ruleStateSelection )
                     {
-                    // InternalBgDsl.g:2097:5: (lv_stateSelection_4_0= ruleStateSelection )
-                    // InternalBgDsl.g:2098:6: lv_stateSelection_4_0= ruleStateSelection
+                    // InternalBgDsl.g:2119:5: (lv_stateSelection_4_0= ruleStateSelection )
+                    // InternalBgDsl.g:2120:6: lv_stateSelection_4_0= ruleStateSelection
                     {
 
                     						newCompositeNode(grammarAccess.getPatternAccess().getStateSelectionStateSelectionEnumRuleCall_3_1_0());
                     					
-                    pushFollow(FOLLOW_59);
+                    pushFollow(FOLLOW_60);
                     lv_stateSelection_4_0=ruleStateSelection();
 
                     state._fsp--;
@@ -4653,26 +4703,26 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalBgDsl.g:2116:3: (otherlv_5= 'matchState' ( ( ruleEString ) ) )?
-            int alt29=2;
-            int LA29_0 = input.LA(1);
+            // InternalBgDsl.g:2138:3: (otherlv_5= 'matchState' ( ( ruleEString ) ) )?
+            int alt30=2;
+            int LA30_0 = input.LA(1);
 
-            if ( (LA29_0==63) ) {
-                alt29=1;
+            if ( (LA30_0==63) ) {
+                alt30=1;
             }
-            switch (alt29) {
+            switch (alt30) {
                 case 1 :
-                    // InternalBgDsl.g:2117:4: otherlv_5= 'matchState' ( ( ruleEString ) )
+                    // InternalBgDsl.g:2139:4: otherlv_5= 'matchState' ( ( ruleEString ) )
                     {
                     otherlv_5=(Token)match(input,63,FOLLOW_3); 
 
                     				newLeafNode(otherlv_5, grammarAccess.getPatternAccess().getMatchStateKeyword_4_0());
                     			
-                    // InternalBgDsl.g:2121:4: ( ( ruleEString ) )
-                    // InternalBgDsl.g:2122:5: ( ruleEString )
+                    // InternalBgDsl.g:2143:4: ( ( ruleEString ) )
+                    // InternalBgDsl.g:2144:5: ( ruleEString )
                     {
-                    // InternalBgDsl.g:2122:5: ( ruleEString )
-                    // InternalBgDsl.g:2123:6: ruleEString
+                    // InternalBgDsl.g:2144:5: ( ruleEString )
+                    // InternalBgDsl.g:2145:6: ruleEString
                     {
 
                     						if (current==null) {
@@ -4682,7 +4732,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
                     						newCompositeNode(grammarAccess.getPatternAccess().getMatchStateStateCrossReference_4_1_0());
                     					
-                    pushFollow(FOLLOW_60);
+                    pushFollow(FOLLOW_61);
                     ruleEString();
 
                     state._fsp--;
@@ -4706,15 +4756,15 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_7, grammarAccess.getPatternAccess().getRelativecoordinatesKeyword_5());
             		
-            otherlv_8=(Token)match(input,12,FOLLOW_51); 
+            otherlv_8=(Token)match(input,12,FOLLOW_52); 
 
             			newLeafNode(otherlv_8, grammarAccess.getPatternAccess().getLeftCurlyBracketKeyword_6());
             		
-            // InternalBgDsl.g:2146:3: ( (lv_relativecoordinates_9_0= ruleRelativeCoordinate ) )
-            // InternalBgDsl.g:2147:4: (lv_relativecoordinates_9_0= ruleRelativeCoordinate )
+            // InternalBgDsl.g:2168:3: ( (lv_relativecoordinates_9_0= ruleRelativeCoordinate ) )
+            // InternalBgDsl.g:2169:4: (lv_relativecoordinates_9_0= ruleRelativeCoordinate )
             {
-            // InternalBgDsl.g:2147:4: (lv_relativecoordinates_9_0= ruleRelativeCoordinate )
-            // InternalBgDsl.g:2148:5: lv_relativecoordinates_9_0= ruleRelativeCoordinate
+            // InternalBgDsl.g:2169:4: (lv_relativecoordinates_9_0= ruleRelativeCoordinate )
+            // InternalBgDsl.g:2170:5: lv_relativecoordinates_9_0= ruleRelativeCoordinate
             {
 
             					newCompositeNode(grammarAccess.getPatternAccess().getRelativecoordinatesRelativeCoordinateParserRuleCall_7_0());
@@ -4741,30 +4791,30 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalBgDsl.g:2165:3: (otherlv_10= ',' ( (lv_relativecoordinates_11_0= ruleRelativeCoordinate ) ) )*
-            loop30:
+            // InternalBgDsl.g:2187:3: (otherlv_10= ',' ( (lv_relativecoordinates_11_0= ruleRelativeCoordinate ) ) )*
+            loop31:
             do {
-                int alt30=2;
-                int LA30_0 = input.LA(1);
+                int alt31=2;
+                int LA31_0 = input.LA(1);
 
-                if ( (LA30_0==17) ) {
-                    alt30=1;
+                if ( (LA31_0==17) ) {
+                    alt31=1;
                 }
 
 
-                switch (alt30) {
+                switch (alt31) {
             	case 1 :
-            	    // InternalBgDsl.g:2166:4: otherlv_10= ',' ( (lv_relativecoordinates_11_0= ruleRelativeCoordinate ) )
+            	    // InternalBgDsl.g:2188:4: otherlv_10= ',' ( (lv_relativecoordinates_11_0= ruleRelativeCoordinate ) )
             	    {
-            	    otherlv_10=(Token)match(input,17,FOLLOW_51); 
+            	    otherlv_10=(Token)match(input,17,FOLLOW_52); 
 
             	    				newLeafNode(otherlv_10, grammarAccess.getPatternAccess().getCommaKeyword_8_0());
             	    			
-            	    // InternalBgDsl.g:2170:4: ( (lv_relativecoordinates_11_0= ruleRelativeCoordinate ) )
-            	    // InternalBgDsl.g:2171:5: (lv_relativecoordinates_11_0= ruleRelativeCoordinate )
+            	    // InternalBgDsl.g:2192:4: ( (lv_relativecoordinates_11_0= ruleRelativeCoordinate ) )
+            	    // InternalBgDsl.g:2193:5: (lv_relativecoordinates_11_0= ruleRelativeCoordinate )
             	    {
-            	    // InternalBgDsl.g:2171:5: (lv_relativecoordinates_11_0= ruleRelativeCoordinate )
-            	    // InternalBgDsl.g:2172:6: lv_relativecoordinates_11_0= ruleRelativeCoordinate
+            	    // InternalBgDsl.g:2193:5: (lv_relativecoordinates_11_0= ruleRelativeCoordinate )
+            	    // InternalBgDsl.g:2194:6: lv_relativecoordinates_11_0= ruleRelativeCoordinate
             	    {
 
             	    						newCompositeNode(grammarAccess.getPatternAccess().getRelativecoordinatesRelativeCoordinateParserRuleCall_8_1_0());
@@ -4796,7 +4846,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop30;
+            	    break loop31;
                 }
             } while (true);
 
@@ -4831,7 +4881,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRelativeCoordinate"
-    // InternalBgDsl.g:2202:1: entryRuleRelativeCoordinate returns [EObject current=null] : iv_ruleRelativeCoordinate= ruleRelativeCoordinate EOF ;
+    // InternalBgDsl.g:2224:1: entryRuleRelativeCoordinate returns [EObject current=null] : iv_ruleRelativeCoordinate= ruleRelativeCoordinate EOF ;
     public final EObject entryRuleRelativeCoordinate() throws RecognitionException {
         EObject current = null;
 
@@ -4839,8 +4889,8 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalBgDsl.g:2202:59: (iv_ruleRelativeCoordinate= ruleRelativeCoordinate EOF )
-            // InternalBgDsl.g:2203:2: iv_ruleRelativeCoordinate= ruleRelativeCoordinate EOF
+            // InternalBgDsl.g:2224:59: (iv_ruleRelativeCoordinate= ruleRelativeCoordinate EOF )
+            // InternalBgDsl.g:2225:2: iv_ruleRelativeCoordinate= ruleRelativeCoordinate EOF
             {
              newCompositeNode(grammarAccess.getRelativeCoordinateRule()); 
             pushFollow(FOLLOW_1);
@@ -4867,7 +4917,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRelativeCoordinate"
-    // InternalBgDsl.g:2209:1: ruleRelativeCoordinate returns [EObject current=null] : (otherlv_0= 'RelativeCoordinate' otherlv_1= '{' otherlv_2= 'x' ( (lv_x_3_0= ruleEInt ) ) otherlv_4= 'y' ( (lv_y_5_0= ruleEInt ) ) otherlv_6= '}' ) ;
+    // InternalBgDsl.g:2231:1: ruleRelativeCoordinate returns [EObject current=null] : (otherlv_0= 'RelativeCoordinate' otherlv_1= '{' otherlv_2= 'x' ( (lv_x_3_0= ruleEInt ) ) otherlv_4= 'y' ( (lv_y_5_0= ruleEInt ) ) otherlv_6= '}' ) ;
     public final EObject ruleRelativeCoordinate() throws RecognitionException {
         EObject current = null;
 
@@ -4885,17 +4935,17 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBgDsl.g:2215:2: ( (otherlv_0= 'RelativeCoordinate' otherlv_1= '{' otherlv_2= 'x' ( (lv_x_3_0= ruleEInt ) ) otherlv_4= 'y' ( (lv_y_5_0= ruleEInt ) ) otherlv_6= '}' ) )
-            // InternalBgDsl.g:2216:2: (otherlv_0= 'RelativeCoordinate' otherlv_1= '{' otherlv_2= 'x' ( (lv_x_3_0= ruleEInt ) ) otherlv_4= 'y' ( (lv_y_5_0= ruleEInt ) ) otherlv_6= '}' )
+            // InternalBgDsl.g:2237:2: ( (otherlv_0= 'RelativeCoordinate' otherlv_1= '{' otherlv_2= 'x' ( (lv_x_3_0= ruleEInt ) ) otherlv_4= 'y' ( (lv_y_5_0= ruleEInt ) ) otherlv_6= '}' ) )
+            // InternalBgDsl.g:2238:2: (otherlv_0= 'RelativeCoordinate' otherlv_1= '{' otherlv_2= 'x' ( (lv_x_3_0= ruleEInt ) ) otherlv_4= 'y' ( (lv_y_5_0= ruleEInt ) ) otherlv_6= '}' )
             {
-            // InternalBgDsl.g:2216:2: (otherlv_0= 'RelativeCoordinate' otherlv_1= '{' otherlv_2= 'x' ( (lv_x_3_0= ruleEInt ) ) otherlv_4= 'y' ( (lv_y_5_0= ruleEInt ) ) otherlv_6= '}' )
-            // InternalBgDsl.g:2217:3: otherlv_0= 'RelativeCoordinate' otherlv_1= '{' otherlv_2= 'x' ( (lv_x_3_0= ruleEInt ) ) otherlv_4= 'y' ( (lv_y_5_0= ruleEInt ) ) otherlv_6= '}'
+            // InternalBgDsl.g:2238:2: (otherlv_0= 'RelativeCoordinate' otherlv_1= '{' otherlv_2= 'x' ( (lv_x_3_0= ruleEInt ) ) otherlv_4= 'y' ( (lv_y_5_0= ruleEInt ) ) otherlv_6= '}' )
+            // InternalBgDsl.g:2239:3: otherlv_0= 'RelativeCoordinate' otherlv_1= '{' otherlv_2= 'x' ( (lv_x_3_0= ruleEInt ) ) otherlv_4= 'y' ( (lv_y_5_0= ruleEInt ) ) otherlv_6= '}'
             {
             otherlv_0=(Token)match(input,65,FOLLOW_4); 
 
             			newLeafNode(otherlv_0, grammarAccess.getRelativeCoordinateAccess().getRelativeCoordinateKeyword_0());
             		
-            otherlv_1=(Token)match(input,12,FOLLOW_61); 
+            otherlv_1=(Token)match(input,12,FOLLOW_62); 
 
             			newLeafNode(otherlv_1, grammarAccess.getRelativeCoordinateAccess().getLeftCurlyBracketKeyword_1());
             		
@@ -4903,16 +4953,16 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_2, grammarAccess.getRelativeCoordinateAccess().getXKeyword_2());
             		
-            // InternalBgDsl.g:2229:3: ( (lv_x_3_0= ruleEInt ) )
-            // InternalBgDsl.g:2230:4: (lv_x_3_0= ruleEInt )
+            // InternalBgDsl.g:2251:3: ( (lv_x_3_0= ruleEInt ) )
+            // InternalBgDsl.g:2252:4: (lv_x_3_0= ruleEInt )
             {
-            // InternalBgDsl.g:2230:4: (lv_x_3_0= ruleEInt )
-            // InternalBgDsl.g:2231:5: lv_x_3_0= ruleEInt
+            // InternalBgDsl.g:2252:4: (lv_x_3_0= ruleEInt )
+            // InternalBgDsl.g:2253:5: lv_x_3_0= ruleEInt
             {
 
             					newCompositeNode(grammarAccess.getRelativeCoordinateAccess().getXEIntParserRuleCall_3_0());
             				
-            pushFollow(FOLLOW_62);
+            pushFollow(FOLLOW_63);
             lv_x_3_0=ruleEInt();
 
             state._fsp--;
@@ -4938,11 +4988,11 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_4, grammarAccess.getRelativeCoordinateAccess().getYKeyword_4());
             		
-            // InternalBgDsl.g:2252:3: ( (lv_y_5_0= ruleEInt ) )
-            // InternalBgDsl.g:2253:4: (lv_y_5_0= ruleEInt )
+            // InternalBgDsl.g:2274:3: ( (lv_y_5_0= ruleEInt ) )
+            // InternalBgDsl.g:2275:4: (lv_y_5_0= ruleEInt )
             {
-            // InternalBgDsl.g:2253:4: (lv_y_5_0= ruleEInt )
-            // InternalBgDsl.g:2254:5: lv_y_5_0= ruleEInt
+            // InternalBgDsl.g:2275:4: (lv_y_5_0= ruleEInt )
+            // InternalBgDsl.g:2276:5: lv_y_5_0= ruleEInt
             {
 
             					newCompositeNode(grammarAccess.getRelativeCoordinateAccess().getYEIntParserRuleCall_5_0());
@@ -4996,7 +5046,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTurnType"
-    // InternalBgDsl.g:2279:1: ruleTurnType returns [Enumerator current=null] : ( (enumLiteral_0= 'TurnBased' ) | (enumLiteral_1= 'Simultaneous' ) ) ;
+    // InternalBgDsl.g:2301:1: ruleTurnType returns [Enumerator current=null] : ( (enumLiteral_0= 'TurnBased' ) | (enumLiteral_1= 'Simultaneous' ) ) ;
     public final Enumerator ruleTurnType() throws RecognitionException {
         Enumerator current = null;
 
@@ -5007,31 +5057,31 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBgDsl.g:2285:2: ( ( (enumLiteral_0= 'TurnBased' ) | (enumLiteral_1= 'Simultaneous' ) ) )
-            // InternalBgDsl.g:2286:2: ( (enumLiteral_0= 'TurnBased' ) | (enumLiteral_1= 'Simultaneous' ) )
+            // InternalBgDsl.g:2307:2: ( ( (enumLiteral_0= 'TurnBased' ) | (enumLiteral_1= 'Simultaneous' ) ) )
+            // InternalBgDsl.g:2308:2: ( (enumLiteral_0= 'TurnBased' ) | (enumLiteral_1= 'Simultaneous' ) )
             {
-            // InternalBgDsl.g:2286:2: ( (enumLiteral_0= 'TurnBased' ) | (enumLiteral_1= 'Simultaneous' ) )
-            int alt31=2;
-            int LA31_0 = input.LA(1);
+            // InternalBgDsl.g:2308:2: ( (enumLiteral_0= 'TurnBased' ) | (enumLiteral_1= 'Simultaneous' ) )
+            int alt32=2;
+            int LA32_0 = input.LA(1);
 
-            if ( (LA31_0==68) ) {
-                alt31=1;
+            if ( (LA32_0==68) ) {
+                alt32=1;
             }
-            else if ( (LA31_0==69) ) {
-                alt31=2;
+            else if ( (LA32_0==69) ) {
+                alt32=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 31, 0, input);
+                    new NoViableAltException("", 32, 0, input);
 
                 throw nvae;
             }
-            switch (alt31) {
+            switch (alt32) {
                 case 1 :
-                    // InternalBgDsl.g:2287:3: (enumLiteral_0= 'TurnBased' )
+                    // InternalBgDsl.g:2309:3: (enumLiteral_0= 'TurnBased' )
                     {
-                    // InternalBgDsl.g:2287:3: (enumLiteral_0= 'TurnBased' )
-                    // InternalBgDsl.g:2288:4: enumLiteral_0= 'TurnBased'
+                    // InternalBgDsl.g:2309:3: (enumLiteral_0= 'TurnBased' )
+                    // InternalBgDsl.g:2310:4: enumLiteral_0= 'TurnBased'
                     {
                     enumLiteral_0=(Token)match(input,68,FOLLOW_2); 
 
@@ -5045,10 +5095,10 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalBgDsl.g:2295:3: (enumLiteral_1= 'Simultaneous' )
+                    // InternalBgDsl.g:2317:3: (enumLiteral_1= 'Simultaneous' )
                     {
-                    // InternalBgDsl.g:2295:3: (enumLiteral_1= 'Simultaneous' )
-                    // InternalBgDsl.g:2296:4: enumLiteral_1= 'Simultaneous'
+                    // InternalBgDsl.g:2317:3: (enumLiteral_1= 'Simultaneous' )
+                    // InternalBgDsl.g:2318:4: enumLiteral_1= 'Simultaneous'
                     {
                     enumLiteral_1=(Token)match(input,69,FOLLOW_2); 
 
@@ -5084,7 +5134,7 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStateSelection"
-    // InternalBgDsl.g:2306:1: ruleStateSelection returns [Enumerator current=null] : ( (enumLiteral_0= 'CurrentPlayer' ) | (enumLiteral_1= 'OtherPlayer' ) | (enumLiteral_2= 'StateBased' ) ) ;
+    // InternalBgDsl.g:2328:1: ruleStateSelection returns [Enumerator current=null] : ( (enumLiteral_0= 'CurrentPlayer' ) | (enumLiteral_1= 'OtherPlayer' ) | (enumLiteral_2= 'StateBased' ) ) ;
     public final Enumerator ruleStateSelection() throws RecognitionException {
         Enumerator current = null;
 
@@ -5096,40 +5146,40 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBgDsl.g:2312:2: ( ( (enumLiteral_0= 'CurrentPlayer' ) | (enumLiteral_1= 'OtherPlayer' ) | (enumLiteral_2= 'StateBased' ) ) )
-            // InternalBgDsl.g:2313:2: ( (enumLiteral_0= 'CurrentPlayer' ) | (enumLiteral_1= 'OtherPlayer' ) | (enumLiteral_2= 'StateBased' ) )
+            // InternalBgDsl.g:2334:2: ( ( (enumLiteral_0= 'CurrentPlayer' ) | (enumLiteral_1= 'OtherPlayer' ) | (enumLiteral_2= 'StateBased' ) ) )
+            // InternalBgDsl.g:2335:2: ( (enumLiteral_0= 'CurrentPlayer' ) | (enumLiteral_1= 'OtherPlayer' ) | (enumLiteral_2= 'StateBased' ) )
             {
-            // InternalBgDsl.g:2313:2: ( (enumLiteral_0= 'CurrentPlayer' ) | (enumLiteral_1= 'OtherPlayer' ) | (enumLiteral_2= 'StateBased' ) )
-            int alt32=3;
+            // InternalBgDsl.g:2335:2: ( (enumLiteral_0= 'CurrentPlayer' ) | (enumLiteral_1= 'OtherPlayer' ) | (enumLiteral_2= 'StateBased' ) )
+            int alt33=3;
             switch ( input.LA(1) ) {
             case 70:
                 {
-                alt32=1;
+                alt33=1;
                 }
                 break;
             case 71:
                 {
-                alt32=2;
+                alt33=2;
                 }
                 break;
             case 72:
                 {
-                alt32=3;
+                alt33=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 32, 0, input);
+                    new NoViableAltException("", 33, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt32) {
+            switch (alt33) {
                 case 1 :
-                    // InternalBgDsl.g:2314:3: (enumLiteral_0= 'CurrentPlayer' )
+                    // InternalBgDsl.g:2336:3: (enumLiteral_0= 'CurrentPlayer' )
                     {
-                    // InternalBgDsl.g:2314:3: (enumLiteral_0= 'CurrentPlayer' )
-                    // InternalBgDsl.g:2315:4: enumLiteral_0= 'CurrentPlayer'
+                    // InternalBgDsl.g:2336:3: (enumLiteral_0= 'CurrentPlayer' )
+                    // InternalBgDsl.g:2337:4: enumLiteral_0= 'CurrentPlayer'
                     {
                     enumLiteral_0=(Token)match(input,70,FOLLOW_2); 
 
@@ -5143,10 +5193,10 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalBgDsl.g:2322:3: (enumLiteral_1= 'OtherPlayer' )
+                    // InternalBgDsl.g:2344:3: (enumLiteral_1= 'OtherPlayer' )
                     {
-                    // InternalBgDsl.g:2322:3: (enumLiteral_1= 'OtherPlayer' )
-                    // InternalBgDsl.g:2323:4: enumLiteral_1= 'OtherPlayer'
+                    // InternalBgDsl.g:2344:3: (enumLiteral_1= 'OtherPlayer' )
+                    // InternalBgDsl.g:2345:4: enumLiteral_1= 'OtherPlayer'
                     {
                     enumLiteral_1=(Token)match(input,71,FOLLOW_2); 
 
@@ -5160,10 +5210,10 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalBgDsl.g:2330:3: (enumLiteral_2= 'StateBased' )
+                    // InternalBgDsl.g:2352:3: (enumLiteral_2= 'StateBased' )
                     {
-                    // InternalBgDsl.g:2330:3: (enumLiteral_2= 'StateBased' )
-                    // InternalBgDsl.g:2331:4: enumLiteral_2= 'StateBased'
+                    // InternalBgDsl.g:2352:3: (enumLiteral_2= 'StateBased' )
+                    // InternalBgDsl.g:2353:4: enumLiteral_2= 'StateBased'
                     {
                     enumLiteral_2=(Token)match(input,72,FOLLOW_2); 
 
@@ -5241,28 +5291,29 @@ public class InternalBgDslParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000010000000000L});
     public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000020000000000L});
     public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000900000040000L});
-    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0000200000000000L});
-    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000400000020000L});
-    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000800000040000L});
-    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0030000000000000L});
-    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0020000000000000L});
-    public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0090000000000000L});
-    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x0080000000000000L});
-    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_53 = new BitSet(new long[]{0x0200000000000000L});
-    public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x0800000000000000L});
-    public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x0000000000000000L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_56 = new BitSet(new long[]{0x1010000000040000L});
-    public static final BitSet FOLLOW_57 = new BitSet(new long[]{0x0010000000040000L});
-    public static final BitSet FOLLOW_58 = new BitSet(new long[]{0x8800000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_59 = new BitSet(new long[]{0x8000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_60 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_61 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_62 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000000800040000L});
+    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0000900000040000L});
+    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000400000020000L});
+    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0000800000040000L});
+    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0030000000000000L});
+    public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x0020000000000000L});
+    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x0090000000000000L});
+    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_53 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x0200000000000000L});
+    public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_56 = new BitSet(new long[]{0x0000000000000000L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_57 = new BitSet(new long[]{0x1010000000040000L});
+    public static final BitSet FOLLOW_58 = new BitSet(new long[]{0x0010000000040000L});
+    public static final BitSet FOLLOW_59 = new BitSet(new long[]{0x8800000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_60 = new BitSet(new long[]{0x8000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_61 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_62 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_63 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
 
 }
