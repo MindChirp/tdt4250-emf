@@ -189,7 +189,7 @@ These projects provide the required Eclipse plugin packaging:
 
 ### Example instances
 
-    examples/                         - Example instances, generated from the DSL.
+    examples/                         - Example instances, one folder for the generated python instances, one for the DSL files.
 
 Contains:
 - Generated Python code from the Xtend generator  
