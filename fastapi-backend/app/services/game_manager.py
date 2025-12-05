@@ -1,4 +1,4 @@
-# from app.generated.tictactoe import game
+# from app.generated.game import game
 # class GameStateManager:
 #     tileStates = {}
 

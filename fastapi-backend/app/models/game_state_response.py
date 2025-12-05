@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from app.generated.tictactoe import Tile
+from app.generated.game import Tile
 from typing import List
 
 class TileResponse(BaseModel):
@@ -20,3 +20,4 @@ class GameStateResponse(BaseModel):
     boardHeight: int
     tiles: List[TileResponse]
     legalMoves: List[TileResponse]
+    wonMessage: str | None = None

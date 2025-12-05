@@ -89,6 +89,7 @@ TilePlacement returns TilePlacement:
 		'row' row=EInt
 		'column' column=EInt
 		'tile' tile=[Tile|EString]
+		('initialState' initialState=[State|EString])?
 	'}';
 
 State returns State:
@@ -121,7 +122,7 @@ IterativeFilter returns IterativeFilter:
 	name=EString
 	'{'
 		('nextFilter' nextFilter=Filter)?
-		'directionVector' directionVector=RelativeCoordinate
+		'directionVectors' '{' directionVectors+=RelativeCoordinate ( "," directionVectors+=RelativeCoordinate)* '}' 
 		'matchRule' matchRule=Pattern
 		'endRule' endRule=Pattern
 	'}';

@@ -79,6 +79,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//TilePlacement/column"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//TilePlacement/tile"/>
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//TilePlacement/darker"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//TilePlacement/initialState"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//Pattern">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//Pattern/relativecoordinates"/>
@@ -91,7 +92,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bg.ecore#//RelativeCoordinate/y"/>
     </genClasses>
     <genClasses ecoreClass="bg.ecore#//IterativeFilter">
-      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//IterativeFilter/directionVector"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//IterativeFilter/directionVectors"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference bg.ecore#//IterativeFilter/matchRule"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bg.ecore#//IterativeFilter/endRule"/>
     </genClasses>

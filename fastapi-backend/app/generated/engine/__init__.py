@@ -1,1 +1,0 @@
-#Model classes should be generated into this folder!

@@ -71,8 +71,8 @@ class BgDslGenerator extends AbstractGenerator {
                 «field.toPythonFieldDec»
                 «ENDFOR»
                 activeState: "State"
-                row: "int"
                 column: "int"
+                row: "int"
                 
                 def updateState(self, targetStateName: str):
                         for transition in self.transitions:
@@ -105,6 +105,15 @@ class BgDslGenerator extends AbstractGenerator {
                 name: "str"
                 hexColor: "str"
                 associatedState: "str"
+                
+            «ELSEIF model.name == "Game"»
+            	board: "Board"
+            	name: "str"
+            	players: List["Player"] = []
+            	initialPlayer: "Player"
+            	activePlayer: "Player"
+            	turnPolicy: "str"
+            	winMessage: "str" = None
 
             «ELSE»
                 «FOR field : model.EAllStructuralFeatures»
@@ -148,7 +157,7 @@ class BgDslGenerator extends AbstractGenerator {
         «val transitions = tileType.getFeature("transitions") as EList<EObject>»
 
         class «tileName»(Tile):
-            def __init__(self, row, column):
+            def __init__(self, column, row):
                 # 1. Create Initial State
                 state«initName» = State(
                     name="«initName»",
@@ -204,17 +213,32 @@ class BgDslGenerator extends AbstractGenerator {
                     tileType="«tileName»",
                     hexColor="«tileType.getFeature("hexColor")»",
                     name="«tileName»",
-                    row=row,
-                    column=column
+                    column=column,
+                    row=row
                 )
         «ENDFOR»
+        
+        «val tilesWithInitial = tilePlacements.filter[t | t.getFeature("initialState") !== null]»
+        
+        
+        initial_tile_placement = {
+        	«FOR tile : tilesWithInitial SEPARATOR ", "»
+        	(«tile.getFeature("column")»,«tile.getFeature("row")»): "«(tile.getFeature("initialState") as EObject).getFeature("name")»"
+        	«ENDFOR»
+        }
+        
 
         # --- Instance Initialization ---
         tiles = [
             «FOR placement : tilePlacements SEPARATOR ", "»
-            «(placement.getFeature("tile") as EObject).getFeature("name")»(«placement.getFeature("row")», «placement.getFeature("column")»)
+            «(placement.getFeature("tile") as EObject).getFeature("name")»(«placement.getFeature("column")», «placement.getFeature("row")»)
             «ENDFOR»
         ]
+        
+        for tile in tiles:
+        	for startingTile in initial_tile_placement.keys():
+        		if (tile.column, tile.row) == startingTile:
+        			tile.updateState(initial_tile_placement.get(startingTile))
 
         players = [
             «FOR player : players SEPARATOR ", "»
@@ -280,13 +304,18 @@ class BgDslGenerator extends AbstractGenerator {
             )'''
         } else if (filter.eClass.name == "IterativeFilter") {
             val nextFilter = filter.getFeature("nextFilter") as EObject
-            val dirVector = filter.getFeature("directionVector") as EObject
+            val dirVectors = filter.getFeature("directionVectors") as EList<EObject>
+            System.out.println("Dirvectors: " + dirVectors)
             val matchRule = filter.getFeature("matchRule") as EObject
             val endRule = filter.getFeature("endRule") as EObject
             '''
             IterativeFilter(
                 name="«filter.getFeature("name")»",
-                directionVector=«generateRelCoord(dirVector)»,
+                directionVectors=[
+                «FOR vector : dirVectors SEPARATOR ", "»
+                	«generateRelCoord(vector)»
+                «ENDFOR»
+                ],
                 matchRule=«generatePattern(matchRule)»,
                 endRule=«generatePattern(endRule)»,
                 nextFilter=«IF nextFilter !== null»«generateFilter(nextFilter)»«ELSE»None«ENDIF»
