@@ -84,7 +84,7 @@ class Player(BaseModel):
     name: "str"
     hexColor: "str"
     associatedState: "str"
-    
+
     
 class Game(BaseModel):
     board: "Board"
@@ -94,7 +94,6 @@ class Game(BaseModel):
     activePlayer: "Player"
     turnPolicy: "str"
     winMessage: "str" = None
-
     
 
 # Rebuild models for Pydantic recursion
@@ -369,6 +368,7 @@ legal_moves_pipeline = LegalMovesPipeline(
         )
     ]
 )
+
 
 effect_pipeline = EffectPipeline(
     filters=[

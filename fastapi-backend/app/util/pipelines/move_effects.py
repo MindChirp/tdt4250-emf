@@ -4,20 +4,10 @@ from app.generated.game import (
     StateEffectFilter, PatternFilter,
     game
 )
+from app.util.filters.pattern_filter import pattern_filter as shared_pattern_filter
+from app.util.tile_utils import get_relative_tile
 
-def get_relative_tile(anchor: Tile, rel_x: int, rel_y: int) -> Optional[Tile]:
-    """Return tile at relative offset from anchor, or None if out of bounds."""
-    board = game.board
-    target_row = anchor.row + rel_y
-    target_col = anchor.column + rel_x
 
-    if not (0 <= target_row < board.height and 0 <= target_col < board.width):
-        return None
-
-    return next(
-        (t for t in board.tiles if t.row == target_row and t.column == target_col),
-        None
-    )
 
 
 def matches_pattern(anchor: Tile, pattern: Pattern) -> bool:
@@ -43,23 +33,6 @@ def matches_pattern(anchor: Tile, pattern: Pattern) -> bool:
             return False
 
     return True
-
-
-def pattern_filter(tile_context: List[Tile], filterObj: PatternFilter) -> List[Tile]:
-    """
-    Evaluates patternFilter on the tiles in tile_context (anchors).
-    Returns the same tile_context (no modification).
-    """
-
-    resulting_tiles: List[Tile] = []
-
-    for anchorTile in tile_context:
-        for pattern in filterObj.patterns:
-            if matches_pattern(anchorTile, pattern):
-                resulting_tiles.append(anchorTile)
-                break
-
-    return resulting_tiles
 
 
 def state_effect_filter(tile_context: List[Tile], filterObj: StateEffectFilter) -> List[Tile]:
@@ -105,41 +78,3 @@ try:
         return False
 except Exception as e:
    print(e) 
-
-
-LOCAL_FILTERS = {
-    "StateEffectFilter": state_effect_filter,
-    "PatternFilter": pattern_filter,
-}
-
-# GLOBAL_FILTERS = {
-#     "WinConditionFilter": win_condition_filter,
-# }
-
-
-# def calculateEffects(board: Board, affected_tiles: List[Tile]):
-#     """
-#     Runs local effect filters first, then global win-condition filters.
-#     """
-
-#     pipeline = board.effectPipeline
-#     current = pipeline.filter
-#     tile_context = affected_tiles
-
-#     while current:
-#         cls_name = current.__class__.__name__
-#         if cls_name in LOCAL_FILTERS:
-#             handler = LOCAL_FILTERS[cls_name]
-#             tile_context = handler(tile_context, current)
-#         current = current.nextFilter
-        
-#     current = pipeline.filter
-#     while current:
-#         cls_name = current.__class__.__name__
-#         if cls_name in GLOBAL_FILTERS:
-#             handler = GLOBAL_FILTERS[cls_name]
-#             if handler(board, current):
-#                 return True
-#         current = current.nextFilter
-
-#     return False
