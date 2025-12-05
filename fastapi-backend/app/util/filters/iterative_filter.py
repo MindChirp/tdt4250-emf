@@ -1,5 +1,5 @@
 from typing import List
-from app.generated.tictactoe import Tile, Pattern, RelativeCoordinate
+from app.generated.game import Tile, Pattern, RelativeCoordinate
 from app.util.tile_utils import get_relative_tile
 from app.util.filters.pattern_filter import pattern_filter
 

@@ -1,4 +1,4 @@
-from app.generated.tictactoe import Tile, game
+from app.generated.game import Tile, game
 
 def get_relative_tile(anchorTile: Tile, rel_x: int, rel_y: int) -> Tile | None:
   target_row = anchorTile.row + rel_y

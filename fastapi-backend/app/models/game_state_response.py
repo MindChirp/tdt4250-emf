@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from app.generated.tictactoe import Tile
+from app.generated.game import Tile
 from typing import List
 
 class TileResponse(BaseModel):
