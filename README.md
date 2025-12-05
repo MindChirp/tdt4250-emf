@@ -1,7 +1,7 @@
 # Tile-Based Game Engine - Project Overview
 
 This repository provides a complete model-driven framework for defining and executing tile-based board games such as **Connect 4**, **TicTacToe**, and **Othello** using a custom DSL.  
-All gameplay logic, tile state machines, legal move rules, effect rules, and win conditions, is modeled declaratively in the DSL, requiring **no hard-coded game logic** in the runtime.  
+All gameplay logic, tile state machines, legal move rules, effect rules, and win conditions, is modeled declaratively in the DSL, with a large focus being the usage of modular filters that can be chained together to model compex rulesets.  
 
 The system is built using **EMF/Ecore**, **Xtext**, **Xtend**, and **Java** to define the metamodel and generate all necessary runtime classes.  
 From each DSL game description, the generator produces runnable **Python code**, which integrates with our **FastAPI backend** and **React frontend** to create a fully playable game environment.
@@ -43,7 +43,7 @@ Games are expressed entirely through models that describe:
 - How patterns of tiles should be interpreted  
 - Pipelines for evaluating legal moves and applying effects  
 
-Instead of implementing game logic by hand, users compose rules by connecting filters, transitions, and patterns.  
+Instead of implementing all game logic by hand, users compose rules by connecting filters, transitions, and patterns.  
 These models are then interpreted by a runtime engine that executes moves, updates tile states, evaluates patterns, and determines when a game has been won.
 
 This approach follows a typical model-driven engineering workflow:
