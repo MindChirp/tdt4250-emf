@@ -1,7 +1,7 @@
 # Tile-Based Game Engine - Project Overview
 
 This repository provides a complete model-driven framework for defining and executing tile-based board games such as **Connect 4**, **TicTacToe**, and **Othello** using a custom DSL.  
-All gameplay logic—tile state machines, legal move rules, effect rules, and win conditions (except for Othello), is modeled declaratively in the DSL, requiring **no hard-coded game logic** in the runtime.  
+All gameplay logic, tile state machines, legal move rules, effect rules, and win conditions, is modeled declaratively in the DSL, requiring **no hard-coded game logic** in the runtime.  
 
 The system is built using **EMF/Ecore**, **Xtext**, **Xtend**, and **Java** to define the metamodel and generate all necessary runtime classes.  
 From each DSL game description, the generator produces runnable **Python code**, which integrates with our **FastAPI backend** and **React frontend** to create a fully playable game environment.
@@ -119,9 +119,9 @@ Before working with the DSL, backend, or frontend, ensure your environment is co
 
 The project includes a complete Eclipse plugin distribution packaged into:
 
-- **Feature Project** — bundles all DSL, EMF, and generator plugins  
-- **Update Site Project** — defines how the feature is published  
-- **P2 Repository** — installable Eclipse update site (ready for end-users)
+- **Feature Project** ' bundles all DSL, EMF, and generator plugins  
+- **Update Site Project** - defines how the feature is published  
+- **P2 Repository** - installable Eclipse update site (ready for end-users)
 
 These are included in the repository:
 
