@@ -368,6 +368,7 @@ legal_moves_pipeline = LegalMovesPipeline(
     ]
 )
 
+
 effect_pipeline = EffectPipeline(
     filters=[
         IterativeFilter(
@@ -436,6 +437,12 @@ effect_pipeline = EffectPipeline(
                 targetState=None,
                 nextFilter=None
             )
+        ),
+        StateEffectFilter(
+            name="PlaceClickedTile",
+            stateSelection="CurrentPlayer",
+            targetState=None,
+            nextFilter=None
         )
     ]
 )

@@ -13,11 +13,10 @@ def iterative_filter(tiles: List[Tile], matchRule: Pattern, endRule: Pattern, di
   matched_tiles = []
   for tile in tiles:
     for directionVector in directionVectors:
-      print(f"{directionVector}: {tile.column}, {tile.row}")
 
       current_tile = get_relative_tile(tile, directionVector.x, directionVector.y)
       if (not current_tile): 
-        break
+        continue
 
       current_matched_tiles = []
 
@@ -40,6 +39,5 @@ def iterative_filter(tiles: List[Tile], matchRule: Pattern, endRule: Pattern, di
       # After exiting the loop, check if the endRule pattern matches at the last tile reached
       if len(pattern_filter([current_tile], [endRule])) > 0:
         matched_tiles.extend(current_matched_tiles)
-
 
   return matched_tiles

@@ -2,7 +2,6 @@
 
 import pkgutil
 import importlib
-from app.generated.engine.models import Game
 
 #loads game instances created from DSL, tictactoe.py, connect4.py etc.
 
