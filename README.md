@@ -9,13 +9,14 @@ The code generation is built on **EMF/Ecore**, **Java**, **Xtend** and **Xtext**
 
 ## Table of Contents
 
-- [Project description](#project-description)  
-- [How to setup and use](#how-to-setup-and-use)  
+- [Project description](#project-description)
+- [What We Implemented](#what-we-implemented)
+- [System Requirements](#system-requirements)
+- [How to Setup and Use](#how-to-setup-and-use)  
 - [Repository Overview](#repository-overview)  
 - [Tile-Based Game Engine Deep Dives](#tile-based-game-engine-deep-dives)  
   - [Metamodel Deep Dive](#metamodel-deep-dive)  
     - [Classes and Relationships](#classes-and-relationships)  
-    - [State Machines](#state-machines)  
     - [Pipelines](#pipelines)  
     - [Filters](#filters)  
     - [Constraints](#constraints)
@@ -29,25 +30,78 @@ The code generation is built on **EMF/Ecore**, **Java**, **Xtend** and **Xtext**
 
 ## Project description
 
-The **Tile-Based Game Engine** is a model-driven framework for defining deterministic, grid-based games. All gameplay logic is modeled inside the **Ecore model** using:
+The **Tile-Based Game Engine** is a model-driven framework for designing deterministic, grid-based board games through a custom DSL (domain-specific language).  
+Its goal is to allow users to define gameplay rules declaratively, without writing imperative gameplay code.
 
-- Tile state machines  
-- Filters 
-- Legal and effect pipelines, consisting of a chain of filters
-- State transitions  
-- Constraint validation
+Games are expressed entirely through models that describe:
 
-Games such as **Connect 4**, **TicTacToe**, or other grid-based logic games can be created easily without the need of implementing code yourself.
+- The board layout  
+- Tile types and their internal state machines  
+- How states can transition during play  
+- How patterns of tiles should be interpreted  
+- Pipelines for evaluating legal moves and applying effects  
 
-**Metamodel**: Contains classes for `Tile`, `State`, `Transition`, `Board`, `Game`, `Player`, `Pipelines`, `Filters`, etc. Constraints are implemented in Java inside the generated `Validator`.
+Instead of implementing game logic by hand, users compose rules by connecting filters, transitions, and patterns.  
+These models are then interpreted by a runtime engine that executes moves, updates tile states, evaluates patterns, and determines when a game has been won.
 
-**Pipelines**:
+This approach follows a typical model-driven engineering workflow:
+1. **Define** the game in the DSL  
+2. **Generate** model artifacts  
+3. **Execute** the game through the backend engine  
+4. **Visualize** gameplay in a frontend UI  
 
-- `LegalMovesPipeline` decides if a tile is a valid move.  
-- `EffectPipeline` decides what happens when a tile is played.  
-- **Filters** are reusable logic units. Pipelines are built by chaining filters.
+The result is a flexible platform capable of representing a wide range of turn-based, tile-based games such as TicTacToe, Connect Four, and Othello.
 
-All logic is declarative - you create games by assembling pipelines and transitions in the model.
+---
+
+## What We Implemented
+
+- A complete Xtext DSL for defining tile-based board games
+- An EMF metamodel covering:
+  - Game, Player, Board, TilePlacement
+  - Tile state machines (State & Transition)
+  - Pattern-based logic (PatternFilter, Pattern, RelativeCoordinate)
+  - Legal/Effect pipelines and chained Filter system
+  - IterativeFilter, StateEffectFilter, WinConditionFilter
+- Xtend code generator producing Python runtime classes
+- A full backend engine supporting:
+  - Legal move calculation
+  - Effect execution
+  - Pattern matching
+  - Win detection
+  - Turn switching
+- FastAPI server exposing:
+  - Game creation
+  - Game state retrieval
+  - Move submission
+- Multiple example games:
+  - TicTacToe
+  - Connect Four
+  - Othello (Reversi)
+- A React frontend for visualization and interaction
+
+---
+
+## System Requirements
+
+### Backend (DSL + Code Generator + API)
+- **Eclipse IDE 2023-xx** with:
+  - Xtext 2.30+
+  - EMF (Eclipse Modeling Framework)
+- **Java 17+**
+- **Gradle or Maven** (depending on your project setup)
+- **Python 3.10+**
+- **FastAPI**
+- **uvicorn**
+
+### Frontend [(separate repository)](https://github.com/MindChirp/tdt4250-gui)
+- **Node.js 18+**
+- **npm or yarn**
+
+### Recommended OS
+- Windows 10/11  
+- macOS 12+  
+- Linux (Ubuntu 22.04)
 
 ---
 
