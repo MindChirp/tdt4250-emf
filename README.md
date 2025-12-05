@@ -175,6 +175,10 @@ These projects provide the required Eclipse plugin packaging:
 
     fastapi-backend/                  – Python backend engine + FastAPI server
 
+### Example instances
+
+    examples/                         - Example instances, generated from the DSL.
+
 Contains:
 - Generated Python code from the Xtend generator  
 - Runtime for executing pipelines, transitions, and win conditions  
