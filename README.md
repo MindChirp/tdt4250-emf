@@ -24,7 +24,6 @@ This project was developed by **Emil Johnsen, Frikk Balder Ormestad, Andreas Gje
     - [Filters](#filters)  
     - [Constraints](#constraints)
     - [Derived Attributes](#derived-attributes)  
-  - [Generated Code Deep Dive](#generated-code-deep-dive)  
   - [Game Logic Flow Deep Dive](#game-logic-flow-deep-dive)  
 - [Example Game: Connect 4](#example-game-connect-4)  
 - [Example Game: Othello](#example-game-othello)  
