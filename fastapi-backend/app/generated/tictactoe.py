@@ -131,7 +131,7 @@ class PlayTile(Tile):
         )
         stateBlackPlayed = State(
             name="BlackPlayed",
-            hexColor="#00ff00",
+            hexColor="#000000",
             outbound=[], inbound=[]
         )
         
@@ -229,7 +229,7 @@ legal_moves_pipeline = LegalMovesPipeline(
                         RelativeCoordinate(
                             x=0,
                             y=0
-                        )
+                        ),
                     ]
                 )
             ],
@@ -277,7 +277,13 @@ effect_pipeline = EffectPipeline(
                 targetState=None,
                 nextFilter=None
             )
-        )
+        ),
+       StateEffectFilter(
+           name="FlipPlacedTile",
+           stateSelection="CurrentPlayer",
+           targetState=None,
+           nextFilter=None
+       ) 
     ]
 )
 

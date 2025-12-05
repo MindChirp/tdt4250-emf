@@ -15,7 +15,8 @@ def pattern_filter(tiles: List[Tile], patterns: List[Pattern]):
 
       # The state(s) to match against depends on the match mode. If there are multiple states, we only need
       # all relative coordinates to match at least one of them.
-      match_state: list[str] = [pattern.matchState] if match_mode == "StateBased" else [ active_player.associatedState ] if match_mode == "OwnTiles" else [ opp.associatedState for opp in opponents ] 
+
+      match_state: list[str] = pattern.matchState if match_mode == "StateBased" else active_player.associatedState if match_mode == "OwnTiles" else opponents[0].associatedState
 
       all_match = True
       for rel_coord in rel_coords:
@@ -30,6 +31,7 @@ def pattern_filter(tiles: List[Tile], patterns: List[Pattern]):
 
         target_tile = get_relative_tile(anchorTile, rel_coord.x, rel_coord.y)
 
+        print(f"{target_tile.activeState.name} vs {match_state}")
         if not target_tile or target_tile.activeState.name not in match_state:
           all_pattern_match = False
           break
