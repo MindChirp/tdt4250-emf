@@ -229,9 +229,10 @@ The following is a detailed description of the latest version of the Tile-Based 
 The following diagram shows the complete structure of the Tile-Based Game Engine metamodel.  
 It includes the core game entities (Game, Board, Tile), tile state machines, pipelines, filters, and pattern-based match logic used to determine legal moves and apply effects during gameplay.
 
-![Metamodel Diagram](bg.jpg)
-
+![metamodel](https://github.com/user-attachments/assets/46756c46-a18a-4447-9880-e44a0e6a2e89)
 ---
+
+
 
 ### **Class Descriptions**
 
