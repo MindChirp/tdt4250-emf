@@ -1,7 +1,7 @@
 from typing import List, Optional
 from app.generated.tictactoe import (
     Board, Pattern, Tile,
-    StateEffectFilter, PatternFilter,
+    StateEffectFilter, PatternFilter, WinConditionFilter,
     game
 )
 
@@ -80,21 +80,21 @@ def state_effect_filter(tile_context: List[Tile], filterObj: StateEffectFilter) 
  
     return tile_context
 
-# def win_condition_filter(board: Board, winFilter: WinConditionFilter) -> bool:
-#     """
-#     WinConditionFilter ALWAYS checks the entire board, not affected tiles.
-#     """
+def win_condition_filter(board: Board, winFilter: WinConditionFilter) -> bool:
+    """
+    WinConditionFilter ALWAYS checks the entire board, not affected tiles.
+    """
 
-#     board_tiles = board.tiles
+    board_tiles = board.tiles
 
-#     for tile in board_tiles:
-#         for patternFilter in winFilter.patternFilters:
-#             for pattern in patternFilter.patterns:
-#                 if matches_pattern(tile, pattern):
-#                     print(f"WINNER: {game.activePlayer.name}")
-#                     return True
+    for tile in board_tiles:
+        for patternFilter in winFilter.patternFilters:
+            for pattern in patternFilter.patterns:
+                if matches_pattern(tile, pattern):
+                    print(f"WINNER: {game.activePlayer.name}")
+                    return True
 
-#     return False
+    return False
 
 LOCAL_FILTERS = {
     "StateEffectFilter": state_effect_filter,
