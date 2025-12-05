@@ -1,7 +1,7 @@
 from typing import List, Optional
 from app.generated.tictactoe import (
-    Board, Pattern, Tile,
-    StateEffectFilter, PatternFilter,
+    Board, Filter, Pattern, Tile,
+    StateEffectFilter, PatternFilter, WinConditionFilter,
     game
 )
 
