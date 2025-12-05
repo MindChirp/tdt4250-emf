@@ -143,14 +143,53 @@ These are included in the repository:
 
 ---
 
-## Repository Overview (COMPLETE THIS WHEN FINISHED WITH XTEND AND XTEXT)
+## Repository Overview
 
-- `no.ntnu.tdt4250.bg/model` → Ecore metamodel
-- `no.ntnu.tdt4250.bg/src-gen/no/ntnu/tdt4250/bg/util` → Validator
-- `no.ntnu.tdt4250.bg.bgdsl/src/no/ntnu/tdt4250/bg/bgdsl` → Xtext grammar
-- `no.ntnu.tdt4250.bg.bgdsl/src/no/ntnu/tdt4250/bg/bgdsl/generator` → Xtend Python generator file
-- cont...
-- `README.md` → This documentation file
+The repository contains all components required for defining the DSL, generating runtime code, packaging Eclipse plugins, and running the backend.
+
+### Eclipse / EMF / Xtext Projects
+
+These folders form the core of the DSL tooling:
+
+    no.ntnu.tdt4250.bg/               – EMF metamodel (Ecore), validator, and generated model code
+    no.ntnu.tdt4250.bg.bgdsl/         – Xtext grammar project (DSL definition + Xtend generator)
+    no.ntnu.tdt4250.bg.bgdsl.ide/     – Xtext IDE support (content assist, indexing)
+    no.ntnu.tdt4250.bg.bgdsl.ui/      – Xtext UI plugin (DSL editor, syntax highlighting)
+    no.ntnu.tdt4250.bg.bgdsl.tests/   – DSL unit tests
+    no.ntnu.tdt4250.bg.bgdsl.ui.tests – UI tests for the DSL editor
+    no.ntnu.tdt4250.bg.edit/          – EMF edit plugin (item providers)
+    no.ntnu.tdt4250.bg.editor/        – EMF editor plugin (tree editor)
+
+### Packaging (Feature + Update Site + P2 Repository)
+
+These projects provide the required Eclipse plugin packaging:
+
+    no.ntnu.tdt4250.bg.feature/       – Feature project bundling all DSL/EMF plugins
+    no.ntnu.tdt4250.bg.update/        – Update site project (site.xml)
+    p2-repository/                    – Built P2 repository for installing the DSL into Eclipse
+
+### Backend (Generated Runtime + API)
+
+    fastapi-backend/                  – Python backend engine + FastAPI server
+
+Contains:
+- Generated Python code from the Xtend generator  
+- Runtime for executing pipelines, transitions, and win conditions  
+- REST API for interacting with the frontend  
+
+### Sirius (Legacy / Unused)
+
+The following folders are remnants from early experimentation with Sirius (graphical modeling).  
+They remain for completeness but **are not part of the final solution**:
+
+    no.ntnu.tdt4250.bg.design/        – Sirius design project (unused)
+    no.ntnu.tdt4250.bg.editor/        – Sirius diagram editor fragments (unused)
+
+### Miscellaneous
+
+    README.md                         – Project documentation
+    bg.jpg                            – Metamodel diagram
+
 
 ---
 
