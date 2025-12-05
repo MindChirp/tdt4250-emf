@@ -32,6 +32,12 @@ This project was developed by **Emil Johnsen, Frikk Balder Ormestad, Andreas Gje
 
 ## Project description
 
+
+The goal of this project was mainly to create a game engine where one could relatively easily implement the board game Othello with its most important rules and gameplay mechanics. The group took inspiration from an original project written in python, which was designed to be heavilty optimized through novel methods that aimed at saving computational cost. While this was an interesting idea, the decision was made to "simplify" the approach by creating a flexible game engine that in theory can represent many different board-based games, while not focusing at speed and efficiency.
+
+Othello falls into a category of games that rely on two players (i.e. a single enemy opponent), one piece type per player, but more interestingly—legality of moves that depends on what the surrounding board looks like, and side effects for each move that affects more than the single tile you are placing. As an exercise in solving abstraction problems and creating variability mechanisms, this is quite an interesting task to take on. 
+
+
 The **Tile-Based Game Engine** is a model-driven framework for designing deterministic, grid-based board games through a custom DSL (domain-specific language).  
 Its goal is to allow users to define gameplay rules declaratively, without writing imperative gameplay code.
 
@@ -82,6 +88,7 @@ The result is a flexible platform capable of representing a wide range of turn-b
   - Othello (Reversi)
 - A React frontend for visualization and interaction
 
+
 ---
 
 ## System Requirements
@@ -116,8 +123,7 @@ Before working with the DSL, backend, or frontend, ensure your environment is co
 
 ## Manual launch and usage of DSL to generate code
 To get started with creating a valid implementation of a game using the DSL and grammar defined in xtext, you must start a runtime instance of Eclipse.
-To do this you will need to navigate to the no.ntnu.tdt4250.bg.bgdsl package, right click the folder, run as -> Eclipse application. The first time doing this you will have to create a new Java project in the package explorer with an arbitrary name. Then, inside the src directory, you should create a file with the extension of the custum DSL, such as tictactoe.bgdsl. You will be prompted if you want to convert the project to an xtext project, select “yes”. You can then choose whether you want to try defining your own game, or use one of the premade examples located in the examples folder. Currently, we provide tic-tac-toe, four-in-a-row and Othello out of the box. When saving the .bgdsl file, the corresponding Python code needed for running the game should be generated. This code can either be manually copied and moved into the fastapi-backend/app/generated/game.py file, or updated automatically by uncommenting the section inside no.ntnu.tdt4250.bg.bgdsl/src/no/ntnu/tdt4250/bg/bgdsl/generator/BgDslGenerator.xtend related to saving the file in a specific location and updating it with the required information.
-
+To do this you will need to navigate to the no.ntnu.tdt4250.bg.bgdsl package, right click the folder, run as -> Eclipse application. The first time doing this you will have to create a new Project, select Java project when choosing project type and give it an arbitrary name. Then, inside the src directory, you should create a file with the extension of the custum DSL, such as tictactoe.bgdsl. You will be prompted if you want to convert the project to an xtext project, select “yes”. You can then choose whether you want to try defining your own game, or use one of the premade examples located in the examples folder. Currently, we provide tic-tac-toe, four-in-a-row and Othello out of the box. When saving the .bgdsl file, the corresponding Python code needed for running the game should be generated. This code can either be manually copied and moved into the fastapi-backend/app/generated/game.py file, or updated automatically by uncommenting the section inside no.ntnu.tdt4250.bg.bgdsl/src/no/ntnu/tdt4250/bg/bgdsl/generator/BgDslGenerator.xtend related to saving the file in a specific location and updating it with the required information.
 ## Eclipse Plugin Packaging (Feature, Update Site, P2 Repository)
 
 The project includes a complete Eclipse plugin distribution packaged into:
@@ -401,7 +407,7 @@ Filters form a linked list in both pipelines.
 ## Concrete Filters
 
 ### **PatternFilter**
-Matches tile configurations using relative coordinate patterns.
+Matches tile configurations using relative coordinate patterns. This can be applied within a pipeline to create powerful rules for both effects and legal moves. For instance, in 4-in-a-row, the PatternFilter is used to check that a tile only can be placed on top of another tile, while at the same time ensuring that the placement tile is empty. 
 
 - **`name : EString`**
 
@@ -423,8 +429,11 @@ Defines a pattern relative to an anchor tile.
 - **`stateSelection : StateSelection = CurrentPlayer`**  
   Determines which states this pattern matches:
   - `CurrentPlayer`
+      - Matches pattern with the current player's pieces.
   - `OtherPlayer`
+      - Matches pattern with opponent's pieces.
   - `StateBased`
+      - Used when comparing pattern to an explicit state.
 
 - **`matchState : State[0..1]`**  
   When `stateSelection = StateBased`, this is the state to match.
@@ -432,12 +441,12 @@ Defines a pattern relative to an anchor tile.
 - **`relativecoordinates : RelativeCoordinate[1..*]`**  
   Offsets relative to the anchor tile.
 
-Patterns are reusable and composable.
+Patterns are reusable and composable. They are applied relatively to a provided anchor tile, and checks whether or not the surrounding tiles pointed to by `RelativeCoordinate` matches the provided state, either derived from the active player or opponent, or as an explicit and constant state. If all tiles conform to the pattern, `PatternFilter` will return the set of tiles that matched the pattern.
 
 ---
 
 ### **RelativeCoordinate**
-A single coordinate inside a pattern.
+A single coordinate inside a pattern. `RelativeCoordinate` is also used as a vector equivalent in `IterativeFilter`.
 
 - **`x : EInt`**  
   Column offset relative to anchor.
@@ -448,7 +457,7 @@ A single coordinate inside a pattern.
 ---
 
 ### **StateEffectFilter**
-Applies a state transition to all affected tiles.
+Applies a state transition to all provided tiles, given that the transition exists within the tile's state machine. This filter can be combined with `PatternFilter` or `IterativeFilter` to perform targeted state changes to the surrounding board.
 
 - **`stateSelection : StateSelection = CurrentPlayer`**  
   Controls which state is applied:
@@ -463,21 +472,21 @@ Used for:
 ---
 
 ### **IterativeFilter**
-A loop-based filter that repeatedly scans tiles in a direction.
+A loop-based filter that repeatedly scans tiles in a direction. It continues until a provided pattern tells it to stop, and applies an ending pattern to decide whether or not the scanning was successful. 
 
 Used heavily in Othello/Reversi.
 
 - **`directionVector : RelativeCoordinate[1..1]`**  
-  The direction to scan (e.g., (1,0) for right).
+  The direction to scan (e.g., (1,0) for right). By using values other than those whom belong to an identity vector, interesting patterns emerge. Patterns can for instance skip `n` tiles in arbitrary directions indefinetly, until an end condition is met. 
 
 - **`matchRule : Pattern[1..1]`**  
   Pattern that must match repeatedly to continue scanning.
 
 - **`endRule : Pattern[1..1]`**  
-  Pattern that must match to confirm a successful scan.
+  Pattern that must match to confirm a successful scan. This is invoked when `matchRule` returns false.
 
 - **`nextFilter : Filter[0..1]`**  
-  The effect to apply when scanning completes.
+  The effect or filter to apply when scanning completes.
 
 ---
 
@@ -503,8 +512,8 @@ Used in:
 
 ### **LegalMovesPipeline**
 1. Runs per-tile.
-2. Each filter anchors on the tile being tested.
-3. Returns a list of legal tiles.
+2. Each filter anchors on the tile being tested, and decides whether or not that tile is a valid move.
+3. Returns a list of legal tiles (moves).
 
 ### **EffectPipeline**
 1. Runs only after a legal move is chosen.
