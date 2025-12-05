@@ -148,8 +148,8 @@
     <eLiterals name="StateBased" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IterativeFilter" eSuperTypes="#//Filter">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="directionVector" lowerBound="1"
-        eType="#//RelativeCoordinate" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="directionVectors" lowerBound="1"
+        upperBound="-1" eType="#//RelativeCoordinate" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="matchRule" lowerBound="1"
         eType="#//Pattern" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="endRule" lowerBound="1"

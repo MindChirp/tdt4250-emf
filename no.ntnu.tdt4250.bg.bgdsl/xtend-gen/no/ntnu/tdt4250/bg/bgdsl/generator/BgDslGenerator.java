@@ -102,10 +102,10 @@ public class BgDslGenerator extends AbstractGenerator {
                     _builder.append("activeState: \"State\"");
                     _builder.newLine();
                     _builder.append("    ");
-                    _builder.append("row: \"int\"");
+                    _builder.append("column: \"int\"");
                     _builder.newLine();
                     _builder.append("    ");
-                    _builder.append("column: \"int\"");
+                    _builder.append("row: \"int\"");
                     _builder.newLine();
                     _builder.append("    ");
                     _builder.newLine();
@@ -203,15 +203,43 @@ public class BgDslGenerator extends AbstractGenerator {
                             _builder.append("    ");
                             _builder.append("associatedState: \"str\"");
                             _builder.newLine();
+                            _builder.append("    ");
                             _builder.newLine();
                           } else {
-                            {
-                              EList<EStructuralFeature> _eAllStructuralFeatures_1 = model.getEAllStructuralFeatures();
-                              for(final EStructuralFeature field_1 : _eAllStructuralFeatures_1) {
-                                _builder.append("    ");
-                                CharSequence _pythonFieldDec_1 = this.toPythonFieldDec(field_1);
-                                _builder.append(_pythonFieldDec_1, "    ");
-                                _builder.newLineIfNotEmpty();
+                            String _name_8 = model.getName();
+                            boolean _equals_6 = Objects.equals(_name_8, "Game");
+                            if (_equals_6) {
+                              _builder.append("    ");
+                              _builder.append("board: \"Board\"");
+                              _builder.newLine();
+                              _builder.append("    ");
+                              _builder.append("name: \"str\"");
+                              _builder.newLine();
+                              _builder.append("    ");
+                              _builder.append("players: List[\"Player\"] = []");
+                              _builder.newLine();
+                              _builder.append("    ");
+                              _builder.append("initialPlayer: \"Player\"");
+                              _builder.newLine();
+                              _builder.append("    ");
+                              _builder.append("activePlayer: \"Player\"");
+                              _builder.newLine();
+                              _builder.append("    ");
+                              _builder.append("turnPolicy: \"str\"");
+                              _builder.newLine();
+                              _builder.append("    ");
+                              _builder.append("winMessage: \"str\" = None");
+                              _builder.newLine();
+                              _builder.newLine();
+                            } else {
+                              {
+                                EList<EStructuralFeature> _eAllStructuralFeatures_1 = model.getEAllStructuralFeatures();
+                                for(final EStructuralFeature field_1 : _eAllStructuralFeatures_1) {
+                                  _builder.append("    ");
+                                  CharSequence _pythonFieldDec_1 = this.toPythonFieldDec(field_1);
+                                  _builder.append(_pythonFieldDec_1, "    ");
+                                  _builder.newLineIfNotEmpty();
+                                }
                               }
                             }
                           }
@@ -234,11 +262,11 @@ public class BgDslGenerator extends AbstractGenerator {
     {
       for(final EClass model_1 : models) {
         {
-          String _name_8 = model_1.getName();
-          boolean _notEquals = (!Objects.equals(_name_8, "TilePlacement"));
+          String _name_9 = model_1.getName();
+          boolean _notEquals = (!Objects.equals(_name_9, "TilePlacement"));
           if (_notEquals) {
-            String _name_9 = model_1.getName();
-            _builder.append(_name_9);
+            String _name_10 = model_1.getName();
+            _builder.append(_name_10);
             _builder.append(".model_rebuild()");
             _builder.newLineIfNotEmpty();
           }
@@ -295,7 +323,7 @@ public class BgDslGenerator extends AbstractGenerator {
           _builder.append("(Tile):");
           _builder.newLineIfNotEmpty();
           _builder.append("    ");
-          _builder.append("def __init__(self, row, column):");
+          _builder.append("def __init__(self, column, row):");
           _builder.newLine();
           _builder.append("        ");
           _builder.append("# 1. Create Initial State");
@@ -546,10 +574,10 @@ public class BgDslGenerator extends AbstractGenerator {
           _builder.append("\",");
           _builder.newLineIfNotEmpty();
           _builder.append("            ");
-          _builder.append("row=row,");
+          _builder.append("column=column,");
           _builder.newLine();
           _builder.append("            ");
-          _builder.append("column=column");
+          _builder.append("row=row");
           _builder.newLine();
           _builder.append("        ");
           _builder.append(")");
@@ -577,10 +605,10 @@ public class BgDslGenerator extends AbstractGenerator {
           }
           _builder.append("\t");
           _builder.append("(");
-          Object _feature_23 = this.getFeature(tile, "row");
+          Object _feature_23 = this.getFeature(tile, "column");
           _builder.append(_feature_23, "\t");
-          _builder.append(", ");
-          Object _feature_24 = this.getFeature(tile, "column");
+          _builder.append(",");
+          Object _feature_24 = this.getFeature(tile, "row");
           _builder.append(_feature_24, "\t");
           _builder.append("): \"");
           Object _feature_25 = this.getFeature(tile, "initialState");
@@ -611,10 +639,10 @@ public class BgDslGenerator extends AbstractGenerator {
           Object _feature_28 = this.getFeature(((EObject) _feature_27), "name");
           _builder.append(_feature_28, "    ");
           _builder.append("(");
-          Object _feature_29 = this.getFeature(placement, "row");
+          Object _feature_29 = this.getFeature(placement, "column");
           _builder.append(_feature_29, "    ");
           _builder.append(", ");
-          Object _feature_30 = this.getFeature(placement, "column");
+          Object _feature_30 = this.getFeature(placement, "row");
           _builder.append(_feature_30, "    ");
           _builder.append(")");
           _builder.newLineIfNotEmpty();
@@ -629,7 +657,7 @@ public class BgDslGenerator extends AbstractGenerator {
       _builder.append("for startingTile in initial_tile_placement.keys():");
       _builder.newLine();
       _builder.append("\t\t");
-      _builder.append("if (tile.row, tile.column) == startingTile:");
+      _builder.append("if (tile.column, tile.row) == startingTile:");
       _builder.newLine();
       _builder.append("\t\t\t");
       _builder.append("tile.updateState(initial_tile_placement.get(startingTile))");
@@ -873,8 +901,9 @@ public class BgDslGenerator extends AbstractGenerator {
         {
           Object _feature = this.getFeature(filter, "nextFilter");
           final EObject nextFilter = ((EObject) _feature);
-          Object _feature_1 = this.getFeature(filter, "directionVector");
-          final EObject dirVector = ((EObject) _feature_1);
+          Object _feature_1 = this.getFeature(filter, "directionVectors");
+          final EList<EObject> dirVectors = ((EList<EObject>) _feature_1);
+          System.out.println(("Dirvectors: " + dirVectors));
           Object _feature_2 = this.getFeature(filter, "matchRule");
           final EObject matchRule = ((EObject) _feature_2);
           Object _feature_3 = this.getFeature(filter, "endRule");
@@ -889,11 +918,25 @@ public class BgDslGenerator extends AbstractGenerator {
           _builder.append("\",");
           _builder.newLineIfNotEmpty();
           _builder.append("    ");
-          _builder.append("directionVector=");
-          CharSequence _generateRelCoord = this.generateRelCoord(dirVector);
-          _builder.append(_generateRelCoord, "    ");
-          _builder.append(",");
-          _builder.newLineIfNotEmpty();
+          _builder.append("directionVectors=[");
+          _builder.newLine();
+          {
+            boolean _hasElements = false;
+            for(final EObject vector : dirVectors) {
+              if (!_hasElements) {
+                _hasElements = true;
+              } else {
+                _builder.appendImmediate(", ", "    ");
+              }
+              _builder.append("    ");
+              CharSequence _generateRelCoord = this.generateRelCoord(vector);
+              _builder.append(_generateRelCoord, "    ");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+          _builder.append("    ");
+          _builder.append("],");
+          _builder.newLine();
           _builder.append("    ");
           _builder.append("matchRule=");
           CharSequence _generatePattern = this.generatePattern(matchRule);

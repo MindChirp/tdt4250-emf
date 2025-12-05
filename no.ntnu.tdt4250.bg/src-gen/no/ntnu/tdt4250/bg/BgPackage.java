@@ -882,13 +882,13 @@ public interface BgPackage extends EPackage {
 	int ITERATIVE_FILTER__NAME = FILTER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Direction Vector</b></em>' containment reference.
+	 * The feature id for the '<em><b>Direction Vectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATIVE_FILTER__DIRECTION_VECTOR = FILTER_FEATURE_COUNT + 0;
+	int ITERATIVE_FILTER__DIRECTION_VECTORS = FILTER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Match Rule</b></em>' containment reference.
@@ -1712,15 +1712,15 @@ public interface BgPackage extends EPackage {
 	EClass getIterativeFilter();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link no.ntnu.tdt4250.bg.IterativeFilter#getDirectionVector <em>Direction Vector</em>}'.
+	 * Returns the meta object for the containment reference list '{@link no.ntnu.tdt4250.bg.IterativeFilter#getDirectionVectors <em>Direction Vectors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Direction Vector</em>'.
-	 * @see no.ntnu.tdt4250.bg.IterativeFilter#getDirectionVector()
+	 * @return the meta object for the containment reference list '<em>Direction Vectors</em>'.
+	 * @see no.ntnu.tdt4250.bg.IterativeFilter#getDirectionVectors()
 	 * @see #getIterativeFilter()
 	 * @generated
 	 */
-	EReference getIterativeFilter_DirectionVector();
+	EReference getIterativeFilter_DirectionVectors();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link no.ntnu.tdt4250.bg.IterativeFilter#getMatchRule <em>Match Rule</em>}'.
@@ -2349,12 +2349,12 @@ public interface BgPackage extends EPackage {
 		EClass ITERATIVE_FILTER = eINSTANCE.getIterativeFilter();
 
 		/**
-		 * The meta object literal for the '<em><b>Direction Vector</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Direction Vectors</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ITERATIVE_FILTER__DIRECTION_VECTOR = eINSTANCE.getIterativeFilter_DirectionVector();
+		EReference ITERATIVE_FILTER__DIRECTION_VECTORS = eINSTANCE.getIterativeFilter_DirectionVectors();
 
 		/**
 		 * The meta object literal for the '<em><b>Match Rule</b></em>' containment reference feature.

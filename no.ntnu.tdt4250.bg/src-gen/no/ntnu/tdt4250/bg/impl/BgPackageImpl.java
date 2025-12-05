@@ -843,7 +843,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getIterativeFilter_DirectionVector() {
+	public EReference getIterativeFilter_DirectionVectors() {
 		return (EReference) iterativeFilterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1040,7 +1040,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEAttribute(relativeCoordinateEClass, RELATIVE_COORDINATE__Y);
 
 		iterativeFilterEClass = createEClass(ITERATIVE_FILTER);
-		createEReference(iterativeFilterEClass, ITERATIVE_FILTER__DIRECTION_VECTOR);
+		createEReference(iterativeFilterEClass, ITERATIVE_FILTER__DIRECTION_VECTORS);
 		createEReference(iterativeFilterEClass, ITERATIVE_FILTER__MATCH_RULE);
 		createEReference(iterativeFilterEClass, ITERATIVE_FILTER__END_RULE);
 
@@ -1242,8 +1242,8 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 
 		initEClass(iterativeFilterEClass, IterativeFilter.class, "IterativeFilter", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIterativeFilter_DirectionVector(), this.getRelativeCoordinate(), null, "directionVector",
-				null, 1, 1, IterativeFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+		initEReference(getIterativeFilter_DirectionVectors(), this.getRelativeCoordinate(), null, "directionVectors",
+				null, 1, -1, IterativeFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIterativeFilter_MatchRule(), this.getPattern(), null, "matchRule", null, 1, 1,
 				IterativeFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,

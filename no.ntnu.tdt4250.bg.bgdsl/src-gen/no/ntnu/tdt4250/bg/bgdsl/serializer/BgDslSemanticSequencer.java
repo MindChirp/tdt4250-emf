@@ -162,7 +162,14 @@ public class BgDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     IterativeFilter returns IterativeFilter
 	 *
 	 * Constraint:
-	 *     (name=EString nextFilter=Filter? directionVector=RelativeCoordinate matchRule=Pattern endRule=Pattern)
+	 *     (
+	 *         name=EString 
+	 *         nextFilter=Filter? 
+	 *         directionVectors+=RelativeCoordinate 
+	 *         directionVectors+=RelativeCoordinate* 
+	 *         matchRule=Pattern 
+	 *         endRule=Pattern
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_IterativeFilter(ISerializationContext context, IterativeFilter semanticObject) {

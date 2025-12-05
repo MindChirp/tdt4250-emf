@@ -122,7 +122,7 @@ IterativeFilter returns IterativeFilter:
 	name=EString
 	'{'
 		('nextFilter' nextFilter=Filter)?
-		'directionVector' directionVector=RelativeCoordinate
+		'directionVectors' '{' directionVectors+=RelativeCoordinate ( "," directionVectors+=RelativeCoordinate)* '}' 
 		'matchRule' matchRule=Pattern
 		'endRule' endRule=Pattern
 	'}';

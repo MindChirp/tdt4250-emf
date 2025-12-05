@@ -26,7 +26,7 @@
 'board'=15
 'checkered'=19
 'column'=41
-'directionVector'=55
+'directionVectors'=55
 'effectPipeline'=25
 'endRule'=57
 'filters'=37
