@@ -1,4 +1,5 @@
 from ast import List
+import time
 from typing import Tuple
 
 from app.generated.tictactoe import game, Player, Tile
@@ -107,11 +108,11 @@ class GameService:
         # Next state is calculated by effect pipeline
         # next_state = self._compute_next_state(placement, active_player)
 
-        print("Calculating effects")
         calculateEffects(placement)        
         # tile_effects: List[Tuple[Tile, str]] = [(placement, "BlackPlayed" if game.activePlayer.name == "Player1" else "WhitePlayed")]
 
         # Update active player
+        
         self._advance_turn()
         return self.get_game_state()
     

@@ -70,14 +70,13 @@ def state_effect_filter(tile_context: List[Tile], filterObj: StateEffectFilter) 
 
     if filterObj.stateSelection == "StateBased":
         match_state = filterObj.targetState
-    elif filterObj.stateSelection == "OwnTiles":
+    elif filterObj.stateSelection == "CurrentPlayer":
         match_state = active.associatedState
     else:
         match_state = opponents[0].associatedState
 
     for tile in tile_context:
         tile.updateState(match_state)
-        break
  
     return tile_context
 

@@ -126,7 +126,7 @@ class PlayTile(Tile):
         # 2. Create Other States
         stateWhitePlayed = State(
             name="WhitePlayed",
-            hexColor="#ff0000",
+            hexColor="#aaaaaa",
             outbound=[], inbound=[]
         )
         stateBlackPlayed = State(
@@ -198,15 +198,106 @@ class PlayTile(Tile):
 
 # --- Instance Initialization ---
 tiles = [
-    PlayTile(0, 0), 
-    PlayTile(0, 1), 
-    PlayTile(0, 2), 
-    PlayTile(1, 0), 
-    PlayTile(1, 1), 
-    PlayTile(1, 2), 
-    PlayTile(2, 0), 
-    PlayTile(2, 1), 
-    PlayTile(2, 2)
+    PlayTile(0, 0),
+    PlayTile(0, 1),
+    PlayTile(0, 2),
+    PlayTile(0, 3),
+    PlayTile(0, 4),
+    PlayTile(0, 5),
+    PlayTile(0, 6),
+    PlayTile(0, 7),
+    PlayTile(0, 8),
+    PlayTile(0, 9),
+    PlayTile(1, 0),
+    PlayTile(1, 1),
+    PlayTile(1, 2),
+    PlayTile(1, 3),
+    PlayTile(1, 4),
+    PlayTile(1, 5),
+    PlayTile(1, 6),
+    PlayTile(1, 7),
+    PlayTile(1, 8),
+    PlayTile(1, 9),
+    PlayTile(2, 0),
+    PlayTile(2, 1),
+    PlayTile(2, 2),
+    PlayTile(2, 3),
+    PlayTile(2, 4),
+    PlayTile(2, 5),
+    PlayTile(2, 6),
+    PlayTile(2, 7),
+    PlayTile(2, 8),
+    PlayTile(2, 9),
+    PlayTile(3, 0),
+    PlayTile(3, 1),
+    PlayTile(3, 2),
+    PlayTile(3, 3),
+    PlayTile(3, 4),
+    PlayTile(3, 5),
+    PlayTile(3, 6),
+    PlayTile(3, 7),
+    PlayTile(3, 8),
+    PlayTile(3, 9),
+    PlayTile(4, 0),
+    PlayTile(4, 1),
+    PlayTile(4, 2),
+    PlayTile(4, 3),
+    PlayTile(4, 4),
+    PlayTile(4, 5),
+    PlayTile(4, 6),
+    PlayTile(4, 7),
+    PlayTile(4, 8),
+    PlayTile(4, 9),
+    PlayTile(5, 0),
+    PlayTile(5, 1),
+    PlayTile(5, 2),
+    PlayTile(5, 3),
+    PlayTile(5, 4),
+    PlayTile(5, 5),
+    PlayTile(5, 6),
+    PlayTile(5, 7),
+    PlayTile(5, 8),
+    PlayTile(5, 9),
+    PlayTile(6, 0),
+    PlayTile(6, 1),
+    PlayTile(6, 2),
+    PlayTile(6, 3),
+    PlayTile(6, 4),
+    PlayTile(6, 5),
+    PlayTile(6, 6),
+    PlayTile(6, 7),
+    PlayTile(6, 8),
+    PlayTile(6, 9),
+    PlayTile(7, 0),
+    PlayTile(7, 1),
+    PlayTile(7, 2),
+    PlayTile(7, 3),
+    PlayTile(7, 4),
+    PlayTile(7, 5),
+    PlayTile(7, 6),
+    PlayTile(7, 7),
+    PlayTile(7, 8),
+    PlayTile(7, 9),
+    PlayTile(8, 0),
+    PlayTile(8, 1),
+    PlayTile(8, 2),
+    PlayTile(8, 3),
+    PlayTile(8, 4),
+    PlayTile(8, 5),
+    PlayTile(8, 6),
+    PlayTile(8, 7),
+    PlayTile(8, 8),
+    PlayTile(8, 9),
+    PlayTile(9, 0),
+    PlayTile(9, 1),
+    PlayTile(9, 2),
+    PlayTile(9, 3),
+    PlayTile(9, 4),
+    PlayTile(9, 5),
+    PlayTile(9, 6),
+    PlayTile(9, 7),
+    PlayTile(9, 8),
+    PlayTile(9, 9)
 ]
 
 players = [
@@ -257,8 +348,7 @@ effect_pipeline = EffectPipeline(
                         y=0
                     )
                 ]
-            )
-            ,
+            ),
             endRule=Pattern(
                 name="MustBeOwnEndingTile",
                 stateSelection="CurrentPlayer",
@@ -269,8 +359,259 @@ effect_pipeline = EffectPipeline(
                         y=0
                     )
                 ]
+            ),
+            nextFilter=StateEffectFilter(
+                name="FlipTilesToOwn",
+                stateSelection="CurrentPlayer",
+                targetState=None,
+                nextFilter=None
+            )
+        ),
+IterativeFilter(
+            name="SearchRight",
+            directionVector=RelativeCoordinate(
+                x=-1,
+                y=0
             )
             ,
+            matchRule=Pattern(
+                name="MustBeOfOppositePlayer",
+                stateSelection="OtherPlayer",
+                matchState=None,
+                relativecoordinates=[
+                    RelativeCoordinate(
+                        x=0,
+                        y=0
+                    )
+                ]
+            ),
+            endRule=Pattern(
+                name="MustBeOwnEndingTile",
+                stateSelection="CurrentPlayer",
+                matchState=None,
+                relativecoordinates=[
+                    RelativeCoordinate(
+                        x=0,
+                        y=0
+                    )
+                ]
+            ),
+            nextFilter=StateEffectFilter(
+                name="FlipTilesToOwn",
+                stateSelection="CurrentPlayer",
+                targetState=None,
+                nextFilter=None
+            )
+        ),
+IterativeFilter(
+            name="SearchRight",
+            directionVector=RelativeCoordinate(
+                x=0,
+                y=-1
+            )
+            ,
+            matchRule=Pattern(
+                name="MustBeOfOppositePlayer",
+                stateSelection="OtherPlayer",
+                matchState=None,
+                relativecoordinates=[
+                    RelativeCoordinate(
+                        x=0,
+                        y=0
+                    )
+                ]
+            ),
+            endRule=Pattern(
+                name="MustBeOwnEndingTile",
+                stateSelection="CurrentPlayer",
+                matchState=None,
+                relativecoordinates=[
+                    RelativeCoordinate(
+                        x=0,
+                        y=0
+                    )
+                ]
+            ),
+            nextFilter=StateEffectFilter(
+                name="FlipTilesToOwn",
+                stateSelection="CurrentPlayer",
+                targetState=None,
+                nextFilter=None
+            )
+        ),
+IterativeFilter(
+            name="SearchRight",
+            directionVector=RelativeCoordinate(
+                x=0,
+                y=1
+            )
+            ,
+            matchRule=Pattern(
+                name="MustBeOfOppositePlayer",
+                stateSelection="OtherPlayer",
+                matchState=None,
+                relativecoordinates=[
+                    RelativeCoordinate(
+                        x=0,
+                        y=0
+                    )
+                ]
+            ),
+            endRule=Pattern(
+                name="MustBeOwnEndingTile",
+                stateSelection="CurrentPlayer",
+                matchState=None,
+                relativecoordinates=[
+                    RelativeCoordinate(
+                        x=0,
+                        y=0
+                    )
+                ]
+            ),
+            nextFilter=StateEffectFilter(
+                name="FlipTilesToOwn",
+                stateSelection="CurrentPlayer",
+                targetState=None,
+                nextFilter=None
+            )
+        ),
+IterativeFilter(
+            name="SearchRight",
+            directionVector=RelativeCoordinate(
+                x=1,
+                y=1
+            )
+            ,
+            matchRule=Pattern(
+                name="MustBeOfOppositePlayer",
+                stateSelection="OtherPlayer",
+                matchState=None,
+                relativecoordinates=[
+                    RelativeCoordinate(
+                        x=0,
+                        y=0
+                    )
+                ]
+            ),
+            endRule=Pattern(
+                name="MustBeOwnEndingTile",
+                stateSelection="CurrentPlayer",
+                matchState=None,
+                relativecoordinates=[
+                    RelativeCoordinate(
+                        x=0,
+                        y=0
+                    )
+                ]
+            ),
+            nextFilter=StateEffectFilter(
+                name="FlipTilesToOwn",
+                stateSelection="CurrentPlayer",
+                targetState=None,
+                nextFilter=None
+            )
+        ),
+        IterativeFilter(
+            name="SearchRight",
+            directionVector=RelativeCoordinate(
+                x=-1,
+                y=1
+            )
+            ,
+            matchRule=Pattern(
+                name="MustBeOfOppositePlayer",
+                stateSelection="OtherPlayer",
+                matchState=None,
+                relativecoordinates=[
+                    RelativeCoordinate(
+                        x=0,
+                        y=0
+                    )
+                ]
+            ),
+            endRule=Pattern(
+                name="MustBeOwnEndingTile",
+                stateSelection="CurrentPlayer",
+                matchState=None,
+                relativecoordinates=[
+                    RelativeCoordinate(
+                        x=0,
+                        y=0
+                    )
+                ]
+            ),
+            nextFilter=StateEffectFilter(
+                name="FlipTilesToOwn",
+                stateSelection="CurrentPlayer",
+                targetState=None,
+                nextFilter=None
+            )
+        ),
+        IterativeFilter(
+            name="SearchRight",
+            directionVector=RelativeCoordinate(
+                x=-1,
+                y=-1
+            )
+            ,
+            matchRule=Pattern(
+                name="MustBeOfOppositePlayer",
+                stateSelection="OtherPlayer",
+                matchState=None,
+                relativecoordinates=[
+                    RelativeCoordinate(
+                        x=0,
+                        y=0
+                    )
+                ]
+            ),
+            endRule=Pattern(
+                name="MustBeOwnEndingTile",
+                stateSelection="CurrentPlayer",
+                matchState=None,
+                relativecoordinates=[
+                    RelativeCoordinate(
+                        x=0,
+                        y=0
+                    )
+                ]
+            ),
+            nextFilter=StateEffectFilter(
+                name="FlipTilesToOwn",
+                stateSelection="CurrentPlayer",
+                targetState=None,
+                nextFilter=None
+            )
+        ),
+        IterativeFilter(
+            name="SearchRight",
+            directionVector=RelativeCoordinate(
+                x=1,
+                y=-1
+            )
+            ,
+            matchRule=Pattern(
+                name="MustBeOfOppositePlayer",
+                stateSelection="OtherPlayer",
+                matchState=None,
+                relativecoordinates=[
+                    RelativeCoordinate(
+                        x=0,
+                        y=0
+                    )
+                ]
+            ),
+            endRule=Pattern(
+                name="MustBeOwnEndingTile",
+                stateSelection="CurrentPlayer",
+                matchState=None,
+                relativecoordinates=[
+                    RelativeCoordinate(
+                        x=0,
+                        y=0
+                    )
+                ]
+            ),
             nextFilter=StateEffectFilter(
                 name="FlipTilesToOwn",
                 stateSelection="CurrentPlayer",
@@ -288,8 +629,8 @@ effect_pipeline = EffectPipeline(
 )
 
 board = Board(
-    width=3,
-    height=3,
+    width=10,
+    height=10,
     tiles=tiles,
     checkered=True,
     size=9,

@@ -12,16 +12,18 @@ from app.util.filters.pattern_filter import pattern_filter
 def iterative_filter(tiles: List[Tile], matchRule: Pattern, endRule: Pattern, directionVector: RelativeCoordinate):
   matched_tiles = []
   for tile in tiles:
-    current_tile = tile
+    current_tile = get_relative_tile(tile, directionVector.x, directionVector.y)
+    if (not current_tile): 
+      break
+
     current_matched_tiles = []
 
     while True:
       # Check if the matchRule pattern matches at the current tile
-      print("Starting loop")
-      if not (len(pattern_filter([current_tile], [matchRule])) > 0):
+      matched = pattern_filter([current_tile], [matchRule])
+      if not (len(matched) > 0):
         break
 
-      print("Match found")
 
       current_matched_tiles.append(current_tile)
 
@@ -34,13 +36,6 @@ def iterative_filter(tiles: List[Tile], matchRule: Pattern, endRule: Pattern, di
 
     # After exiting the loop, check if the endRule pattern matches at the last tile reached
     if len(pattern_filter([current_tile], [endRule])) > 0:
-      print(f"Extending with {len(current_matched_tiles)} tiles")
       matched_tiles.extend(current_matched_tiles)
 
-  print(f"Iterative filter matched {len(matched_tiles)} tiles")
   return matched_tiles
-
-    
-      
-
-  pass

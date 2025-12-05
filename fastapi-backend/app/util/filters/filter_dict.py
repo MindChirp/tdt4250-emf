@@ -12,7 +12,6 @@ def adapt_pattern_filter(f: PatternFilter, tiles: List[Tile]) -> List[Tile]:
   return pattern_filter(tiles, f.patterns)
 
 def adapt_iterative_filter(f: IterativeFilter, tiles: List[Tile]) -> List[Tile]:
-  print(f"Running iterative filter {len(tiles)}")
   return iterative_filter(tiles, f.matchRule, f.endRule, f.directionVector)
 
 def adapt_state_effect_filter(f: StateEffectFilter, tiles: List[Tile]) -> List[Tile]:
