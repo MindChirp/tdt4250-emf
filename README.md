@@ -1,7 +1,7 @@
 # Tile-Based Game Engine - Project Overview
 
 This repository provides a complete model-driven framework for defining and executing tile-based board games such as **Connect 4**, **TicTacToe**, and **Othello** using a custom DSL.  
-All gameplay logic, tile state machines, legal move rules, effect rules, and win conditions, is modeled declaratively in the DSL, with a large focus being the usage of modular filters that can be chained together to model compex rulesets.  
+All gameplay logic, tile state machines, legal move rules, effect rules, and win conditions, is modeled declaratively in the DSL, with a large focus being the usage of modular filters that can be chained together to model compex rulesets of determining legal moves and updating multiple tiles across the board.  
 
 The system is built using **EMF/Ecore**, **Xtext**, **Xtend**, and **Java** to define the metamodel and generate all necessary runtime classes.  
 From each DSL game description, the generator produces runnable **Python code**, which integrates with our **FastAPI backend** and **React frontend** to create a fully playable game environment.
@@ -110,9 +110,13 @@ The result is a flexible platform capable of representing a wide range of turn-b
 ## How to setup and use
 
 This repository contains multiple components required for running, developing, and extending the Tile-Based Game Engine.  
-Before working with the DSL, backend, or frontend, ensure your environment is correctly set up.
+Before working with the DSL, backend, or frontend, ensure your environment is correctly set up. We assume the reader has a decent understanding of how Eclipse can be used in model driven development and has basic plugins installed as described in the course.
 
 ---
+
+## Manual launch and usage of DSL to generate code
+To get started with creating a valid implementation of a game using the DSL and grammar defined in xtext, you must start a runtime instance of Eclipse.
+To do this you will need to navigate to the no.ntnu.tdt4250.bg.bgdsl package, right click the folder, run as -> Eclipse application. The first time doing this you will have to create a new Java project in the package explorer with an arbitrary name. Then, inside the src directory, you should create a file with the extension of the custum DSL, such as tictactoe.bgdsl. You will be prompted if you want to convert the project to an xtext project, select “yes”. You can then choose whether you want to try defining your own game, or use one of the premade examples located in the examples folder. Currently, we provide tic-tac-toe, four-in-a-row and Othello out of the box. When saving the .bgdsl file, the corresponding Python code needed for running the game should be generated. This code can either be manually copied and moved into the fastapi-backend/app/generated/game.py file, or updated automatically by uncommenting the section inside no.ntnu.tdt4250.bg.bgdsl/src/no/ntnu/tdt4250/bg/bgdsl/generator/BgDslGenerator.xtend related to saving the file in a specific location and updating it with the required information.
 
 ## Eclipse Plugin Packaging (Feature, Update Site, P2 Repository)
 
