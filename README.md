@@ -1,9 +1,12 @@
 # Tile-Based Game Engine - Project Overview
 
-This repository allows you to design tile-based games such as Connect 4, Gomoku and TicTacToe using a custom DSL, generate runnable code, and execute the game **with no additional hard-coded logic**. Everything is defined in the model. 
-The project was created by *Emil Johnsen*, *Frikk Balder Ormestad*, *Andread Gjerstøe*, *Knut Johansen*.
+This repository provides a complete model-driven framework for defining and executing tile-based board games such as **Connect 4**, **TicTacToe**, and **Othello** using a custom DSL.  
+All gameplay logic—tile state machines, legal move rules, effect rules, and win conditions (except for Othello), is modeled declaratively in the DSL, requiring **no hard-coded game logic** in the runtime.  
 
-The code generation is built on **EMF/Ecore**, **Java**, **Xtend** and **Xtext**. Generated code results in a runnable **Python** file, which can be used in our **Python** and **React** application to play a game defined according to the DSL.
+The system is built using **EMF/Ecore**, **Xtext**, **Xtend**, and **Java** to define the metamodel and generate all necessary runtime classes.  
+From each DSL game description, the generator produces runnable **Python code**, which integrates with our **FastAPI backend** and **React frontend** to create a fully playable game environment.
+
+This project was developed by **Emil Johnsen, Frikk Balder Ormestad, Andreas Gjerstøe, and Knut Johansen**.
 
 ---
 
