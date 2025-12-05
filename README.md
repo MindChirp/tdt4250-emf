@@ -140,7 +140,7 @@ These are included in the repository:
 
 ```
 /feature/ – Feature project (.feature)
-/update-site/ – Update Site project (site.xml)
+/update/ – Update Site project (site.xml)
 /p2-repo/ – Built installable P2 repository
 ```
 
