@@ -6,7 +6,7 @@ All gameplay logic, tile state machines, legal move rules, effect rules, and win
 The system is built using **EMF/Ecore**, **Xtext**, **Xtend**, and **Java** to define the metamodel and generate all necessary runtime classes.  
 From each DSL game description, the generator produces runnable **Python code**, which integrates with our **FastAPI backend** and **React frontend** to create a fully playable game environment.
 
-This project was developed by **Emil Johnsen, Frikk Balder Ormestad, Andreas Gjerstøe, and Knut Johansen**.
+This project was developed by **Emil Johnsen, Frikk Balder Ormestad, Andreas Gjersøe, and Knut Johansen**.
 
 ---
 
