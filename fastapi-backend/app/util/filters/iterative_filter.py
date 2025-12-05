@@ -17,8 +17,11 @@ def iterative_filter(tiles: List[Tile], matchRule: Pattern, endRule: Pattern, di
 
     while True:
       # Check if the matchRule pattern matches at the current tile
-      if not pattern_filter([current_tile], [matchRule]):
+      print("Starting loop")
+      if not (len(pattern_filter([current_tile], [matchRule])) > 0):
         break
+
+      print("Match found")
 
       current_matched_tiles.append(current_tile)
 
@@ -30,8 +33,12 @@ def iterative_filter(tiles: List[Tile], matchRule: Pattern, endRule: Pattern, di
       current_tile = next_tile
 
     # After exiting the loop, check if the endRule pattern matches at the last tile reached
-    if pattern_filter([current_tile], [endRule]):
+    if len(pattern_filter([current_tile], [endRule])) > 0:
+      print(f"Extending with {len(current_matched_tiles)} tiles")
       matched_tiles.extend(current_matched_tiles)
+
+  print(f"Iterative filter matched {len(matched_tiles)} tiles")
+  return matched_tiles
 
     
       
