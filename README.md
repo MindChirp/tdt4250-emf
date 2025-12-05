@@ -105,23 +105,38 @@ The result is a flexible platform capable of representing a wide range of turn-b
 
 ---
 
-## How to setup and use (THIS PART IS JUST TEMPORARY, FIX WHEN WE HAVE FIGURED THIS OUT)
+## How to setup and use
 
-1. Import the project into **Eclipse with EMF support**.  
-2. Open the `.ecore` metamodel.  
-3. Right-click the `.genmodel` → **Generate Model Code**.  
-4. Create a game instance (`.xmi` / `.model`).  
-5. Define the following in your instance model:
-   - `Board`
-   - `Players`
-   - `Tiles`
-   - `States`
-   - `State transitions`
-   - `LegalMovesPipeline`
-   - `EffectPipeline`
-6. Implement filter logic in `impl` classes (mark them `@generated NOT` for custom logic).  
-7. Validate the model: right-click instance → **Validate**.  
-8. Run the generated engine.
+This repository contains multiple components required for running, developing, and extending the Tile-Based Game Engine.  
+Before working with the DSL, backend, or frontend, ensure your environment is correctly set up.
+
+---
+
+## Eclipse Plugin Packaging (Feature, Update Site, P2 Repository)
+
+The project includes a complete Eclipse plugin distribution packaged into:
+
+- **Feature Project** — bundles all DSL, EMF, and generator plugins  
+- **Update Site Project** — defines how the feature is published  
+- **P2 Repository** — installable Eclipse update site (ready for end-users)
+
+These are included in the repository:
+
+```
+/feature/ – Feature project (.feature)
+/update-site/ – Update Site project (site.xml)
+/p2-repo/ – Built installable P2 repository
+```
+
+### Installing the DSL in Eclipse
+
+1. Open **Eclipse**
+2. Navigate to **Help → Install New Software…**
+3. Click **Add…**
+4. Choose **Local…** and select: **/p2-repo/**
+5. Install the offered feature and restart Eclipse.
+
+
 
 ---
 
