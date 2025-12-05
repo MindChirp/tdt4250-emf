@@ -12,7 +12,11 @@ from app.util.filters.pattern_filter import pattern_filter
 def iterative_filter(tiles: List[Tile], matchRule: Pattern, endRule: Pattern, directionVector: RelativeCoordinate):
   matched_tiles = []
   for tile in tiles:
-    current_tile = tile
+    current_tile = get_relative_tile(tile, directionVector.x, directionVector.y)
+    if (not current_tile): 
+      return []
+
+    print(f"Currently working on tile at ({tile.column}, {tile.row})")
     current_matched_tiles = []
 
     while True:

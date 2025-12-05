@@ -31,7 +31,6 @@ def pattern_filter(tiles: List[Tile], patterns: List[Pattern]):
 
         target_tile = get_relative_tile(anchorTile, rel_coord.x, rel_coord.y)
 
-        print(f"{target_tile.activeState.name} vs {match_state}")
         if not target_tile or target_tile.activeState.name not in match_state:
           all_pattern_match = False
           break
