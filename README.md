@@ -8,6 +8,11 @@ From each DSL game description, the generator produces runnable **Python code**,
 
 This project was developed by **Emil Johnsen, Frikk Balder Ormestad, Andreas Gjersøe, and Knut Johansen**.
 
+
+<img width="48%" height="769" alt="tictactoe" src="https://github.com/user-attachments/assets/ccf30324-b0f0-4546-9423-6cd98dcc42bc" />
+<img width="48%" height="745" alt="othello" src="https://github.com/user-attachments/assets/1d0e8a7c-0873-4f9f-a2e5-7f7f43f5d405" />
+
+
 ---
 
 ## Table of Contents
@@ -42,11 +47,7 @@ Othello falls into a category of games that rely on two players (i.e. a single e
 - Effects: Flexibility in how effects of moves are defined, allowing the modeller to formulate interesting ways in which a move can affect the surrounding board
 
 
-The **Tile-Based Game Engine** is a model-driven framework for designing deterministic, grid-based board games through a custom DSL (domain-specific language).  
-Its goal is to allow users to define gameplay rules declaratively, without writing imperative gameplay code.
-
-Games are expressed entirely through models that describe:
-
+More specifically, games can be defined through a custom DSL, that describes:
 - Design of board layout, including tile placements and board size
 - Tile types and their internal state machines  
 - How states can transition during play  
