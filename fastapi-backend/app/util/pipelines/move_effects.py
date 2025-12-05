@@ -1,7 +1,7 @@
 from typing import List, Optional
 from app.generated.game import (
     Board, Pattern, Tile,
-    StateEffectFilter, PatternFilter,
+    StateEffectFilter, PatternFilter, WinConditionFilter,
     game
 )
 
@@ -21,7 +21,6 @@ def get_relative_tile(anchor: Tile, rel_x: int, rel_y: int) -> Optional[Tile]:
 
 
 def matches_pattern(anchor: Tile, pattern: Pattern) -> bool:
-    """Check if pattern matches relative to anchor tile."""
     rel_coords = pattern.relativecoordinates
     match_mode = pattern.stateSelection
 
@@ -30,17 +29,21 @@ def matches_pattern(anchor: Tile, pattern: Pattern) -> bool:
 
     if match_mode == "StateBased":
         match_states = [pattern.matchState]
-    elif match_mode == "OwnTiles":
+    elif match_mode == "CurrentPlayer":
         match_states = [active.associatedState]
     else:
         match_states = [opp.associatedState for opp in opponents]
 
     for rel in rel_coords:
         target = get_relative_tile(anchor, rel.x, rel.y)
-        if not target or target.activeState not in match_states:
+        if not target:
+            return False
+
+        if target.activeState.name not in match_states:
             return False
 
     return True
+
 
 def pattern_filter(tile_context: List[Tile], filterObj: PatternFilter) -> List[Tile]:
     """
@@ -80,21 +83,22 @@ def state_effect_filter(tile_context: List[Tile], filterObj: StateEffectFilter) 
  
     return tile_context
 
-# def win_condition_filter(board: Board, winFilter: WinConditionFilter) -> bool:
-#     """
-#     WinConditionFilter ALWAYS checks the entire board, not affected tiles.
-#     """
+def win_condition_filter(board: Board, winFilter: WinConditionFilter) -> bool:
+    """
+    WinConditionFilter ALWAYS checks the entire board, not affected tiles.
+    """
 
-#     board_tiles = board.tiles
+    board_tiles = game.board.tiles
+    
+    print("checking legal moves")
 
-#     for tile in board_tiles:
-#         for patternFilter in winFilter.patternFilters:
-#             for pattern in patternFilter.patterns:
-#                 if matches_pattern(tile, pattern):
-#                     print(f"WINNER: {game.activePlayer.name}")
-#                     return True
+    for tile in board_tiles:
+        for pattern in winFilter.patterns:
+            if matches_pattern(tile, pattern):
+                print(f"WINNER: {game.activePlayer.name}")
+                return True
 
-#     return False
+    return False
 
 LOCAL_FILTERS = {
     "StateEffectFilter": state_effect_filter,
