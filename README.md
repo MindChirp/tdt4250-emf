@@ -35,7 +35,11 @@ This project was developed by **Emil Johnsen, Frikk Balder Ormestad, Andreas Gje
 
 The goal of this project was mainly to create a game engine where one could relatively easily implement the board game Othello with its most important rules and gameplay mechanics. The group took inspiration from an original project written in python, which was designed to be heavilty optimized through novel methods that aimed at saving computational cost. While this was an interesting idea, the decision was made to "simplify" the approach by creating a flexible game engine that in theory can represent many different board-based games, while not focusing at speed and efficiency.
 
-Othello falls into a category of games that rely on two players (i.e. a single enemy opponent), one piece type per player, but more interestingly—legality of moves that depends on what the surrounding board looks like, and side effects for each move that affects more than the single tile you are placing. As an exercise in solving abstraction problems and creating variability mechanisms, this is quite an interesting task to take on. 
+Othello falls into a category of games that rely on two players (i.e. a single enemy opponent), one piece type per player, but more interestingly—legality of moves that depends on what the surrounding board looks like, and side effects for each move that affects more than the single tile you are placing. As an exercise in solving abstraction problems and creating variability mechanisms, this is quite an interesting task to take on. As it turns out, none of the original project persisted—and everything was created from scratch. Most of all aspects of the original game was turned into variability mechanisms, as the aim was to strive for the most generalizable game engine possible. As an example, the following variability mechanisms were introduced, when compared to the original project:
+- Definition of board attributes such as 
+- Tiles: Tile placements, tile types, states, state colors
+- Legal moves: Flexibility in how legal moves are defined, allowing the modeller to create many different games, even where the legality of moves are context-aware
+- Effects: Flexibility in how effects of moves are defined, allowing the modeller to formulate interesting ways in which a move can affect the surrounding board
 
 
 The **Tile-Based Game Engine** is a model-driven framework for designing deterministic, grid-based board games through a custom DSL (domain-specific language).  
@@ -43,7 +47,7 @@ Its goal is to allow users to define gameplay rules declaratively, without writi
 
 Games are expressed entirely through models that describe:
 
-- The board layout  
+- Design of board layout, including tile placements and board size
 - Tile types and their internal state machines  
 - How states can transition during play  
 - How patterns of tiles should be interpreted  
@@ -251,7 +255,7 @@ Represents a complete, fully defined playable game configuration.
   The board used for gameplay.
 
 - **`turnPolicy : TurnType`**  
-  Defines turn-taking rules (TurnBased or Simultaneous).
+  Defines turn-taking rules (TurnBased or Simultaneous). This was scrapped in favor of completing the core functionality. If implemented, it could have facilitated automatas such as Conway's game of life, which can be defined using context-aware effects through the effect pipeline.
 
 - **`initialPlayer : Player[1..1]`**  
   The first player to take a turn.
@@ -268,7 +272,7 @@ Represents a participant in the game.
   The name of the player.
 
 - **`hexColor : EString`**  
-  UI color representing the player's pieces (e.g., `#FF0000`).
+  UI color that was supposed to be used within the UI in different places (e.g., `#FF0000`). This was scrapped in favor of completing core functionality.
 
 - **`associatedState : State[1..1]`**  
   The state representing this player's tile ownership (e.g., XPlayed, RedPiece).
@@ -285,7 +289,7 @@ Defines the 2D grid for the game.
   Number of rows.
 
 - **`checkered : EBoolean = false`**  
-  Enables optional light/dark alternating tiles.
+  Enables optional light/dark alternating tiles. This was scrapped in favor of completing the core functionality.
 
 - **`tiles : Tile[1..*]`**  
   All tile types that may appear on the board.
