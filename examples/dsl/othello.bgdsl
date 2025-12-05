@@ -1,0 +1,296 @@
+Game Othello {
+	turnPolicy TurnBased
+	initialPlayer Player1
+	board checkered Board {
+		width 8
+		height 8
+		tiles { 
+			Tile PlayTile {
+				hexColor "#ffffff"
+				name "PlayTile"
+				states {
+					State WhitePlayed {
+						hexColor "#ff0000"
+					},
+					State BlackPlayed {
+						hexColor "#00ff00"
+					}
+				}
+				transitions {
+					Transition EmptyToBlack {
+						source (InitialEmpty)
+						target BlackPlayed
+					},
+					Transition EmptyToWhite {
+						source (InitialEmpty)
+						target WhitePlayed
+					},
+					Transition BlackToWhite {
+						source (BlackPlayed)
+						target WhitePlayed
+					},
+					Transition WhiteToBlack {
+						source (WhitePlayed)
+						target BlackPlayed
+					}
+				}
+				initialState State InitialEmpty {
+					hexColor "#ffffff"
+				}
+			}
+		}
+		
+		legalMovesPipeline LegalMovesPipeline {
+				filters {
+					PatternFilter MustBeEmptyTile {
+						nextFilter IterativeFilter Raycast {
+							directionVectors {
+								RelativeCoordinate {
+									x 1
+									y 0
+								},
+								RelativeCoordinate {
+									x 1
+									y 1
+								},
+								RelativeCoordinate {
+									x 0
+									y 1
+								},
+								RelativeCoordinate {
+									x -1
+									y 1
+								},
+								RelativeCoordinate {
+									x -1
+									y 0
+								},
+								RelativeCoordinate {
+									x -1
+									y -1
+								},
+								RelativeCoordinate {
+									x 0
+									y -1
+								},
+								RelativeCoordinate {
+									x 1
+									y -1
+								}
+							}
+							matchRule Pattern MustBeOfOppositePlayer {
+								stateSelection OtherPlayer
+								relativecoordinates {
+									RelativeCoordinate {
+										x 0 
+										y 0
+									}
+								}
+							}
+							endRule Pattern LastTileOwn {
+								stateSelection CurrentPlayer
+								relativecoordinates {
+									RelativeCoordinate {
+										x 0
+										y 0
+									}
+								}
+							}
+						}
+						patterns {
+							Pattern CheckEmpty {
+								stateSelection StateBased
+								matchState "PlayTile.InitialEmpty"
+								relativecoordinates {
+									RelativeCoordinate {
+										x 0
+										y 0
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		effectPipeline EffectPipeline {
+			filters {
+				IterativeFilter Raycast {
+					nextFilter StateEffectFilter FlipTilesToOwn {
+						stateSelection CurrentPlayer
+					}
+					directionVectors {
+						RelativeCoordinate {
+							x 1
+							y 0
+						},
+						RelativeCoordinate {
+							x 1
+							y 1
+						},
+						RelativeCoordinate {
+							x 0
+							y 1
+						},
+						RelativeCoordinate {
+							x -1
+							y 1
+						},
+						RelativeCoordinate {
+							x -1
+							y 0
+						},
+						RelativeCoordinate {
+							x -1
+							y -1
+						},
+						RelativeCoordinate {
+							x 0
+							y -1
+						},
+						RelativeCoordinate {
+							x 1
+							y -1
+						}
+					}
+					matchRule Pattern MustBeOfOppositePlayer {
+						stateSelection OtherPlayer
+						relativecoordinates {
+							RelativeCoordinate {
+								x 0 
+								y 0
+							}
+						}
+					}
+					endRule Pattern LastTileOwn {
+						stateSelection CurrentPlayer
+						relativecoordinates {
+							RelativeCoordinate {
+								x 0
+								y 0
+							}
+						}
+					}
+				},
+				StateEffectFilter PlaceClickedTile {
+					stateSelection CurrentPlayer
+				}
+			}
+		}
+		
+
+		
+		tileplacement {
+    TilePlacement { row 0 column 0 tile PlayTile },
+    TilePlacement { row 0 column 1 tile PlayTile },
+    TilePlacement { row 0 column 2 tile PlayTile },
+    TilePlacement { row 0 column 3 tile PlayTile },
+    TilePlacement { row 0 column 4 tile PlayTile },
+    TilePlacement { row 0 column 5 tile PlayTile },
+    TilePlacement { row 0 column 6 tile PlayTile },
+    TilePlacement { row 0 column 7 tile PlayTile },
+
+    TilePlacement { row 1 column 0 tile PlayTile },
+    TilePlacement { row 1 column 1 tile PlayTile },
+    TilePlacement { row 1 column 2 tile PlayTile },
+    TilePlacement { row 1 column 3 tile PlayTile },
+    TilePlacement { row 1 column 4 tile PlayTile },
+    TilePlacement { row 1 column 5 tile PlayTile },
+    TilePlacement { row 1 column 6 tile PlayTile },
+    TilePlacement { row 1 column 7 tile PlayTile },
+
+    TilePlacement { row 2 column 0 tile PlayTile },
+    TilePlacement { row 2 column 1 tile PlayTile },
+    TilePlacement { row 2 column 2 tile PlayTile },
+    TilePlacement { row 2 column 3 tile PlayTile },
+    TilePlacement { row 2 column 4 tile PlayTile },
+    TilePlacement { row 2 column 5 tile PlayTile },
+    TilePlacement { row 2 column 6 tile PlayTile },
+    TilePlacement { row 2 column 7 tile PlayTile },
+
+    TilePlacement { row 3 column 0 tile PlayTile },
+    TilePlacement { row 3 column 1 tile PlayTile },
+    TilePlacement { row 3 column 2 tile PlayTile },
+
+    // ★ Initial piece: White at (3,3)
+    TilePlacement {
+        row 3
+        column 3
+        tile PlayTile
+        initialState "PlayTile.WhitePlayed"
+    },
+
+    // ★ Initial piece: Black at (3,4)
+    TilePlacement {
+        row 3
+        column 4
+        tile PlayTile
+        initialState "PlayTile.BlackPlayed"
+    },
+
+    TilePlacement { row 3 column 5 tile PlayTile },
+    TilePlacement { row 3 column 6 tile PlayTile },
+    TilePlacement { row 3 column 7 tile PlayTile },
+
+    TilePlacement { row 4 column 0 tile PlayTile },
+    TilePlacement { row 4 column 1 tile PlayTile },
+    TilePlacement { row 4 column 2 tile PlayTile },
+
+    // ★ Initial piece: Black at (4,3)
+    TilePlacement {
+        row 4
+        column 3
+        tile PlayTile
+        initialState "PlayTile.BlackPlayed"
+    },
+
+    // ★ Initial piece: White at (4,4)
+    TilePlacement {
+        row 4
+        column 4
+        tile PlayTile
+        initialState "PlayTile.WhitePlayed"
+    },
+
+    TilePlacement { row 4 column 5 tile PlayTile },
+    TilePlacement { row 4 column 6 tile PlayTile },
+    TilePlacement { row 4 column 7 tile PlayTile },
+
+    TilePlacement { row 5 column 0 tile PlayTile },
+    TilePlacement { row 5 column 1 tile PlayTile },
+    TilePlacement { row 5 column 2 tile PlayTile },
+    TilePlacement { row 5 column 3 tile PlayTile },
+    TilePlacement { row 5 column 4 tile PlayTile },
+    TilePlacement { row 5 column 5 tile PlayTile },
+    TilePlacement { row 5 column 6 tile PlayTile },
+    TilePlacement { row 5 column 7 tile PlayTile },
+
+    TilePlacement { row 6 column 0 tile PlayTile },
+    TilePlacement { row 6 column 1 tile PlayTile },
+    TilePlacement { row 6 column 2 tile PlayTile },
+    TilePlacement { row 6 column 3 tile PlayTile },
+    TilePlacement { row 6 column 4 tile PlayTile },
+    TilePlacement { row 6 column 5 tile PlayTile },
+    TilePlacement { row 6 column 6 tile PlayTile },
+    TilePlacement { row 6 column 7 tile PlayTile },
+
+    TilePlacement { row 7 column 0 tile PlayTile },
+    TilePlacement { row 7 column 1 tile PlayTile },
+    TilePlacement { row 7 column 2 tile PlayTile },
+    TilePlacement { row 7 column 3 tile PlayTile },
+    TilePlacement { row 7 column 4 tile PlayTile },
+    TilePlacement { row 7 column 5 tile PlayTile },
+    TilePlacement { row 7 column 6 tile PlayTile },
+    TilePlacement { row 7 column 7 tile PlayTile }
+}
+	}
+	players {
+		Player Player1 {
+			hexColor "#999999"
+			associatedState "PlayTile.BlackPlayed"
+		},
+		Player Player2 {
+			hexColor "#99ffff"
+			associatedState "PlayTile.WhitePlayed"
+		}	
+	}
+}

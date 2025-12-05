@@ -1,0 +1,206 @@
+Game FourInARow {
+	turnPolicy TurnBased
+	initialPlayer Orange
+	board checkered Board {
+		width 7
+		height 7
+		tiles {
+			Tile PlayTile {
+				hexColor "#ffffff"
+				name "PlayTile"
+				states {
+					State OrangePlayed {
+						hexColor "#FFA500"	
+					},
+					State BluePlayed {
+						hexColor "#0096FF"
+					}
+				}
+				transitions {
+					Transition EmptyToOrange {
+						source (InitialEmpty)
+						target OrangePlayed
+					},
+					Transition EmptyToBlue {
+						source (InitialEmpty)
+						target BluePlayed
+					}
+				}
+				initialState State InitialEmpty {
+					hexColor "#ffffff"
+				}
+			},
+			Tile FloorTile {
+				hexColor "#bbbbbb"
+				name "FloorTile"
+				states {
+					State FloorTile {
+						hexColor"#bbbbbb"
+				
+					}	
+				}
+				transitions {
+					Transition InitialToFloor {
+						source (FloorTileInitial)
+						target FloorTile
+					}
+				}
+				initialState State FloorTileInitial {
+					hexColor "#bbbbbb"
+				}
+			}
+		}
+		
+		legalMovesPipeline LegalMovesPipeline {
+			filters {
+				PatternFilter MustBeFloor {
+					patterns {
+						Pattern FloorBelow {
+							stateSelection StateBased
+							matchState "FloorTile.FloorTileInitial"
+							relativecoordinates {
+								RelativeCoordinate {
+									x 0
+									y 1
+								}
+							}
+						},
+						Pattern TileIsFree {
+							stateSelection StateBased
+							matchState "PlayTile.InitialEmpty"
+							relativecoordinates {
+								RelativeCoordinate {
+									x 0
+									y 0
+								}
+							}
+						}
+					}
+				},
+				PatternFilter MustBeFloor {
+					patterns {
+						Pattern FloorBelow {
+							stateSelection OtherPlayer
+							relativecoordinates {
+								RelativeCoordinate {
+									x 0
+									y 1
+								}
+							}
+						},
+						Pattern TileIsFree {
+							stateSelection StateBased
+							matchState "PlayTile.InitialEmpty"
+							relativecoordinates {
+								RelativeCoordinate {
+									x 0
+									y 0
+								}
+							}
+						}
+					}
+				},
+				PatternFilter MustBeFloor {
+					patterns {
+						Pattern FloorBelow {
+							stateSelection CurrentPlayer
+							relativecoordinates {
+								RelativeCoordinate {
+									x 0
+									y 1
+								}
+							}
+						},
+						Pattern TileIsFree {
+							stateSelection StateBased
+							matchState "PlayTile.InitialEmpty"
+							relativecoordinates {
+								RelativeCoordinate {
+									x 0
+									y 0
+								}
+							}
+						}
+					}
+				}
+			}
+		}	
+		
+		effectPipeline EffectPipeline {
+			filters {
+				StateEffectFilter ClaimCurrentTile {
+					stateSelection CurrentPlayer
+				}
+			}
+		}
+		
+		tileplacement {
+            TilePlacement { row 0 column 0 tile PlayTile },
+            TilePlacement { row 0 column 1 tile PlayTile },
+            TilePlacement { row 0 column 2 tile PlayTile },
+            TilePlacement { row 0 column 3 tile PlayTile },
+            TilePlacement { row 0 column 4 tile PlayTile },
+            TilePlacement { row 0 column 5 tile PlayTile },
+            TilePlacement { row 0 column 6 tile PlayTile },
+            TilePlacement { row 1 column 0 tile PlayTile },
+            TilePlacement { row 1 column 1 tile PlayTile },
+            TilePlacement { row 1 column 2 tile PlayTile },
+            TilePlacement { row 1 column 3 tile PlayTile },
+            TilePlacement { row 1 column 4 tile PlayTile },
+            TilePlacement { row 1 column 5 tile PlayTile },
+            TilePlacement { row 1 column 6 tile PlayTile },
+            TilePlacement { row 2 column 0 tile PlayTile },
+            TilePlacement { row 2 column 1 tile PlayTile },
+            TilePlacement { row 2 column 2 tile PlayTile },
+            TilePlacement { row 2 column 3 tile PlayTile },
+            TilePlacement { row 2 column 4 tile PlayTile },
+            TilePlacement { row 2 column 5 tile PlayTile },
+            TilePlacement { row 2 column 6 tile PlayTile },
+            TilePlacement { row 3 column 0 tile PlayTile },
+            TilePlacement { row 3 column 1 tile PlayTile },
+            TilePlacement { row 3 column 2 tile PlayTile },
+            TilePlacement { row 3 column 3 tile PlayTile },
+            TilePlacement { row 3 column 4 tile PlayTile },
+            TilePlacement { row 3 column 5 tile PlayTile },
+            TilePlacement { row 3 column 6 tile PlayTile },
+            TilePlacement { row 4 column 0 tile PlayTile },
+            TilePlacement { row 4 column 1 tile PlayTile },
+            TilePlacement { row 4 column 2 tile PlayTile },
+            TilePlacement { row 4 column 3 tile PlayTile },
+            TilePlacement { row 4 column 4 tile PlayTile },
+            TilePlacement { row 4 column 5 tile PlayTile },
+            TilePlacement { row 4 column 6 tile PlayTile },
+            TilePlacement { row 5 column 0 tile PlayTile },
+            TilePlacement { row 5 column 1 tile PlayTile },
+            TilePlacement { row 5 column 2 tile PlayTile },
+            TilePlacement { row 5 column 3 tile PlayTile },
+            TilePlacement { row 5 column 4 tile PlayTile },
+            TilePlacement { row 5 column 5 tile PlayTile },
+            TilePlacement { row 5 column 6 tile PlayTile },
+            TilePlacement { row 6 column 0 tile FloorTile },
+            TilePlacement { row 6 column 1 tile FloorTile },
+            TilePlacement { row 6 column 2 tile FloorTile },
+            TilePlacement { row 6 column 3 tile FloorTile },
+            TilePlacement { row 6 column 4 tile FloorTile },
+            TilePlacement { row 6 column 5 tile FloorTile },
+            TilePlacement { row 6 column 6 tile FloorTile }
+        }		
+	}
+
+	players {
+		Player Orange {
+			hexColor "#ffffff"
+			associatedState "PlayTile.OrangePlayed"
+		},	
+		Player Blue {
+			hexColor "#000000"
+			associatedState "PlayTile.BluePlayed"
+		}
+	}
+	
+		
+		
+	
+
+		
+}

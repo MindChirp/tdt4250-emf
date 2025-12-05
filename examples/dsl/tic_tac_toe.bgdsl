@@ -1,0 +1,180 @@
+Game TicTacToe {
+    turnPolicy TurnBased
+    initialPlayer PlayerX
+
+    board checkered Board {
+        width 3
+        height 3
+
+        tiles {
+            Tile PlayTile {
+                hexColor "#ffffff"
+                name "PlayTile"
+
+                states {
+                    State XPlayed {
+                        hexColor "#ff0000"
+                    },
+                    State OPlayed {
+                        hexColor "#0000ff"
+                    }
+                }
+
+                transitions {
+                    Transition EmptyToX {
+                        source (InitialEmpty)
+                        target XPlayed
+                    },
+                    Transition EmptyToO {
+                        source (InitialEmpty)
+                        target OPlayed
+                    }
+                }
+
+                initialState State InitialEmpty {
+                    hexColor "#ffffff"
+                }
+            }
+        }
+
+        legalMovesPipeline LegalMovesPipeline {
+            filters {
+                PatternFilter MustBeEmptyTile {
+                    patterns {
+                        Pattern CheckEmpty {
+                            stateSelection StateBased
+                            matchState "PlayTile.InitialEmpty"
+                            relativecoordinates {
+                                RelativeCoordinate { x 0 y 0 }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        effectPipeline EffectPipeline {
+            filters {
+                StateEffectFilter PlaceMark {
+                    stateSelection CurrentPlayer
+                },
+                
+                WinConditionFilter CheckForWinner {
+                    patterns {
+
+                        // ---- ROWS ----
+                        
+                        Pattern R0 {
+                            stateSelection CurrentPlayer
+                            relativecoordinates {
+                                RelativeCoordinate { x 0 y 0 },
+                                RelativeCoordinate { x 1 y 0 },
+                                RelativeCoordinate { x 2 y 0 }
+                            }
+                        },
+
+                        Pattern R1 {
+                            stateSelection CurrentPlayer
+                            relativecoordinates {
+                                RelativeCoordinate { x 0 y 1 },
+                                RelativeCoordinate { x 1 y 1 },
+                                RelativeCoordinate { x 2 y 1 }
+                            }
+                        },
+
+                
+                        Pattern R2 {
+                            stateSelection CurrentPlayer
+                            relativecoordinates {
+                                RelativeCoordinate { x 0 y 2 },
+                                RelativeCoordinate { x 1 y 2 },
+                                RelativeCoordinate { x 2 y 2 }
+                            }
+                        },
+
+
+                // ---- COLUMNS ----
+
+                        Pattern C0 {
+                            stateSelection CurrentPlayer
+                            relativecoordinates {
+                                RelativeCoordinate { x 0 y 0 },
+                                RelativeCoordinate { x 0 y 1 },
+                                RelativeCoordinate { x 0 y 2 }
+                            }
+                        },
+
+
+
+                        Pattern C1 {
+                            stateSelection CurrentPlayer
+                            relativecoordinates {
+                                RelativeCoordinate { x 1 y 0 },
+                                RelativeCoordinate { x 1 y 1 },
+                                RelativeCoordinate { x 1 y 2 }
+                            }
+                        },
+
+
+
+                        Pattern C2 {
+                            stateSelection CurrentPlayer
+                            relativecoordinates {
+                                RelativeCoordinate { x 2 y 0 },
+                                RelativeCoordinate { x 2 y 1 },
+                                RelativeCoordinate { x 2 y 2 }
+                            }
+                        },
+                
+
+                // ---- DIAGONALS ----
+                        Pattern D0 {
+                            stateSelection CurrentPlayer
+                            relativecoordinates {
+                                RelativeCoordinate { x 0 y 0 },
+                                RelativeCoordinate { x 1 y 1 },
+                                RelativeCoordinate { x 2 y 2 }
+                            }
+                        },
+
+
+                        Pattern D1 {
+                            stateSelection CurrentPlayer
+                            relativecoordinates {
+                                RelativeCoordinate { x 2 y 0 },
+                                RelativeCoordinate { x 1 y 1 },
+                                RelativeCoordinate { x 0 y 2 }
+                            }
+                        }
+
+                    }
+                }                
+            }
+        }
+
+        tileplacement {
+            TilePlacement { row 0 column 0 tile PlayTile },
+            TilePlacement { row 0 column 1 tile PlayTile },
+            TilePlacement { row 0 column 2 tile PlayTile },
+
+            TilePlacement { row 1 column 0 tile PlayTile },
+            TilePlacement { row 1 column 1 tile PlayTile },
+            TilePlacement { row 1 column 2 tile PlayTile },
+
+            TilePlacement { row 2 column 0 tile PlayTile },
+            TilePlacement { row 2 column 1 tile PlayTile },
+            TilePlacement { row 2 column 2 tile PlayTile }
+        }
+    }
+
+    players {
+        Player PlayerX {
+            hexColor "#ff0000"
+            associatedState "PlayTile.XPlayed"
+        },
+        Player PlayerO {
+            hexColor "#0000ff"
+            associatedState "PlayTile.OPlayed"
+        }
+    }
+}
