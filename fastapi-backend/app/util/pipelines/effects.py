@@ -1,9 +1,18 @@
-from app.generated.tictactoe import Tile, game, Filter
+from app.generated.game import Tile, game, Filter
 from app.util.filters.filter_dict import filter_dict
 from typing import List
+
+win_condition_filter = None
+WinConditionFilter = None
+
+try:
+    from app.util.pipelines.move_effects import WinConditionFilter
+    from app.util.pipelines.move_effects import win_condition_filter
+except Exception as e:
+    print(e)
+
 def calculateEffects(tile: Tile):
     pipeline = game.board.effectPipeline
-
     
     
     # Safety check
@@ -44,6 +53,18 @@ def calculateEffects(tile: Tile):
         # We loop through board tiles individually because your pattern_filter 
         # implementation currently requires all input tiles to match or it returns empty.
         recurse(start_filter, [tile])
+    for start_filter in first_filters:
+        pass
+        current = start_filter
 
+        while current:
+
+            if WinConditionFilter and isinstance(current, WinConditionFilter):
+                if win_condition_filter and win_condition_filter(game.board, current):
+                    return True
+            current = current.nextFilter
+
+    return False
+    
 
   

@@ -1,4 +1,4 @@
-from app.generated.tictactoe import Pattern, Tile, game
+from app.generated.game import Pattern, Tile, game
 from app.util.tile_utils import get_relative_tile
 from typing import List
 

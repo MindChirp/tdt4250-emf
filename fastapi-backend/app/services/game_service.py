@@ -2,7 +2,7 @@ from ast import List
 import time
 from typing import Tuple
 
-from app.generated.tictactoe import game, Player, Tile
+from app.generated.game import game, Player, Tile
 from app.util.pipelines.legal_moves import calculateLegalMoves
 from app.util.pipelines.effects import calculateEffects
 from app.models.game_state_response import GameStateResponse, TileResponse
@@ -32,7 +32,6 @@ class IllegalMoveError(GameServiceError):
         super().__init__(f"Illegal move on tile ({row}, {col}).")
         self.coordinates = coordinates
 
-
 class GameService:
     """Application service that encapsulates game logic."""
 
@@ -49,8 +48,7 @@ class GameService:
         #         # Call the appropriate helper method
         #         legal_moves =  
 
-        # TODO: Replace placeholder once legal moves pipeline is implemented
-        # board.legal_moves = []
+        
         legal_moves: List[Tile] = calculateLegalMoves(game.board)
         game.board.legalMoves.clear()
         game.board.legalMoves.extend(legal_moves)
@@ -83,6 +81,7 @@ class GameService:
             boardHeight=board.height,
             tiles=actual_tiles,
             legalMoves=legal_moves_mapped,
+            wonMessage=game.winMessage
         )
 
     def make_move(self, move: MoveRequest) -> GameStateResponse:
@@ -94,6 +93,10 @@ class GameService:
         placement = self._find_tile_placement(move.row, move.column)
        
         legal_moves = game.board.legalMoves
+
+        if (len(legal_moves) == 0):
+            self._advance_turn()
+            return
 
         # Check if a tile in legal_moves has the same row and column as the current placement
         is_legal = False
