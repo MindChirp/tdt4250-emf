@@ -7,39 +7,30 @@ import java.util.List;
 
 import no.ntnu.tdt4250.bg.BgFactory;
 import no.ntnu.tdt4250.bg.BgPackage;
+import no.ntnu.tdt4250.bg.WinConditionFilter;
 
-import no.ntnu.tdt4250.bg.EffectPipeline;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link no.ntnu.tdt4250.bg.EffectPipeline} object.
+ * This is the item provider adapter for a {@link no.ntnu.tdt4250.bg.WinConditionFilter} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EffectPipelineItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class WinConditionFilterItemProvider extends FilterItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EffectPipelineItemProvider(AdapterFactory adapterFactory) {
+	public WinConditionFilterItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -54,24 +45,24 @@ public class EffectPipelineItemProvider extends ItemProviderAdapter implements I
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addFiltersPropertyDescriptor(object);
+			addPatternsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Filters feature.
+	 * This adds a property descriptor for the Patterns feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFiltersPropertyDescriptor(Object object) {
+	protected void addPatternsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_EffectPipeline_filters_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_EffectPipeline_filters_feature",
-								"_UI_EffectPipeline_type"),
-						BgPackage.Literals.EFFECT_PIPELINE__FILTERS, true, false, true, null, null, null));
+						getResourceLocator(), getString("_UI_WinConditionFilter_patterns_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_WinConditionFilter_patterns_feature",
+								"_UI_WinConditionFilter_type"),
+						BgPackage.Literals.WIN_CONDITION_FILTER__PATTERNS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -86,7 +77,7 @@ public class EffectPipelineItemProvider extends ItemProviderAdapter implements I
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(BgPackage.Literals.EFFECT_PIPELINE__FILTERS);
+			childrenFeatures.add(BgPackage.Literals.WIN_CONDITION_FILTER__PATTERNS);
 		}
 		return childrenFeatures;
 	}
@@ -105,14 +96,14 @@ public class EffectPipelineItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This returns EffectPipeline.gif.
+	 * This returns WinConditionFilter.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/EffectPipeline"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/WinConditionFilter"));
 	}
 
 	/**
@@ -133,7 +124,9 @@ public class EffectPipelineItemProvider extends ItemProviderAdapter implements I
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_EffectPipeline_type");
+		String label = ((WinConditionFilter) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_WinConditionFilter_type")
+				: getString("_UI_WinConditionFilter_type") + " " + label;
 	}
 
 	/**
@@ -147,8 +140,8 @@ public class EffectPipelineItemProvider extends ItemProviderAdapter implements I
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(EffectPipeline.class)) {
-		case BgPackage.EFFECT_PIPELINE__FILTERS:
+		switch (notification.getFeatureID(WinConditionFilter.class)) {
+		case BgPackage.WIN_CONDITION_FILTER__PATTERNS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -166,28 +159,8 @@ public class EffectPipelineItemProvider extends ItemProviderAdapter implements I
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(BgPackage.Literals.EFFECT_PIPELINE__FILTERS,
-				BgFactory.eINSTANCE.createPatternFilter()));
-
-		newChildDescriptors.add(createChildParameter(BgPackage.Literals.EFFECT_PIPELINE__FILTERS,
-				BgFactory.eINSTANCE.createIterativeFilter()));
-
-		newChildDescriptors.add(createChildParameter(BgPackage.Literals.EFFECT_PIPELINE__FILTERS,
-				BgFactory.eINSTANCE.createStateEffectFilter()));
-
-		newChildDescriptors.add(createChildParameter(BgPackage.Literals.EFFECT_PIPELINE__FILTERS,
-				BgFactory.eINSTANCE.createWinConditionFilter()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return BgEditPlugin.INSTANCE;
+		newChildDescriptors.add(createChildParameter(BgPackage.Literals.WIN_CONDITION_FILTER__PATTERNS,
+				BgFactory.eINSTANCE.createPattern()));
 	}
 
 }

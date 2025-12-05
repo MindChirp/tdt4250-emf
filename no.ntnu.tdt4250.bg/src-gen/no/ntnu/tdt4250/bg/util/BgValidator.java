@@ -122,6 +122,8 @@ public class BgValidator extends EObjectValidator {
 			return validateIterativeFilter((IterativeFilter) value, diagnostics, context);
 		case BgPackage.STATE_EFFECT_FILTER:
 			return validateStateEffectFilter((StateEffectFilter) value, diagnostics, context);
+		case BgPackage.WIN_CONDITION_FILTER:
+			return validateWinConditionFilter((WinConditionFilter) value, diagnostics, context);
 		case BgPackage.TURN_TYPE:
 			return validateTurnType((TurnType) value, diagnostics, context);
 		case BgPackage.STATE_SELECTION:
@@ -313,7 +315,7 @@ public class BgValidator extends EObjectValidator {
 
 		for (TilePlacement t : board.getTileplacement()) {
 
-			String coordinate = t.getCoordinate();
+			String coordinate = "(" + t.getRow() + ", " + t.getColumn() + ")";
 
 			if (!positions.add(coordinate)) {
 				if (diagnostics != null) {
@@ -1258,13 +1260,7 @@ public class BgValidator extends EObjectValidator {
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		boolean isLegal = true;
-
-		if (stateEffectFilter.getStateSelection().getLiteral() == (StateSelection.STATE_BASED).getLiteral()) {
-			isLegal = (stateEffectFilter.getTargetState() != null);
-		}
-		
-		if (!isLegal) {
+		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add(
 						createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic",
@@ -1274,6 +1270,35 @@ public class BgValidator extends EObjectValidator {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateWinConditionFilter(WinConditionFilter winConditionFilter, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(winConditionFilter, diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(winConditionFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(winConditionFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(winConditionFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(winConditionFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(winConditionFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(winConditionFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(winConditionFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(winConditionFilter, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateFilter_filterMustBelongToGame(winConditionFilter, diagnostics, context);
+		return result;
 	}
 
 	/**

@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getStates <em>States</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getTransitions <em>Transitions</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getInitialState <em>Initial State</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getType <em>Type</em>}</li>
+ *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getTileType <em>Tile Type</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getHexColor <em>Hex Color</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.impl.TileImpl#getName <em>Name</em>}</li>
  * </ul>
@@ -73,24 +73,24 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 	protected State initialState;
 
 	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * The default value of the '{@link #getTileType() <em>Tile Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getTileType()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String TYPE_EDEFAULT = null;
+	protected static final String TILE_TYPE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * The cached value of the '{@link #getTileType() <em>Tile Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getTileType()
 	 * @generated
 	 * @ordered
 	 */
-	protected String type = TYPE_EDEFAULT;
+	protected String tileType = TILE_TYPE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getHexColor() <em>Hex Color</em>}' attribute.
@@ -235,8 +235,8 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 	 * @generated
 	 */
 	@Override
-	public String getType() {
-		return type;
+	public String getTileType() {
+		return tileType;
 	}
 
 	/**
@@ -245,11 +245,11 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 	 * @generated
 	 */
 	@Override
-	public void setType(String newType) {
-		String oldType = type;
-		type = newType;
+	public void setTileType(String newTileType) {
+		String oldTileType = tileType;
+		tileType = newTileType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.TILE__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, BgPackage.TILE__TILE_TYPE, oldTileType, tileType));
 	}
 
 	/**
@@ -330,8 +330,8 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 			return getTransitions();
 		case BgPackage.TILE__INITIAL_STATE:
 			return getInitialState();
-		case BgPackage.TILE__TYPE:
-			return getType();
+		case BgPackage.TILE__TILE_TYPE:
+			return getTileType();
 		case BgPackage.TILE__HEX_COLOR:
 			return getHexColor();
 		case BgPackage.TILE__NAME:
@@ -360,8 +360,8 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 		case BgPackage.TILE__INITIAL_STATE:
 			setInitialState((State) newValue);
 			return;
-		case BgPackage.TILE__TYPE:
-			setType((String) newValue);
+		case BgPackage.TILE__TILE_TYPE:
+			setTileType((String) newValue);
 			return;
 		case BgPackage.TILE__HEX_COLOR:
 			setHexColor((String) newValue);
@@ -390,8 +390,8 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 		case BgPackage.TILE__INITIAL_STATE:
 			setInitialState((State) null);
 			return;
-		case BgPackage.TILE__TYPE:
-			setType(TYPE_EDEFAULT);
+		case BgPackage.TILE__TILE_TYPE:
+			setTileType(TILE_TYPE_EDEFAULT);
 			return;
 		case BgPackage.TILE__HEX_COLOR:
 			setHexColor(HEX_COLOR_EDEFAULT);
@@ -417,8 +417,8 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 			return transitions != null && !transitions.isEmpty();
 		case BgPackage.TILE__INITIAL_STATE:
 			return initialState != null;
-		case BgPackage.TILE__TYPE:
-			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+		case BgPackage.TILE__TILE_TYPE:
+			return TILE_TYPE_EDEFAULT == null ? tileType != null : !TILE_TYPE_EDEFAULT.equals(tileType);
 		case BgPackage.TILE__HEX_COLOR:
 			return HEX_COLOR_EDEFAULT == null ? hexColor != null : !HEX_COLOR_EDEFAULT.equals(hexColor);
 		case BgPackage.TILE__NAME:
@@ -438,8 +438,8 @@ public class TileImpl extends MinimalEObjectImpl.Container implements Tile {
 			return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (type: ");
-		result.append(type);
+		result.append(" (tileType: ");
+		result.append(tileType);
 		result.append(", hexColor: ");
 		result.append(hexColor);
 		result.append(", name: ");

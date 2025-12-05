@@ -22,6 +22,7 @@ import no.ntnu.tdt4250.bg.TilePlacement;
 import no.ntnu.tdt4250.bg.Transition;
 import no.ntnu.tdt4250.bg.TurnType;
 
+import no.ntnu.tdt4250.bg.WinConditionFilter;
 import no.ntnu.tdt4250.bg.util.BgValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -143,6 +144,13 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	private EClass stateEffectFilterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass winConditionFilterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -565,7 +573,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getTile_Type() {
+	public EAttribute getTile_TileType() {
 		return (EAttribute) tileEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -735,16 +743,6 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getTilePlacement_Coordinate() {
-		return (EAttribute) tilePlacementEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getPattern() {
 		return patternEClass;
 	}
@@ -895,6 +893,26 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getWinConditionFilter() {
+		return winConditionFilterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getWinConditionFilter_Patterns() {
+		return (EReference) winConditionFilterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getTurnType() {
 		return turnTypeEEnum;
 	}
@@ -979,7 +997,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEReference(tileEClass, TILE__STATES);
 		createEReference(tileEClass, TILE__TRANSITIONS);
 		createEReference(tileEClass, TILE__INITIAL_STATE);
-		createEAttribute(tileEClass, TILE__TYPE);
+		createEAttribute(tileEClass, TILE__TILE_TYPE);
 		createEAttribute(tileEClass, TILE__HEX_COLOR);
 		createEAttribute(tileEClass, TILE__NAME);
 
@@ -999,7 +1017,6 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		createEAttribute(tilePlacementEClass, TILE_PLACEMENT__COLUMN);
 		createEReference(tilePlacementEClass, TILE_PLACEMENT__TILE);
 		createEAttribute(tilePlacementEClass, TILE_PLACEMENT__DARKER);
-		createEAttribute(tilePlacementEClass, TILE_PLACEMENT__COORDINATE);
 
 		patternEClass = createEClass(PATTERN);
 		createEReference(patternEClass, PATTERN__RELATIVECOORDINATES);
@@ -1019,6 +1036,9 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		stateEffectFilterEClass = createEClass(STATE_EFFECT_FILTER);
 		createEReference(stateEffectFilterEClass, STATE_EFFECT_FILTER__TARGET_STATE);
 		createEAttribute(stateEffectFilterEClass, STATE_EFFECT_FILTER__STATE_SELECTION);
+
+		winConditionFilterEClass = createEClass(WIN_CONDITION_FILTER);
+		createEReference(winConditionFilterEClass, WIN_CONDITION_FILTER__PATTERNS);
 
 		// Create enums
 		turnTypeEEnum = createEEnum(TURN_TYPE);
@@ -1057,6 +1077,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		patternFilterEClass.getESuperTypes().add(this.getFilter());
 		iterativeFilterEClass.getESuperTypes().add(this.getFilter());
 		stateEffectFilterEClass.getESuperTypes().add(this.getFilter());
+		winConditionFilterEClass.getESuperTypes().add(this.getFilter());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(gameEClass, Game.class, "Game", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1143,7 +1164,7 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		initEReference(getTile_InitialState(), this.getState(), null, "initialState", null, 1, 1, Tile.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTile_Type(), ecorePackage.getEString(), "type", null, 1, 1, Tile.class, !IS_TRANSIENT,
+		initEAttribute(getTile_TileType(), ecorePackage.getEString(), "tileType", null, 1, 1, Tile.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTile_HexColor(), ecorePackage.getEString(), "hexColor", "#ffffff", 1, 1, Tile.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1184,9 +1205,6 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTilePlacement_Darker(), ecorePackage.getEBoolean(), "darker", null, 1, 1, TilePlacement.class,
 				IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTilePlacement_Coordinate(), ecorePackage.getEString(), "coordinate", null, 1, 1,
-				TilePlacement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				IS_DERIVED, IS_ORDERED);
 
 		initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPattern_Relativecoordinates(), this.getRelativeCoordinate(), null, "relativecoordinates",
@@ -1228,6 +1246,12 @@ public class BgPackageImpl extends EPackageImpl implements BgPackage {
 		initEAttribute(getStateEffectFilter_StateSelection(), this.getStateSelection(), "stateSelection", null, 1, 1,
 				StateEffectFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(winConditionFilterEClass, WinConditionFilter.class, "WinConditionFilter", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWinConditionFilter_Patterns(), this.getPattern(), null, "patterns", null, 1, -1,
+				WinConditionFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(turnTypeEEnum, TurnType.class, "TurnType");

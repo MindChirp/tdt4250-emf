@@ -71,6 +71,9 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStateEffectFilterAccess().getGroup(), "rule__StateEffectFilter__Group__0");
 			builder.put(grammarAccess.getStateEffectFilterAccess().getGroup_5(), "rule__StateEffectFilter__Group_5__0");
 			builder.put(grammarAccess.getStateEffectFilterAccess().getGroup_6(), "rule__StateEffectFilter__Group_6__0");
+			builder.put(grammarAccess.getWinConditionFilterAccess().getGroup(), "rule__WinConditionFilter__Group__0");
+			builder.put(grammarAccess.getWinConditionFilterAccess().getGroup_3(), "rule__WinConditionFilter__Group_3__0");
+			builder.put(grammarAccess.getWinConditionFilterAccess().getGroup_7(), "rule__WinConditionFilter__Group_7__0");
 			builder.put(grammarAccess.getPatternAccess().getGroup(), "rule__Pattern__Group__0");
 			builder.put(grammarAccess.getPatternAccess().getGroup_3(), "rule__Pattern__Group_3__0");
 			builder.put(grammarAccess.getPatternAccess().getGroup_4(), "rule__Pattern__Group_4__0");
@@ -94,7 +97,7 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPlayerAccess().getNameAssignment_1(), "rule__Player__NameAssignment_1");
 			builder.put(grammarAccess.getPlayerAccess().getHexColorAssignment_4(), "rule__Player__HexColorAssignment_4");
 			builder.put(grammarAccess.getPlayerAccess().getAssociatedStateAssignment_6(), "rule__Player__AssociatedStateAssignment_6");
-			builder.put(grammarAccess.getTileAccess().getTypeAssignment_1(), "rule__Tile__TypeAssignment_1");
+			builder.put(grammarAccess.getTileAccess().getTileTypeAssignment_1(), "rule__Tile__TileTypeAssignment_1");
 			builder.put(grammarAccess.getTileAccess().getHexColorAssignment_4(), "rule__Tile__HexColorAssignment_4");
 			builder.put(grammarAccess.getTileAccess().getNameAssignment_6(), "rule__Tile__NameAssignment_6");
 			builder.put(grammarAccess.getTileAccess().getStatesAssignment_9(), "rule__Tile__StatesAssignment_9");
@@ -132,6 +135,10 @@ public class BgDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStateEffectFilterAccess().getStateSelectionAssignment_4(), "rule__StateEffectFilter__StateSelectionAssignment_4");
 			builder.put(grammarAccess.getStateEffectFilterAccess().getTargetStateAssignment_5_1(), "rule__StateEffectFilter__TargetStateAssignment_5_1");
 			builder.put(grammarAccess.getStateEffectFilterAccess().getNextFilterAssignment_6_1(), "rule__StateEffectFilter__NextFilterAssignment_6_1");
+			builder.put(grammarAccess.getWinConditionFilterAccess().getNameAssignment_1(), "rule__WinConditionFilter__NameAssignment_1");
+			builder.put(grammarAccess.getWinConditionFilterAccess().getNextFilterAssignment_3_1(), "rule__WinConditionFilter__NextFilterAssignment_3_1");
+			builder.put(grammarAccess.getWinConditionFilterAccess().getPatternsAssignment_6(), "rule__WinConditionFilter__PatternsAssignment_6");
+			builder.put(grammarAccess.getWinConditionFilterAccess().getPatternsAssignment_7_1(), "rule__WinConditionFilter__PatternsAssignment_7_1");
 			builder.put(grammarAccess.getPatternAccess().getNameAssignment_1(), "rule__Pattern__NameAssignment_1");
 			builder.put(grammarAccess.getPatternAccess().getStateSelectionAssignment_3_1(), "rule__Pattern__StateSelectionAssignment_3_1");
 			builder.put(grammarAccess.getPatternAccess().getMatchStateAssignment_4_1(), "rule__Pattern__MatchStateAssignment_4_1");

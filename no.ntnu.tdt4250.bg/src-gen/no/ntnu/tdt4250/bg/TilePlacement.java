@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.ntnu.tdt4250.bg.TilePlacement#getColumn <em>Column</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.TilePlacement#getTile <em>Tile</em>}</li>
  *   <li>{@link no.ntnu.tdt4250.bg.TilePlacement#isDarker <em>Darker</em>}</li>
- *   <li>{@link no.ntnu.tdt4250.bg.TilePlacement#getCoordinate <em>Coordinate</em>}</li>
  * </ul>
  *
  * @see no.ntnu.tdt4250.bg.BgPackage#getTilePlacement()
@@ -101,16 +100,5 @@ public interface TilePlacement extends EObject {
 	 * @generated
 	 */
 	boolean isDarker();
-
-	/**
-	 * Returns the value of the '<em><b>Coordinate</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Coordinate</em>' attribute.
-	 * @see no.ntnu.tdt4250.bg.BgPackage#getTilePlacement_Coordinate()
-	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 * @generated
-	 */
-	String getCoordinate();
 
 } // TilePlacement

@@ -22,7 +22,7 @@ Game returns Game:
 
 
 Filter returns Filter:
-	PatternFilter | IterativeFilter | StateEffectFilter;
+	PatternFilter | IterativeFilter | StateEffectFilter | WinConditionFilter;
 
 
 
@@ -57,7 +57,7 @@ EInt returns ecore::EInt:
 
 Tile returns Tile:
 	'Tile'
-	type=EString
+	tileType=EString
 	'{'
 		'hexColor' hexColor=EString
 		'name' name=EString
@@ -133,6 +133,14 @@ StateEffectFilter returns StateEffectFilter:
 		'stateSelection' stateSelection=StateSelection
 		('targetState' targetState=[State|EString])?
 		('nextFilter' nextFilter=Filter)?
+	'}';
+
+WinConditionFilter returns WinConditionFilter:
+	'WinConditionFilter'
+	name=EString
+	'{'
+		('nextFilter' nextFilter=Filter)?
+		'patterns' '{' patterns+=Pattern ( "," patterns+=Pattern)* '}' 
 	'}';
 
 Pattern returns Pattern:

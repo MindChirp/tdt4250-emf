@@ -507,13 +507,13 @@ public interface BgPackage extends EPackage {
 	int TILE__INITIAL_STATE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Tile Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TILE__TYPE = 3;
+	int TILE__TILE_TYPE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Hex Color</b></em>' attribute.
@@ -717,22 +717,13 @@ public interface BgPackage extends EPackage {
 	int TILE_PLACEMENT__DARKER = 3;
 
 	/**
-	 * The feature id for the '<em><b>Coordinate</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TILE_PLACEMENT__COORDINATE = 4;
-
-	/**
 	 * The number of structural features of the '<em>Tile Placement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TILE_PLACEMENT_FEATURE_COUNT = 5;
+	int TILE_PLACEMENT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Tile Placement</em>' class.
@@ -991,6 +982,61 @@ public interface BgPackage extends EPackage {
 	int STATE_EFFECT_FILTER_OPERATION_COUNT = FILTER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.impl.WinConditionFilterImpl <em>Win Condition Filter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.ntnu.tdt4250.bg.impl.WinConditionFilterImpl
+	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getWinConditionFilter()
+	 * @generated
+	 */
+	int WIN_CONDITION_FILTER = 15;
+
+	/**
+	 * The feature id for the '<em><b>Next Filter</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIN_CONDITION_FILTER__NEXT_FILTER = FILTER__NEXT_FILTER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIN_CONDITION_FILTER__NAME = FILTER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIN_CONDITION_FILTER__PATTERNS = FILTER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Win Condition Filter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIN_CONDITION_FILTER_FEATURE_COUNT = FILTER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Win Condition Filter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIN_CONDITION_FILTER_OPERATION_COUNT = FILTER_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -998,7 +1044,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getTurnType()
 	 * @generated
 	 */
-	int TURN_TYPE = 15;
+	int TURN_TYPE = 16;
 
 	/**
 	 * The meta object id for the '{@link no.ntnu.tdt4250.bg.StateSelection <em>State Selection</em>}' enum.
@@ -1008,7 +1054,7 @@ public interface BgPackage extends EPackage {
 	 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getStateSelection()
 	 * @generated
 	 */
-	int STATE_SELECTION = 16;
+	int STATE_SELECTION = 17;
 
 	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Game <em>Game</em>}'.
@@ -1366,15 +1412,15 @@ public interface BgPackage extends EPackage {
 	EReference getTile_InitialState();
 
 	/**
-	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Tile#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Tile#getTileType <em>Tile Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see no.ntnu.tdt4250.bg.Tile#getType()
+	 * @return the meta object for the attribute '<em>Tile Type</em>'.
+	 * @see no.ntnu.tdt4250.bg.Tile#getTileType()
 	 * @see #getTile()
 	 * @generated
 	 */
-	EAttribute getTile_Type();
+	EAttribute getTile_TileType();
 
 	/**
 	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.Tile#getHexColor <em>Hex Color</em>}'.
@@ -1550,17 +1596,6 @@ public interface BgPackage extends EPackage {
 	EAttribute getTilePlacement_Darker();
 
 	/**
-	 * Returns the meta object for the attribute '{@link no.ntnu.tdt4250.bg.TilePlacement#getCoordinate <em>Coordinate</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Coordinate</em>'.
-	 * @see no.ntnu.tdt4250.bg.TilePlacement#getCoordinate()
-	 * @see #getTilePlacement()
-	 * @generated
-	 */
-	EAttribute getTilePlacement_Coordinate();
-
-	/**
 	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.Pattern <em>Pattern</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1720,6 +1755,27 @@ public interface BgPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getStateEffectFilter_StateSelection();
+
+	/**
+	 * Returns the meta object for class '{@link no.ntnu.tdt4250.bg.WinConditionFilter <em>Win Condition Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Win Condition Filter</em>'.
+	 * @see no.ntnu.tdt4250.bg.WinConditionFilter
+	 * @generated
+	 */
+	EClass getWinConditionFilter();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link no.ntnu.tdt4250.bg.WinConditionFilter#getPatterns <em>Patterns</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Patterns</em>'.
+	 * @see no.ntnu.tdt4250.bg.WinConditionFilter#getPatterns()
+	 * @see #getWinConditionFilter()
+	 * @generated
+	 */
+	EReference getWinConditionFilter_Patterns();
 
 	/**
 	 * Returns the meta object for enum '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}'.
@@ -2045,12 +2101,12 @@ public interface BgPackage extends EPackage {
 		EReference TILE__INITIAL_STATE = eINSTANCE.getTile_InitialState();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Tile Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TILE__TYPE = eINSTANCE.getTile_Type();
+		EAttribute TILE__TILE_TYPE = eINSTANCE.getTile_TileType();
 
 		/**
 		 * The meta object literal for the '<em><b>Hex Color</b></em>' attribute feature.
@@ -2187,14 +2243,6 @@ public interface BgPackage extends EPackage {
 		EAttribute TILE_PLACEMENT__DARKER = eINSTANCE.getTilePlacement_Darker();
 
 		/**
-		 * The meta object literal for the '<em><b>Coordinate</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TILE_PLACEMENT__COORDINATE = eINSTANCE.getTilePlacement_Coordinate();
-
-		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.PatternImpl <em>Pattern</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2321,6 +2369,24 @@ public interface BgPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STATE_EFFECT_FILTER__STATE_SELECTION = eINSTANCE.getStateEffectFilter_StateSelection();
+
+		/**
+		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.impl.WinConditionFilterImpl <em>Win Condition Filter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.ntnu.tdt4250.bg.impl.WinConditionFilterImpl
+		 * @see no.ntnu.tdt4250.bg.impl.BgPackageImpl#getWinConditionFilter()
+		 * @generated
+		 */
+		EClass WIN_CONDITION_FILTER = eINSTANCE.getWinConditionFilter();
+
+		/**
+		 * The meta object literal for the '<em><b>Patterns</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WIN_CONDITION_FILTER__PATTERNS = eINSTANCE.getWinConditionFilter_Patterns();
 
 		/**
 		 * The meta object literal for the '{@link no.ntnu.tdt4250.bg.TurnType <em>Turn Type</em>}' enum.

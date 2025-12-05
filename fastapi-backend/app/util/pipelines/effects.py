@@ -1,16 +1,16 @@
-from typing import List
-from app.generated.tictactoe import Board, Filter, Tile
+from app.generated.tictactoe import Tile, game, Filter
 from app.util.filters.filter_dict import filter_dict
+from typing import List
+def calculateEffects(tile: Tile):
+    pipeline = game.board.effectPipeline
 
-def calculateLegalMoves(board: Board) -> List[Tile]:
-    pipeline = board.legalMovesPipeline
+    
     
     # Safety check
     if not pipeline or not pipeline.filters:
         return []
 
     first_filters = pipeline.filters
-    legal_moves: List[Tile] = []
 
     # Define recursion logic
     def recurse(current_filter: Filter, current_tiles: List[Tile]):
@@ -36,16 +36,13 @@ def calculateLegalMoves(board: Board) -> List[Tile]:
         if next_filter:
             # Pass the survivors to the next filter
             recurse(next_filter, survivors)
-        else:
-            # 4. END OF CHAIN: Only now do we confirm these are valid moves
-            # This fixes the "Premature Add" bug
-            legal_moves.extend(survivors)
+        
 
     # Run the pipeline for every starting filter defined in the pipeline
     for start_filter in first_filters:
         # We loop through board tiles individually because your pattern_filter 
         # implementation currently requires all input tiles to match or it returns empty.
-        for tile in board.tiles:
-            recurse(start_filter, [tile])
+        recurse(start_filter, [tile])
 
-    return legal_moves
+
+  

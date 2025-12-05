@@ -177,6 +177,15 @@ public class BgSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case BgPackage.WIN_CONDITION_FILTER: {
+			WinConditionFilter winConditionFilter = (WinConditionFilter) theEObject;
+			T result = caseWinConditionFilter(winConditionFilter);
+			if (result == null)
+				result = caseFilter(winConditionFilter);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -404,6 +413,21 @@ public class BgSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseStateEffectFilter(StateEffectFilter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Win Condition Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Win Condition Filter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWinConditionFilter(WinConditionFilter object) {
 		return null;
 	}
 

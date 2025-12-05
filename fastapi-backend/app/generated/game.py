@@ -1,16 +1,15 @@
-from typing import List, Optional, Any
+from typing import List, Optional
 from pydantic import BaseModel
 
-# Base Filter Class
 class Filter(BaseModel):
-    nextFilter: Optional["Filter"] = None
+    pass
 
 class Board(BaseModel):
     width: "int"
-    height: "int"
     tiles: List["Tile"] = []
     legalMovesPipeline: Optional["LegalMovesPipeline"] = None
     effectPipeline: Optional["EffectPipeline"] = None
+    height: "int"
     checkered: "bool"
     size: "int"
     legalMoves: List["Tile"] = []
@@ -26,9 +25,8 @@ class Tile(BaseModel):
     activeState: "State"
     row: "int"
     column: "int"
-    
+
     def updateState(self, targetStateName: str):
-        # Logic to update state based on transitions
         for transition in self.transitions:
             for source in transition.source:
                 if source.name == self.activeState.name and transition.target.name == targetStateName:
@@ -55,11 +53,11 @@ class PatternFilter(Filter):
     patterns: List["Pattern"] = []
     
 class Pattern(BaseModel):
+    relativecoordinates: List["RelativeCoordinate"] = []
     name: "str"
     stateSelection: Optional["str"] = None
     matchState: Optional["str"] = None
-    relativecoordinates: List["RelativeCoordinate"] = []
-
+    
     
 class RelativeCoordinate(BaseModel):
     x: "int"
@@ -68,18 +66,18 @@ class RelativeCoordinate(BaseModel):
 class EffectPipeline(BaseModel):
     filters: List["Filter"] = []
     
-class IterativeFilter(Filter):
+class IterativeFilter(BaseModel):
     nextFilter: Optional["Filter"] = None
     name: "str"
     directionVector: "RelativeCoordinate"
     matchRule: "Pattern"
     endRule: "Pattern"
     
-class StateEffectFilter(Filter):
+class StateEffectFilter(BaseModel):
+    nextFilter: Optional["Filter"] = None
     name: "str"
+    targetState: Optional["State"] = None
     stateSelection: "str"
-    targetState: Optional["str"] = None 
-
     
 class Player(BaseModel):
     name: "str"
@@ -96,7 +94,6 @@ class Game(BaseModel):
     turnPolicy: "str"
     
 
-# Rebuild models for Pydantic recursion
 Board.model_rebuild()
 Tile.model_rebuild()
 State.model_rebuild()
@@ -110,82 +107,80 @@ IterativeFilter.model_rebuild()
 StateEffectFilter.model_rebuild()
 Player.model_rebuild()
 Game.model_rebuild()
-Filter.model_rebuild()
 
-# --- Tile Definitions ---
 
 class PlayTile(Tile):
     def __init__(self, row, column):
-        # 1. Create Initial State
         stateInitialEmpty = State(
             name="InitialEmpty",
             hexColor="#ffffff",
-            outbound=[], inbound=[]
+            outbound=[]
         )
 
-        # 2. Create Other States
+        row = row
+        column = column
+
         stateWhitePlayed = State(
             name="WhitePlayed",
-            hexColor="#ff0000",
-            outbound=[], inbound=[]
+            hexColor="#ffffff",
+            outbound=[],
+            inbound=[]
         )
         stateBlackPlayed = State(
             name="BlackPlayed",
-            hexColor="#000000",
-            outbound=[], inbound=[]
+            hexColor="#ffffff",
+            outbound=[],
+            inbound=[]
         )
-        
-        # 3. Create Transitions (Linking objects)
+
         transitionEmptyToBlack = Transition(
             name="EmptyToBlack",
-            source=[stateInitialEmpty],
+            source=[
+                stateInitialEmpty
+            ],
             target=stateBlackPlayed
         )
         transitionEmptyToWhite = Transition(
             name="EmptyToWhite",
-            source=[stateInitialEmpty],
+            source=[
+                stateInitialEmpty
+            ],
             target=stateWhitePlayed
         )
         transitionBlackToWhite = Transition(
             name="BlackToWhite",
-            source=[stateBlackPlayed],
+            source=[
+                stateBlackPlayed
+            ],
             target=stateWhitePlayed
         )
         transitionWhiteToBlack = Transition(
             name="WhiteToBlack",
-            source=[stateWhitePlayed],
+            source=[
+                stateWhitePlayed
+            ],
             target=stateBlackPlayed
         )
 
-        # 4. Link Transitions to States (Outbound/Inbound wiring)
-        # Outbound for EmptyToBlack
         stateInitialEmpty.outbound.append(transitionEmptyToBlack)
-        # Inbound for EmptyToBlack
         stateBlackPlayed.inbound.append(transitionEmptyToBlack)
-        
-        # Outbound for EmptyToWhite
         stateInitialEmpty.outbound.append(transitionEmptyToWhite)
-        # Inbound for EmptyToWhite
         stateWhitePlayed.inbound.append(transitionEmptyToWhite)
-        
-        # Outbound for BlackToWhite
         stateBlackPlayed.outbound.append(transitionBlackToWhite)
-        # Inbound for BlackToWhite
         stateWhitePlayed.inbound.append(transitionBlackToWhite)
-        
-        # Outbound for WhiteToBlack
         stateWhitePlayed.outbound.append(transitionWhiteToBlack)
-        # Inbound for WhiteToBlack
         stateBlackPlayed.inbound.append(transitionWhiteToBlack)
-        
 
         super().__init__(
             states=[
-                stateWhitePlayed, stateBlackPlayed
-                , stateInitialEmpty
+                stateWhitePlayed, 
+                stateBlackPlayed
             ],
             transitions=[
-                transitionEmptyToBlack, transitionEmptyToWhite, transitionBlackToWhite, transitionWhiteToBlack
+                transitionEmptyToBlack, 
+                transitionEmptyToWhite, 
+                transitionBlackToWhite, 
+                transitionWhiteToBlack
             ],
             initialState=stateInitialEmpty,
             activeState=stateInitialEmpty,
@@ -196,7 +191,7 @@ class PlayTile(Tile):
             column=column
         )
 
-# --- Instance Initialization ---
+
 tiles = [
     PlayTile(0, 0), 
     PlayTile(0, 1), 
@@ -210,11 +205,18 @@ tiles = [
 ]
 
 players = [
-    Player(name="Player1", hexColor="#999999", associatedState="BlackPlayed"), 
-    Player(name="Player2", hexColor="#99ffff", associatedState="WhitePlayed")
+    Player(
+        name="Player1",
+        hexColor="#999999",
+        associatedState="BlackPlayed"
+    ), 
+    Player(
+        name="Player2",
+        hexColor="#99ffff",
+        associatedState="WhitePlayed"
+    )
 ]
 
-# --- Pipelines ---
 
 legal_moves_pipeline = LegalMovesPipeline(
     filters=[
@@ -229,7 +231,7 @@ legal_moves_pipeline = LegalMovesPipeline(
                         RelativeCoordinate(
                             x=0,
                             y=0
-                        ),
+                        )
                     ]
                 )
             ],
@@ -237,7 +239,7 @@ legal_moves_pipeline = LegalMovesPipeline(
         )
     ]
 )
-
+        
 effect_pipeline = EffectPipeline(
     filters=[
         IterativeFilter(
@@ -277,13 +279,7 @@ effect_pipeline = EffectPipeline(
                 targetState=None,
                 nextFilter=None
             )
-        ),
-       StateEffectFilter(
-           name="FlipPlacedTile",
-           stateSelection="CurrentPlayer",
-           targetState=None,
-           nextFilter=None
-       ) 
+        )
     ]
 )
 
@@ -298,6 +294,7 @@ board = Board(
     legalMoves=[]
 )
 
+
 game = Game(
     board=board,
     players=players,
@@ -306,3 +303,4 @@ game = Game(
     initialPlayer=players[0],
     turnPolicy="TurnBased"
 )
+

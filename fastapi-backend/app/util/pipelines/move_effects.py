@@ -66,71 +66,70 @@ def state_effect_filter(tile_context: List[Tile], filterObj: StateEffectFilter) 
 
     active = game.activePlayer
     opponents = [p for p in game.players if p != active]
+    match_state: Optional[str] = None
 
     if filterObj.stateSelection == "StateBased":
-        match_state = filterObj.matchState
+        match_state = filterObj.targetState
     elif filterObj.stateSelection == "OwnTiles":
         match_state = active.associatedState
     else:
         match_state = opponents[0].associatedState
 
     for tile in tile_context:
-        for transition in tile.transitions:
-            if tile.activeState in transition.source and transition.target == match_state:
-                tile.updateState(match_state.name)
-                break
-
+        tile.updateState(match_state)
+        break
+ 
     return tile_context
 
-def win_condition_filter(board: Board, winFilter: WinConditionFilter) -> bool:
-    """
-    WinConditionFilter ALWAYS checks the entire board, not affected tiles.
-    """
+# def win_condition_filter(board: Board, winFilter: WinConditionFilter) -> bool:
+#     """
+#     WinConditionFilter ALWAYS checks the entire board, not affected tiles.
+#     """
 
-    board_tiles = board.tiles
+#     board_tiles = board.tiles
 
-    for tile in board_tiles:
-        for patternFilter in winFilter.patternFilters:
-            for pattern in patternFilter.patterns:
-                if matches_pattern(tile, pattern):
-                    print(f"WINNER: {game.activePlayer.name}")
-                    return True
+#     for tile in board_tiles:
+#         for patternFilter in winFilter.patternFilters:
+#             for pattern in patternFilter.patterns:
+#                 if matches_pattern(tile, pattern):
+#                     print(f"WINNER: {game.activePlayer.name}")
+#                     return True
 
-    return False
+#     return False
 
 LOCAL_FILTERS = {
     "StateEffectFilter": state_effect_filter,
     "PatternFilter": pattern_filter,
 }
 
-GLOBAL_FILTERS = {
-    "WinConditionFilter": win_condition_filter,
-}
+# GLOBAL_FILTERS = {
+#     "WinConditionFilter": win_condition_filter,
+# }
 
 
-def calculateEffects(board: Board, affected_tiles: List[Tile]):
-    """
-    Runs local effect filters first, then global win-condition filters.
-    """
+# def calculateEffects(board: Board, affected_tiles: List[Tile]):
+#     """
+#     Runs local effect filters first, then global win-condition filters.
+#     """
 
-    pipeline = board.effectPipeline
-    current = pipeline.filter
-    tile_context = affected_tiles
+#     pipeline = board.effectPipeline
+#     current = pipeline.filter
+#     tile_context = affected_tiles
 
-    while current:
-        cls_name = current.__class__.__name__
-        if cls_name in LOCAL_FILTERS:
-            handler = LOCAL_FILTERS[cls_name]
-            tile_context = handler(tile_context, current)
-        current = current.nextFilter
+#     while current:
+#         cls_name = current.__class__.__name__
+#         if cls_name in LOCAL_FILTERS:
+#             handler = LOCAL_FILTERS[cls_name]
+#             tile_context = handler(tile_context, current)
+#         current = current.nextFilter
         
-    current = pipeline.filter
-    while current:
-        cls_name = current.__class__.__name__
-        if cls_name in GLOBAL_FILTERS:
-            handler = GLOBAL_FILTERS[cls_name]
-            if handler(board, current):
-                return True
-        current = current.nextFilter
+#     current = pipeline.filter
+#     while current:
+#         cls_name = current.__class__.__name__
+#         if cls_name in GLOBAL_FILTERS:
+#             handler = GLOBAL_FILTERS[cls_name]
+#             if handler(board, current):
+#                 return True
+#         current = current.nextFilter
 
-    return False
+#     return False
