@@ -2,7 +2,7 @@ from ast import List
 import time
 from typing import Tuple
 
-from app.generated.tictactoe import game, Player, Tile
+from app.generated.game import game, Player, Tile
 from app.util.pipelines.legal_moves import calculateLegalMoves
 from app.util.pipelines.effects import calculateEffects
 from app.models.game_state_response import GameStateResponse, TileResponse
@@ -94,6 +94,10 @@ class GameService:
         placement = self._find_tile_placement(move.row, move.column)
        
         legal_moves = game.board.legalMoves
+
+        if (len(legal_moves) == 0):
+            self._advance_turn()
+            return
 
         # Check if a tile in legal_moves has the same row and column as the current placement
         is_legal = False

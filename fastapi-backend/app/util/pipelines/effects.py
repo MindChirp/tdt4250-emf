@@ -1,4 +1,4 @@
-from app.generated.tictactoe import Tile, game, Filter
+from app.generated.game import Tile, game, Filter
 from app.util.filters.filter_dict import filter_dict
 from typing import List
 def calculateEffects(tile: Tile):

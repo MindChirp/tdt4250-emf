@@ -1,5 +1,5 @@
 from typing import List
-from app.generated.tictactoe import Board, Filter, Tile
+from app.generated.game import Board, Filter, Tile
 from app.util.filters.filter_dict import filter_dict
 
 def calculateLegalMoves(board: Board) -> List[Tile]:
@@ -39,7 +39,8 @@ def calculateLegalMoves(board: Board) -> List[Tile]:
         else:
             # 4. END OF CHAIN: Only now do we confirm these are valid moves
             # This fixes the "Premature Add" bug
-            legal_moves.extend(survivors)
+            if (len(survivors) > 0):
+                legal_moves.extend()                   
 
     # Run the pipeline for every starting filter defined in the pipeline
     for start_filter in first_filters:
