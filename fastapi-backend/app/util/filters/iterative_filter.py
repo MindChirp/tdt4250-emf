@@ -14,18 +14,18 @@ def iterative_filter(tiles: List[Tile], matchRule: Pattern, endRule: Pattern, di
   for tile in tiles:
     current_tile = get_relative_tile(tile, directionVector.x, directionVector.y)
     if (not current_tile): 
-      return []
+      break
 
-    print(f"Currently working on tile at ({tile.column}, {tile.row})")
+    print(f"Currently working on tile at ({current_tile.column}, {current_tile.row})")
     current_matched_tiles = []
 
     while True:
       # Check if the matchRule pattern matches at the current tile
-      print("Starting loop")
-      if not (len(pattern_filter([current_tile], [matchRule])) > 0):
+      matched = pattern_filter([current_tile], [matchRule])
+      print(f"Matched with: {matched}")
+      if not (len(matched) > 0):
         break
 
-      print("Match found")
 
       current_matched_tiles.append(current_tile)
 
