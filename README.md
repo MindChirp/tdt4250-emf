@@ -601,10 +601,10 @@ This pipeline-based model enables expressive rule definitions across many types 
   - `empty → yellow`
 
 - **LegalMovesPipeline**
-  - `TileEmptyFilter` → `GravityFilter`
+  - `PatternFilter`
 
 - **EffectPipeline**
-  - `PlaceTileEffect` → `CheckWinEffect` → `NextTurnEffect`
+  - `StateEffectFilter` → `WinConditionFilter`
 
 ---
 
@@ -622,40 +622,9 @@ This pipeline-based model enables expressive rule definitions across many types 
   - `black → white`
 
 - **LegalMovesPipeline**
-  - `TileEmptyFilter` → `ImmediateNeighbourFilter` → `RaycastFilter` → `OpponentColorFilter`
+  - `IterativeFilter`
 
 - **EffectPipeline**
-  - `PlaceTileEffect` → `FlipTilesEffect` → `NextTurnEffect`
-
----
-
-## Extensibility & Future Work (This can probably be removed)
-
-- Sirius diagram for pipeline visualization  
-- Composite filters (AND/OR filter nodes)  
-- AI players modeled as pipelines  
-- Additional board shapes (hex, wrap-around)  
-- Undo/redo via reversible effects  
-- Animation / rendering hooks  
-- Export playable games to external platforms
-
----
-
-## Quick Start Checklist (Need to redo this with serious probably)
-
-- [ ] Install Eclipse with EMF support  
-- [ ] Open `model/` (`.ecore`) and review metamodel  
-- [ ] Generate model code from `.genmodel`  
-- [ ] Create or modify example models in `models/`  
-- [ ] Implement custom filters/effects in `src/.../impl` (mark `@generated NOT`)  
-- [ ] Validate models and run generated engine
-
----
-
-## Notes
-
-- All gameplay logic is stored in the model - the generated engine interprets and executes it.  
-- Custom Java is only required for filter/effect implementations and validator code that cannot be expressed in the model.  
-- The engine is intended for deterministic, grid-based games; extensions can enable other board geometries and features.
+  - `IterativeFilter` → `StateEffectFilter`
 
 ---
