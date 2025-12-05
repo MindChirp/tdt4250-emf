@@ -21,27 +21,15 @@
          version="0.0.0"/>
 
    <plugin
-         id="no.ntnu.tdt4250.bg.design"
-         version="0.0.0"/>
-
-   <plugin
-         id="no.ntnu.tdt4250.bg.bgdsl.ui"
-         version="0.0.0"/>
-
-   <plugin
-         id="no.ntnu.tdt4250.bg.edit"
-         version="0.0.0"/>
-
-   <plugin
-         id="no.ntnu.tdt4250.bg"
-         version="0.0.0"/>
-
-   <plugin
          id="no.ntnu.tdt4250.bg.bgdsl.ui.tests"
          version="0.0.0"/>
 
    <plugin
-         id="no.ntnu.tdt4250.bg.bgdsl.ide"
+         id="no.ntnu.tdt4250.bg.design"
+         version="0.0.0"/>
+
+   <plugin
+         id="no.ntnu.tdt4250.bg.edit"
          version="0.0.0"/>
 
    <plugin
@@ -50,6 +38,18 @@
 
    <plugin
          id="no.ntnu.tdt4250.bg.bgdsl.tests"
+         version="0.0.0"/>
+
+   <plugin
+         id="no.ntnu.tdt4250.bg"
+         version="0.0.0"/>
+
+   <plugin
+         id="no.ntnu.tdt4250.bg.bgdsl.ide"
+         version="0.0.0"/>
+
+   <plugin
+         id="no.ntnu.tdt4250.bg.bgdsl.ui"
          version="0.0.0"/>
 
 </feature>
